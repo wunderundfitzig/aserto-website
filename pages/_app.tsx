@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
+import AsertoLogo from '../components/aserto-logo'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Head>
@@ -36,12 +37,42 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name='theme-color' content='#a8c9e8' />
       </Head>
-      <Component {...pageProps} />
+      <div className='page-container'>
+        <AsertoLogo gridArea='logo' />
+        <Component {...pageProps} gridArea='main' />
+      </div>
       <style jsx global>{`
+        @font-face {
+          font-family: 'Sinova';
+          font-weight: normal;
+          src: url('fonts/312FA8_0_0.woff2') format('woff2'),
+            url('fonts/312FA8_0_0.woff') format('woff');
+        }
+
+        @font-face {
+          font-family: 'Sinova';
+          font-weight: bold;
+          src: url('fonts/312FA8_1_0.woff2') format('woff2'),
+            url('fonts/312FA8_1_0.woff') format('woff');
+        }
+
         html,
         body {
           padding: 0;
           margin: 0;
+          font-family: Sinova, sans-serif;
+        }
+
+        .page-container {
+          display: grid;
+          grid-template-columns: 1fr 20% 90px;
+          grid-template-rows: auto 1fr;
+          grid-template-areas:
+            'main main logo'
+            'main main navigation';
+          padding: 3em 3em 0 0;
+          grid-gap: 2em 3em;
+          min-height: 100vh;
         }
 
         a {
@@ -57,4 +88,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default App
