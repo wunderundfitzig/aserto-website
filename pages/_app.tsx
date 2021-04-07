@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import AsertoLogo from '../components/aserto-logo'
+import Navigation from '../components/navigation'
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -39,6 +40,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
       </Head>
       <div className='page-container'>
         <AsertoLogo gridArea='logo' />
+        <Navigation onFrontpage gridArea='navigation' />
         <Component {...pageProps} gridArea='main' />
       </div>
       <style jsx global>{`
@@ -65,7 +67,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
 
         .page-container {
           display: grid;
-          grid-template-columns: 1fr 20% 90px;
+          grid-template-columns: 1fr 20vw 90px;
           grid-template-rows: auto 1fr;
           grid-template-areas:
             'main main logo'

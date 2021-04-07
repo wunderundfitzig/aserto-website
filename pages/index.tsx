@@ -6,14 +6,21 @@ const Index: NextPage = () => {
     <>
       <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
-        <Image src='/frontpage-banner.jpg' layout='fill' objectFit='cover' />
+        <Image
+          src='/frontpage-banner.jpg'
+          layout='fill'
+          objectFit='cover'
+          objectPosition='right'
+        />
       </div>
       <style jsx>{`
         h1 {
           font-weight: normal;
           text-align: right;
+          justify-self: end;
           grid-column: 2 / 4;
           grid-row: 2 / 3;
+          max-width: 300px;
         }
 
         .image-wrapper {
