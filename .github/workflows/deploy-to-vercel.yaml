@@ -11,18 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set branch name
-        run: echo "BRANCH_NAME=${REF#refs/heads/}" >> $GITHUB_ENV
-      - name: Set normalized branch name
-        run: echo "NORMALIZED_BRANCH_NAME=$(echo $BRANCH_NAME | tr '[:upper:]' '[:lower:]' | sed 's/[^[:alnum:]-]/-/g')" >> $GITHUB_ENV
-
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment
         id: deployment
         with:
           token: '${{ github.token }}'
           production_environment: false
-          environment: 'vercel/${{ env.NORMALIZED_BRANCH_NAME }}'
+          environment: 'vercel/main'
 
       - name: Deploy to Vercel
         id: deploy-to-vercel
@@ -32,7 +27,7 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}} #Required
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required
           github-comment: false
-          alias-domains: ${{ env.NORMALIZED_BRANCH_NAME }}-aserto-website.errnesto.vercel.app
+          alias-domains: main-aserto-website.errnesto.vercel.app
 
       - name: Update deployment status (success)
         if: success()
