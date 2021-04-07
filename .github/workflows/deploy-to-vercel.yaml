@@ -10,26 +10,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+ - uses: actions/checkout@v2
+      - name: Set branch name
+        run: echo "BRANCH_NAME=${REF#refs/heads/}" >> $GITHUB_ENV
+      - name: Set normalized branch name
+        run: echo "NORMALIZED_BRANCH_NAME=$(echo $BRANCH_NAME | tr '[:upper:]' '[:lower:]' | sed 's/[^[:alnum:]-]/-/g')" >> $GITHUB_ENV
+
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment
         id: deployment
         with:
           token: '${{ github.token }}'
           production_environment: false
-          environment: 'vercel/${{ github.head_ref }}'
+          environment: 'vercel/${{ env.NORMALIZED_BRANCH_NAME }}'
 
-      - uses: actions/checkout@v2
-      - name: Set branch name
-        run: echo "BRANCH_NAME=${REF#refs/heads/}" >> $GITHUB_ENV
-      - name: Set normalized branch name
-        run: echo "NORMALIZED_BRANCH_NAME=$(echo $BRANCH_NAME | tr '[:upper:]' '[:lower:]' | sed 's/[^[:alnum:]-]/-/g')" >> $GITHUB_ENV
-      - uses: amondnet/vercel-action@v20
+      - name: Deploy to Vercel
+        id: deploy-to-vercel
+        uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}} #Required
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required
           github-comment: false
-          alias-domains: ${{ env.NORMALIZED_BRANCH_NAME }}.aserto-website.vercel.app
+          alias-domains: ${{ env.NORMALIZED_BRANCH_NAME }}-aserto-website.errnesto.vercel.app
 
       - name: Update deployment status (success)
         if: success()
