@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
- - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Set branch name
         run: echo "BRANCH_NAME=${REF#refs/heads/}" >> $GITHUB_ENV
       - name: Set normalized branch name
