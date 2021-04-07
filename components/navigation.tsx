@@ -47,7 +47,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           width: ${onFrontpage ? '150px' : '100%'};
           font-size: ${onFrontpage ? '1.4em' : '1em'};
           align-self: start;
-          transition: transform 0.4s ease-in-out, font-size 0.2s ease-in;
+          transition: transform 0.25s ease-in, font-size 0.1s ease-in;
           color: ${onFrontpage ? 'white' : 'inherit'};
         }
 
@@ -59,11 +59,11 @@ const Navigation: FunctionComponent<Props> = (props) => {
         }
 
         .group {
-          margin: 1.3em 0;
+          margin-bottom: 1.3em;
         }
 
         li {
-          margin: 0.5em 0;
+          margin-bottom: 0.5em;
         }
       `}</style>
     </nav>
