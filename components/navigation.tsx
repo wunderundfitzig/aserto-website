@@ -3,16 +3,16 @@ import Link from 'next/link'
 
 const navItems = [
   [
-    { label: 'Purpose', slug: 'purpose' },
-    { label: 'Team', slug: 'team' },
+    { label: 'Purpose', slug: '/purpose' },
+    { label: 'Team', slug: '/team' },
   ],
   [
-    { label: 'Leistungen', slug: 'leistungen' },
-    { label: 'Referenzen', slug: 'referenzen' },
+    { label: 'Leistungen', slug: '/leistungen' },
+    { label: 'Referenzen', slug: '/referenzen' },
   ],
   [
-    { label: 'Jobs', slug: 'jobs' },
-    { label: 'Kontakt', slug: 'kontakt' },
+    { label: 'Jobs', slug: '/jobs' },
+    { label: 'Kontakt', slug: '/kontakt' },
   ],
 ]
 
@@ -47,7 +47,8 @@ const Navigation: FunctionComponent<Props> = (props) => {
           width: ${onFrontpage ? '150px' : '100%'};
           font-size: ${onFrontpage ? '1.4em' : '1em'};
           align-self: start;
-          height: auto;
+          transition: transform 0.4s ease-in-out, font-size 0.2s ease-in;
+          color: ${onFrontpage ? 'white' : 'inherit'};
         }
 
         ul {
@@ -63,10 +64,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
         li {
           margin: 0.5em 0;
-        }
-
-        a {
-          color: ${onFrontpage ? 'white' : 'inherit'};
         }
       `}</style>
     </nav>

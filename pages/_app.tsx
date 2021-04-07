@@ -1,46 +1,23 @@
-import Head from 'next/head'
 import type { AppProps } from 'next/app'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import AsertoLogo from '../components/aserto-logo'
+import Favicons from '../components/favicons'
 import Navigation from '../components/navigation'
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
+  const router = useRouter()
+
   return (
     <>
-      <Head>
-        <link
-          rel='apple-touch-icon'
-          sizes='180x180'
-          href='/favicons/apple-touch-icon.png'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='32x32'
-          href='/favicons/favicon-32x32.png'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='16x16'
-          href='/favicons/favicon-16x16.png'
-        />
-        <link rel='manifest' href='/favicons/site.webmanifest' />
-        <link
-          rel='mask-icon'
-          href='/favicons/safari-pinned-tab.svg'
-          color='#5f99d2'
-        />
-        <link rel='shortcut icon' href='/favicons/favicon.ico' />
-        <meta name='msapplication-TileColor' content='#5f99d2' />
-        <meta
-          name='msapplication-config'
-          content='/favicons/browserconfig.xml'
-        />
-        <meta name='theme-color' content='#a8c9e8' />
-      </Head>
+      <Favicons />
       <div className='page-container'>
-        <AsertoLogo gridArea='logo' />
-        <Navigation onFrontpage gridArea='navigation' />
+        <Link href='/'>
+          <a className='logo-link'>
+            <AsertoLogo />
+          </a>
+        </Link>
+        <Navigation onFrontpage={router.route === '/'} gridArea='navigation' />
         <Component {...pageProps} gridArea='main' />
       </div>
       <style jsx global>{`
@@ -75,6 +52,10 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
           padding: 3em 3em 0 0;
           grid-gap: 2em 3em;
           min-height: 100vh;
+        }
+
+        .logo-link {
+          grid-area: logo;
         }
 
         a {
