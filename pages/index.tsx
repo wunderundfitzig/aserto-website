@@ -30,6 +30,20 @@ const Index: NextPage = () => {
           width: 100%;
           height: 100%;
         }
+
+        .image-wrapper:after {
+          content: '';
+          position: absolute;
+          right: 0;
+          width: 250px;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.4) 50%,
+            rgba(0, 0, 0, 0.6)
+          );
+        }
       `}</style>
     </>
   )
