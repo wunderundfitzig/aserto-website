@@ -1,0 +1,50 @@
+name: deploy to vercel
+on:
+  push:
+    branches:
+      - 'main'
+  schedule:
+    - cron: 23 4 * * 1/2
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment
+        id: deployment
+        with:
+          token: '${{ github.token }}'
+          production_environment: false
+          environment: 'vercel/${{ github.head_ref }}'
+
+      - uses: actions/checkout@v2
+      - name: Set branch name
+        run: echo "BRANCH_NAME=${REF#refs/heads/}" >> $GITHUB_ENV
+      - name: Set normalized branch name
+        run: echo "NORMALIZED_BRANCH_NAME=$(echo $BRANCH_NAME | tr '[:upper:]' '[:lower:]' | sed 's/[^[:alnum:]-]/-/g')" >> $GITHUB_ENV
+      - uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}} #Required
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required
+          github-comment: false
+          alias-domains: ${{ env.NORMALIZED_BRANCH_NAME }}.aserto-website.vercel.app
+
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: '${{ github.token }}'
+          state: 'success'
+          environment_url: ${{ steps.deploy-to-vercel.outputs.preview-url }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: '${{ github.token }}'
+          state: 'failure'
+          environment_url: ${{ steps.deploy-to-vercel.outputs.preview-url }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
