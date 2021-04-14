@@ -1,19 +1,13 @@
 import { FunctionComponent } from 'react'
 import Link from 'next/link'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const navItems = [
-  [
-    { label: 'Purpose', slug: '/purpose' },
-    { label: 'Team', slug: '/team' },
-  ],
-  [
-    { label: 'Leistungen', slug: '/leistungen' },
-    { label: 'Referenzen', slug: '/referenzen' },
-  ],
-  [
-    { label: 'Jobs', slug: '/jobs' },
-    { label: 'Kontakt', slug: '/kontakt' },
-  ],
+  { label: 'Purpose', slug: '/purpose' },
+  { label: 'Team', slug: '/team' },
+  { label: 'Leistungen', slug: '/leistungen' },
+  { label: 'Referenzen', slug: '/referenzen' },
+  { label: 'Jobs', slug: '/jobs' },
 ]
 
 type Props = {
@@ -25,30 +19,22 @@ const Navigation: FunctionComponent<Props> = (props) => {
   return (
     <nav className='nav'>
       <ul>
-        {navItems.map((group, idx) => (
+        {navItems.map((navItem, idx) => (
           <div key={idx} className='group'>
-            {group.map((navItem) => (
-              <li key={navItem.slug}>
-                <Link href={navItem.slug}>
-                  <a>{navItem.label}</a>
-                </Link>
-              </li>
-            ))}
+            <li key={navItem.slug}>
+              <Link href={navItem.slug}>
+                <a>{navItem.label}</a>
+              </Link>
+            </li>
           </div>
         ))}
       </ul>
       <style jsx>{`
         .nav {
           grid-area: ${props.gridArea};
-          transform: ${onFrontpage
-            ? 'translateX(calc((20vw + 280px) * -1)) translateY(calc(50vh - 240px))'
-            : 'none'};
           z-index: 2;
-          width: ${onFrontpage ? '150px' : '100%'};
-          font-size: ${onFrontpage ? '1.4em' : '1em'};
-          align-self: start;
-          transition: transform 0.25s ease-in, font-size 0.1s ease-in;
           color: ${onFrontpage ? 'white' : 'inherit'};
+          display: none;
         }
 
         ul {
@@ -58,12 +44,21 @@ const Navigation: FunctionComponent<Props> = (props) => {
           margin: 0;
         }
 
-        .group {
-          margin-bottom: 1.3em;
+        li {
+          margin-bottom: 1em;
         }
 
-        li {
-          margin-bottom: 0.5em;
+        @media ${minWidth(breakpoint.xl)} {
+          .nav {
+            display: block;
+            transform: ${onFrontpage
+              ? 'translateX(calc((20vw + 280px) * -1)) translateY(calc(50vh - 240px))'
+              : 'none'};
+            width: ${onFrontpage ? '150px' : '100%'};
+            font-size: ${onFrontpage ? '1.4em' : '1em'};
+            align-self: start;
+            transition: transform 0.25s ease-in, font-size 0.1s ease-in;
+          }
         }
       `}</style>
     </nav>
