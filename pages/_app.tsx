@@ -26,7 +26,9 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
       <GlobalStyles />
       <style jsx>{`
         .logo-link {
+          position: relative;
           grid-area: logo;
+          z-index: 2;
         }
 
         @media ${minWidth(breakpoint.xl)} {

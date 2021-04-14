@@ -28,6 +28,7 @@ const MainGrid: FunctionComponent = (props) => {
               'main main navigation';
             padding: 4em 3em 0 0;
             grid-gap: 2em 3em;
+            min-height: 100vh;
           }
         }
       `}</style>
