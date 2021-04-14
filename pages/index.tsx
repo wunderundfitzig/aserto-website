@@ -1,5 +1,9 @@
+import { SimpleCutRoundCurve } from 'components/curves'
+import { breakpoint, minWidth } from 'lib/breakpoints'
+import { beige } from 'lib/colors'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import React from 'react'
 
 const Index: NextPage = () => {
   return (
@@ -7,26 +11,32 @@ const Index: NextPage = () => {
       <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
+          className='image'
           src='/frontpage-banner.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='right'
         />
       </div>
+      <div className='curve'>
+        <SimpleCutRoundCurve color={beige} />
+      </div>
       <style jsx>{`
         h1 {
           font-weight: normal;
           text-align: right;
           justify-self: end;
-          grid-column: 2 / 4;
+          grid-column: 1 / 3;
           grid-row: 2 / 3;
-          max-width: 300px;
+          max-width: 10em;
+          font-size: 1.5em;
+          margin: 0 0 1em 0;
         }
 
         .image-wrapper {
           position: relative;
-          grid-column: 1 / 2;
-          grid-row: 1 / 3;
+          grid-column: 1 / 3;
+          grid-row: 3 / 4;
           width: 100%;
           height: 100%;
         }
@@ -43,6 +53,38 @@ const Index: NextPage = () => {
             rgba(0, 0, 0, 0.4) 50%,
             rgba(0, 0, 0, 0.6)
           );
+        }
+
+        .curve {
+          display: none;
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          h1 {
+            font-weight: normal;
+            text-align: right;
+            justify-self: end;
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
+            max-width: 300px;
+            font-size: 2em;
+          }
+          .image-wrapper {
+            position: relative;
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            width: 100%;
+            height: 100%;
+          }
+
+          .curve {
+            display: block;
+            position: absolute;
+            width: 240px;
+            right: 0;
+            bottom: 0;
+            font-size: 0;
+          }
         }
       `}</style>
     </>
