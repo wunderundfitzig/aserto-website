@@ -10,7 +10,7 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
       className='curve'
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 1084.567 1248.952'
-      preserveAspectRatio='xMaxYMin slice'
+      preserveAspectRatio='none'
     >
       <defs>
         <clipPath id='a'>
@@ -34,15 +34,20 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
             fill='none'
             stroke={props.color}
             strokeMiterlimit='10'
-            strokeWidth='20'
+            strokeWidth='14'
           />
         </g>
       </g>
       <style jsx>{`
         .curve {
           width: 800px;
-          height: 800px;
+          height: 100%;
           display: block;
+          overflow: visible;
+        }
+
+        path {
+          vector-effect: non-scaling-stroke;
         }
       `}</style>
     </svg>
@@ -67,13 +72,16 @@ export const SimpleCutRoundCurve: FunctionComponent<CurveProps> = (props) => {
           d='M1960.133 782.417c-104.4-56.477-201.3-71.331-282.83-5.356-109.518 87.525-64.318 260.33-11.412 455.934'
           fill='none'
           stroke={props.color}
-          strokeWidth='20'
+          strokeWidth='14'
         />
       </g>
       <style jsx>{`
         .curve {
           width: 100%;
           height: 100%;
+        }
+        path {
+          vector-effect: non-scaling-stroke;
         }
       `}</style>
     </svg>

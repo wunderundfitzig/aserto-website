@@ -100,8 +100,8 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
           .nav.on-frontpage {
             grid-area: ${props.gridArea};
-            transform: translateX(calc((20vw + 260px) * -1))
-              translateY(calc(50vh - 260px));
+            transform: translateX(calc((20vw + 250px) * -1))
+              translateY(calc(60vh - 300px));
             width: 150px;
             font-size: 1.4em;
           }

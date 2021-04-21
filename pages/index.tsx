@@ -63,7 +63,7 @@ const Index: NextPage = () => {
 
         .main-curve {
           display: flex;
-          justify-content: end;
+          justify-content: flex-end;
           margin-top: -4em;
           margin-right: -131px;
           grid-column: 1 / 2;
