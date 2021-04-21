@@ -40,7 +40,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .nav {
           grid-area: ${props.gridArea};
-          z-index: 1;
+          z-index: 10;
           padding-left: 1.5em;
         }
 
@@ -100,6 +100,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
           .nav.on-frontpage {
             grid-area: ${props.gridArea};
+            transition: none;
             transform: translateX(calc((20vw + 250px) * -1))
               translateY(calc(60vh - 300px));
             width: 150px;
