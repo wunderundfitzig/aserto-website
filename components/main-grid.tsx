@@ -17,6 +17,7 @@ const MainGrid: FunctionComponent = (props) => {
             'main main';
           padding: 2em 3em 0 0;
           grid-gap: 1.5em 2em;
+          max-width: 2000px;
         }
 
         @media ${minWidth(breakpoint.xl)} {

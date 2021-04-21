@@ -1,4 +1,8 @@
-import { FrontpageCurve, SimpleCutRoundCurve } from 'components/curves'
+import {
+  CornerCurve,
+  FrontpageCurve,
+  SimpleCutRoundCurve,
+} from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import * as colors from 'lib/colors'
 import { NextPage } from 'next'
@@ -19,6 +23,9 @@ const Index: NextPage = () => {
       </div>
       <div className='main-curve'>
         <FrontpageCurve color={colors.lightBlue} />
+      </div>
+      <div className='corner-curve'>
+        <CornerCurve color={colors.lightBlue} />
       </div>
       <div className='brown-curve'>
         <SimpleCutRoundCurve color={colors.beige} />
@@ -57,19 +64,10 @@ const Index: NextPage = () => {
           );
         }
 
-        .brown-curve {
-          display: none;
-        }
-
+        .brown-curve,
+        .corner-curve,
         .main-curve {
-          display: flex;
-          justify-content: flex-end;
-          margin-top: -4em;
-          margin-right: -131px;
-          grid-column: 1 / 2;
-          grid-row: 1 / 3;
-          z-index: 1;
-          height: 100vh;
+          display: none;
         }
 
         @media ${minWidth(breakpoint.xl)} {
@@ -92,11 +90,38 @@ const Index: NextPage = () => {
 
           .brown-curve {
             display: block;
-            position: absolute;
-            width: 240px;
-            right: 0;
-            bottom: 0;
-            font-size: 0;
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
+            width: 270px;
+            height: 400px;
+            max-height: 50%;
+            justify-self: end;
+            align-self: end;
+            margin-right: -3em;
+          }
+
+          .corner-curve {
+            display: block;
+            justify-self: start;
+            align-self: center;
+            margin-top: -50px;
+            width: 8vw;
+            height: 400px;
+            max-height: 50vh;
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+            z-index: 1;
+          }
+
+          .main-curve {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -4em;
+            margin-right: -131px;
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            z-index: 1;
+            height: 100vh;
           }
         }
       `}</style>
