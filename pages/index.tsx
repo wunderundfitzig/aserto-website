@@ -1,9 +1,8 @@
-import { SimpleCutRoundCurve } from 'components/curves'
+import { FrontpageCurve, SimpleCutRoundCurve } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { beige } from 'lib/colors'
+import * as colors from 'lib/colors'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import React from 'react'
 
 const Index: NextPage = () => {
   return (
@@ -18,8 +17,11 @@ const Index: NextPage = () => {
           objectPosition='right'
         />
       </div>
-      <div className='curve'>
-        <SimpleCutRoundCurve color={beige} />
+      <div className='main-curve'>
+        <FrontpageCurve color={colors.lightBlue} />
+      </div>
+      <div className='brown-curve'>
+        <SimpleCutRoundCurve color={colors.beige} />
       </div>
       <style jsx>{`
         h1 {
@@ -55,8 +57,19 @@ const Index: NextPage = () => {
           );
         }
 
-        .curve {
+        .brown-curve {
           display: none;
+        }
+
+        .main-curve {
+          display: flex;
+          justify-content: end;
+          margin-top: -4em;
+          margin-right: -131px;
+          grid-column: 1 / 2;
+          grid-row: 1 / 3;
+          z-index: 1;
+          height: 100vh;
         }
 
         @media ${minWidth(breakpoint.xl)} {
@@ -77,7 +90,7 @@ const Index: NextPage = () => {
             height: 100%;
           }
 
-          .curve {
+          .brown-curve {
             display: block;
             position: absolute;
             width: 240px;
