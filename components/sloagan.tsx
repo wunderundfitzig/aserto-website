@@ -7,7 +7,7 @@ type Props = {
     sloagen: ReactNode
   }
 }
-const Sloagen: FunctionComponent<Props> = (props) => {
+const Sloagan: FunctionComponent<Props> = (props) => {
   return (
     <div>
       <p className='roofline'>{props.children.roofline}</p>
@@ -32,4 +32,4 @@ const Sloagen: FunctionComponent<Props> = (props) => {
   )
 }
 
-export default Sloagen
+export default Sloagan

@@ -22,13 +22,22 @@ const Index: NextPage = () => {
         />
       </div>
       <div className='main-curve'>
-        <FrontpageCurve color={colors.backgroundBlue} />
+        <FrontpageCurve
+          preserveAspectRatio='none'
+          color={colors.backgroundBlue}
+        />
       </div>
       <div className='corner-curve'>
-        <CornerCurve color={colors.backgroundBlue} />
+        <CornerCurve
+          preserveAspectRatio={{ alignX: 'Max', alignY: 'Mid', fit: 'slice' }}
+          color={colors.backgroundBlue}
+        />
       </div>
       <div className='brown-curve'>
-        <SimpleCutRoundCurve color={colors.beige} />
+        <SimpleCutRoundCurve
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Max', fit: 'meet' }}
+          color={colors.beige}
+        />
       </div>
       <style jsx>{`
         h1 {
