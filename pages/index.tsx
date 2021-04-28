@@ -11,7 +11,7 @@ import Image from 'next/image'
 const Index: NextPage = () => {
   return (
     <>
-      <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
+      <h1>Wir begleiten bei Richtungsweisende Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
           className='image'
