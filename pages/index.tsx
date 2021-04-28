@@ -22,10 +22,10 @@ const Index: NextPage = () => {
         />
       </div>
       <div className='main-curve'>
-        <FrontpageCurve color={colors.lightBlue} />
+        <FrontpageCurve color={colors.backgroundBlue} />
       </div>
       <div className='corner-curve'>
-        <CornerCurve color={colors.lightBlue} />
+        <CornerCurve color={colors.backgroundBlue} />
       </div>
       <div className='brown-curve'>
         <SimpleCutRoundCurve color={colors.beige} />

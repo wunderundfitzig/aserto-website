@@ -2,7 +2,8 @@ import { FunctionComponent, useState } from 'react'
 import Link from 'next/link'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import NavigationButton from 'components/navigation-button'
-import { lightBlue } from 'lib/colors'
+import { backgroundBlue, categoryColors } from 'lib/colors'
+import { useRouter } from 'next/router'
 
 const navItems = [
   { label: 'Purpose', slug: '/purpose' },
@@ -19,6 +20,8 @@ type Props = {
 const Navigation: FunctionComponent<Props> = (props) => {
   const { onFrontpage = false } = props
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  const rootPath = router.asPath.split('/').slice(1)[0]
 
   return (
     <nav className={`nav ${isOpen && 'open'} ${onFrontpage && 'on-frontpage'}`}>
@@ -30,7 +33,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
       )}
       <ul>
         {navItems.map((navItem) => (
-          <li key={navItem.slug}>
+          <li
+            key={navItem.slug}
+            className={`/${rootPath}` === navItem.slug ? 'active' : undefined}
+          >
             <Link href={navItem.slug}>
               <a>{navItem.label}</a>
             </Link>
@@ -74,7 +80,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           border-right: 3em solid white;
           padding-right: 1.6em;
           padding-bottom: 1em;
-          background-color: ${lightBlue};
+          background-color: ${backgroundBlue};
           overflow: auto;
           color: black;
         }
@@ -82,6 +88,11 @@ const Navigation: FunctionComponent<Props> = (props) => {
         li {
           margin-bottom: 1.5em;
           font-size: 1.1em;
+        }
+
+        li.active {
+          font-weight: bold;
+          color: ${(categoryColors as Record<string, string>)[rootPath]};
         }
 
         .nav.on-frontpage li {
@@ -96,6 +107,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
             align-self: start;
             transition: transform 0.25s ease-in, font-size 0.1s ease-in;
             padding: 0;
+            padding-right: 10px;
           }
 
           .nav.on-frontpage {
