@@ -35,7 +35,7 @@ const Index: NextPage = () => {
           font-weight: normal;
           text-align: right;
           justify-self: end;
-          grid-column: 1 / 3;
+          grid-column: 1 / 4;
           grid-row: 2 / 3;
           max-width: 10em;
           font-size: 1.5em;
@@ -44,7 +44,7 @@ const Index: NextPage = () => {
 
         .image-wrapper {
           position: relative;
-          grid-column: 1 / 3;
+          grid-column: 1 / 4;
           grid-row: 3 / 4;
           width: 100%;
           height: 100%;
@@ -75,14 +75,14 @@ const Index: NextPage = () => {
             font-weight: normal;
             text-align: right;
             justify-self: end;
-            grid-column: 2 / 4;
+            grid-column: 3 / 5;
             grid-row: 2 / 3;
             max-width: 300px;
             font-size: 2em;
           }
           .image-wrapper {
             position: relative;
-            grid-column: 1 / 2;
+            grid-column: 1 / 3;
             grid-row: 1 / 3;
             width: 100%;
             height: 100%;
@@ -90,7 +90,7 @@ const Index: NextPage = () => {
 
           .brown-curve {
             display: block;
-            grid-column: 2 / 4;
+            grid-column: 3 / 5;
             grid-row: 2 / 3;
             width: 270px;
             height: 400px;
@@ -108,7 +108,7 @@ const Index: NextPage = () => {
             width: 8vw;
             height: 400px;
             max-height: 50vh;
-            grid-column: 1 / 2;
+            grid-column: 1 / 3;
             grid-row: 2 / 3;
             z-index: 1;
           }
@@ -118,7 +118,7 @@ const Index: NextPage = () => {
             justify-content: flex-end;
             margin-top: -4em;
             margin-right: -131px;
-            grid-column: 1 / 2;
+            grid-column: 1 / 3;
             grid-row: 1 / 3;
             z-index: 1;
             height: 100vh;

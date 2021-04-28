@@ -47,11 +47,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
         .nav {
           grid-area: ${props.gridArea};
           z-index: 10;
-          padding-left: 1.5em;
         }
 
         .nav.on-frontpage {
-          grid-area: 3 / 1 / 3 / 3;
+          grid-area: 3 / 1 / 3 / 4;
           display: flex;
           justify-content: end;
           align-items: center;

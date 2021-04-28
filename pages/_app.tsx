@@ -8,6 +8,10 @@ import Navigation from 'components/navigation'
 import GlobalStyles from 'components/global-styles'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
+export type PageProps = {
+  gridArea: string
+}
+
 function App({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
 

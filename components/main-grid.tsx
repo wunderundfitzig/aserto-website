@@ -9,25 +9,27 @@ const MainGrid: FunctionComponent = (props) => {
         .main-grid {
           display: grid;
           min-height: 100vh;
-          grid-template-columns: 1fr 80px;
+          grid-template-columns: 0 1fr 80px 0;
           grid-template-rows: minmax(0, auto) auto 1fr;
           grid-template-areas:
-            'navigation logo'
-            'main main'
-            'main main';
-          padding: 2em 3em 0 0;
+            '. navigation logo .'
+            '. main main .'
+            '. main main .';
+          padding: 2em 0 0;
           grid-gap: 1.5em 2em;
-          max-width: 2000px;
         }
 
         @media ${minWidth(breakpoint.xl)} {
           .main-grid {
-            grid-template-columns: 1fr 20vw 100px;
+            grid-template-columns: minmax(0, 1fr) minmax(auto, 700px) 20vw 100px minmax(
+                0,
+                1fr
+              );
             grid-template-rows: auto 1fr;
             grid-template-areas:
-              'main main logo'
-              'main main navigation';
-            padding: 4em 3em 0 0;
+              '. main main logo       .'
+              '. main main navigation .';
+            padding: 4em 0 0;
             grid-gap: 2em 3em;
             min-height: 100vh;
           }
