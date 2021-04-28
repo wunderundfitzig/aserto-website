@@ -13,8 +13,8 @@ const MainGrid: FunctionComponent = (props) => {
           grid-template-rows: minmax(0, auto) auto 1fr;
           grid-template-areas:
             '. navigation logo .'
-            '. main main .'
-            '. main main .';
+            '. main main       .'
+            '. main main       .';
           padding: 2em 0 0;
           grid-gap: 1.5em 2em;
         }
@@ -27,7 +27,7 @@ const MainGrid: FunctionComponent = (props) => {
               );
             grid-template-rows: auto 1fr;
             grid-template-areas:
-              '. main main logo       .'
+              '. .    .    logo       .'
               '. main main navigation .';
             padding: 4em 0 0;
             grid-gap: 2em 3em;
