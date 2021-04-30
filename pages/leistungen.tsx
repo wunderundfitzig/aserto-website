@@ -1,9 +1,9 @@
-import { categoryColors } from 'lib/colors'
 import { NextPage } from 'next'
 import * as colors from 'lib/colors'
-import Sloagan from 'components/sloagan'
 import { PageProps } from 'pages/_app'
 import { OpenCircle } from 'components/curves'
+import Sloagan from 'components/sloagan'
+import GrowingDot from 'components/growing-dot'
 
 const LeistungenPage: NextPage<PageProps> = (props) => {
   return (
@@ -31,9 +31,10 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
           />
         </div>
       </div>
+      <GrowingDot />
       <style jsx>{`
         h1 {
-          color: ${categoryColors.leistungen};
+          color: ${colors.categoryColors.leistungen};
         }
 
         .slogan-wrapper {

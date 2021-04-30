@@ -21,10 +21,9 @@ const MainGrid: FunctionComponent = (props) => {
 
         @media ${minWidth(breakpoint.xl)} {
           .main-grid {
-            grid-template-columns: minmax(0, 1fr) minmax(auto, 700px) 20vw 100px minmax(
-                0,
-                1fr
-              );
+            grid-template-columns:
+              minmax(0, 1fr) minmax(0, 700px) minmax(20vw, 20vw)
+              100px minmax(0, 1fr);
             grid-template-rows: auto 1fr;
             grid-template-areas:
               '. .    .    logo       .'
