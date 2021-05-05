@@ -6,7 +6,7 @@ const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
   const scrolledPixels = useScrolledPixels(wrapperRef)
 
-  const circleSize = Math.pow(Math.max(1, scrolledPixels) / 20, 1.3)
+  const circleSize = Math.max(1, scrolledPixels) / 20
 
   return (
     <div ref={wrapperRef} className='growing-dot'>
@@ -24,7 +24,7 @@ const GrowingDot: FunctionComponent = () => {
           cx='50%'
           cy='0'
           fill={colors.green}
-          r={circleSize + 5}
+          r={circleSize + 100}
           mask='url(#mask)'
         />
       </svg>
@@ -55,7 +55,7 @@ const GrowingDot: FunctionComponent = () => {
       <style jsx>{`
         .growing-dot {
           height: 10000px;
-          margin-top: 50vh;
+          margin-top: 80vh;
           margin-bottom: 100vh;
         }
 
@@ -90,6 +90,7 @@ const GrowingDot: FunctionComponent = () => {
         .section p {
           font-size: 0.9em;
           color: white;
+          text-align: center;
         }
 
         .first-text {
@@ -98,9 +99,9 @@ const GrowingDot: FunctionComponent = () => {
           text-align: center;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-gap: 200px;
+          grid-gap: 300px;
           justify-items: start;
-          height: 370px;
+          height: 200px;
         }
 
         h3 {
@@ -116,25 +117,25 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .start {
-          visibility: ${scrolledPixels > 400 ? 'visible' : 'hidden'};
-          width: 85px;
-          height: 85px;
+          visibility: ${scrolledPixels > 300 ? 'visible' : 'hidden'};
+          width: 230px;
+          height: 230px;
         }
 
         .auftragsklaerung {
-          opacity: ${scrolledPixels > 540 && scrolledPixels < 800 ? 1 : 0};
+          opacity: ${scrolledPixels > 300 && scrolledPixels < 650 ? 1 : 0};
           width: 100%;
         }
 
         .micro {
-          visibility: ${scrolledPixels > 886 ? 'visible' : 'hidden'};
-          width: 160px;
-          height: 160px;
+          visibility: ${scrolledPixels > 900 ? 'visible' : 'hidden'};
+          width: 290px;
+          height: 290px;
           margin-top: 300px;
         }
 
         .analyse {
-          opacity: ${scrolledPixels > 1200 && scrolledPixels < 2000 ? 1 : 0};
+          opacity: ${scrolledPixels > 1000 && scrolledPixels < 2000 ? 1 : 0};
           margin-top: 150px;
           width: 200px;
         }
