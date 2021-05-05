@@ -1,12 +1,12 @@
 import { FunctionComponent, useRef } from 'react'
-import { useScrollPercentage } from 'lib/useScrollPercentage'
+import { useScrolledPixels } from 'lib/useScrolledPixels'
 import * as colors from 'lib/colors'
 
 const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
-  const percentage = useScrollPercentage(wrapperRef)
+  const scrolledPixels = useScrolledPixels(wrapperRef)
 
-  const circleSize = `${percentage * 1000}px`
+  const circleSize = Math.pow(Math.max(1, scrolledPixels) / 20, 1.3)
 
   return (
     <div ref={wrapperRef} className='growing-dot'>
@@ -22,35 +22,121 @@ const GrowingDot: FunctionComponent = () => {
         </mask>
         <circle
           cx='50%'
-          cy='15px'
+          cy='0'
           fill={colors.green}
-          r={circleSize}
+          r={circleSize + 5}
           mask='url(#mask)'
         />
       </svg>
-      <p className='first-text'>
-        <span>Wie richtungsweisende</span>
-        <span>Ergebnisse enstehen</span>
-      </p>
+      <div className='inner'>
+        <p className='first-text'>
+          <span>Wie richtungsweisende</span>
+          <span>Ergebnisse enstehen</span>
+        </p>
+        <h3 className='start'>Start:</h3>
+        <div className='section auftragsklaerung'>
+          <h4>
+            Auftrags-
+            <br />
+            klärung
+          </h4>
+        </div>
+        <h3 className='micro'>Micro Ebene:</h3>
+        <div className='section analyse'>
+          <h4>Analyse von Daten, Strukturen und Dynamiken:</h4>
+          <p>
+            Im ersten Schritt sammeln und aggregieren wir alle verfügbaren
+            Informationen, um diese dann je nach Fragestellung in ein Konzept
+            oder in eine Datenanalyse zu überführen
+          </p>
+        </div>
+      </div>
 
       <style jsx>{`
         .growing-dot {
-          height: 5000px;
+          height: 10000px;
           margin-top: 50vh;
           margin-bottom: 100vh;
         }
 
-        .first-text {
+        .inner {
           position: relative;
           top: -100vh;
-          margin: 0;
-          font-size: 1.4em;
+          height: 100%;
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+        }
+
+        h4 {
+          text-align: center;
+          color: ${colors.lightGreen};
           text-transform: uppercase;
+          margin: 0;
+        }
+
+        .section {
+          position: sticky;
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: opacity 0.3s;
+          z-index: 2;
+        }
+
+        .section p {
+          font-size: 0.9em;
+          color: white;
+        }
+
+        .first-text {
+          margin: -20px 0 0;
+          font-size: 1.4em;
           text-align: center;
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-gap: 200px;
           justify-items: start;
+          height: 370px;
+        }
+
+        h3 {
+          display: flex;
+          justify-content: center;
+          margin: 0;
+          align-items: center;
+          text-align: center;
+          border-radius: 100%;
+          font-weight: normal;
+          border: 3px solid ${colors.green};
+          z-index: -1;
+        }
+
+        .start {
+          visibility: ${scrolledPixels > 400 ? 'visible' : 'hidden'};
+          width: 85px;
+          height: 85px;
+        }
+
+        .auftragsklaerung {
+          opacity: ${scrolledPixels > 540 && scrolledPixels < 800 ? 1 : 0};
+          width: 100%;
+        }
+
+        .micro {
+          visibility: ${scrolledPixels > 886 ? 'visible' : 'hidden'};
+          width: 160px;
+          height: 160px;
+          margin-top: 300px;
+        }
+
+        .analyse {
+          opacity: ${scrolledPixels > 1200 && scrolledPixels < 2000 ? 1 : 0};
+          margin-top: 150px;
+          width: 200px;
         }
 
         .first-text span:first-child {
@@ -63,6 +149,7 @@ const GrowingDot: FunctionComponent = () => {
           width: 100%;
           height: 100vh;
           overflow: visible;
+          z-index: 1;
         }
       `}</style>
     </div>
