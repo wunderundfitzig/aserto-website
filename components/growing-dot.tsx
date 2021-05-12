@@ -78,7 +78,7 @@ const GrowingDot: FunctionComponent = () => {
       <style jsx>{`
         .growing-dot {
           position: relative;
-          height: 3500px;
+          height: 3700px;
           margin-top: 300px;
           margin-bottom: 100vh;
         }
@@ -93,7 +93,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         svg .big-circle {
-          transition: r 1s;
+          transition: r 2s;
         }
 
         .inner {
@@ -106,7 +106,21 @@ const GrowingDot: FunctionComponent = () => {
           align-items: center;
         }
 
+        h3 {
+          display: flex;
+          flex: 0 0 auto;
+          justify-content: center;
+          margin: 0;
+          align-items: center;
+          text-align: center;
+          border-radius: 100%;
+          font-weight: normal;
+          border: 3px solid ${colors.green};
+          z-index: -1;
+        }
+
         h4 {
+          font-weight: 200;
           text-align: center;
           color: ${colors.lightGreen};
           text-transform: uppercase;
@@ -133,6 +147,12 @@ const GrowingDot: FunctionComponent = () => {
           margin: 1em 0 0;
         }
 
+        .start {
+          visibility: ${scrolledPixels > 295 ? 'visible' : 'hidden'};
+          width: 215px;
+          height: 215px;
+        }
+
         .first-text {
           margin: calc(50vh - 20px) 0 0;
           font-size: 1.4em;
@@ -142,25 +162,6 @@ const GrowingDot: FunctionComponent = () => {
           grid-gap: 300px;
           justify-items: start;
           height: 200px;
-        }
-
-        h3 {
-          display: flex;
-          flex: 0 0 auto;
-          justify-content: center;
-          margin: 0;
-          align-items: center;
-          text-align: center;
-          border-radius: 100%;
-          font-weight: normal;
-          border: 3px solid ${colors.green};
-          z-index: -1;
-        }
-
-        .start {
-          visibility: ${scrolledPixels > 295 ? 'visible' : 'hidden'};
-          width: 215px;
-          height: 215px;
         }
 
         .auftragsklaerung {
@@ -200,11 +201,10 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .ergebnisse {
-          opacity: ${scrolledPixels > 2400 ? 1 : 0};
-          margin-top: 0;
+          opacity: ${scrolledPixels > 2600 ? 1 : 0};
+          margin-top: 100px;
           width: 500px;
           top: auto;
-          bottom: 50vh;
           transform: translateY(50%);
         }
 
