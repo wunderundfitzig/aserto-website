@@ -78,7 +78,7 @@ const GrowingDot: FunctionComponent = () => {
       <style jsx>{`
         .growing-dot {
           position: relative;
-          height: 3600px;
+          height: 3700px;
           margin-top: 300px;
           margin-bottom: 100vh;
         }
@@ -201,7 +201,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .ergebnisse {
-          opacity: ${scrolledPixels > 2600 ? 1 : 0};
+          opacity: ${scrolledPixels > 2500 ? 1 : 0};
           margin-top: 100px;
           width: 500px;
           margin-bottom: calc(50vh - 250px);
