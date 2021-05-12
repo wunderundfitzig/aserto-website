@@ -3,14 +3,16 @@ import { FunctionComponent, ReactNode } from 'react'
 type Props = {
   emphasisColor: string
   children: {
-    roofline: ReactNode
+    roofline?: ReactNode
     sloagen: ReactNode
   }
 }
 const Sloagan: FunctionComponent<Props> = (props) => {
   return (
     <div>
-      <p className='roofline'>{props.children.roofline}</p>
+      {props.children.roofline && (
+        <p className='roofline'>{props.children.roofline}</p>
+      )}
       <p className='sloagen'>{props.children.sloagen}</p>
       <style jsx>{`
         .roofline {

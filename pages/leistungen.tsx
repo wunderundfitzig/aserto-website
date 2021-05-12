@@ -8,8 +8,8 @@ import GrowingDot from 'components/growing-dot'
 const LeistungenPage: NextPage<PageProps> = (props) => {
   return (
     <main style={{ gridArea: props.gridArea }}>
-      <h1>Leistungen</h1>
-      <div className='slogan-wrapper'>
+      <header>
+        <h1>Leistungen</h1>
         <Sloagan emphasisColor={colors.green}>
           {{
             roofline: 'Das Beste aus zwei Welten:',
@@ -30,20 +30,20 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
             strokeWidth={10}
           />
         </div>
-      </div>
+      </header>
       <GrowingDot />
       <style jsx>{`
+        header {
+          position: relative;
+        }
+
         h1 {
           color: ${colors.categoryColors.leistungen};
         }
 
-        .slogan-wrapper {
-          position: relative;
-        }
-
         .open-circle {
           position: absolute;
-          top: -8.5em;
+          top: -2.5em;
           width: 100%;
           height: 30em;
           padding-left: 20em;
