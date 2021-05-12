@@ -133,3 +133,24 @@ export const OpenCircle: FunctionComponent<CurveProps> = (props) => {
     </svg>
   )
 }
+
+export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      viewBox='0 0 1233 1145'
+      xmlns='http://www.w3.org/2000/svg'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <path
+        d='M1479.097 481.457L455.664 963.277l933.367 203.355L12 12'
+        stroke={props.color}
+        strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
+        fill='none'
+        strokeLinecap='round'
+        strokeMiterlimit='10'
+      />
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
+    </svg>
+  )
+}

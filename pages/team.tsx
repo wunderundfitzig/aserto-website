@@ -3,6 +3,7 @@ import Image from 'next/image'
 import * as colors from 'lib/colors'
 import { PageProps } from 'pages/_app'
 import Sloagan from 'components/sloagan'
+import { TriangleLine } from 'components/curves'
 
 const LeistungenPage: NextPage<PageProps> = (props) => {
   return (
@@ -10,7 +11,7 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
       <header>
         <h1>Team</h1>
         <div className='sloagen-wrapper'>
-          <Sloagan emphasisColor={colors.blue}>
+          <Sloagan emphasisColor={colors.lightBlue}>
             {{
               sloagen: (
                 <>
@@ -28,6 +29,13 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
             height=' 684'
           />
         </div>
+        <div className='key-visual'>
+          <TriangleLine
+            color='white'
+            preserveAspectRatio='none'
+            strokeWidth={10}
+          />
+        </div>
       </header>
 
       <style jsx>{`
@@ -37,7 +45,7 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
           }
 
           to {
-            opacity: 1;
+            opacity: 0.5;
           }
         }
 
@@ -48,11 +56,12 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
         }
 
         header:before {
+          opacity: 0.5;
           content: '';
           position: absolute;
           top: -200px;
-          left: -4em;
-          width: calc(100% + 4em);
+          left: -1000px;
+          width: calc(100% + 1000px);
           height: calc(100% + 200px);
           background-color: ${colors.backgroundBlue};
           z-index: -1;
@@ -64,14 +73,24 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
         }
 
         .sloagen-wrapper {
+          position: relative;
           width: 80%;
           max-width: 700px;
+          z-index: 1;
         }
 
         .image {
           width: 80%;
           margin-top: 4em;
           margin-bottom: -35%;
+        }
+
+        .key-visual {
+          position: absolute;
+          top: 0.6em;
+          left: 7em;
+          width: calc(100% - 7em);
+          height: 130%;
         }
       `}</style>
     </main>
