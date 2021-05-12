@@ -85,7 +85,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
         }
 
         li {
-          margin-bottom: 1.5em;
+          margin-bottom: 1em;
           font-size: 1.1em;
         }
 

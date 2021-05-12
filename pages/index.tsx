@@ -11,7 +11,7 @@ import Image from 'next/image'
 const Index: NextPage = () => {
   return (
     <>
-      <h1>Wir begleiten bei Richtungsweisende Entscheidungen</h1>
+      <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
           className='image'
@@ -41,7 +41,6 @@ const Index: NextPage = () => {
       </div>
       <style jsx>{`
         h1 {
-          font-weight: normal;
           text-align: right;
           justify-self: end;
           grid-column: 1 / 4;
@@ -49,6 +48,8 @@ const Index: NextPage = () => {
           max-width: 10em;
           font-size: 1.5em;
           margin: 0 0 1em 0;
+          font-weight: 200;
+          line-height: 1.35em;
         }
 
         .image-wrapper {
@@ -81,7 +82,6 @@ const Index: NextPage = () => {
 
         @media ${minWidth(breakpoint.xl)} {
           h1 {
-            font-weight: normal;
             text-align: right;
             justify-self: end;
             grid-column: 3 / 5;
