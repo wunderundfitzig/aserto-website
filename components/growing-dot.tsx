@@ -6,25 +6,28 @@ const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
   const scrolledPixels = useScrolledPixels(wrapperRef)
 
-  const circleSize = Math.max(1, scrolledPixels) / 20
+  const circleSize = Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30
+  const bigCircleSize = scrolledPixels < 2300 ? 30 : '100vw'
 
   return (
     <div ref={wrapperRef} className='growing-dot'>
       <svg className='dot'>
         <mask id='mask'>
-          <rect
-            x='-100vh'
-            y='-50vh'
-            width='300vw'
-            height='100vh'
-            fill='white'
-          />
+          <rect x='-100vh' y='0' width='300vw' height='100vh' fill='white' />
         </mask>
         <circle
           cx='50%'
-          cy='0'
+          cy='50%'
           fill={colors.green}
-          r={circleSize + 100}
+          r={circleSize}
+          mask='url(#mask)'
+        />
+        <circle
+          className='big-circle'
+          cx='50%'
+          cy='50%'
+          fill={colors.green}
+          r={bigCircleSize}
           mask='url(#mask)'
         />
       </svg>
@@ -47,21 +50,56 @@ const GrowingDot: FunctionComponent = () => {
           <p>
             Im ersten Schritt sammeln und aggregieren wir alle verfügbaren
             Informationen, um diese dann je nach Fragestellung in ein Konzept
-            oder in eine Datenanalyse zu überführen
+            oder in eine Datenanalyse zu überführen.
+          </p>
+        </div>
+        <h3 className='macro'>Macro Ebene:</h3>
+        <div className='section verdichtung'>
+          <h4>Verdichtung & maßvolle Akzentuierung der relevanten Aspekte:</h4>
+          <p>
+            In einer Vielzahl von Informationen und Daten finden wir die Signale
+            im Rauschen. Und erläutern, was diese zu bedeuten haben.
+          </p>
+        </div>
+        <h3 className='meta'>Meta Ebene:</h3>
+        <div className='section ergebnisse'>
+          <h4>
+            Holistische Einbettung der Ergebnisse in unternehmensrelevante
+            Kontexte:
+          </h4>
+          <p>
+            Reine Datenanalysen finden bei uns nicht statt, wir setzen unsere
+            Analysen und Konzepte immer in den unternehmensrelevanten Kontext.
+            Denn nur wenn wir die Hintergründe kennen, schaffen wir Relevanz.
           </p>
         </div>
       </div>
 
       <style jsx>{`
         .growing-dot {
-          height: 10000px;
-          margin-top: 80vh;
+          position: relative;
+          height: 3500px;
+          margin-top: 300px;
           margin-bottom: 100vh;
         }
 
+        svg {
+          position: sticky;
+          top: 0;
+          width: 100%;
+          height: 100vh;
+          overflow: visible;
+          z-index: 1;
+        }
+
+        svg .big-circle {
+          transition: r 1s;
+        }
+
         .inner {
-          position: relative;
-          top: -100vh;
+          position: absolute;
+          top: 0;
+          width: 100%;
           height: 100%;
           display: flex;
           flex-flow: column;
@@ -82,6 +120,7 @@ const GrowingDot: FunctionComponent = () => {
           justify-content: center;
           align-items: center;
           top: 50%;
+          height: 250px;
           transform: translateY(-50%);
           transition: opacity 0.3s;
           z-index: 2;
@@ -91,10 +130,11 @@ const GrowingDot: FunctionComponent = () => {
           font-size: 0.9em;
           color: white;
           text-align: center;
+          margin: 1em 0 0;
         }
 
         .first-text {
-          margin: -20px 0 0;
+          margin: calc(50vh - 20px) 0 0;
           font-size: 1.4em;
           text-align: center;
           display: grid;
@@ -106,6 +146,7 @@ const GrowingDot: FunctionComponent = () => {
 
         h3 {
           display: flex;
+          flex: 0 0 auto;
           justify-content: center;
           margin: 0;
           align-items: center;
@@ -117,9 +158,9 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .start {
-          visibility: ${scrolledPixels > 300 ? 'visible' : 'hidden'};
-          width: 230px;
-          height: 230px;
+          visibility: ${scrolledPixels > 295 ? 'visible' : 'hidden'};
+          width: 215px;
+          height: 215px;
         }
 
         .auftragsklaerung {
@@ -128,29 +169,44 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .micro {
-          visibility: ${scrolledPixels > 900 ? 'visible' : 'hidden'};
-          width: 290px;
-          height: 290px;
-          margin-top: 300px;
+          visibility: ${scrolledPixels > 810 ? 'visible' : 'hidden'};
+          width: 315px;
+          height: 315px;
         }
 
         .analyse {
-          opacity: ${scrolledPixels > 1000 && scrolledPixels < 2000 ? 1 : 0};
-          margin-top: 150px;
+          opacity: ${scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0};
+          margin-top: 100px;
           width: 200px;
+        }
+
+        .macro {
+          visibility: ${scrolledPixels > 1510 ? 'visible' : 'hidden'};
+          width: 410px;
+          height: 410px;
+        }
+
+        .verdichtung {
+          opacity: ${scrolledPixels > 1610 && scrolledPixels < 2000 ? 1 : 0};
+          margin-top: 50px;
+          width: 300px;
+        }
+
+        .meta {
+          border: none;
+          z-index: 1;
+          visibility: ${scrolledPixels > 2400 ? 'visible' : 'hidden'};
+          margin-top: 300px;
+        }
+
+        .ergebnisse {
+          opacity: ${scrolledPixels > 2400 ? 1 : 0};
+          margin-top: 150px;
+          width: 500px;
         }
 
         .first-text span:first-child {
           justify-self: end;
-        }
-
-        .dot {
-          position: sticky;
-          top: 50%;
-          width: 100%;
-          height: 100vh;
-          overflow: visible;
-          z-index: 1;
         }
       `}</style>
     </div>

@@ -10,8 +10,7 @@ export function useScrolledPixels(
     const scrollHandler = throttle(() => {
       if (ref.current === null) return
       const boundingClientRect = ref.current.getBoundingClientRect()
-      const scrolledPixels =
-        Math.trunc(boundingClientRect.top - window.innerHeight / 2) * -1
+      const scrolledPixels = Math.trunc(boundingClientRect.top) * -1
       setPercentage(scrolledPixels)
     }, 10)
 
