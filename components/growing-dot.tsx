@@ -187,7 +187,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .verdichtung {
-          opacity: ${scrolledPixels > 1610 && scrolledPixels < 2000 ? 1 : 0};
+          opacity: ${scrolledPixels > 1610 && scrolledPixels < 2300 ? 1 : 0};
           margin-top: 50px;
           width: 300px;
         }
@@ -195,14 +195,17 @@ const GrowingDot: FunctionComponent = () => {
         .meta {
           border: none;
           z-index: 1;
-          visibility: ${scrolledPixels > 2400 ? 'visible' : 'hidden'};
+          visibility: ${scrolledPixels > 2500 ? 'visible' : 'hidden'};
           margin-top: 300px;
         }
 
         .ergebnisse {
           opacity: ${scrolledPixels > 2400 ? 1 : 0};
-          margin-top: 150px;
+          margin-top: 0;
           width: 500px;
+          top: auto;
+          bottom: 50vh;
+          transform: translateY(50%);
         }
 
         .first-text span:first-child {
