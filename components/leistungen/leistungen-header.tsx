@@ -2,6 +2,7 @@ import { OpenCircle } from 'components/curves'
 import Sloagan from 'components/sloagan'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const LeistungenHeader: FunctionComponent = () => {
   return (
@@ -22,7 +23,7 @@ const LeistungenHeader: FunctionComponent = () => {
       </Sloagan>
       <div className='open-circle'>
         <OpenCircle
-          preserveAspectRatio={{ alignX: 'Max', alignY: 'Mid', fit: 'slice' }}
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Mid', fit: 'slice' }}
           color={colors.green}
           strokeWidth={10}
         />
@@ -39,11 +40,21 @@ const LeistungenHeader: FunctionComponent = () => {
 
         .open-circle {
           position: absolute;
-          top: -10px;
-          width: 100%;
-          height: 30em;
-          padding-left: 20em;
-          padding-right: 5em;
+          top: -1.8em;
+          left: 50%;
+          width: 50%;
+          height: 25em;
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .open-circle {
+            position: absolute;
+            top: -10px;
+            width: 100%;
+            height: 30em;
+            left: 20em;
+            padding-right: 5em;
+          }
         }
       `}</style>
     </header>

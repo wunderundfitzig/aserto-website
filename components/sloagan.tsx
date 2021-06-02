@@ -1,3 +1,4 @@
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent, ReactNode } from 'react'
 
 type Props = {
@@ -17,10 +18,12 @@ const Sloagan: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .roofline {
           font-size: 0.8em;
+          margin: 0 0 0.5em;
         }
         .sloagen {
           font-family: 'Usherwood';
-          font-size: 2.5em;
+          font-size: 1.5em;
+          line-height: 1.4em;
           font-weight: bold;
           margin: 0;
         }
@@ -28,6 +31,15 @@ const Sloagan: FunctionComponent<Props> = (props) => {
         .sloagen :global(em) {
           color: ${props.emphasisColor};
           font-style: normal;
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .roofline {
+            font-size: 0.8em;
+          }
+          .sloagen {
+            font-size: 2.5em;
+          }
         }
       `}</style>
     </div>
