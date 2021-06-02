@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 
-const FirstSection: FunctionComponent = () => {
+const WasUnsAusmacht: FunctionComponent = () => {
   return (
     <section className='first-section'>
       <div className='text-block'>
@@ -37,4 +37,5 @@ const FirstSection: FunctionComponent = () => {
     </section>
   )
 }
-export default FirstSection
+
+export default WasUnsAusmacht

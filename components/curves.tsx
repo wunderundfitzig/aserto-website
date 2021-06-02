@@ -134,6 +134,22 @@ export const OpenCircle: FunctionComponent<CurveProps> = (props) => {
   )
 }
 
+export const SkewedHalfCircle: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 896 1358'>
+      <path
+        d='M34.397 49.15c342.582-98.389 700.061 99.568 798.451 442.15 66.118 230.216-1.59 467.158-157.045 627.651-137.47 141.42-331.948 212.398-528.194 192.775'
+        stroke={props.color}
+        strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
+        fill='none'
+        strokeLinecap='round'
+      />
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
+    </svg>
+  )
+}
+
 export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
