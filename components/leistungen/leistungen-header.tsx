@@ -39,7 +39,7 @@ const LeistungenHeader: FunctionComponent = () => {
 
         .open-circle {
           position: absolute;
-          top: -2.5em;
+          top: -10px;
           width: 100%;
           height: 30em;
           padding-left: 20em;

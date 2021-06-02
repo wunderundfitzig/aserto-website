@@ -29,11 +29,11 @@ const AufDenPunkt: FunctionComponent = () => {
             </li>
           </List>
         </div>
-
         <div className='circle'>
           <SkewedHalfCircle
             color={categoryColors.leistungen}
             strokeWidth={10}
+            preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
           />
         </div>
       </div>
@@ -62,11 +62,11 @@ const AufDenPunkt: FunctionComponent = () => {
         }
 
         .circle {
-          position: absolute;
-          top: 80px;
-          left: calc(50% + 200px);
-          z-index: -1;
-          width: 600px;
+          grid-area: image;
+          width: 100%;
+          height: 70vw;
+          max-height: 1100px;
+          margin-top: 40px;
         }
       `}</style>
     </section>
