@@ -1,3 +1,4 @@
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import Link from 'next/link'
 import { FunctionComponent } from 'react'
 import AsertoLogo from './aserto-logo'
@@ -40,27 +41,42 @@ const Footer: FunctionComponent<Props> = (props) => {
         .footer {
           grid-area: ${props.gridArea};
           display: grid;
-          grid-template-columns: 50px auto auto 1fr auto;
-          align-items: start;
-          grid-gap: 5em;
-          padding: 6em 0 4em;
+          grid-gap: 2em;
           line-height: 1.5em;
           font-size: 0.8em;
+          grid-auto-flow: row;
+          padding: 3em 0;
         }
 
         .logo {
-          margin-top: 0.4em;
-        }
-
-        .scial-icons {
-          align-self: center;
-          justify-self: center;
+          width: 50px;
         }
 
         .footer-navigation {
           align-self: start;
           display: grid;
-          text-align: right;
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .footer {
+            grid-template-columns: 50px auto auto 1fr auto;
+            align-items: start;
+            grid-gap: 5em;
+            padding: 6em 0 4em;
+          }
+
+          .logo {
+            margin-top: 0.4em;
+          }
+
+          .scial-icons {
+            align-self: center;
+            justify-self: center;
+          }
+
+          .footer-navigation {
+            text-align: right;
+          }
         }
       `}</style>
     </footer>
