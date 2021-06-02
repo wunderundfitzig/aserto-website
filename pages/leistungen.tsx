@@ -4,6 +4,8 @@ import { PageProps } from 'pages/_app'
 import { OpenCircle } from 'components/curves'
 import Sloagan from 'components/sloagan'
 import GrowingDot from 'components/growing-dot'
+import List from 'components/list'
+import FirstSection from 'components/leistungen/first-section'
 
 const LeistungenPage: NextPage<PageProps> = (props) => {
   return (
@@ -31,10 +33,21 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
           />
         </div>
       </header>
+      <FirstSection />
+
       <GrowingDot />
+      <List color={colors.green}>
+        <li>Relevanz und Überzeugungskraft durch 18 Jahre Erfahrung.</li>
+        <li>Hohe Systemkompetenz durch über 500 richtungsweisende Projekte.</li>
+        <li>
+          Strategischer Partner für Entscheider*innen aus Wirtschaft,
+          Wissenschaft und Institutionen.
+        </li>
+      </List>
       <style jsx>{`
         header {
           position: relative;
+          z-index: 1;
         }
 
         h1 {
