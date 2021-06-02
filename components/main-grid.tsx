@@ -10,11 +10,12 @@ const MainGrid: FunctionComponent = (props) => {
           display: grid;
           min-height: 100vh;
           grid-template-columns: 0 1fr 80px 0;
-          grid-template-rows: minmax(0, auto) auto 1fr;
+          grid-template-rows: minmax(0, auto) auto 1fr auto;
           grid-template-areas:
-            '. navigation logo .'
-            '. main main       .'
-            '. main main       .';
+            '. navigation logo   .'
+            '. main       main   .'
+            '. main       main   .'
+            '. footer     footer .';
           padding: 2em 0 0;
           grid-gap: 1.5em 2em;
         }
@@ -24,10 +25,11 @@ const MainGrid: FunctionComponent = (props) => {
             grid-template-columns:
               minmax(0, 1fr) minmax(0, 700px) minmax(20vw, 20vw)
               100px minmax(0, 1fr);
-            grid-template-rows: auto 1fr;
+            grid-template-rows: auto 1fr auto;
             grid-template-areas:
-              '. .    .    logo       .'
-              '. main main navigation .';
+              '. .      .      logo       .'
+              '. main   main   navigation .'
+              '. footer footer .          .';
             padding: 4em 0 0;
             grid-gap: 2em 3em;
             min-height: 100vh;
