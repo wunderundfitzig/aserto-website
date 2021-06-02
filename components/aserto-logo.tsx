@@ -19,7 +19,7 @@ const AsertoLogo: FunctionComponent<Props> = (props) => {
       </g>
       <style jsx>{`
         .aserto-logo {
-          grid-area: ${gridArea};
+          grid-area: ${gridArea ?? ''};
           width: 100%;
         }
       `}</style>
