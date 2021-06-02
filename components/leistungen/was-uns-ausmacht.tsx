@@ -34,14 +34,13 @@ const WasUnsAusmacht: FunctionComponent = () => {
             'image'
             'title'
             'text-block';
-          align-items: end;
-          margin-top: 3em;
+          margin-top: 4em;
         }
 
         h2 {
           grid-area: title;
-          margin-top: 1em;
-          margin-bottom: 0;
+          margin-top: 2em;
+          margin-bottom: 1em;
         }
 
         .image {

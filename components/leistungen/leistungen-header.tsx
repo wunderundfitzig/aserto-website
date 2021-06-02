@@ -49,8 +49,8 @@ const LeistungenHeader: FunctionComponent = () => {
         @media ${minWidth(breakpoint.xl)} {
           .open-circle {
             position: absolute;
-            top: -2.5em;
-            width: 100%;
+            top: -2.1em;
+            width: calc(100% - 20em);
             height: 30em;
             left: 20em;
             padding-right: 5em;
