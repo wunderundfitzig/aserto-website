@@ -19,7 +19,7 @@ const IconLink: FunctionComponent<IconLinkProps> = (props) => {
       <style jsx>{`
         a {
           display: block;
-          width: 25px;
+          width: 20px;
         }
       `}</style>
     </>
@@ -47,7 +47,7 @@ const SocialLinks: FunctionComponent = () => {
           grid-auto-flow: column;
           justify-content: start;
           align-items: center;
-          grid-gap: 3em;
+          grid-gap: 1.5em;
         }
       `}</style>
     </div>

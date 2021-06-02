@@ -3,6 +3,7 @@ import {
   FrontpageCurve,
   SimpleCutRoundCurve,
 } from 'components/curves'
+import SocialLinks from 'components/social-links'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import * as colors from 'lib/colors'
 import { NextPage } from 'next'
@@ -20,6 +21,9 @@ const Index: NextPage = () => {
           objectFit='cover'
           objectPosition='right'
         />
+      </div>
+      <div className='social-links'>
+        <SocialLinks />
       </div>
       <div className='main-curve'>
         <FrontpageCurve
@@ -74,6 +78,17 @@ const Index: NextPage = () => {
           );
         }
 
+        .social-links {
+          grid-column: 3 / 4;
+          grid-row: 3 / 4;
+          justify-self: start;
+          z-index: 1;
+          background-color: white;
+          padding: 0.7em 0.5em 1.5em 0;
+          border-radius: 0 0.5em 0 0;
+          margin-left: -1em;
+        }
+
         .brown-curve,
         .corner-curve,
         .main-curve {
@@ -92,7 +107,7 @@ const Index: NextPage = () => {
           .image-wrapper {
             position: relative;
             grid-column: 1 / 3;
-            grid-row: 1 / 3;
+            grid-row: 1 / 4;
             width: 100%;
             height: 100%;
           }
@@ -100,7 +115,7 @@ const Index: NextPage = () => {
           .brown-curve {
             display: block;
             grid-column: 3 / 5;
-            grid-row: 2 / 3;
+            grid-row: 2 / 4;
             width: 270px;
             height: 400px;
             max-height: 50%;
@@ -128,7 +143,7 @@ const Index: NextPage = () => {
             margin-top: -4em;
             margin-right: -131px;
             grid-column: 1 / 3;
-            grid-row: 1 / 3;
+            grid-row: 1 / 4;
             z-index: 1;
             height: 100vh;
           }

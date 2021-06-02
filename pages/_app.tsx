@@ -15,6 +15,7 @@ export type PageProps = {
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
+  const isIndexPage = router.pathname === '/'
 
   return (
     <>
@@ -27,7 +28,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
         </Link>
         <Navigation onFrontpage={router.route === '/'} gridArea='navigation' />
         <Component {...pageProps} gridArea='main' />
-        <Footer gridArea='footer' />
+        {!isIndexPage && <Footer gridArea='footer' />}
       </MainGrid>
       <GlobalStyles />
       <style jsx>{`

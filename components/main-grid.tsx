@@ -25,7 +25,7 @@ const MainGrid: FunctionComponent = (props) => {
             grid-template-columns:
               minmax(0, 1fr) minmax(0, 700px) minmax(20vw, 20vw)
               100px minmax(0, 1fr);
-            grid-template-rows: auto 1fr auto;
+            grid-template-rows: auto 1fr minmax(0, auto);
             grid-template-areas:
               '. .      .      logo       .'
               '. main   main   navigation .'
