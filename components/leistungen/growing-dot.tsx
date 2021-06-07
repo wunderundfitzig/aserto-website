@@ -1,19 +1,62 @@
 import { FunctionComponent, useRef } from 'react'
 import { useScrolledPixels } from 'lib/useScrolledPixels'
 import * as colors from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
+import { formatAlignment } from 'components/curves'
+import useWindowSize from 'lib/useWindowSize'
+
+export const Circle: FunctionComponent = () => {
+  return (
+    <svg
+      className='circle'
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 100 100'
+      preserveAspectRatio={formatAlignment({
+        alignX: 'Mid',
+        alignY: 'Mid',
+        fit: 'slice',
+      })}
+    >
+      <circle
+        cx='50'
+        cy='50'
+        r='50'
+        fill='none'
+        stroke={colors.green}
+        strokeWidth={6}
+      />
+      <style jsx>
+        {`
+          .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+          }
+
+          circle {
+            vector-effect: non-scaling-stroke;
+          }
+        `}
+      </style>
+    </svg>
+  )
+}
 
 const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
   const scrolledPixels = useScrolledPixels(wrapperRef)
+  const { width, height } = useWindowSize()
+  const fullScreenSize = (width || 0) > (height || 0) ? '100vw' : '100vh'
 
   const circleSize = Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30
-  const bigCircleSize = scrolledPixels < 2300 ? 30 : '100vw'
+  const bigCircleSize = scrolledPixels < 2300 ? 30 : fullScreenSize
 
   return (
     <div ref={wrapperRef} className='growing-dot'>
       <svg className='dot'>
         <mask id='mask'>
-          <rect x='-100vh' y='0' width='300vw' height='100vh' fill='white' />
+          <rect x='-100vw' y='0' width='300vw' height='100vh' fill='white' />
         </mask>
         <circle
           cx='50%'
@@ -33,10 +76,17 @@ const GrowingDot: FunctionComponent = () => {
       </svg>
       <div className='inner'>
         <p className='first-text'>
-          <span>Wie richtungsweisende</span>
+          <span>
+            Wie richtungs
+            <wbr />
+            weisende
+          </span>
           <span>Ergebnisse enstehen</span>
         </p>
-        <h3 className='start'>Start:</h3>
+        <h3 className='start'>
+          Start:
+          <Circle />
+        </h3>
         <div className='section auftragsklaerung'>
           <h4>
             Auftrags-
@@ -44,7 +94,9 @@ const GrowingDot: FunctionComponent = () => {
             klärung
           </h4>
         </div>
-        <h3 className='micro'>Micro Ebene:</h3>
+        <h3 className='micro'>
+          Micro Ebene: <Circle />
+        </h3>
         <div className='section analyse'>
           <h4>Analyse von Daten, Strukturen und Dynamiken:</h4>
           <p>
@@ -53,7 +105,9 @@ const GrowingDot: FunctionComponent = () => {
             oder in eine Datenanalyse zu überführen.
           </p>
         </div>
-        <h3 className='macro'>Macro Ebene:</h3>
+        <h3 className='macro'>
+          Macro Ebene: <Circle />
+        </h3>
         <div className='section verdichtung'>
           <h4>Verdichtung & maßvolle Akzentuierung der relevanten Aspekte:</h4>
           <p>
@@ -107,16 +161,22 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         h3 {
+          position: relative;
           display: flex;
           flex: 0 0 auto;
+          max-width: 100%;
           justify-content: center;
           margin: 0;
           align-items: center;
           text-align: center;
-          border-radius: 100%;
           font-weight: normal;
-          border: 3px solid ${colors.green};
           z-index: -1;
+        }
+
+        h3 svg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
         }
 
         h4 {
@@ -135,9 +195,11 @@ const GrowingDot: FunctionComponent = () => {
           align-items: center;
           top: 50%;
           height: 250px;
+          width: 100%;
           transform: translateY(-50%);
           transition: opacity 0.3s;
           z-index: 2;
+          padding: 0 1em;
         }
 
         .section p {
@@ -154,14 +216,26 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .first-text {
+          width: 100%;
           margin: calc(50vh - 20px) 0 0;
-          font-size: 1.4em;
-          text-align: center;
+          font-size: 1em;
+          word-break: break-word;
+          text-align: right;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-gap: 300px;
-          justify-items: start;
+          justify-items: end;
+          font-weight: 200;
           height: 200px;
+          transform: translateY(-0.8em);
+        }
+
+        .first-text span {
+          max-width: 8em;
+        }
+
+        .first-text span:first-child {
+          justify-self: start;
+          text-align: left;
         }
 
         .auftragsklaerung {
@@ -178,7 +252,6 @@ const GrowingDot: FunctionComponent = () => {
         .analyse {
           opacity: ${scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0};
           margin-top: 100px;
-          width: 200px;
         }
 
         .macro {
@@ -203,12 +276,54 @@ const GrowingDot: FunctionComponent = () => {
         .ergebnisse {
           opacity: ${scrolledPixels > 2500 ? 1 : 0};
           margin-top: 100px;
-          width: 500px;
+          max-width: 500px;
           margin-bottom: calc(50vh - 250px);
         }
 
-        .first-text span:first-child {
-          justify-self: end;
+        @media (${minWidth(breakpoint.xs)}) {
+          .first-text {
+            font-size: 1.2em;
+          }
+
+          .first-text span,
+          .first-text span:first-child {
+            text-align: center;
+          }
+        }
+
+        @media (${minWidth(breakpoint.s)}) {
+          .section {
+            padding: 0;
+          }
+          .first-text {
+            font-size: 1.4em;
+          }
+
+          .analyse {
+            max-width: 200px;
+          }
+
+          .ergebnisse {
+            max-width: 500px;
+          }
+        }
+
+        @media (${minWidth(breakpoint.l)}) {
+          .first-text {
+            transform: none;
+            grid-gap: 300px;
+            justify-items: start;
+            height: 200px;
+          }
+
+          .first-text span {
+            max-width: 100%;
+          }
+
+          .first-text span:first-child {
+            text-align: center;
+            justify-self: end;
+          }
         }
       `}</style>
     </div>

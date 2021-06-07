@@ -15,7 +15,7 @@ type CurveProps = {
   preserveAspectRatio?: Alignment
 }
 
-const formatAlignment = (alignment?: Alignment): string | undefined => {
+export const formatAlignment = (alignment?: Alignment): string | undefined => {
   if (alignment === undefined) return undefined
   if (alignment === 'none') return 'none'
   return `x${alignment.alignX}Y${alignment.alignY} ${alignment.fit}`
