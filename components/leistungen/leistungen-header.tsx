@@ -25,7 +25,6 @@ const LeistungenHeader: FunctionComponent = () => {
         <OpenCircle
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Mid', fit: 'slice' }}
           color={colors.green}
-          strokeWidth={10}
         />
       </div>
       <style jsx>{`
@@ -40,18 +39,46 @@ const LeistungenHeader: FunctionComponent = () => {
 
         .open-circle {
           position: absolute;
-          top: -1.8em;
+          top: -1.7em;
           left: 50%;
           width: 50%;
           height: 25em;
         }
 
+        @media ${minWidth(breakpoint.s)} {
+          .open-circle {
+            top: -1.2em;
+            width: calc(100% - 15em);
+            height: 26em;
+            left: 15em;
+          }
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          .open-circle {
+            top: -0.6em;
+            padding-right: 5em;
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .open-circle {
+            top: 0.6em;
+            padding-right: 5em;
+          }
+        }
+
         @media ${minWidth(breakpoint.xl)} {
           .open-circle {
-            position: absolute;
-            top: -2.1em;
-            width: calc(100% - 20em);
+            top: -1.5em;
             height: 30em;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .open-circle {
+            top: -2em;
+            width: calc(100% - 20em);
             left: 20em;
             padding-right: 5em;
           }

@@ -22,7 +22,7 @@ const Sloagan: FunctionComponent<Props> = (props) => {
         }
         .sloagen {
           font-family: 'Usherwood';
-          font-size: 1.5em;
+          font-size: 1.6em;
           line-height: 1.4em;
           font-weight: bold;
           margin: 0;
@@ -31,6 +31,24 @@ const Sloagan: FunctionComponent<Props> = (props) => {
         .sloagen :global(em) {
           color: ${props.emphasisColor};
           font-style: normal;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .sloagen {
+            font-size: 1.8em;
+          }
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          .sloagen {
+            font-size: 2em;
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .sloagen {
+            font-size: 2.5em;
+          }
         }
 
         @media ${minWidth(breakpoint.xl)} {

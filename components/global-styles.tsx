@@ -28,7 +28,7 @@ const GlobalStyles: FunctionComponent = () => (
     h1 {
       font-weight: 200;
       font-size: 2rem;
-      margin: 0 0 2em;
+      margin: 1em 0 2em;
     }
 
     h2 {
@@ -56,6 +56,10 @@ const GlobalStyles: FunctionComponent = () => (
       html,
       body {
         font-size: 16px;
+      }
+
+      h1 {
+        margin-top: 0;
       }
     }
   `}</style>

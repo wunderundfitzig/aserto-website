@@ -10,7 +10,7 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
     <main style={{ gridArea: props.gridArea }}>
       <LeistungenHeader />
       <WasUnsAusmacht />
-      <GrowingDot />
+      {/* <GrowingDot /> */}
       <AufDenPunkt />
     </main>
   )

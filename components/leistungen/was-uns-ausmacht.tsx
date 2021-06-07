@@ -56,7 +56,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
           max-width: 30em;
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.m)} {
           .was-uns-ausmacht {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto auto;

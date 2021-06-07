@@ -1,3 +1,4 @@
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent } from 'react'
 import css from 'styled-jsx/css'
 
@@ -12,7 +13,6 @@ type Alignment =
 type CurveProps = {
   color: string
   preserveAspectRatio?: Alignment
-  strokeWidth?: number
 }
 
 const formatAlignment = (alignment?: Alignment): string | undefined => {
@@ -26,6 +26,15 @@ const svgStyle = css`
   width: 100%;
   height: 100%;
   overflow: visible;
+  stroke-width: 6px;
+
+  @media (${minWidth(breakpoint.l)}) {
+    stroke-width: 8px;
+  }
+
+  @media (${minWidth(breakpoint.xxl)}) {
+    stroke-width: 10px;
+  }
 `
 
 const pathStyle = css`
@@ -33,8 +42,6 @@ const pathStyle = css`
     vector-effect: non-scaling-stroke;
   }
 `
-
-const DEFAULT_STROKE_WIDTH = 14
 
 export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
   return (
@@ -59,7 +66,6 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
             d='M854.22-29.224l307.04 511.252c58.5 95.37 42.916 174.748-72.834 219.925l-824 321.318c-159.39 57.51-128.8 141.459-127.1 215.643l15.374 147.092'
             fill='none'
             stroke={props.color}
-            strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
             strokeMiterlimit='10'
           />
         </g>
@@ -85,7 +91,6 @@ export const SimpleCutRoundCurve: FunctionComponent<CurveProps> = (props) => {
       <path
         fill='none'
         stroke={props.color}
-        strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
         d='M782.592 399.004C532.37 174.97 265.882-96.156 79.639 54.564-8.504 125.004 3.57 250.685 39.359 399.578'
       />
       <style jsx>{svgStyle}</style>
@@ -104,7 +109,6 @@ export const CornerCurve: FunctionComponent<CurveProps> = (props) => {
       <path
         fill='none'
         stroke={props.color}
-        strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
         strokeLinecap='round'
         d='M-496.378 1774.925S118.41 372.125 119.075 371.476c74.835-186.635 45.648-253.511-129.51-355.72'
       />
@@ -124,7 +128,6 @@ export const OpenCircle: FunctionComponent<CurveProps> = (props) => {
       <path
         fill='none'
         stroke={props.color}
-        strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
         strokeLinecap='round'
         d='M14.345 256.572C119.632 40.702 379.979-48.943 595.85 56.344 811.721 161.632 901.366 421.978 796.078 637.85 714.27 805.58 538.848 897.104 363.5 880.203 213.885 865.822 82.315 775.17 15.584 640.493'
       />
@@ -144,7 +147,6 @@ export const SkewedHalfCircle: FunctionComponent<CurveProps> = (props) => {
       <path
         d='M34.397 49.15c342.582-98.389 700.061 99.568 798.451 442.15 66.118 230.216-1.59 467.158-157.045 627.651-137.47 141.42-331.948 212.398-528.194 192.775'
         stroke={props.color}
-        strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
         fill='none'
         strokeLinecap='round'
       />
@@ -164,7 +166,6 @@ export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
       <path
         d='M1479.097 481.457L455.664 963.277l933.367 203.355L12 12'
         stroke={props.color}
-        strokeWidth={props.strokeWidth || DEFAULT_STROKE_WIDTH}
         fill='none'
         strokeLinecap='round'
         strokeMiterlimit='10'
