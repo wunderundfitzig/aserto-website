@@ -58,26 +58,26 @@ const GrowingDot: FunctionComponent = () => {
         <mask id='mask'>
           <rect x='-100%' y='0' width='300%' height='100%' fill='white' />
         </mask>
-        <circle
-          style={{
-            transform: `scale(${circleSize})`,
-            transformOrigin: '50% 50%',
-          }}
-          cx='50%'
-          cy='50%'
-          fill={colors.green}
-          r={30}
-          mask='url(#mask)'
-        />
+        <g mask='url(#mask)'>
+          <circle
+            style={{
+              transform: `scale(${circleSize})`,
+              transformOrigin: '50% 50%',
+            }}
+            cx='50%'
+            cy='50%'
+            fill={colors.green}
+            r={30}
+          />
 
-        <circle
-          className='big-circle'
-          cx='50%'
-          cy='50%'
-          fill={colors.green}
-          r={bigCircleSize}
-          mask='url(#mask)'
-        />
+          <circle
+            className='big-circle'
+            cx='50%'
+            cy='50%'
+            fill={colors.green}
+            r={bigCircleSize}
+          />
+        </g>
       </svg>
       <div className='inner'>
         <p className='first-text'>
@@ -88,21 +88,37 @@ const GrowingDot: FunctionComponent = () => {
           </span>
           <span>Ergebnisse enstehen</span>
         </p>
-        <h3 className='start'>
+        <h3
+          className='start'
+          style={{ visibility: scrolledPixels > 285 ? 'visible' : 'hidden' }}
+        >
           Start:
           <Circle />
         </h3>
-        <div className='section auftragsklaerung'>
+        <div
+          className='section auftragsklaerung'
+          style={{
+            opacity: scrolledPixels > 300 && scrolledPixels < 650 ? 1 : 0,
+          }}
+        >
           <h4>
             Auftrags-
             <br />
             klärung
           </h4>
         </div>
-        <h3 className='micro'>
+        <h3
+          className='micro'
+          style={{ visibility: scrolledPixels > 805 ? 'visible' : 'hidden' }}
+        >
           Micro Ebene: <Circle />
         </h3>
-        <div className='section analyse'>
+        <div
+          className='section analyse'
+          style={{
+            opacity: scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0,
+          }}
+        >
           <h4>Analyse von Daten, Strukturen und Dynamiken:</h4>
           <p>
             Im ersten Schritt sammeln und aggregieren wir alle verfügbaren
@@ -110,18 +126,34 @@ const GrowingDot: FunctionComponent = () => {
             oder in eine Datenanalyse zu überführen.
           </p>
         </div>
-        <h3 className='macro'>
+        <h3
+          className='macro'
+          style={{ visibility: scrolledPixels > 1515 ? 'visible' : 'hidden' }}
+        >
           Macro Ebene: <Circle />
         </h3>
-        <div className='section verdichtung'>
+        <div
+          className='section verdichtung'
+          style={{
+            opacity: scrolledPixels > 1610 && scrolledPixels < 2300 ? 1 : 0,
+          }}
+        >
           <h4>Verdichtung & maßvolle Akzentuierung der relevanten Aspekte:</h4>
           <p>
             In einer Vielzahl von Informationen und Daten finden wir die Signale
             im Rauschen. Und erläutern, was diese zu bedeuten haben.
           </p>
         </div>
-        <h3 className='meta'>Meta Ebene:</h3>
-        <div className='section ergebnisse'>
+        <h3
+          className='meta'
+          style={{ visibility: scrolledPixels > 2400 ? 'visible' : 'hidden' }}
+        >
+          Meta Ebene:
+        </h3>
+        <div
+          className='section ergebnisse'
+          style={{ opacity: scrolledPixels > 2500 ? 1 : 0 }}
+        >
           <h4>
             Holistische Einbettung der Ergebnisse in unternehmensrelevante
             Kontexte:
@@ -215,7 +247,6 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .start {
-          visibility: ${scrolledPixels > 285 ? 'visible' : 'hidden'};
           height: 212px;
         }
 
@@ -243,28 +274,23 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .auftragsklaerung {
-          opacity: ${scrolledPixels > 300 && scrolledPixels < 650 ? 1 : 0};
           width: 100%;
         }
 
         .micro {
-          visibility: ${scrolledPixels > 805 ? 'visible' : 'hidden'};
           height: 318px;
         }
 
         .analyse {
-          opacity: ${scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0};
           margin-top: 100px;
         }
 
         .macro {
-          visibility: ${scrolledPixels > 1515 ? 'visible' : 'hidden'};
           width: 410px;
           height: 410px;
         }
 
         .verdichtung {
-          opacity: ${scrolledPixels > 1610 && scrolledPixels < 2300 ? 1 : 0};
           margin-top: 50px;
           width: 300px;
         }
@@ -272,12 +298,10 @@ const GrowingDot: FunctionComponent = () => {
         .meta {
           border: none;
           z-index: 1;
-          visibility: ${scrolledPixels > 2400 ? 'visible' : 'hidden'};
           margin-top: 300px;
         }
 
         .ergebnisse {
-          opacity: ${scrolledPixels > 2500 ? 1 : 0};
           margin-top: 100px;
           max-width: 500px;
           margin-bottom: calc(50vh - 250px);
