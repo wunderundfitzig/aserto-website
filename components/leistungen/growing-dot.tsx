@@ -10,7 +10,7 @@ export const Circle: FunctionComponent = () => {
     <svg
       className='circle'
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 100 100'
+      viewBox='0 0 102 102'
       preserveAspectRatio={formatAlignment({
         alignX: 'Mid',
         alignY: 'Mid',
@@ -18,8 +18,8 @@ export const Circle: FunctionComponent = () => {
       })}
     >
       <circle
-        cx='50'
-        cy='50'
+        cx='51'
+        cy='51'
         r='50'
         fill='none'
         stroke={colors.green}
@@ -210,9 +210,8 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .start {
-          visibility: ${scrolledPixels > 295 ? 'visible' : 'hidden'};
-          width: 215px;
-          height: 215px;
+          visibility: ${scrolledPixels > 285 ? 'visible' : 'hidden'};
+          height: 212px;
         }
 
         .first-text {
@@ -244,9 +243,8 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .micro {
-          visibility: ${scrolledPixels > 810 ? 'visible' : 'hidden'};
-          width: 315px;
-          height: 315px;
+          visibility: ${scrolledPixels > 805 ? 'visible' : 'hidden'};
+          height: 318px;
         }
 
         .analyse {
@@ -255,7 +253,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .macro {
-          visibility: ${scrolledPixels > 1510 ? 'visible' : 'hidden'};
+          visibility: ${scrolledPixels > 1515 ? 'visible' : 'hidden'};
           width: 410px;
           height: 410px;
         }
