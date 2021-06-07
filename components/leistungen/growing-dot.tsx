@@ -55,7 +55,7 @@ const GrowingDot: FunctionComponent = () => {
   const circleSize = isPastLastSlide
     ? Math.sqrt(LAST_SLIDE_OFFSET * 20)
     : Math.sqrt(Math.max(1, scrolledPixels) * 20)
-  const bigCircleSize = isPastLastSlide ? fullScreenSize : 30
+  const bigCircleSize = isPastLastSlide ? fullScreenSize : 0
 
   return (
     <div ref={wrapperRef} className='growing-dot'>
