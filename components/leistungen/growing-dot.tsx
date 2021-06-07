@@ -43,16 +43,18 @@ export const Circle: FunctionComponent = () => {
   )
 }
 
+const LAST_SLIDE_OFFSET = 2300
+
 const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
   const scrolledPixels = useScrolledPixels(wrapperRef)
   const { width, height } = useWindowSize()
-  const fullScreenSize = (width || 0) > (height || 0) ? width : height
-  const isPastLastSlide = scrolledPixels > 2300
+  const fullScreenSize = (width ?? 0) > (height ?? 0) ? width ?? 0 : height ?? 0
+  const isPastLastSlide = scrolledPixels > LAST_SLIDE_OFFSET
 
   const circleSize = isPastLastSlide
-    ? 0
-    : (Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30) / 30
+    ? Math.sqrt(LAST_SLIDE_OFFSET * 20)
+    : Math.sqrt(Math.max(1, scrolledPixels) * 20)
   const bigCircleSize = isPastLastSlide ? fullScreenSize : 30
 
   return (
@@ -64,20 +66,24 @@ const GrowingDot: FunctionComponent = () => {
         <g mask='url(#mask)'>
           <circle
             style={{
-              transform: `scale(${circleSize})`,
+              transform: `scale(${circleSize + 30})`,
               transformOrigin: '50% 50%',
             }}
             cx='50%'
             cy='50%'
             fill={colors.green}
-            r={30}
+            r={1}
           />
           <circle
             className='big-circle'
             cx='50%'
             cy='50%'
+            style={{
+              transform: `scale(${bigCircleSize + 30})`,
+              transformOrigin: '50% 50%',
+            }}
             fill={colors.green}
-            r={bigCircleSize}
+            r={1}
           />
         </g>
       </svg>
@@ -186,7 +192,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         svg .big-circle {
-          transition: r 2s;
+          transition: transform 2s;
         }
 
         .inner {
