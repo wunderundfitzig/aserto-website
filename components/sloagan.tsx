@@ -39,15 +39,9 @@ const Sloagan: FunctionComponent<Props> = (props) => {
           }
         }
 
-        @media ${minWidth(breakpoint.m)} {
-          .sloagen {
-            font-size: 2em;
-          }
-        }
-
         @media ${minWidth(breakpoint.l)} {
           .sloagen {
-            font-size: 2.5em;
+            font-size: 2.2em;
           }
         }
 

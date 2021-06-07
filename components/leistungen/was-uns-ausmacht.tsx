@@ -47,16 +47,52 @@ const WasUnsAusmacht: FunctionComponent = () => {
           position: relative;
           grid-area: image;
           width: 100%;
-          height: 250px;
+          height: 300px;
         }
 
         .text-block {
           grid-area: text-block;
-          margin-bottom: 2em;
-          max-width: 30em;
+          max-width: 27em;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .image {
+            height: 400px;
+          }
         }
 
         @media ${minWidth(breakpoint.m)} {
+          .was-uns-ausmacht {
+            grid-template-columns: 0.9fr 1.1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas:
+              '.          image'
+              'title      image'
+              'text-block image';
+            grid-gap: 0 3em;
+            align-items: end;
+            margin-top: 3em;
+          }
+
+          .image {
+            height: 400px;
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .was-uns-ausmacht {
+            grid-gap: 0 5em;
+          }
+
+          .text-block {
+            margin-bottom: 2em;
+          }
+          .image {
+            height: 500px;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
           .was-uns-ausmacht {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto auto;

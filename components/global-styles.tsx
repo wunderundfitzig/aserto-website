@@ -52,7 +52,14 @@ const GlobalStyles: FunctionComponent = () => (
       box-sizing: border-box;
     }
 
-    @media ${minWidth(breakpoint.xl)} {
+    @media ${minWidth(breakpoint.s)} {
+      html,
+      body {
+        font-size: 15px;
+      }
+    }
+
+    @media ${minWidth(breakpoint.l)} {
       html,
       body {
         font-size: 16px;
