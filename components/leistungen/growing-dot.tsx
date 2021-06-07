@@ -48,9 +48,12 @@ const GrowingDot: FunctionComponent = () => {
   const scrolledPixels = useScrolledPixels(wrapperRef)
   const { width, height } = useWindowSize()
   const fullScreenSize = (width || 0) > (height || 0) ? width : height
+  const isPastLastSlide = scrolledPixels > 2300
 
-  const circleSize = (Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30) / 30
-  const bigCircleSize = scrolledPixels < 2300 ? 30 : fullScreenSize
+  const circleSize = isPastLastSlide
+    ? 0
+    : (Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30) / 30
+  const bigCircleSize = isPastLastSlide ? fullScreenSize : 30
 
   return (
     <div ref={wrapperRef} className='growing-dot'>
@@ -69,7 +72,6 @@ const GrowingDot: FunctionComponent = () => {
             fill={colors.green}
             r={30}
           />
-
           <circle
             className='big-circle'
             cx='50%'

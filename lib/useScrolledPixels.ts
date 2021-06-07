@@ -1,33 +1,24 @@
-import { useState, useEffect, MutableRefObject, useRef } from 'react'
-import { throttle } from 'lodash'
+import { useState, useEffect, MutableRefObject } from 'react'
 
 export function useScrolledPixels(
   ref: MutableRefObject<HTMLElement | null>
 ): number {
-  const animationFrame = useRef<number | null>(null)
-  const [percentage, setPercentage] = useState(0)
+  const [scrolledPixels, setScrolledPixels] = useState(0)
 
   useEffect(() => {
-    const updatePercentage = () => {
+    const scrollHandler = () => {
       if (ref.current === null) return
       const boundingClientRect = ref.current.getBoundingClientRect()
-      const scrolledPixels = Math.trunc(boundingClientRect.top) * -1
-      setPercentage(scrolledPixels)
+      const _scrolledPixels = Math.trunc(boundingClientRect.top) * -1
+      setScrolledPixels(_scrolledPixels)
     }
 
-    const scrollHandler = () => {
-      if (animationFrame.current !== null) {
-        cancelAnimationFrame(animationFrame.current)
-      }
-      animationFrame.current = requestAnimationFrame(updatePercentage)
-    }
-
-    updatePercentage()
+    scrollHandler()
     window.addEventListener('scroll', scrollHandler)
     return () => {
       window.removeEventListener('scroll', scrollHandler)
     }
   }, [ref])
 
-  return percentage
+  return scrolledPixels
 }
