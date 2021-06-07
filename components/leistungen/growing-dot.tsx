@@ -283,7 +283,7 @@ const GrowingDot: FunctionComponent = () => {
           margin-bottom: calc(50vh - 250px);
         }
 
-        @media (${minWidth(breakpoint.xs)}) {
+        @media ${minWidth(breakpoint.xs)} {
           .first-text {
             font-size: 1.2em;
           }
@@ -294,7 +294,7 @@ const GrowingDot: FunctionComponent = () => {
           }
         }
 
-        @media (${minWidth(breakpoint.s)}) {
+        @media ${minWidth(breakpoint.s)} {
           .section {
             padding: 0;
           }
@@ -311,7 +311,7 @@ const GrowingDot: FunctionComponent = () => {
           }
         }
 
-        @media (${minWidth(breakpoint.l)}) {
+        @media ${minWidth(breakpoint.l)} {
           .first-text {
             transform: none;
             grid-gap: 300px;

@@ -28,11 +28,11 @@ const svgStyle = css`
   overflow: visible;
   stroke-width: 6px;
 
-  @media (${minWidth(breakpoint.l)}) {
+  @media ${minWidth(breakpoint.l)} {
     stroke-width: 8px;
   }
 
-  @media (${minWidth(breakpoint.xxl)}) {
+  @media ${minWidth(breakpoint.xxl)} {
     stroke-width: 10px;
   }
 `
