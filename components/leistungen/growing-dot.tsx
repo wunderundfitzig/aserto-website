@@ -49,7 +49,7 @@ const GrowingDot: FunctionComponent = () => {
   const { width, height } = useWindowSize()
   const fullScreenSize = (width || 0) > (height || 0) ? '100vw' : '100vh'
 
-  const circleSize = Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30
+  const circleSize = (Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30) / 30
   const bigCircleSize = scrolledPixels < 2300 ? 30 : fullScreenSize
 
   return (
@@ -59,12 +59,17 @@ const GrowingDot: FunctionComponent = () => {
           <rect x='-100vw' y='0' width='300vw' height='100vh' fill='white' />
         </mask>
         <circle
+          style={{
+            transform: `scale(${circleSize})`,
+            transformOrigin: '50% 50%',
+          }}
           cx='50%'
           cy='50%'
           fill={colors.green}
-          r={circleSize}
+          r={30}
           mask='url(#mask)'
         />
+
         <circle
           className='big-circle'
           cx='50%'
