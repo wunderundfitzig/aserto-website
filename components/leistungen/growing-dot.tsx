@@ -47,7 +47,7 @@ const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
   const scrolledPixels = useScrolledPixels(wrapperRef)
   const { width, height } = useWindowSize()
-  const fullScreenSize = (width || 0) > (height || 0) ? '100vw' : '100vh'
+  const fullScreenSize = (width || 0) > (height || 0) ? width : height
 
   const circleSize = (Math.sqrt(Math.max(1, scrolledPixels) * 20) + 30) / 30
   const bigCircleSize = scrolledPixels < 2300 ? 30 : fullScreenSize
@@ -56,7 +56,7 @@ const GrowingDot: FunctionComponent = () => {
     <div ref={wrapperRef} className='growing-dot'>
       <svg className='dot'>
         <mask id='mask'>
-          <rect x='-100vw' y='0' width='300vw' height='100vh' fill='white' />
+          <rect x='-100%' y='0' width='300%' height='100%' fill='white' />
         </mask>
         <circle
           style={{
