@@ -12,7 +12,7 @@ const List: FunctionComponent<Props> = (props) => {
         .list {
           list-style: none;
           padding: 0;
-          margin: 2em 0;
+          margin: 0;
         }
 
         .list :global(li) {
