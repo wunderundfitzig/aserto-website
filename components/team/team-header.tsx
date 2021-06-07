@@ -24,11 +24,7 @@ const TeamHeader: FunctionComponent = () => {
         <Image src='/team-placeholder-image.jpg' width='1173 ' height=' 684' />
       </div>
       <div className='key-visual'>
-        <TriangleLine
-          color='white'
-          preserveAspectRatio='none'
-          strokeWidth={10}
-        />
+        <TriangleLine color='white' preserveAspectRatio='none' />
       </div>
       <style jsx>{`
         @keyframes fade-in {
