@@ -37,6 +37,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
         h2 {
           grid-area: title;
           text-align: center;
+          margin-top: 2em;
         }
 
         .image {

@@ -37,6 +37,7 @@ const AufDenPunkt: FunctionComponent = () => {
       </div>
       <style jsx>{`
         .auf-den-punkt {
+          margin-top: 4em;
           position: relative;
           display: grid;
           grid-template-rows: auto auto auto;
@@ -61,9 +62,12 @@ const AufDenPunkt: FunctionComponent = () => {
         }
 
         .circle {
-          grid-area: 1 / 1 / 4 / 1;
+          position: absolute;
+          z-index: -1;
+          grid-area: image / image / list / list;
           width: 100%;
-          margin-top: 40px;
+          height: calc(100% + 230px);
+          margin-top: 65px;
         }
 
         @media ${minWidth(breakpoint.m)} {
@@ -75,21 +79,23 @@ const AufDenPunkt: FunctionComponent = () => {
           }
 
           .circle {
-            grid-area: image;
-            position: absolute;
-            z-index: -1;
+            grid-area: image / image / list / list;
+            height: calc(100% + 400px);
+            margin-top: 80px;
           }
 
           .image {
+            grid-area: image;
             margin-bottom: 3em;
           }
         }
 
         @media ${minWidth(breakpoint.l)} {
           .auf-den-punkt {
+            margin-top: 2em;
             position: relative;
             display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
+            grid-template-columns: 1fr 1fr;
             grid-gap: 0 3em;
             grid-template-areas:
               'title title'
@@ -111,24 +117,38 @@ const AufDenPunkt: FunctionComponent = () => {
           }
 
           .circle {
-            position: relative;
             width: calc(100% - 7em);
-            height: 70vw;
+            height: 120vw;
             left: 7em;
             max-height: 1100px;
-            margin-top: 40px;
+            margin-top: 100px;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .auf-den-punkt {
+            grid-template-columns: 0.9fr 1.1fr;
+          }
+          .circle {
+            width: calc(100% - 7em);
+            height: 85vw;
+            left: 7em;
+            max-height: 1100px;
+            margin-top: 100px;
           }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
           .auf-den-punkt {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.8fr 1.2fr;
             grid-gap: 0 6em;
           }
 
           .circle {
             width: 100%;
-            left: 0;
+            left: 80px;
+            height: 70vw;
+            margin-top: 70px;
           }
         }
       `}</style>

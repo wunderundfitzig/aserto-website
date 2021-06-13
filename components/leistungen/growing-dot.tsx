@@ -179,7 +179,7 @@ const GrowingDot: FunctionComponent = () => {
           position: relative;
           height: 3700px;
           margin-top: -25vh;
-          margin-bottom: 10em;
+          margin-bottom: 0;
         }
 
         svg {
