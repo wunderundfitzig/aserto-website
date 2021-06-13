@@ -62,7 +62,7 @@ const Footer: FunctionComponent<Props> = (props) => {
             grid-template-columns: 50px auto auto 1fr auto;
             align-items: start;
             grid-gap: 5em;
-            padding: 6em 0 4em;
+            padding: 4em 0 4em;
           }
 
           .logo {

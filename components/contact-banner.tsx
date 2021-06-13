@@ -15,7 +15,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
     <aside className='contact-banner'>
       <h2>{props.children.title}</h2>
       <div className='image'>
-        <Image {...props.image} />
+        <Image {...props.image} layout='responsive' />
       </div>
       <address>
         <h3>Ihr Kontakt</h3>
@@ -42,6 +42,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
 
         .image {
           grid-area: image;
+          width: 200px;
         }
 
         address {
@@ -69,7 +70,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
             grid-template-areas:
               'title title'
               'address image';
-            grid-template-columns: 1fr auto;
+            grid-template-columns: 1fr 35%;
             grid-gap: 0 2em;
             justify-items: stretch;
             align-items: end;
@@ -80,17 +81,27 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
           }
 
           .image {
-            margin-bottom: 3em;
+            width: 100%;
+            max-width: 250px;
           }
 
           address {
             text-align: right;
-            padding-bottom: 2em;
+            padding-bottom: 0;
           }
 
           .background {
             grid-area: address / address / image / image;
-            padding-top: 10px;
+            padding-top: 50px;
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .image {
+            max-width: 300px;
+          }
+          .background {
+            padding-top: 100px;
           }
         }
       `}</style>
