@@ -60,10 +60,10 @@ const GrowingDot: FunctionComponent = () => {
   return (
     <div ref={wrapperRef} className='growing-dot'>
       <svg className='dot'>
-        <mask id='mask'>
+        <mask id='growing-dot-mask'>
           <rect x='-100%' y='0' width='300%' height='100%' fill='white' />
         </mask>
-        <g mask='url(#mask)'>
+        <g mask='url(#growing-dot-mask)'>
           <circle
             style={{
               transform: `scale(${circleSize + 30})`,
@@ -189,6 +189,7 @@ const GrowingDot: FunctionComponent = () => {
           height: 100vh;
           overflow: visible;
           z-index: 1;
+          pointer-events: none;
         }
 
         svg .big-circle {

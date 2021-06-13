@@ -27,6 +27,7 @@ const svgStyle = css`
   height: 100%;
   overflow: visible;
   stroke-width: 6px;
+  pointer-events: none;
 
   @media ${minWidth(breakpoint.l)} {
     stroke-width: 8px;

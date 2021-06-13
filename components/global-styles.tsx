@@ -33,7 +33,13 @@ const GlobalStyles: FunctionComponent = () => (
 
     h2 {
       font-weight: 200;
-      font-size: 1.7rem;
+      font-size: 1.7em;
+      margin: 0 0 1em;
+    }
+
+    h3 {
+      font-weight: 400;
+      font-size: 1.1em;
       margin: 0 0 1em;
     }
 

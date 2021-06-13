@@ -13,22 +13,22 @@ const Footer: FunctionComponent<Props> = (props) => {
       <div className='logo'>
         <AsertoLogo />
       </div>
-      <div className='adress'>
+      <address className='adress'>
         aserto GmnH & Co. KG
         <br />
         Kriegerstr. 44 <br />
         30161 Hannover
-      </div>
-      <div className='contact'>
+      </address>
+      <address className='contact'>
         <a href='mailto:job@aserto.de'>job@aserto.de</a>
         <br />
         <a href='info:job@aserto.de'>info@aserto.de</a>
         <br />
         0511 515678 0
-      </div>
-      <div className='scial-icons'>
+      </address>
+      <address className='scial-icons'>
         <SocialLinks />
-      </div>
+      </address>
       <nav title='footer navigation' className='footer-navigation'>
         <Link href='/impressum'>
           <a>Impressum</a>
