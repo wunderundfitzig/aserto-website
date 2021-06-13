@@ -14,10 +14,7 @@ const Background: FunctionComponent = () => {
         fit: 'slice',
       })}
     >
-      <mask id='contact-banner-mask'>
-        <rect x='-100%' y='0' width='300%' height='100%' fill='white' />
-      </mask>
-      <g mask='url(#contact-banner-mask)'>
+      <g>
         <svg
           viewBox='0 0 100 100'
           preserveAspectRatio={formatAlignment({
