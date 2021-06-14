@@ -97,11 +97,20 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.l)} {
+          h2 {
+            text-align: left;
+          }
           .image {
             max-width: 300px;
           }
           .background {
             padding-top: 100px;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          h2 {
+            margin: 4em 0 -0.05em;
           }
         }
       `}</style>

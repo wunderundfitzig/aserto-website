@@ -48,6 +48,10 @@ const Footer: FunctionComponent<Props> = (props) => {
           padding: 3em 0;
         }
 
+        address {
+          font-style: normal;
+        }
+
         .logo {
           width: 50px;
         }
