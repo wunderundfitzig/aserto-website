@@ -198,19 +198,19 @@ export const RoundCurve: FunctionComponent<CurveProps> = (props) => {
   )
 }
 
-export const StraigtLine: FunctionComponent<CurveProps & { rotate: number }> = (
+export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
   props
 ) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 100 1'
+      viewBox='0 0 1 1'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
       <line
-        x1={0}
+        x1={-10000}
         y1={0}
-        x2={100}
+        x2={10000}
         y2={0}
         fill='none'
         transform={`rotate(${props.rotate})`}
