@@ -39,7 +39,8 @@ const svgStyle = css`
 `
 
 const pathStyle = css`
-  path {
+  path,
+  line {
     vector-effect: non-scaling-stroke;
   }
 `
@@ -171,6 +172,50 @@ export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
         fill='none'
         strokeLinecap='round'
         strokeMiterlimit='10'
+      />
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
+    </svg>
+  )
+}
+
+export const RoundCurve: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 2028.305 2224.411'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <path
+        d='M704.947 13.072s1472.265 611.831 1299.09 1161.6S12.248 2212.158 12.248 2212.158'
+        fill='none'
+        stroke={props.color}
+        strokeLinecap='round'
+      />
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
+    </svg>
+  )
+}
+
+export const StraigtLine: FunctionComponent<CurveProps & { rotate: number }> = (
+  props
+) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 100 1'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <line
+        x1={0}
+        y1={0}
+        x2={100}
+        y2={0}
+        fill='none'
+        transform={`rotate(${props.rotate})`}
+        stroke={props.color}
+        strokeLinecap='round'
       />
       <style jsx>{svgStyle}</style>
       <style jsx>{pathStyle}</style>

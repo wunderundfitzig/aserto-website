@@ -8,13 +8,15 @@ import LeistungenContact from 'components/leistungen/leistungen-contact'
 
 const LeistungenPage: NextPage<PageProps> = (props) => {
   return (
-    <main style={{ gridArea: props.gridArea }}>
-      <LeistungenHeader />
-      <WasUnsAusmacht />
-      <GrowingDot />
-      <AufDenPunkt />
+    <article style={{ gridArea: props.gridArea }}>
+      <main>
+        <LeistungenHeader />
+        <WasUnsAusmacht />
+        <GrowingDot />
+        <AufDenPunkt />
+      </main>
       <LeistungenContact />
-    </main>
+    </article>
   )
 }
 
