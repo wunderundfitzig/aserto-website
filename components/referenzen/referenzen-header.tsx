@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
-import { RoundCurve, EndlessLine, formatAlignment } from 'components/curves'
+import { RoundCurve, EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const ReferenzenHeader: FunctionComponent = () => {
@@ -193,7 +193,7 @@ const ReferenzenHeader: FunctionComponent = () => {
             height: 150vw;
             min-height: calc(100% + 50em);
             width: 90%;
-            max-height: 1800px;
+            max-height: 1500px;
           }
         }
 
