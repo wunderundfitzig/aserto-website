@@ -11,16 +11,26 @@ const Statement: FunctionComponent<Props> = (props) => {
   return (
     <div className='statement'>
       <div>{props.children.title}</div>
-      <div>{props.children.content}</div>
+      <div className='content'>{props.children.content}</div>
       <style jsx>{`
+        .statement {
+          position: relative;
+          padding-left: calc(1em + 5px);
+        }
         .statement::before {
+          position: absolute;
+          left: 0;
           content: '';
           display: inline-block;
-          flex: 0 0 5px;
+          width: 5px;
           border-radius: 5px;
           height: 30px;
           background-color: ${props.color};
           margin-right: 1em;
+        }
+
+        .content {
+          font-weight: 200;
         }
       `}</style>
     </div>

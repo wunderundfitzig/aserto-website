@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
 import Statement from 'components/statement'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const cases = [
   {
@@ -126,18 +127,20 @@ const Cases: FunctionComponent = () => {
                   {singleCase.client} – {singleCase.category}
                 </p>
                 <h3>{singleCase.title}</h3>
-                <Statement color={colors.categoryColors.referenzen}>
-                  {{
-                    title: <h4>Das Problem</h4>,
-                    content: <p>{singleCase.task}</p>,
-                  }}
-                </Statement>
-                <Statement color={colors.categoryColors.referenzen}>
-                  {{
-                    title: <h4>Die Lösung</h4>,
-                    content: <p>{singleCase.solution}</p>,
-                  }}
-                </Statement>
+                <div className='statements'>
+                  <Statement color={colors.categoryColors.referenzen}>
+                    {{
+                      title: <h4>Die Herausforderung</h4>,
+                      content: <p>{singleCase.task}</p>,
+                    }}
+                  </Statement>
+                  <Statement color={colors.categoryColors.referenzen}>
+                    {{
+                      title: <h4>Die Lösung</h4>,
+                      content: <p>{singleCase.solution}</p>,
+                    }}
+                  </Statement>
+                </div>
               </header>
             </article>
           ))}
@@ -183,6 +186,7 @@ const Cases: FunctionComponent = () => {
         article {
           min-height: 100vh;
           padding: 2em 2em 2em 1.5em;
+          max-width: 25em;
         }
 
         .roofline {
@@ -194,6 +198,50 @@ const Cases: FunctionComponent = () => {
         h3 {
           font-weight: 600;
           color: ${colors.categoryColors.referenzen};
+        }
+
+        .statements {
+          display: grid;
+          grid-template-rows: auto auto;
+          grid-gap: 2em;
+          margin-top: 2em;
+        }
+
+        h4 {
+          font-weight: 400;
+          margin: 0;
+          font-size: 1.05rem;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          article {
+            padding-left: 3em;
+          }
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          article {
+            max-width: none;
+            padding-left: 2em;
+            padding-right: 4em;
+            max-width: 700px;
+          }
+
+          .roofline {
+            margin-top: 3em;
+          }
+
+          h3 {
+            max-width: 30em;
+            margin-bottom: 3em;
+            font-size: 1.4em;
+          }
+
+          .statements {
+            grid-template-rows: auto;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 2em;
+          }
         }
       `}</style>
     </section>
