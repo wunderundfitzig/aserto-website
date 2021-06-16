@@ -1,6 +1,7 @@
-import { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
+import Statement from 'components/statement'
 
 const cases = [
   {
@@ -125,6 +126,18 @@ const Cases: FunctionComponent = () => {
                   {singleCase.client} – {singleCase.category}
                 </p>
                 <h3>{singleCase.title}</h3>
+                <Statement color={colors.categoryColors.referenzen}>
+                  {{
+                    title: <h4>Das Problem</h4>,
+                    content: <p>{singleCase.task}</p>,
+                  }}
+                </Statement>
+                <Statement color={colors.categoryColors.referenzen}>
+                  {{
+                    title: <h4>Die Lösung</h4>,
+                    content: <p>{singleCase.solution}</p>,
+                  }}
+                </Statement>
               </header>
             </article>
           ))}
