@@ -13,9 +13,9 @@ const cases = [
     client: 'Nordkirche',
     logo: { src: '/client-logo-placeholder-2.svg', width: 117, height: 82 },
     task:
-      'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
+      'Kostenlose Informationen über das tagesaktuelle Geschehen finden wir zahlreich im Internet. Doch wie gewinnen wir Nutzer*Innen, die für Qualitätsjournalismus zu zahlen bereit sind? Doch wie gewinnen wir Nutzer*Innen, die für Qualitätsjournalismus zu zahlen bereit sind?',
     solution:
-      'Gemeinsame Ziele, neue Strukturen und Kollaborationsformen schaffen Klarheit und eine stringente Orientierung an den Mitgliedern der Nordkirche.',
+      'Für DIE ZEIT machen wir die Treiber und Hürden der Nutzer*Innen auf dem Weg zum Digitalabo transparent. Der Weg für eine bessere Conversion ist frei. Für DIE ZEIT machen wir die Treiber und Hürden der Nutzer*Innen auf dem Weg zum Digitalabo transparent. Link zu einer Seite',
     assets: [{ type: 'link', url: 'https://example.com' }],
   },
   {
