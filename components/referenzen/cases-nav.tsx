@@ -22,10 +22,12 @@ const CasesNav: FunctionComponent<Props> = (props) => {
               singleCase.id === props.activeCaseId ? 'active' : undefined
             }
           >
-            <div className='client-logo'>
-              <Image {...singleCase.logo} />
-            </div>
-            <span className='client-name'>{singleCase.client}</span>
+            <a href={`#${singleCase.id}`}>
+              <div className='client-logo'>
+                <Image {...singleCase.logo} />
+              </div>
+              <span className='client-name'>{singleCase.client}</span>
+            </a>
           </li>
         ))}
       </ul>

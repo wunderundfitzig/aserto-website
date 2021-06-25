@@ -23,6 +23,7 @@ const GlobalStyles: FunctionComponent = () => (
       padding: 0;
       margin: 0;
       font-family: Sinova, sans-serif;
+      scroll-behavior: smooth;
     }
 
     h1 {

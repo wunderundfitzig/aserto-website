@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'
+import { useRouter } from 'next/router'
 
 const cases = [
   {
@@ -20,9 +21,9 @@ const cases = [
   {
     id: 'case2',
     title:
-      'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
+      'Ut ut sunt aut accusamus quas optio quia est. Magnam iure aut omnis voluptatibus',
     category: 'Kommunikationskonzept',
-    client: 'Nordkirche',
+    client: 'client 2',
     logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -33,9 +34,9 @@ const cases = [
   {
     id: 'case3',
     title:
-      'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
+      'Corporis amet et atque occaecati ipsam quo ab earum. Doloremque possimus?',
     category: 'Kommunikationskonzept',
-    client: 'Nordkirche',
+    client: 'client 3',
     logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -46,9 +47,9 @@ const cases = [
   {
     id: 'case4',
     title:
-      'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
+      'Similique voluptate eligendi laboriosam qui. Debitis esse facilis consequatur?',
     category: 'Kommunikationskonzept',
-    client: 'Nordkirche',
+    client: 'client 4',
     logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -57,11 +58,11 @@ const cases = [
     assets: [{ type: 'link', url: 'https://example.com' }],
   },
   {
-    id: 'case5',
+    id: 'client 4',
     title:
-      'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
+      'Voluptate voluptates amet laborum laboriosam. Laborum dolores est non enim facilis non sint molestiae. Beatae odit explicabo ut sed quo ipsam accusantium soluta?',
     category: 'Kommunikationskonzept',
-    client: 'Nordkirche',
+    client: 'client 5',
     logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -72,9 +73,9 @@ const cases = [
   {
     id: 'case6',
     title:
-      'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
+      'Accusantium natus est provident veniam mollitia deserunt. Assumenda repudiandae repudiandae?',
     category: 'Kommunikationskonzept',
-    client: 'Nordkirche',
+    client: 'client with long name',
     logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -85,9 +86,9 @@ const cases = [
   {
     id: 'case7',
     title:
-      'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
+      'Placeat repellendus impedit id aut est autem. Veritatis sunt perferendis ducimus?',
     category: 'Kommunikationskonzept',
-    client: 'Nordkirche',
+    client: 'client 7',
     logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -98,7 +99,9 @@ const cases = [
 ]
 
 const Cases: FunctionComponent = () => {
+  const router = useRouter()
   const [activeCaseId, setActiveCaseId] = useState('case1')
+  console.log(router.route)
 
   return (
     <section className='cases'>
@@ -129,7 +132,6 @@ const Cases: FunctionComponent = () => {
           display: grid;
           justify-content: center;
           align-items: center;
-          grid-auto-rows: minmax(100vh, auto);
         }
 
         @media ${minWidth(breakpoint.s)} {

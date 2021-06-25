@@ -15,31 +15,37 @@ type Props = {
 }
 const CaseArticle: FunctionComponent<Props> = (props) => {
   return (
-    <article className='case-article'>
-      <header>
-        <p className='roofline'>
-          {props.case.client} – {props.case.category}
-        </p>
-        <h3>{props.case.title}</h3>
-      </header>
-      <main className='statements'>
-        <Statement color={colors.categoryColors.referenzen}>
-          {{
-            title: <h4>Die Herausforderung</h4>,
-            content: <p>{props.case.task}</p>,
-          }}
-        </Statement>
-        <Statement color={colors.categoryColors.referenzen}>
-          {{
-            title: <h4>Die Lösung</h4>,
-            content: <p>{props.case.solution}</p>,
-          }}
-        </Statement>
-      </main>
+    <article id={props.case.id} className='case-article'>
+      <div className='inner'>
+        <header>
+          <p className='roofline'>
+            {props.case.client} – {props.case.category}
+          </p>
+          <h3>{props.case.title}</h3>
+        </header>
+        <main className='statements'>
+          <Statement color={colors.categoryColors.referenzen}>
+            {{
+              title: <h4>Die Herausforderung</h4>,
+              content: <p>{props.case.task}</p>,
+            }}
+          </Statement>
+          <Statement color={colors.categoryColors.referenzen}>
+            {{
+              title: <h4>Die Lösung</h4>,
+              content: <p>{props.case.solution}</p>,
+            }}
+          </Statement>
+        </main>
+      </div>
+
       <style jsx>{`
         .case-article {
           padding: 2em 1.5em;
           max-width: 25em;
+          min-height: 100vh;
+          display: grid;
+          align-items: center;
         }
 
         .roofline {
@@ -104,6 +110,9 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
           .case-article {
             padding-right: 1em;
             max-width: 700px;
+          }
+
+          .inner {
             margin-bottom: 4em;
           }
         }
