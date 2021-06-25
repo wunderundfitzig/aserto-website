@@ -39,8 +39,7 @@ const ClientQuotes: FunctionComponent = () => {
       <Slider index={slideIndex} onNavigation={setSlideIndex}>
         {(index: number) => {
           const length = quotes.length
-          const positive = index >= 0 ? index : length + (index % length)
-          const wrappedIndex = positive % length
+          const wrappedIndex = (length + (index % length)) % length
           const quote = quotes[wrappedIndex]
 
           return (
