@@ -1,4 +1,5 @@
 import Cases from 'components/referenzen/cases'
+import ClientQuotes from 'components/referenzen/client-quotes'
 import LogoList from 'components/referenzen/logo-list'
 import ReferenzenHeader from 'components/referenzen/referenzen-header'
 import { NextPage } from 'next'
@@ -11,6 +12,7 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
         <ReferenzenHeader />
         <LogoList />
         <Cases />
+        <ClientQuotes />
       </main>
     </article>
   )
