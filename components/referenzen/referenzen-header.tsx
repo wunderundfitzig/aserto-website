@@ -100,7 +100,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.m)} {
+        @media ${minWidth(breakpoint.sm)} {
           .referenzen-header {
             grid-template-rows: auto auto 1fr;
             grid-template-columns: 1fr 1fr;
@@ -144,7 +144,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.ml)} {
           .referenzen-header {
             grid-template-columns: minmax(300px, 30%) 1fr;
           }
@@ -168,7 +168,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.l)} {
           .referenzen-header {
             grid-template-columns: minmax(320px, 35%) 1fr;
           }

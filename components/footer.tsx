@@ -61,7 +61,7 @@ const Footer: FunctionComponent<Props> = (props) => {
           display: grid;
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.l)} {
           .footer {
             grid-template-columns: 50px auto auto 1fr auto;
             align-items: start;

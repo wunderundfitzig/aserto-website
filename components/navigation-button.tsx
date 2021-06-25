@@ -23,7 +23,7 @@ const NavigationButton: FunctionComponent<Props> = (props) => {
           z-index: 1;
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.l)} {
           .navigation-button {
             display: none;
           }

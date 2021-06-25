@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState } from 'react'
-import Image from 'next/image'
 import * as colors from 'lib/colors'
-import Statement from 'components/statement'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import CasesNav from 'components/referenzen/cases-nav'
+import CaseArticle from 'components/referenzen/case-article'
 
 const cases = [
   {
@@ -105,44 +105,10 @@ const Cases: FunctionComponent = () => {
     <section className='cases'>
       <h2>Unsere Cases</h2>
       <div className='case-container'>
-        <nav>
-          <ul>
-            {cases.map((singleCase) => (
-              <li
-                key={singleCase.id}
-                className={
-                  singleCase.id === activeCaseId ? 'active' : undefined
-                }
-              >
-                <Image {...singleCase.logo} />
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <CasesNav cases={cases} activeCaseId={activeCaseId} />
         <div className='content'>
-          {cases.map((singleCase) => (
-            <article key={singleCase.id}>
-              <header>
-                <p className='roofline'>
-                  {singleCase.client} – {singleCase.category}
-                </p>
-                <h3>{singleCase.title}</h3>
-                <div className='statements'>
-                  <Statement color={colors.categoryColors.referenzen}>
-                    {{
-                      title: <h4>Die Herausforderung</h4>,
-                      content: <p>{singleCase.task}</p>,
-                    }}
-                  </Statement>
-                  <Statement color={colors.categoryColors.referenzen}>
-                    {{
-                      title: <h4>Die Lösung</h4>,
-                      content: <p>{singleCase.solution}</p>,
-                    }}
-                  </Statement>
-                </div>
-              </header>
-            </article>
+          {cases.map((caseArticle) => (
+            <CaseArticle key={caseArticle.id} case={caseArticle} />
           ))}
         </div>
       </div>
@@ -157,91 +123,21 @@ const Cases: FunctionComponent = () => {
           margin: 2em -2em 0;
           display: grid;
           grid-template-areas: 'nav content';
-          grid-template-columns: 70px 1fr;
+          grid-template-columns: minmax(70px, 18vw) 1fr;
         }
 
-        nav {
-          background-color: ${colors.categoryColors.referenzen};
-          height: 100vh;
-          overflow-y: auto;
-          position: sticky;
-          top: 0;
-        }
-
-        nav ul {
-          list-style: none;
-          padding: 2em 0;
-          margin: 0;
-        }
-
-        nav ul li {
-          height: 60px;
-          padding: 0.8em;
-        }
-
-        nav ul li.active {
-          background-color: white;
-        }
-
-        article {
-          min-height: 100vh;
-          padding: 2em 2em 2em 1.5em;
-          max-width: 25em;
-        }
-
-        .roofline {
-          font-size: 0.8em;
-          margin: 0 0 0.3em;
-          font-weight: 200;
-        }
-
-        h3 {
-          font-weight: 600;
-          color: ${colors.categoryColors.referenzen};
-        }
-
-        .statements {
+        .content {
           display: grid;
-          grid-template-rows: auto auto;
-          grid-gap: 2em;
-          margin-top: 2em;
-        }
-
-        h4 {
-          font-weight: 400;
-          margin: 0;
-          font-size: 1.05rem;
+          justify-content: center;
         }
 
         @media ${minWidth(breakpoint.s)} {
-          article {
-            padding-left: 3em;
+          .case-container {
+            grid-template-columns: 150px 1fr;
           }
         }
 
-        @media ${minWidth(breakpoint.m)} {
-          article {
-            max-width: none;
-            padding-left: 2em;
-            padding-right: 4em;
-            max-width: 700px;
-          }
-
-          .roofline {
-            margin-top: 3em;
-          }
-
-          h3 {
-            max-width: 30em;
-            margin-bottom: 3em;
-            font-size: 1.4em;
-          }
-
-          .statements {
-            grid-template-rows: auto;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 2em;
-          }
+        @media ${minWidth(breakpoint.sm)} {
         }
       `}</style>
     </section>

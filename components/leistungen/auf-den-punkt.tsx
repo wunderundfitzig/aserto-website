@@ -70,7 +70,7 @@ const AufDenPunkt: FunctionComponent = () => {
           margin-top: 65px;
         }
 
-        @media ${minWidth(breakpoint.m)} {
+        @media ${minWidth(breakpoint.sm)} {
           .auf-den-punkt {
             grid-template-areas:
               'title'
@@ -90,7 +90,7 @@ const AufDenPunkt: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.ml)} {
           .auf-den-punkt {
             margin-top: 2em;
             position: relative;
@@ -125,7 +125,7 @@ const AufDenPunkt: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.l)} {
           .auf-den-punkt {
             grid-template-columns: 0.9fr 1.1fr;
           }

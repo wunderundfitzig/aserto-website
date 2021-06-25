@@ -1,11 +1,13 @@
 export const breakpoint = {
   xs: 400,
   s: 500,
-  m: 600,
-  l: 750,
-  xl: 900,
+  sm: 600,
+  m: 675,
+  ml: 750,
+  l: 900,
+  xl: 1000,
   xxl: 1200,
-}
+} as const
 
 export type Breakpoint = keyof typeof breakpoint
 

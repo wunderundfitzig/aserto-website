@@ -65,7 +65,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
           z-index: -1;
         }
 
-        @media ${minWidth(breakpoint.m)} {
+        @media ${minWidth(breakpoint.sm)} {
           .contact-banner {
             grid-template-areas:
               'title title'
@@ -96,7 +96,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
           }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.ml)} {
           h2 {
             text-align: left;
           }

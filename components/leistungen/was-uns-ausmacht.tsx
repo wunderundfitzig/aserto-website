@@ -61,7 +61,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.m)} {
+        @media ${minWidth(breakpoint.sm)} {
           .was-uns-ausmacht {
             grid-template-columns: 0.9fr 1.1fr;
             grid-template-rows: auto auto auto;
@@ -79,7 +79,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.ml)} {
           .was-uns-ausmacht {
             grid-gap: 0 5em;
           }

@@ -95,7 +95,7 @@ const Index: NextPage = () => {
           display: none;
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.l)} {
           h1 {
             text-align: right;
             justify-self: end;

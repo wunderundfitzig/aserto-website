@@ -92,7 +92,7 @@ const LogoList: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.m)} {
+        @media ${minWidth(breakpoint.sm)} {
           ul {
             grid-template-columns: repeat(5, 1fr);
             grid-gap: 2em 3em;
@@ -111,7 +111,7 @@ const LogoList: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.ml)} {
           .logo-list {
             margin-top: 12rem;
           }
@@ -125,7 +125,7 @@ const LogoList: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.ml)} {
           .line-3 {
             top: 100%;
           }

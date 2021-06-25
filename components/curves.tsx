@@ -29,7 +29,7 @@ const svgStyle = css`
   stroke-width: 6px;
   pointer-events: none;
 
-  @media ${minWidth(breakpoint.l)} {
+  @media ${minWidth(breakpoint.ml)} {
     stroke-width: 8px;
   }
 

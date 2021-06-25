@@ -344,7 +344,7 @@ const GrowingDot: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.ml)} {
           .first-text {
             transform: none;
             grid-gap: 300px;

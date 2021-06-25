@@ -54,21 +54,21 @@ const LeistungenHeader: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.m)} {
+        @media ${minWidth(breakpoint.sm)} {
           .open-circle {
             top: -0.6em;
             padding-right: 5em;
           }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.ml)} {
           .open-circle {
             top: -0.1em;
             padding-right: 5em;
           }
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.l)} {
           .open-circle {
             top: -1.5em;
             height: 30em;

@@ -98,7 +98,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           margin-bottom: 1em;
         }
 
-        @media ${minWidth(breakpoint.xl)} {
+        @media ${minWidth(breakpoint.l)} {
           .nav {
             grid-area: ${props.gridArea};
             width: 100%;

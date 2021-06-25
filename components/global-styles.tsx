@@ -65,7 +65,7 @@ const GlobalStyles: FunctionComponent = () => (
       }
     }
 
-    @media ${minWidth(breakpoint.l)} {
+    @media ${minWidth(breakpoint.ml)} {
       html,
       body {
         font-size: 16px;
