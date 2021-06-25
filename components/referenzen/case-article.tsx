@@ -38,7 +38,6 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
       </main>
       <style jsx>{`
         .case-article {
-          min-height: 100vh;
           padding: 2em 1.5em;
           max-width: 25em;
         }
@@ -76,13 +75,6 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.sm)} {
-          .case-article {
-            max-width: none;
-            padding-left: 2em;
-            padding-right: 4em;
-            max-width: 700px;
-          }
-
           .roofline {
             margin-top: 3em;
           }
@@ -92,11 +84,27 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
             margin-bottom: 3em;
             font-size: 1.4em;
           }
+        }
 
+        @media ${minWidth(breakpoint.m)} {
+          .case-article {
+            padding-left: 3em;
+            padding-right: 4em;
+            max-width: none;
+          }
           .statements {
             grid-template-rows: auto;
             grid-template-columns: 1fr 1fr;
-            grid-gap: 2em;
+            grid-gap: 3em;
+            max-width: none;
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .case-article {
+            padding-right: 1em;
+            max-width: 700px;
+            margin-bottom: 4em;
           }
         }
       `}</style>

@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useState } from 'react'
-import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'
@@ -129,15 +128,26 @@ const Cases: FunctionComponent = () => {
         .content {
           display: grid;
           justify-content: center;
+          align-items: center;
+          grid-auto-rows: minmax(100vh, auto);
         }
 
         @media ${minWidth(breakpoint.s)} {
           .case-container {
-            grid-template-columns: 150px 1fr;
+            grid-template-columns: minmax(150px, 23vw) 1fr;
           }
         }
 
-        @media ${minWidth(breakpoint.sm)} {
+        @media ${minWidth(breakpoint.l)} {
+          .case-container {
+            grid-template-columns: 200px 1fr;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .case-container {
+            grid-template-columns: 300px 1fr;
+          }
         }
       `}</style>
     </section>

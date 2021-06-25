@@ -13,8 +13,8 @@ type Props = {
 }
 const CasesNav: FunctionComponent<Props> = (props) => {
   return (
-    <nav>
-      <ul className='case-nav'>
+    <nav className='case-nav'>
+      <ul>
         {props.cases.map((singleCase) => (
           <li
             key={singleCase.id}
@@ -33,13 +33,16 @@ const CasesNav: FunctionComponent<Props> = (props) => {
         .case-nav {
           background-color: ${colors.categoryColors.referenzen};
           height: 100vh;
-          overflow-y: auto;
           position: sticky;
           top: 0;
         }
 
         ul {
           list-style: none;
+          height: 100%;
+          overflow-y: auto;
+          display: grid;
+          align-content: center;
           padding: 2em 0;
           margin: 0;
         }
@@ -80,6 +83,35 @@ const CasesNav: FunctionComponent<Props> = (props) => {
 
           .client-logo {
             display: none;
+          }
+        }
+
+        @media (${minWidth(breakpoint.m)}) {
+          .case-nav {
+            display: grid;
+            grid-template-areas: 'nav';
+            justify-content: end;
+          }
+          .case-nav::before {
+            content: '';
+            grid-area: nav;
+            width: 100%;
+            height: 100%;
+            background-color: ${colors.categoryColors.referenzen};
+            transform: scaleX(10);
+            transform-origin: right;
+            z-index: -1;
+            pointer-events: none;
+          }
+
+          ul {
+            grid-area: nav;
+            padding-bottom: 6em;
+          }
+
+          li {
+            position: relative;
+            padding: 1em 2em 1em 3em;
           }
         }
       `}</style>
