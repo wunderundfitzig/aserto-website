@@ -3,7 +3,7 @@ import { useScrolledPixels } from 'lib/use-scrolled-pixels'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { formatAlignment } from 'components/curves'
-import useWindowSize from 'lib/use-window-size'
+import { useWindowSize } from 'lib/use-window-size'
 
 export const Circle: FunctionComponent = () => {
   return (

@@ -21,7 +21,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
   const { onFrontpage = false } = props
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
-  const rootPath = router.asPath.split('/').slice(1)[0]
+  const rootPath = router.pathname.split('/').slice(1)[0]
 
   return (
     <nav className={`nav ${isOpen && 'open'} ${onFrontpage && 'on-frontpage'}`}>

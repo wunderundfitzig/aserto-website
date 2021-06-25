@@ -5,7 +5,7 @@ type Size = {
   height: number | undefined
 }
 
-export default function useWindowSize(): Size {
+export function useWindowSize(): Size {
   const getSize = (): Size => {
     if (!process.browser) return { width: undefined, height: undefined }
 

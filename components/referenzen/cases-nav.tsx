@@ -23,7 +23,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
               caseArticle.id === props.activeCaseId ? 'active' : undefined
             }
           >
-            <Link href={`#${caseArticle.id}`}>
+            <Link href={`#${caseArticle.id}`} replace>
               <a>
                 <div className='client-logo'>
                   <Image {...caseArticle.logo} />
@@ -52,12 +52,17 @@ const CasesNav: FunctionComponent<Props> = (props) => {
           margin: 0;
         }
 
-        li {
+        a {
           height: 60px;
+          display: block;
           padding: 0.8em;
+          transition: background-color, color, font-weight;
+          transition-delay: 0.1s;
+          transition-duration: 0.2s;
+          background-color: ${colors.categoryColors.referenzen};
         }
 
-        li.active {
+        .active a {
           background-color: white;
         }
 
@@ -66,22 +71,22 @@ const CasesNav: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.s)} {
-          li {
+          a {
             display: flex;
             align-items: center;
             justify-content: flex-end;
             padding-right: 1.5em;
+            color: white;
           }
 
           .client-name {
             display: block;
-            color: white;
             text-align: right;
             text-transform: uppercase;
             font-size: 0.9em;
           }
 
-          .active .client-name {
+          .active a {
             color: ${colors.categoryColors.referenzen};
             font-weight: bold;
           }
@@ -114,8 +119,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
             padding-bottom: 6em;
           }
 
-          li {
-            position: relative;
+          a {
             padding: 1em 2em 1em 3em;
           }
         }

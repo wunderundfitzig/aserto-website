@@ -1,9 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useRef } from 'react'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'
-import { useRouter } from 'next/router'
-import { useDelayed } from 'lib/use-delayed'
+import { useIntersectionObserver } from 'lib/use-intersection-observer'
 
 const cases = [
   {
@@ -100,10 +99,16 @@ const cases = [
 ]
 
 const Cases: FunctionComponent = () => {
-  const router = useRouter()
-  const firstId = cases[0].id
-  const [, hashCaseId] = router.asPath.split('#')
-  const activeCaseId = useDelayed(hashCaseId ?? firstId, firstId)
+  const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
+  const sectionIndex = useIntersectionObserver(sectionRefs.current, {
+    topOffset: (height: number) => height * 0.5,
+  })
+
+  const activeCaseId = cases[sectionIndex].id
+
+  useEffect(() => {
+    history.replaceState(null, 'null', `#${activeCaseId}`)
+  }, [activeCaseId])
 
   return (
     <section className='cases'>
@@ -111,8 +116,16 @@ const Cases: FunctionComponent = () => {
       <div className='case-container'>
         <CasesNav cases={cases} activeCaseId={activeCaseId} />
         <div className='content'>
-          {cases.map((caseArticle) => (
-            <CaseArticle key={caseArticle.id} case={caseArticle} />
+          {cases.map((caseArticle, idx) => (
+            <div
+              key={caseArticle.id}
+              ref={(ref) => (sectionRefs.current[idx] = ref)}
+            >
+              <CaseArticle
+                case={caseArticle}
+                isActive={caseArticle.id === activeCaseId}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -12,10 +12,14 @@ type Props = {
     task: string
     solution: string
   }
+  isActive: boolean
 }
 const CaseArticle: FunctionComponent<Props> = (props) => {
   return (
-    <article id={props.case.id} className='case-article'>
+    <article
+      id={props.case.id}
+      className={`case-article ${props.isActive ? 'active' : undefined}`}
+    >
       <div className='inner'>
         <header>
           <p className='roofline'>
@@ -46,6 +50,12 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
           min-height: 100vh;
           display: grid;
           align-items: center;
+          opacity: 0.5;
+          transition: opacity 0.5s;
+        }
+
+        .case-article.active {
+          opacity: 1;
         }
 
         .roofline {
