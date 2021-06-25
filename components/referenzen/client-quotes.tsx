@@ -24,26 +24,25 @@ const quotes = [
 
 const ClientQuotes: FunctionComponent = () => {
   const [slideIndex, setSlideIndex] = useState(0)
-  const lastSlideIndex = quotes.length - 1
-  const prevIndex = slideIndex > 0 ? slideIndex - 1 : lastSlideIndex
-  const nextIndex = slideIndex < lastSlideIndex ? slideIndex + 1 : 0
 
   return (
     <section className='client-quotes'>
       <button
         className='slide-button prev'
         title='vorheriges kommentat'
-        disabled={slideIndex <= 0}
         onClick={() => {
-          setSlideIndex(prevIndex)
+          setSlideIndex(slideIndex - 1)
         }}
       >
         <ArrowIcon />
       </button>
       <Slider index={slideIndex} onNavigation={setSlideIndex}>
         {(index: number) => {
-          const quote = quotes[index]
-          if (quote === undefined) return null
+          const length = quotes.length
+          const positive = index >= 0 ? index : length + (index % length)
+          const wrappedIndex = positive % length
+          const quote = quotes[wrappedIndex]
+
           return (
             <Quote>
               {{
@@ -57,9 +56,8 @@ const ClientQuotes: FunctionComponent = () => {
       <button
         className='slide-button next'
         title='nächstes kommentat'
-        disabled={slideIndex >= lastSlideIndex}
         onClick={() => {
-          setSlideIndex(nextIndex)
+          setSlideIndex(slideIndex + 1)
         }}
       >
         <ArrowIcon rotate={180} />
