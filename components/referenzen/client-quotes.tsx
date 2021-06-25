@@ -68,7 +68,7 @@ const ClientQuotes: FunctionComponent = () => {
         .client-quotes {
           display: grid;
           grid-template-columns: 20px 1fr 20px;
-          margin: 10em 0 6em;
+          margin: 10em 0 12em;
         }
 
         .slide-button {

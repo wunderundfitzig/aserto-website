@@ -9,12 +9,25 @@ type Props = {
 const Quote: FunctionComponent<Props> = (props) => {
   return (
     <figure className='quote'>
-      <figcaption>{props.children.author}</figcaption>
-      <blockquote>{props.children.quote}</blockquote>
+      <div className='inner'>
+        <figcaption>{props.children.author}</figcaption>
+        <blockquote>{props.children.quote}</blockquote>
+      </div>
+
       <style jsx>{`
         .quote {
-          text-align: center;
+          display: grid;
           margin: 0;
+          justify-content: center;
+        }
+
+        .inner {
+          text-align: center;
+          display: block;
+          width: auto;
+          max-width: 30em;
+          background-color: white;
+          padding: 2em;
         }
         figcaption {
           margin: 0;
