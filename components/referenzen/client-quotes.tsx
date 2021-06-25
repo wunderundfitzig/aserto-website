@@ -6,7 +6,7 @@ import { ArrowIcon } from 'components/icons'
 const quotes = [
   {
     author: 'Max Muster',
-    quote: 'Quote 1',
+    quote: 'Wir brauchten eine Entscheidung, die wir fundiert umsetzen können',
   },
   {
     author: 'Tina Muster',
@@ -48,7 +48,7 @@ const ClientQuotes: FunctionComponent = () => {
             <Quote>
               {{
                 author: <>Kunde: {quote.author}</>,
-                quote: <>{quote.quote}</>,
+                quote: <>„{quote.quote}“</>,
               }}
             </Quote>
           )
@@ -68,6 +68,7 @@ const ClientQuotes: FunctionComponent = () => {
         .client-quotes {
           display: grid;
           grid-template-columns: 20px 1fr 20px;
+          margin: 10em 0 6em;
         }
 
         .slide-button {

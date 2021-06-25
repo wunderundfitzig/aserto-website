@@ -11,8 +11,8 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
       <main>
         <ReferenzenHeader />
         <LogoList />
-        <Cases />
         <ClientQuotes />
+        <Cases />
       </main>
     </article>
   )
