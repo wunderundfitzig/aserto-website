@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'
 import { useRouter } from 'next/router'
+import { useDelayed } from 'lib/use-delayed'
 
 const cases = [
   {
@@ -58,7 +59,7 @@ const cases = [
     assets: [{ type: 'link', url: 'https://example.com' }],
   },
   {
-    id: 'client 4',
+    id: 'case5',
     title:
       'Voluptate voluptates amet laborum laboriosam. Laborum dolores est non enim facilis non sint molestiae. Beatae odit explicabo ut sed quo ipsam accusantium soluta?',
     category: 'Kommunikationskonzept',
@@ -100,8 +101,9 @@ const cases = [
 
 const Cases: FunctionComponent = () => {
   const router = useRouter()
-  const [activeCaseId, setActiveCaseId] = useState('case1')
-  console.log(router.route)
+  const firstId = cases[0].id
+  const [, hashCaseId] = router.asPath.split('#')
+  const activeCaseId = useDelayed(hashCaseId ?? firstId, firstId)
 
   return (
     <section className='cases'>

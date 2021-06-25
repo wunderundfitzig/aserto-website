@@ -1,6 +1,6 @@
 import { FunctionComponent, useRef } from 'react'
 import * as colors from 'lib/colors'
-import { useScrolledPixels } from 'lib/useScrolledPixels'
+import { useScrolledPixels } from 'lib/use-scrolled-pixels'
 import { TriangleLine } from 'components/curves'
 
 const DatenUndMenschen: FunctionComponent = () => {

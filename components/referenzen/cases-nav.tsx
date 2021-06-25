@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
@@ -15,19 +16,21 @@ const CasesNav: FunctionComponent<Props> = (props) => {
   return (
     <nav className='case-nav'>
       <ul>
-        {props.cases.map((singleCase) => (
+        {props.cases.map((caseArticle) => (
           <li
-            key={singleCase.id}
+            key={caseArticle.id}
             className={
-              singleCase.id === props.activeCaseId ? 'active' : undefined
+              caseArticle.id === props.activeCaseId ? 'active' : undefined
             }
           >
-            <a href={`#${singleCase.id}`}>
-              <div className='client-logo'>
-                <Image {...singleCase.logo} />
-              </div>
-              <span className='client-name'>{singleCase.client}</span>
-            </a>
+            <Link href={`#${caseArticle.id}`}>
+              <a>
+                <div className='client-logo'>
+                  <Image {...caseArticle.logo} />
+                </div>
+                <span className='client-name'>{caseArticle.client}</span>
+              </a>
+            </Link>
           </li>
         ))}
       </ul>
