@@ -6,15 +6,15 @@ const GlobalStyles: FunctionComponent = () => (
     @font-face {
       font-family: 'Sinova';
       font-weight: 200;
-      src: url('fonts/312FA8_0_0.woff2') format('woff2'),
-        url('fonts/312FA8_0_0.woff') format('woff');
+      src: url('/fonts/312FA8_0_0.woff2') format('woff2'),
+        url('/fonts/312FA8_0_0.woff') format('woff');
     }
 
     @font-face {
       font-family: 'Sinova';
       font-weight: 400;
-      src: url('fonts/312FA8_1_0.woff2') format('woff2'),
-        url('fonts/312FA8_1_0.woff') format('woff');
+      src: url('/fonts/312FA8_1_0.woff2') format('woff2'),
+        url('/fonts/312FA8_1_0.woff') format('woff');
     }
 
     html,
