@@ -26,5 +26,5 @@ export const categoryColors = {
   team: blue,
   leistungen: green,
   referenzen: denim,
-  jobs: red,
+  karriere: red,
 }

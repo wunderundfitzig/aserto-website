@@ -62,13 +62,13 @@ const LogoList: FunctionComponent = () => {
           position: absolute;
           top: 100%;
           width: 100%;
-          height: 50%;
+          height: 100%;
           z-index: -1;
         }
 
         .line-2 {
           position: absolute;
-          top: 80%;
+          top: 50%;
           width: 100%;
           height: 50%;
           z-index: -1;
@@ -83,6 +83,9 @@ const LogoList: FunctionComponent = () => {
         @media ${minWidth(breakpoint.xs)} {
           ul {
             grid-template-columns: repeat(4, 1fr);
+          }
+          .line-1 {
+            height: 200%;
           }
         }
 

@@ -10,7 +10,7 @@ const navItems = [
   { label: 'Team', slug: '/team' },
   { label: 'Leistungen', slug: '/leistungen' },
   { label: 'Referenzen', slug: '/referenzen' },
-  { label: 'Jobs', slug: '/jobs' },
+  { label: 'Karriere', slug: '/karriere' },
 ]
 
 type Props = {
@@ -22,6 +22,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const rootPath = router.pathname.split('/').slice(1)[0]
+  console.log(rootPath)
 
   return (
     <nav className={`nav ${isOpen && 'open'} ${onFrontpage && 'on-frontpage'}`}>

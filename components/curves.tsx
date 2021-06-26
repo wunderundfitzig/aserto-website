@@ -48,6 +48,7 @@ const pathStyle = css`
 export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
       className='curve'
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 1084.567 1248.952'
@@ -86,6 +87,7 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
 export const SimpleCutRoundCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 270 385'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -104,6 +106,7 @@ export const SimpleCutRoundCurve: FunctionComponent<CurveProps> = (props) => {
 export const CornerCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 222 674'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -123,6 +126,7 @@ export const CornerCurve: FunctionComponent<CurveProps> = (props) => {
 export const OpenCircle: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 856 895'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -142,6 +146,7 @@ export const OpenCircle: FunctionComponent<CurveProps> = (props) => {
 export const SkewedHalfCircle: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 896 1358'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -162,6 +167,7 @@ export const SkewedHalfCircle: FunctionComponent<CurveProps> = (props) => {
 export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
       viewBox='0 0 1233 1145'
       xmlns='http://www.w3.org/2000/svg'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -182,6 +188,7 @@ export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
 export const RoundCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 2028.305 2224.411'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -203,17 +210,18 @@ export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
 ) => {
   return (
     <svg
+      aria-hidden
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 1 1'
+      viewBox='0 0 100 100'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
       <line
         x1={-10000}
-        y1={0}
-        x2={10000}
-        y2={0}
+        y1={50}
+        x2={20000}
+        y2={50}
         fill='none'
-        transform={`rotate(${props.rotate})`}
+        transform={`rotate(${props.rotate}, 50, 50)`}
         stroke={props.color}
         strokeLinecap='round'
       />

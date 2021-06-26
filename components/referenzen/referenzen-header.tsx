@@ -140,7 +140,6 @@ const ReferenzenHeader: FunctionComponent = () => {
 
           .line {
             grid-area: space / image / space / space;
-            height: 250%;
           }
         }
 
