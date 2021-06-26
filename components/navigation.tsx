@@ -22,7 +22,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const rootPath = router.pathname.split('/').slice(1)[0]
-  console.log(rootPath)
 
   return (
     <nav className={`nav ${isOpen && 'open'} ${onFrontpage && 'on-frontpage'}`}>
@@ -33,16 +32,26 @@ const Navigation: FunctionComponent<Props> = (props) => {
         />
       )}
       <ul>
-        {navItems.map((navItem) => (
-          <li
-            key={navItem.slug}
-            className={`/${rootPath}` === navItem.slug ? 'active' : undefined}
-          >
-            <Link href={navItem.slug}>
-              <a>{navItem.label}</a>
-            </Link>
-          </li>
-        ))}
+        {navItems.map((navItem) => {
+          return (
+            <li
+              key={navItem.slug}
+              className={`/${rootPath}` === navItem.slug ? 'active' : undefined}
+            >
+              <Link href={navItem.slug}>
+                {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+                <a
+                  onClick={() => {
+                    setIsOpen(false)
+                  }}
+                >
+                  {navItem.label}
+                </a>
+                {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
       <style jsx>{`
         .nav {
