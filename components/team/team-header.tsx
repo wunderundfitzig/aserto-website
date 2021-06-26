@@ -21,7 +21,12 @@ const TeamHeader: FunctionComponent = () => {
         </Sloagan>
       </div>
       <div className='image'>
-        <Image src='/team-placeholder-image.jpg' width='1173 ' height=' 684' />
+        <Image
+          priority
+          src='/team-placeholder-image.jpg'
+          width='1173 '
+          height=' 684'
+        />
       </div>
       <div className='key-visual'>
         <TriangleLine color='white' preserveAspectRatio='none' />

@@ -22,6 +22,7 @@ const KarriereHeader: FunctionComponent = () => {
       </div>
       <div className='image'>
         <Image
+          priority
           src='/karriere-placeholder-image.jpg'
           layout='fill'
           objectFit='cover'

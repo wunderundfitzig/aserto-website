@@ -17,6 +17,7 @@ const ReferenzenHeader: FunctionComponent = () => {
       </div>
       <div className='image'>
         <Image
+          priority
           src='/referenzen-placeholder-image-1.jpg'
           layout='fill'
           objectFit='cover'

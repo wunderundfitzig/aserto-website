@@ -8,6 +8,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
       <h2>Was uns ausmacht</h2>
       <div className='image'>
         <Image
+          priority
           src='/leistungen-placeholder-image-1.jpg'
           layout='fill'
           objectFit='cover'
