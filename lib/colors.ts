@@ -11,7 +11,7 @@ export const lightDenim = '#566F89'
 export const denim = '#1A3D61'
 
 export const lightRed = '#BE6878'
-export const backgroundRed = '#BE6878'
+export const backgroundRed = '#EEE3E5'
 export const red = '#9D1830'
 
 export const backgroundBeige = '#F9F2E4'
