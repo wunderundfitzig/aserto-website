@@ -32,14 +32,17 @@ const KarrierePage: NextPage<PageProps> = (props) => {
 
   return (
     <>
-      <article style={{ gridArea: props.gridArea }}>
+      <article
+        hidden={job !== undefined}
+        style={{ gridArea: props.gridArea, display: 'block' }}
+      >
         <main>
           <KarriereHeader />
           <JobList jobs={jobs} />
         </main>
         <KarriereContact />
       </article>
-      {job !== undefined && <JobAdd job={job} gridArea={props.gridArea} />}
+      {job !== undefined && <JobAdd job={job} />}
     </>
   )
 }
