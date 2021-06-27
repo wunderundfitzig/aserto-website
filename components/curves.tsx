@@ -22,19 +22,25 @@ export const formatAlignment = (alignment?: Alignment): string | undefined => {
 }
 
 const svgStyle = css`
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  stroke-width: 6px;
-  pointer-events: none;
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    stroke-width: 6px;
+    pointer-events: none;
+  }
 
   @media ${minWidth(breakpoint.ml)} {
-    stroke-width: 8px;
+    svg {
+      stroke-width: 8px;
+    }
   }
 
   @media ${minWidth(breakpoint.xxl)} {
-    stroke-width: 10px;
+    svg {
+      stroke-width: 10px;
+    }
   }
 `
 
