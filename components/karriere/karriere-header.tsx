@@ -78,19 +78,19 @@ const KarriereHeader: FunctionComponent = () => {
           z-index: 1;
         }
 
-        @media (${minWidth(breakpoint.xs)}) {
+        @media ${minWidth(breakpoint.xs)} {
           .line {
             transform: translate(0, -10%);
           }
         }
 
-        @media (${minWidth(breakpoint.s)}) {
+        @media ${minWidth(breakpoint.s)} {
           .line {
             transform: translate(0, -5%);
           }
         }
 
-        @media (${minWidth(breakpoint.sm)}) {
+        @media ${minWidth(breakpoint.sm)} {
           .karriere-header {
             grid-template-columns: minmax(200px, 20%) 1fr;
             grid-template-rows: auto auto 200px;
@@ -119,7 +119,7 @@ const KarriereHeader: FunctionComponent = () => {
           }
         }
 
-        @media (${minWidth(breakpoint.l)}) {
+        @media ${minWidth(breakpoint.l)} {
           .karriere-header {
             grid-template-columns: minmax(200px, 30%) 1fr;
           }
@@ -134,7 +134,7 @@ const KarriereHeader: FunctionComponent = () => {
           }
         }
 
-        @media (${minWidth(breakpoint.xxl)}) {
+        @media ${minWidth(breakpoint.xxl)} {
           .image {
             width: 100%;
             margin-left: 0;

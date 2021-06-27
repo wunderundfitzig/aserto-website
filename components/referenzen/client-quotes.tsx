@@ -64,13 +64,14 @@ const ClientQuotes: FunctionComponent = () => {
       <style jsx>{`
         .client-quotes {
           display: grid;
-          grid-template-columns: 20px 1fr 20px;
+          grid-template-columns: 15px 1fr 15px;
           margin: 10em 0 12em;
         }
 
         .slide-button {
           background-color: transparent;
           border: 0;
+          padding: 0;
           cursor: pointer;
         }
 

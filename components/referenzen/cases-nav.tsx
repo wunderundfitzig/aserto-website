@@ -96,7 +96,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
           }
         }
 
-        @media (${minWidth(breakpoint.m)}) {
+        @media ${minWidth(breakpoint.m)} {
           .case-nav {
             display: grid;
             grid-template-areas: 'nav';
@@ -104,9 +104,11 @@ const CasesNav: FunctionComponent<Props> = (props) => {
           }
           .case-nav::before {
             content: '';
-            grid-area: nav;
+            position: absolute;
             width: 100%;
             height: 100%;
+            top: 0;
+            right: 0;
             background-color: ${colors.categoryColors.referenzen};
             transform: scaleX(10);
             transform-origin: right;
