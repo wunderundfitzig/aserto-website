@@ -1,17 +1,34 @@
-import { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react'
 import { transparentize } from 'polished'
 import Link from 'next/link'
 import * as colors from 'lib/colors'
-import { CloseIcon } from 'components/icons'
+import { ArrowIcon, CloseIcon } from 'components/icons'
 import MainGrid from 'components/main-grid'
+import Slider from 'components/slider'
+import { useRouter } from 'next/router'
+
+type Job = {
+  id: string
+  title: string
+}
 
 type Props = {
-  job: {
-    id: string
-    title: string
-  }
+  jobs: Job[]
+  jobIndex: number
 }
+
+const clamp = (index: number, length: number): number => {
+  if (index < 0) return length - 1
+  if (index > length - 1) return 0
+  return index
+}
+
 const JobAdd: FunctionComponent<Props> = (props) => {
+  const router = useRouter()
+  const prevJob = props.jobs[clamp(props.jobIndex - 1, props.jobs.length)]
+  const nextJob = props.jobs[clamp(props.jobIndex + 1, props.jobs.length)]
+  const job = props.jobs[props.jobIndex]
+
   return (
     <article className='job-add'>
       <MainGrid>
@@ -23,7 +40,34 @@ const JobAdd: FunctionComponent<Props> = (props) => {
               </a>
             </Link>
             <hr />
-            <h1>{props.job.title}</h1>
+            <div className='slider-wrapper'>
+              <Link href={`/karriere/jobs/${prevJob.id}`} scroll={false}>
+                <a className='arrow-icon prev'>
+                  <ArrowIcon color={colors.categoryColors.karriere} />
+                </a>
+              </Link>
+              <Slider
+                index={props.jobIndex}
+                onNavigation={(index: number) => {
+                  const job = props.jobs[clamp(index, props.jobs.length)]
+                  router.push(`/karriere/jobs/${job.id}`)
+                }}
+              >
+                {(index: number) => {
+                  const job = props.jobs[clamp(index, props.jobs.length)]
+                  return <h1>{job.title}</h1>
+                }}
+              </Slider>
+
+              <Link href={`/karriere/jobs/${nextJob.id}`} scroll={false}>
+                <a className='arrow-icon next'>
+                  <ArrowIcon
+                    color={colors.categoryColors.karriere}
+                    rotate={180}
+                  />
+                </a>
+              </Link>
+            </div>
           </header>
         </div>
       </MainGrid>
@@ -65,6 +109,12 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           border-bottom: 1px solid ${colors.lightRed};
           padding-top: 1em;
           margin: 1.5em 0;
+        }
+
+        .slider-wrapper {
+          display: grid;
+          grid-template-columns: 8px 1fr 8px;
+          padding: 0 0.2em;
         }
 
         h1 {

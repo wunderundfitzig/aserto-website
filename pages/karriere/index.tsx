@@ -13,22 +13,28 @@ const jobs = [
   },
   {
     id: 'job2',
-    title: 'Senior consultant (w/M/D)',
+    title: 'Executive analist (w/M/D)',
   },
   {
     id: 'job3',
-    title: 'Senior consultant (w/M/D)',
+    title: 'Head of strategy (w/M/D)',
   },
   {
     id: 'job4',
-    title: 'Senior consultant (w/M/D)',
+    title: 'Creative lead (w/M/D)',
   },
 ]
 
 const KarrierePage: NextPage<PageProps> = (props) => {
   const router = useRouter()
   const { jobid } = router.query as { jobid?: string }
-  const job = jobs.find((job) => jobid !== undefined && job.id === jobid)
+  const jobIndex = jobs.findIndex(
+    (job) => jobid !== undefined && job.id === jobid
+  )
+  const lastJobIndex = jobs.length - 1
+  const prevJob = jobs[jobIndex <= 0 ? lastJobIndex : jobIndex - 1]
+  const job = jobs[jobIndex]
+  const nextJob = jobs[jobIndex >= lastJobIndex ? 0 : jobIndex + 1]
 
   return (
     <>
@@ -42,7 +48,7 @@ const KarrierePage: NextPage<PageProps> = (props) => {
         </main>
         <KarriereContact />
       </article>
-      {job !== undefined && <JobAdd job={job} />}
+      {job !== undefined && <JobAdd jobs={jobs} jobIndex={jobIndex} />}
     </>
   )
 }
