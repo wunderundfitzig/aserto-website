@@ -87,6 +87,15 @@ const JobAddHeader: FunctionComponent<Props> = (props) => {
           font-size: 1.2rem;
           margin-top: 0;
         }
+
+        @media print {
+          .close-button {
+            display: none;
+          }
+          .arrow-icon {
+            visibility: hidden;
+          }
+        }
       `}</style>
     </header>
   )

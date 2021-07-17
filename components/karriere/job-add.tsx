@@ -11,6 +11,7 @@ import Button from 'components/button'
 import CopyUrlButton from 'components/copy-url-button'
 
 import contactImage from 'public/contact-placeholder-image.jpg'
+import AsertoLogo from 'components/aserto-logo'
 
 type Job = {
   id: string
@@ -35,12 +36,17 @@ const JobAdd: FunctionComponent<Props> = (props) => {
     <article className='job-add'>
       <MainGrid>
         <div className='modal'>
+          <div className='aserto-logo' aria-hidden='true'>
+            <AsertoLogo />
+          </div>
           <JobAddHeader jobs={props.jobs} jobIndex={props.jobIndex} />
           <main className='content'>
             <ReactMarkdown>{job.content}</ReactMarkdown>
           </main>
           <aside>
-            <Image src={contactImage} />
+            <div className='image'>
+              <Image src={contactImage} />
+            </div>
             <address>
               <h3>Ihr Kontakt</h3>
               <p>{job.contact.name}</p>
@@ -48,12 +54,17 @@ const JobAdd: FunctionComponent<Props> = (props) => {
               <a href={`mailto:${job.contact.mail}`}>{job.contact.mail}</a>
             </address>
             <div className='button-wrapper'>
-              <Button tag='a' color={colors.categoryColors.karriere}>
-                Download PDF
-              </Button>
               <CopyUrlButton color={colors.categoryColors.karriere}>
                 Link kopieren
               </CopyUrlButton>
+              <Button
+                onClick={() => {
+                  window.print()
+                }}
+                color={colors.categoryColors.karriere}
+              >
+                Drucken / Download
+              </Button>
             </div>
           </aside>
         </div>
@@ -85,6 +96,11 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           padding: 1.5em 2em;
           z-index: 110;
           margin: 0;
+        }
+
+        .aserto-logo {
+          visibility: hidden;
+          display: none;
         }
 
         .content {
@@ -123,6 +139,24 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             position: static;
             grid-area: 1 / main;
             min-height: calc(100vh - 7rem);
+          }
+        }
+
+        @media print {
+          .aserto-logo {
+            display: grid;
+            grid-template-columns: 80px;
+            justify-content: flex-end;
+            visibility: visible;
+          }
+          .image,
+          .button-wrapper {
+            display: none;
+          }
+
+          .modal {
+            padding: 0;
+            margin-top: -2rem;
           }
         }
       `}</style>
