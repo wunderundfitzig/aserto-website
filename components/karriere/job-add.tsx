@@ -27,7 +27,6 @@ const JobAdd: FunctionComponent<Props> = (props) => {
   const router = useRouter()
   const prevJob = props.jobs[clamp(props.jobIndex - 1, props.jobs.length)]
   const nextJob = props.jobs[clamp(props.jobIndex + 1, props.jobs.length)]
-  const job = props.jobs[props.jobIndex]
 
   return (
     <article className='job-add'>

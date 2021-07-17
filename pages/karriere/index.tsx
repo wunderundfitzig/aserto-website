@@ -5,6 +5,7 @@ import KarriereHeader from 'components/karriere/karriere-header'
 import KarriereContact from 'components/karriere/karriere-contact'
 import JobList from 'components/karriere/job-list'
 import JobAdd from 'components/karriere/job-add'
+import Prinzipen from 'components/karriere/prinzipen'
 
 const jobs = [
   {
@@ -31,10 +32,7 @@ const KarrierePage: NextPage<PageProps> = (props) => {
   const jobIndex = jobs.findIndex(
     (job) => jobid !== undefined && job.id === jobid
   )
-  const lastJobIndex = jobs.length - 1
-  const prevJob = jobs[jobIndex <= 0 ? lastJobIndex : jobIndex - 1]
   const job = jobs[jobIndex]
-  const nextJob = jobs[jobIndex >= lastJobIndex ? 0 : jobIndex + 1]
 
   return (
     <>
@@ -44,6 +42,7 @@ const KarrierePage: NextPage<PageProps> = (props) => {
       >
         <main>
           <KarriereHeader />
+          <Prinzipen />
           <JobList jobs={jobs} />
         </main>
         <KarriereContact />
