@@ -1,27 +1,32 @@
-import { ButtonHTMLAttributes, FunctionComponent } from 'react'
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  FunctionComponent,
+} from 'react'
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement> &
-  ButtonHTMLAttributes<HTMLAnchorElement> & {
-    color: string
-    tag?: 'button' | 'a'
-  }
+type Props =
+  | (ButtonHTMLAttributes<HTMLButtonElement> & {
+      color: string
+      tag?: 'button'
+    })
+  | (AnchorHTMLAttributes<HTMLAnchorElement> & { color: string; tag: 'a' })
+
 const Button: FunctionComponent<Props> = (props) => {
-  const { color, tag = 'button', ...elemProps } = props
   return (
     <>
-      {tag === 'button' ? (
-        <button {...elemProps} className='button'>
-          {props.children}
-        </button>
-      ) : (
-        <a {...elemProps} className='button'>
+      {props.tag === 'a' ? (
+        <a {...props} className='button'>
           {props.children}
         </a>
+      ) : (
+        <button {...props} className='button'>
+          {props.children}
+        </button>
       )}
       <style jsx>{`
         .button {
           font-size: 0.9em;
-          background-color: ${color};
+          background-color: ${props.color};
           color: white;
           border: 0;
           border-radius: 4px;
@@ -29,6 +34,11 @@ const Button: FunctionComponent<Props> = (props) => {
           box-shadow: none;
           font-family: Userwood serif;
           letter-spacing: 0.06em;
+          cursor: pointer;
+        }
+
+        .button:disabled {
+          opacity: 0.5;
         }
       `}</style>
     </>

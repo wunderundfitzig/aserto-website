@@ -8,6 +8,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import MainGrid from 'components/main-grid'
 import JobAddHeader from 'components/karriere/job-add-header'
 import Button from 'components/button'
+import CopyUrlButton from 'components/copy-url-button'
 
 import contactImage from 'public/contact-placeholder-image.jpg'
 
@@ -29,6 +30,7 @@ type Props = {
 
 const JobAdd: FunctionComponent<Props> = (props) => {
   const job = props.jobs[props.jobIndex]
+
   return (
     <article className='job-add'>
       <MainGrid>
@@ -46,12 +48,12 @@ const JobAdd: FunctionComponent<Props> = (props) => {
               <a href={`mailto:${job.contact.mail}`}>{job.contact.mail}</a>
             </address>
             <div className='button-wrapper'>
-              <Button color={colors.categoryColors.karriere}>
+              <Button tag='a' color={colors.categoryColors.karriere}>
                 Download PDF
               </Button>
-              <Button tag='a' color={colors.categoryColors.karriere}>
+              <CopyUrlButton color={colors.categoryColors.karriere}>
                 Link kopieren
-              </Button>
+              </CopyUrlButton>
             </div>
           </aside>
         </div>
