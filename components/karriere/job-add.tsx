@@ -143,6 +143,9 @@ const JobAdd: FunctionComponent<Props> = (props) => {
         }
 
         @media print {
+          @page {
+            margin: 0;
+          }
           .aserto-logo {
             display: grid;
             grid-template-columns: 80px;
@@ -156,7 +159,6 @@ const JobAdd: FunctionComponent<Props> = (props) => {
 
           .modal {
             padding: 0;
-            margin-top: -2rem;
           }
         }
       `}</style>
