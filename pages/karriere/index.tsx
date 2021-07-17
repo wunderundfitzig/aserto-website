@@ -6,25 +6,7 @@ import KarriereContact from 'components/karriere/karriere-contact'
 import JobList from 'components/karriere/job-list'
 import JobAdd from 'components/karriere/job-add'
 import Prinzipen from 'components/karriere/prinzipen'
-
-const jobs = [
-  {
-    id: 'job1',
-    title: 'Senior consultant (w/M/D)',
-  },
-  {
-    id: 'job2',
-    title: 'Executive analist (w/M/D)',
-  },
-  {
-    id: 'job3',
-    title: 'Head of strategy (w/M/D)',
-  },
-  {
-    id: 'job4',
-    title: 'Creative lead (w/M/D)',
-  },
-]
+import { jobs } from 'content/jobs'
 
 const KarrierePage: NextPage<PageProps> = (props) => {
   const router = useRouter()

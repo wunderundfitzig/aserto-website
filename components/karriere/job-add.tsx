@@ -6,6 +6,7 @@ import { ArrowIcon, CloseIcon } from 'components/icons'
 import MainGrid from 'components/main-grid'
 import Slider from 'components/slider'
 import { useRouter } from 'next/router'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Job = {
   id: string
@@ -88,12 +89,15 @@ const JobAdd: FunctionComponent<Props> = (props) => {
         }
 
         .modal {
-          grid-area: 1 / main;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 100%;
           background-color: white;
           padding: 1.5em 2em;
           z-index: 110;
           margin: 0;
-          height: calc(100vh + 10rem);
         }
 
         .close-button {
@@ -121,6 +125,15 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           text-transform: uppercase;
           color: ${colors.red};
           font-size: 1.2rem;
+          margin-top: 0;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .modal {
+            position: static;
+            grid-area: 1 / main;
+            min-height: calc(100vh - 7rem);
+          }
         }
       `}</style>
     </article>
