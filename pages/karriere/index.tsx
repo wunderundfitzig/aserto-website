@@ -31,15 +31,15 @@ const KarrierePage: NextPage<PageProps> = (props) => {
         <KarriereContact />
       </article>
       {job !== undefined && <JobAdd jobs={jobs} jobIndex={jobIndex} />}
-      {job !== undefined && (
-        <style jsx>{`
+      <style jsx>
+        {`
           @media print {
             .karriere-page * {
-              display: none;
+              ${job !== undefined && 'display: none;'}
             }
           }
-        `}</style>
-      )}
+        `}
+      </style>
     </>
   )
 }
