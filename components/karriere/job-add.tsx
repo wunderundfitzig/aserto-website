@@ -1,16 +1,25 @@
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 import { transparentize } from 'polished'
-import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
+import Image from 'next/image'
+
 import * as colors from 'lib/colors'
-import { ArrowIcon, CloseIcon } from 'components/icons'
-import MainGrid from 'components/main-grid'
-import Slider from 'components/slider'
-import { useRouter } from 'next/router'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import MainGrid from 'components/main-grid'
+import JobAddHeader from 'components/karriere/job-add-header'
+import Button from 'components/button'
+
+import contactImage from 'public/contact-placeholder-image.jpg'
 
 type Job = {
   id: string
   title: string
+  content: string
+  contact: {
+    name: string
+    phone: string
+    mail: string
+  }
 }
 
 type Props = {
@@ -18,57 +27,33 @@ type Props = {
   jobIndex: number
 }
 
-const clamp = (index: number, length: number): number => {
-  if (index < 0) return length - 1
-  if (index > length - 1) return 0
-  return index
-}
-
 const JobAdd: FunctionComponent<Props> = (props) => {
-  const router = useRouter()
-  const prevJob = props.jobs[clamp(props.jobIndex - 1, props.jobs.length)]
-  const nextJob = props.jobs[clamp(props.jobIndex + 1, props.jobs.length)]
-
+  const job = props.jobs[props.jobIndex]
   return (
     <article className='job-add'>
       <MainGrid>
         <div className='modal'>
-          <header>
-            <Link href='/karriere' scroll={false}>
-              <a className='close-button'>
-                <CloseIcon color={colors.categoryColors.karriere} />
-              </a>
-            </Link>
-            <hr />
-            <div className='slider-wrapper'>
-              <Link href={`/karriere/jobs/${prevJob.id}`} scroll={false}>
-                <a className='arrow-icon prev'>
-                  <ArrowIcon color={colors.categoryColors.karriere} />
-                </a>
-              </Link>
-              <Slider
-                index={props.jobIndex}
-                onNavigation={(index: number) => {
-                  const job = props.jobs[clamp(index, props.jobs.length)]
-                  router.push(`/karriere/jobs/${job.id}`)
-                }}
-              >
-                {(index: number) => {
-                  const job = props.jobs[clamp(index, props.jobs.length)]
-                  return <h1>{job.title}</h1>
-                }}
-              </Slider>
-
-              <Link href={`/karriere/jobs/${nextJob.id}`} scroll={false}>
-                <a className='arrow-icon next'>
-                  <ArrowIcon
-                    color={colors.categoryColors.karriere}
-                    rotate={180}
-                  />
-                </a>
-              </Link>
+          <JobAddHeader jobs={props.jobs} jobIndex={props.jobIndex} />
+          <main className='content'>
+            <ReactMarkdown>{job.content}</ReactMarkdown>
+          </main>
+          <aside>
+            <Image src={contactImage} />
+            <address>
+              <h3>Ihr Kontakt</h3>
+              <p>{job.contact.name}</p>
+              <p>{job.contact.phone}</p>
+              <a href={`mailto:${job.contact.mail}`}>{job.contact.mail}</a>
+            </address>
+            <div className='button-wrapper'>
+              <Button color={colors.categoryColors.karriere}>
+                Download PDF
+              </Button>
+              <Button tag='a' color={colors.categoryColors.karriere}>
+                Link kopieren
+              </Button>
             </div>
-          </header>
+          </aside>
         </div>
       </MainGrid>
 
@@ -100,32 +85,35 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           margin: 0;
         }
 
-        .close-button {
-          display: block;
-          width: 15px;
-          float: right;
+        .content {
+          font-weight: 200;
+          max-width: 40rem;
+          margin: 0 auto;
         }
 
-        hr {
-          clear: both;
-          border: 0;
-          border-bottom: 1px solid ${colors.lightRed};
-          padding-top: 1em;
-          margin: 1.5em 0;
-        }
-
-        .slider-wrapper {
+        aside {
+          max-width: 40rem;
+          margin: 3em auto;
           display: grid;
-          grid-template-columns: 8px 1fr 8px;
-          padding: 0 0.2em;
+          grid-template-columns: auto 1fr auto;
+          grid-gap: 2em;
+          align-items: flex-end;
         }
 
-        h1 {
-          text-align: center;
-          text-transform: uppercase;
-          color: ${colors.red};
-          font-size: 1.2rem;
-          margin-top: 0;
+        address {
+          font-style: normal;
+          font-weight: 200;
+          margin: 2em 0 0;
+        }
+
+        address p {
+          margin: 0;
+        }
+
+        .button-wrapper {
+          display: grid;
+          grid-gap: 1em;
+          justify-items: flex-end;
         }
 
         @media ${minWidth(breakpoint.s)} {
