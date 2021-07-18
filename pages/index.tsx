@@ -40,7 +40,7 @@ const Index: NextPage = () => {
       <div className='brown-curve'>
         <SimpleCutRoundCurve
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Max', fit: 'meet' }}
-          color={'#ff5400'}
+          color={colors.beige}
         />
       </div>
       <style jsx>{`
