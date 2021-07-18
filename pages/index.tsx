@@ -16,7 +16,7 @@ const Index: NextPage = () => {
       <div className='image-wrapper'>
         <Image
           className='image'
-          src='/frontpage-banner.jpg'
+          src='/frontpage-banner2.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='right'
