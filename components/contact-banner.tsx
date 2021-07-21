@@ -16,7 +16,11 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
     <aside className='contact-banner'>
       <h2>{props.children.title}</h2>
       <div className='image'>
-        <Image {...props.image} layout='responsive' />
+        <Image
+          {...props.image}
+          layout='responsive'
+          alt={`Portait von ${props.contact.name}`}
+        />
       </div>
       <address>
         <h3>Ihr Kontakt</h3>

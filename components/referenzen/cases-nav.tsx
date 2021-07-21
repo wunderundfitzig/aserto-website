@@ -27,7 +27,10 @@ const CasesNav: FunctionComponent<Props> = (props) => {
             <Link href={`#${caseArticle.id}`} replace>
               <a>
                 <div className='client-logo'>
-                  <Image {...caseArticle.logo} />
+                  <Image
+                    {...caseArticle.logo}
+                    alt={`${caseArticle.client} Logo`}
+                  />
                 </div>
                 <span className='client-name'>{caseArticle.client}</span>
               </a>

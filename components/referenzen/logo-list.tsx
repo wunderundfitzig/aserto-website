@@ -5,19 +5,84 @@ import { EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const logos = [
-  { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
-  { src: '/client-logo-placeholder-2.svg', width: 220, height: 41 },
-  { src: '/client-logo-placeholder-3.svg', width: 1024, height: 151 },
-  { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
-  { src: '/client-logo-placeholder-3.svg', width: 1024, height: 151 },
-  { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
-  { src: '/client-logo-placeholder-2.svg', width: 220, height: 41 },
-  { src: '/client-logo-placeholder-3.svg', width: 1024, height: 151 },
-  { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
-  { src: '/client-logo-placeholder-2.svg', width: 220, height: 41 },
-  { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
-  { src: '/client-logo-placeholder-2.svg', width: 220, height: 41 },
-  { src: '/client-logo-placeholder-3.svg', width: 1024, height: 151 },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder.svg',
+    width: 117,
+    height: 82,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-2.svg',
+    width: 220,
+    height: 41,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-3.svg',
+    width: 1024,
+    height: 151,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder.svg',
+    width: 117,
+    height: 82,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-3.svg',
+    width: 1024,
+    height: 151,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder.svg',
+    width: 117,
+    height: 82,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-2.svg',
+    width: 220,
+    height: 41,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-3.svg',
+    width: 1024,
+    height: 151,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder.svg',
+    width: 117,
+    height: 82,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-2.svg',
+    width: 220,
+    height: 41,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder.svg',
+    width: 117,
+    height: 82,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-2.svg',
+    width: 220,
+    height: 41,
+  },
+  {
+    client: 'hhh',
+    src: '/client-logo-placeholder-3.svg',
+    width: 1024,
+    height: 151,
+  },
 ]
 
 const LogoList: FunctionComponent = () => {
@@ -27,7 +92,7 @@ const LogoList: FunctionComponent = () => {
       <ul>
         {logos.map((logo, idx) => (
           <li key={idx}>
-            <Image {...logo} />
+            <Image {...logo} alt={logo.client} />
           </li>
         ))}
       </ul>

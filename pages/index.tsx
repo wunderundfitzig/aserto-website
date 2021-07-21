@@ -20,6 +20,7 @@ const Index: NextPage = () => {
           layout='fill'
           objectFit='cover'
           objectPosition='right'
+          alt=''
         />
       </div>
       <div className='social-links'>

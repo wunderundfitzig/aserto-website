@@ -27,6 +27,7 @@ const KarriereHeader: FunctionComponent = () => {
           layout='fill'
           objectFit='cover'
           objectPosition='center right'
+          alt=''
         />
       </div>
       <div className='line line-1'>

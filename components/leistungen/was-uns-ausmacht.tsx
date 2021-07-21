@@ -13,6 +13,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
           layout='fill'
           objectFit='cover'
           objectPosition='center'
+          alt=''
         />
       </div>
       <div className='text-block'>

@@ -40,6 +40,7 @@ const TeamHeader: FunctionComponent = () => {
           src='/team-placeholder-image.jpg'
           width='1173 '
           height=' 684'
+          alt=''
         />
       </div>
       <div className='key-visual'>

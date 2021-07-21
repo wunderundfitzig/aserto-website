@@ -42,7 +42,10 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           </main>
           <aside>
             <div className='image'>
-              <Image src={contactImage} />
+              <Image
+                src={contactImage}
+                alt={`Portait von ${job.contact.name}`}
+              />
             </div>
             <address>
               <h3>Ihr Kontakt</h3>

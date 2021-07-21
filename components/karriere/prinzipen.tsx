@@ -26,7 +26,7 @@ const Prinzipen: FunctionComponent = () => {
         </Statement>
       </div>
       <div className='image image-1'>
-        <Image src={image1} layout='responsive' />
+        <Image src={image1} layout='responsive' alt='' />
       </div>
       <div className='statement statement-2'>
         <Statement color={categoryColors.karriere}>
@@ -77,7 +77,7 @@ const Prinzipen: FunctionComponent = () => {
         </Statement>
       </div>
       <div className='image image-2'>
-        <Image src={image2} layout='responsive' />
+        <Image src={image2} layout='responsive' alt='' />
       </div>
       <div className='statement statement-5'>
         <Statement color={categoryColors.karriere}>

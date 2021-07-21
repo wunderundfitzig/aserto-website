@@ -22,6 +22,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           layout='fill'
           objectFit='cover'
           objectPosition='center'
+          alt=''
         />
       </div>
       <div className='curve'>

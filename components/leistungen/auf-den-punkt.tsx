@@ -14,6 +14,7 @@ const AufDenPunkt: FunctionComponent = () => {
           src='/leistungen-placeholder-image-2.jpg'
           width={746}
           height={499}
+          alt=''
         />
       </div>
 
