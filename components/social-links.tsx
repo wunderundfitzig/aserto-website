@@ -19,7 +19,7 @@ const IconLink: FunctionComponent<IconLinkProps> = (props) => {
       <style jsx>{`
         a {
           display: block;
-          width: 20px;
+          width: 17px;
         }
       `}</style>
     </>

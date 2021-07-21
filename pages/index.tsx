@@ -1,13 +1,16 @@
+import { NextPage } from 'next'
+import Image from 'next/image'
+import { darken } from 'polished'
+
 import {
   CornerCurve,
   FrontpageCurve,
   SimpleCutRoundCurve,
 } from 'components/curves'
 import SocialLinks from 'components/social-links'
+import SecondaryNavigation from 'components/frontpage/secondary-navigation'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import * as colors from 'lib/colors'
-import { NextPage } from 'next'
-import Image from 'next/image'
 
 const Index: NextPage = () => {
   return (
@@ -26,6 +29,7 @@ const Index: NextPage = () => {
       <div className='social-links'>
         <SocialLinks />
       </div>
+      <SecondaryNavigation gridArea='bottom-right' />
       <div className='main-curve'>
         <FrontpageCurve
           preserveAspectRatio='none'
@@ -59,6 +63,7 @@ const Index: NextPage = () => {
 
         .image-wrapper {
           position: relative;
+          background-color: ${darken(0.2, colors.grey)};
           grid-column: 1 / 4;
           grid-row: 3 / 4;
           width: 100%;
@@ -94,6 +99,7 @@ const Index: NextPage = () => {
         .corner-curve,
         .main-curve {
           display: none;
+          pointer-events: none;
         }
 
         @media ${minWidth(breakpoint.l)} {
@@ -104,6 +110,7 @@ const Index: NextPage = () => {
             grid-row: 2 / 3;
             max-width: 300px;
             font-size: 2em;
+            margin-top: 1em;
           }
           .image-wrapper {
             position: relative;

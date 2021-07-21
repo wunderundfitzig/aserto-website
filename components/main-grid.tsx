@@ -27,9 +27,9 @@ const MainGrid: FunctionComponent = (props) => {
               100px minmax(0, 1fr);
             grid-template-rows: auto 1fr minmax(0, auto);
             grid-template-areas:
-              '. .      .      logo       .'
-              '. main   main   navigation .'
-              '. footer footer .          .';
+              '. .      .      logo         .'
+              '. main   main   navigation   .'
+              '. footer footer bottom-right .';
             padding: 4em 0 0;
             grid-gap: 2em 3em;
             min-height: 100vh;
