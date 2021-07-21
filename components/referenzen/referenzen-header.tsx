@@ -21,7 +21,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           src='/referenzen-placeholder-image-1.jpg'
           layout='fill'
           objectFit='cover'
-          objectPosition='center'
+          objectPosition='top'
           alt=''
         />
       </div>
