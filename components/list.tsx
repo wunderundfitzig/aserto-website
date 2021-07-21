@@ -16,7 +16,7 @@ const List: FunctionComponent<Props> = (props) => {
           margin: 0;
         }
 
-        ul :global(li) {
+        ul > :global(li) {
           display: grid;
           grid-template-columns: 5px 1fr;
           grid-gap: 1em;
@@ -25,11 +25,11 @@ const List: FunctionComponent<Props> = (props) => {
           padding-top: 0.4em;
         }
 
-        ul.inline :global(li) {
+        ul.inline > :global(li) {
           align-items: center;
         }
 
-        ul :global(li)::before {
+        ul > :global(li)::before {
           content: '';
           width: 100%;
           border-radius: 5px;
@@ -39,11 +39,11 @@ const List: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.sm)} {
-          ul.inline :global(li) {
+          ul.inline > :global(li) {
             display: inline-grid;
           }
 
-          ul.inline :global(li)::before {
+          ul.inline > :global(li)::before {
             height: 40px;
           }
         }

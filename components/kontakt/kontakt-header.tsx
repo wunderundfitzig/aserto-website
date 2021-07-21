@@ -17,9 +17,12 @@ const KontaktHeader: FunctionComponent = () => {
           {{
             sloagen: (
               <>
-                aserto GmbH & Co. KG <br />
+                aserto GmbH & Co. KG
+                <br />
                 Kriegerstr. 44 30161Hannover
-                <br /> Tel. 0511-515678-0 <br />
+                <br />
+                Tel. 0511-515678-0
+                <br />
                 <a href='mailto:info@aserto.de'>info@aserto.de</a>
               </>
             ),
@@ -36,7 +39,7 @@ const KontaktHeader: FunctionComponent = () => {
 
         .inner {
           grid-area: header;
-          padding-bottom: 4em;
+          padding-bottom: 6em;
         }
       `}</style>
     </header>
