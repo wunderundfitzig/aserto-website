@@ -123,7 +123,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
             grid-area: ${props.gridArea};
             transition: none;
             transform: translateX(calc((20vw + 250px) * -1))
-              translateY(calc(60vh - 300px));
+              translateY(calc(60vh - 330px));
             width: 150px;
             font-size: 1.4em;
           }

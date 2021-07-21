@@ -57,13 +57,13 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
       aria-hidden
       className='curve'
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 1084.567 1248.952'
+      viewBox='50 100 1084.567 1148.952'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
       <defs>
         <clipPath id='a'>
           <path
-            d='M16.869 178.936v1248.952h1084.567V178.936zm907.179 977.907H703.356V595.475h220.692z'
+            d='M16.869 178.936v1248.952h1084.567V178.936zm957.179 977.907H753.356V595.475h220.692z'
             transform='translate(104.561 -178.936)'
             fill='none'
           />
