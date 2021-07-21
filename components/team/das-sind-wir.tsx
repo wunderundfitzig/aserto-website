@@ -106,7 +106,7 @@ const persons: { image: ImageType; contact: Contact }[] = [
 const DasSindWir: FunctionComponent = () => {
   return (
     <section className='das-sind-wir'>
-      <h2>Das Sind Wir</h2>
+      <h2>Das sind wir</h2>
       <div className='persons'>
         {persons.map((person, idx) => (
           <PersonCard key={idx} {...person} />
