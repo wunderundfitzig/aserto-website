@@ -3,6 +3,7 @@ import { PageProps } from 'pages/_app'
 import KontaktHeader from 'components/kontakt/kontakt-header'
 import Anfahrt from 'components/kontakt/anfahrt'
 import Impressum from 'components/kontakt/impressum'
+import Ansprechpartner from 'components/kontakt/ansprechpartner'
 
 const Kontakt: NextPage<PageProps> = (props) => {
   return (
@@ -10,6 +11,7 @@ const Kontakt: NextPage<PageProps> = (props) => {
       <main>
         <KontaktHeader />
         <Anfahrt />
+        <Ansprechpartner />
         <Impressum />
       </main>
     </article>

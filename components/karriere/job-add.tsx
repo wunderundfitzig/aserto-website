@@ -1,18 +1,16 @@
 import { FunctionComponent } from 'react'
 import { transparentize } from 'polished'
 import ReactMarkdown from 'react-markdown'
-import Image from 'next/image'
 
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { Contact } from 'lib/types'
 import MainGrid from 'components/main-grid'
 import JobAddHeader from 'components/karriere/job-add-header'
 import Button from 'components/button'
 import CopyUrlButton from 'components/copy-url-button'
-
-import contactImage from 'public/contact-placeholder-image.jpg'
 import AsertoLogo from 'components/aserto-logo'
-import { Contact } from 'lib/types'
+import ContactCard from 'components/contact'
 
 type Job = {
   id: string
@@ -41,18 +39,14 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             <ReactMarkdown>{job.content}</ReactMarkdown>
           </main>
           <aside>
-            <div className='image'>
-              <Image
-                src={contactImage}
-                alt={`Portait von ${job.contact.name}`}
-              />
-            </div>
-            <address>
-              <h3>Ihr Kontakt</h3>
-              <p>{job.contact.name}</p>
-              <p>{job.contact.phone}</p>
-              <a href={`mailto:${job.contact.mail}`}>{job.contact.mail}</a>
-            </address>
+            <ContactCard
+              image={{
+                src: '/contact-placeholder-image.jpg',
+                width: 188,
+                height: 246,
+              }}
+              contact={job.contact}
+            />
             <div className='button-wrapper'>
               <CopyUrlButton color={colors.categoryColors.karriere}>
                 Link kopieren
@@ -89,9 +83,9 @@ const JobAdd: FunctionComponent<Props> = (props) => {
         .modal {
           position: absolute;
           top: 0;
-          bottom: 0;
           left: 0;
           width: 100%;
+          min-height: 100vh;
           background-color: white;
           padding: 1.5em 2em;
           z-index: 110;
@@ -113,19 +107,9 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           max-width: 40rem;
           margin: 3em auto;
           display: grid;
-          grid-template-columns: auto 1fr auto;
+          grid-template-columns: auto auto;
           grid-gap: 2em;
           align-items: flex-end;
-        }
-
-        address {
-          font-style: normal;
-          font-weight: 200;
-          margin: 2em 0 0;
-        }
-
-        address p {
-          margin: 0;
         }
 
         .button-wrapper {
@@ -152,8 +136,7 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             justify-content: flex-end;
             visibility: visible;
           }
-          .image,
-          .button-wrapper {
+          aside {
             display: none;
           }
 

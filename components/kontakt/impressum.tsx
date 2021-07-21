@@ -167,11 +167,13 @@ const Impressum: FunctionComponent = () => {
       </List>
       <style jsx>{`
         h2 {
-          margin-top: 2em;
+          margin-top: 4em;
         }
 
         h3 {
-          margin-top: 0.4em;
+          margin-top: 0.2em;
+          hyphens: auto;
+          line-height: 1.4em;
         }
       `}</style>
     </section>

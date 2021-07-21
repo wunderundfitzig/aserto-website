@@ -7,12 +7,14 @@ import FreieMitarbeiter from 'components/team/freie-mitarbeiter'
 
 const LeistungenPage: NextPage<PageProps> = (props) => {
   return (
-    <main style={{ gridArea: props.gridArea }}>
-      <TeamHeader />
-      <UnserTeam />
-      <DasSindWir />
-      <FreieMitarbeiter />
-    </main>
+    <article style={{ gridArea: props.gridArea }}>
+      <main>
+        <TeamHeader />
+        <UnserTeam />
+        <DasSindWir />
+        <FreieMitarbeiter />
+      </main>
+    </article>
   )
 }
 
