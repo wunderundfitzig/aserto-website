@@ -236,3 +236,18 @@ export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
     </svg>
   )
 }
+
+export const CheckmarkLine: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 125 100'>
+      <path
+        fill='none'
+        stroke={props.color}
+        strokeLinecap='round'
+        d='M7-6L117.828 94 166 62.759'
+      />
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
+    </svg>
+  )
+}

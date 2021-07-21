@@ -2,6 +2,7 @@ import HeaderBackground from 'components/header-background'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import Sloagan from 'components/sloagan'
+import { CheckmarkLine } from 'components/curves'
 
 const KontaktHeader: FunctionComponent = () => {
   return (
@@ -11,6 +12,9 @@ const KontaktHeader: FunctionComponent = () => {
         opacity={0.5}
         gridArea='header'
       />
+      <div className='line'>
+        <CheckmarkLine color={colors.grey} />
+      </div>
       <div className='inner'>
         <h1>Kontakt</h1>
         <Sloagan emphasisColor={colors.grey}>
@@ -35,6 +39,12 @@ const KontaktHeader: FunctionComponent = () => {
           position: relative;
           display: grid;
           grid-template-areas: 'header';
+        }
+
+        .line {
+          position: absolute;
+          bottom: 0;
+          grid-area: header;
         }
 
         .inner {
