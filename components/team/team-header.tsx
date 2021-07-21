@@ -3,10 +3,24 @@ import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import Sloagan from 'components/sloagan'
 import { TriangleLine } from 'components/curves'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const TeamHeader: FunctionComponent = () => {
   return (
     <header className='team-header'>
+      <svg
+        className='background'
+        viewBox='0 0 100 100'
+        preserveAspectRatio='none'
+      >
+        <rect
+          fill={colors.backgroundBlue}
+          x={0}
+          y={0}
+          width={100}
+          height={100}
+        />
+      </svg>
       <h1>Team</h1>
       <div className='sloagen-wrapper'>
         <Sloagan emphasisColor={colors.lightBlue}>
@@ -44,46 +58,70 @@ const TeamHeader: FunctionComponent = () => {
 
         .team-header {
           position: relative;
-          margin-bottom: 50vh;
-          display: inline-block;
+          margin-bottom: 38vw;
+          display: grid;
+          grid-template-areas:
+            'title'
+            'slogan'
+            'image';
         }
 
-        .team-header:before {
+        .background {
           opacity: 0.5;
-          content: '';
           position: absolute;
-          top: -200px;
-          left: -1000px;
-          width: calc(100% + 1000px);
-          height: calc(100% + 200px);
-          background-color: ${colors.backgroundBlue};
+          grid-area: title / title / image / image;
+          width: 100%;
+          height: 100%;
           z-index: -1;
           animation: fade-in 1s;
+          overflow: visible;
+        }
+
+        .background rect {
+          transform: scaleX(2) scaleY(2);
+          transform-origin: center bottom;
         }
 
         h1 {
           color: ${colors.categoryColors.team};
+          grid-area: title;
         }
 
         .sloagen-wrapper {
-          position: relative;
+          grid-area: slogan;
           width: 80%;
           max-width: 700px;
           z-index: 1;
         }
 
         .image {
-          width: 80%;
-          margin-top: 4em;
+          grid-area: image;
+          width: 100%;
+          margin-top: 2em;
           margin-bottom: -35%;
         }
 
         .key-visual {
+          grid-area: title / title / slogan / slogan;
           position: absolute;
-          top: 0.6em;
-          left: 7em;
-          width: calc(100% - 7em);
-          height: 130%;
+          transform: translateX(6em) translateY(3em);
+          width: calc(100% - 4em);
+          height: 120%;
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .team-header:before {
+            position: absolute;
+            top: -200px;
+            left: -1000px;
+            width: calc(100% + 1000px);
+            height: calc(100% + 200px);
+          }
+
+          .key-visual {
+            height: 130%;
+            width: calc(100% - 7em);
+          }
         }
       `}</style>
     </header>

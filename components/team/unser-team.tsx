@@ -23,6 +23,7 @@ const UnserTeam: FunctionComponent = () => {
       <style jsx>{`
         .text-block {
           max-width: 35em;
+          margin-bottom: 3em;
         }
       `}</style>
     </section>
