@@ -33,7 +33,7 @@ const Footer: FunctionComponent<Props> = (props) => {
         <Link href='/kontakt'>
           <a>Kontakt / Impressum</a>
         </Link>
-        <Link href='/privacy'>
+        <Link href='/datenschutz'>
           <a>Datenschutz</a>
         </Link>
       </nav>
