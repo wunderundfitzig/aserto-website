@@ -30,8 +30,8 @@ const Footer: FunctionComponent<Props> = (props) => {
         <SocialLinks />
       </address>
       <nav title='footer navigation' className='footer-navigation'>
-        <Link href='/impressum'>
-          <a>Impressum</a>
+        <Link href='/kontakt'>
+          <a>Kontakt / Impressum</a>
         </Link>
         <Link href='/privacy'>
           <a>Datenschutz</a>

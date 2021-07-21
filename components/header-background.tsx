@@ -44,7 +44,7 @@ const HeaderBackground: FunctionComponent<Props> = (props) => {
           }
 
           rect {
-            transform: scaleX(2) scaleY(2);
+            transform: scaleX(100) scaleY(100);
             transform-origin: center bottom;
           }
 
