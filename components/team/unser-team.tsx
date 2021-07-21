@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import List from 'components/list'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const UnserTeam: FunctionComponent = () => {
   return (
@@ -21,9 +22,18 @@ const UnserTeam: FunctionComponent = () => {
         <li>Medienmonitorung- und Analyse</li>
       </List>
       <style jsx>{`
+        h2 {
+          margin-top: 2em;
+        }
         .text-block {
           max-width: 35em;
           margin-bottom: 3em;
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          h2 {
+            margin-top: 3em;
+          }
         }
       `}</style>
     </section>

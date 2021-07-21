@@ -58,22 +58,22 @@ const TeamHeader: FunctionComponent = () => {
 
         .team-header {
           position: relative;
-          margin-bottom: 38vw;
           display: grid;
           grid-template-areas:
             'title'
             'slogan'
-            'image';
+            'image-1'
+            'image-2';
         }
 
         .background {
           opacity: 0.5;
           position: absolute;
-          grid-area: title / title / image / image;
+          grid-area: title / title / image-1 / image-1;
           width: 100%;
           height: 100%;
           z-index: -1;
-          animation: fade-in 1s;
+          animation: fade-in 2.5s ease-in;
           overflow: visible;
         }
 
@@ -95,10 +95,9 @@ const TeamHeader: FunctionComponent = () => {
         }
 
         .image {
-          grid-area: image;
+          grid-area: image-1 / image-1 / image-2 / image-2;
           width: 100%;
           margin-top: 2em;
-          margin-bottom: -35%;
         }
 
         .key-visual {
@@ -109,18 +108,34 @@ const TeamHeader: FunctionComponent = () => {
           height: 120%;
         }
 
+        @media ${minWidth(breakpoint.xs)} {
+          .key-visual {
+            height: 150%;
+          }
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .image {
+            width: 80%;
+          }
+          .key-visual {
+            height: 170%;
+          }
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          .key-visual {
+            height: 200%;
+          }
+        }
+
         @media ${minWidth(breakpoint.l)} {
-          .team-header:before {
-            position: absolute;
-            top: -200px;
-            left: -1000px;
-            width: calc(100% + 1000px);
-            height: calc(100% + 200px);
+          .background rect {
+            transform-origin: bottom right;
           }
 
-          .key-visual {
-            height: 130%;
-            width: calc(100% - 7em);
+          .image {
+            margin-top: 4em;
           }
         }
       `}</style>
