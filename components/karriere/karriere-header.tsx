@@ -26,7 +26,7 @@ const KarriereHeader: FunctionComponent = () => {
           src='/karriere-placeholder-image.jpg'
           layout='fill'
           objectFit='cover'
-          objectPosition='center right'
+          objectPosition='center'
           alt=''
         />
       </div>
@@ -122,7 +122,7 @@ const KarriereHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.l)} {
           .karriere-header {
-            grid-template-columns: minmax(200px, 30%) 1fr;
+            grid-template-columns: minmax(200px, 35%) 1fr;
           }
           .image {
             margin-top: -5em;

@@ -31,8 +31,8 @@ const TeamHeader: FunctionComponent = () => {
         <Image
           priority
           src='/team-placeholder-image.jpg'
-          width='1173 '
-          height=' 684'
+          width='1200'
+          height='857'
           alt=''
         />
       </div>

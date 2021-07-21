@@ -171,7 +171,7 @@ const ReferenzenHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.l)} {
           .referenzen-header {
-            grid-template-columns: minmax(320px, 35%) 1fr;
+            grid-template-columns: minmax(320px, 40%) 1fr;
           }
 
           h1 {
