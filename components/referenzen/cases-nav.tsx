@@ -3,12 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { ImageType } from 'lib/types'
 
 type Props = {
   cases: {
     id: string
     client: string
-    logo: { src: string; width: number; height: number }
+    logo: ImageType
   }[]
   activeCaseId: string
 }

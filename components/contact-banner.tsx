@@ -1,10 +1,11 @@
 import { FunctionComponent, ReactElement } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { Contact, ImageType } from 'lib/types'
 
 type Props = {
-  image: { width: number; height: number; src: string }
-  contact: { name: string; phone: string; mail: string }
+  image: ImageType
+  contact: Contact
   children: {
     title: ReactElement
     background: ReactElement

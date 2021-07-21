@@ -30,16 +30,16 @@ const SocialLinks: FunctionComponent = () => {
   return (
     <div className='social-icons'>
       <IconLink url='https://www.linkedin.com/company/aserto'>
-        <LinkedInIcon />
+        <LinkedInIcon color='black' />
       </IconLink>
       <IconLink url='https://www.instagram.com/aserto_richtungsweisend'>
-        <InstagramIcon />
+        <InstagramIcon color='black' />
       </IconLink>
       <IconLink url='https://twitter.com/aserto_de'>
-        <TwitterIcon />
+        <TwitterIcon color='black' />
       </IconLink>
       <IconLink url='https://www.facebook.com/aserto.de/'>
-        <FacebookIcon />
+        <FacebookIcon color='black' />
       </IconLink>
       <style jsx>{`
         .social-icons {

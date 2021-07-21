@@ -12,16 +12,13 @@ import CopyUrlButton from 'components/copy-url-button'
 
 import contactImage from 'public/contact-placeholder-image.jpg'
 import AsertoLogo from 'components/aserto-logo'
+import { Contact } from 'lib/types'
 
 type Job = {
   id: string
   title: string
   content: string
-  contact: {
-    name: string
-    phone: string
-    mail: string
-  }
+  contact: Contact
 }
 
 type Props = {
