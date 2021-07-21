@@ -11,14 +11,18 @@ type Props = {
 const PersonCard: FunctionComponent<Props> = (props) => {
   return (
     <div className='person-card'>
-      <Image {...props.image} alt={`portait of ${props.contact.name}`} />
+      <Image
+        {...props.image}
+        layout='responsive'
+        alt={`portait of ${props.contact.name}`}
+      />
       <div className='overlay'>
-        <address>
-          <h3>{props.contact.name}</h3>
-          <p>{props.contact.role}</p>
+        <h3>{props.contact.name}</h3>
+        <div className='contact'>
+          <p className='role'>{props.contact.role}</p>
           <p>{props.contact.phone}</p>
           <a href={`mailto:${props.contact.mail}`}>{props.contact.mail}</a>
-        </address>
+        </div>
         <div className='social-links'>
           {props.contact.xing && (
             <a href={props.contact.xing}>
@@ -34,8 +38,8 @@ const PersonCard: FunctionComponent<Props> = (props) => {
       </div>
       <style jsx>{`
         .person-card {
+          width: 100%;
           position: relative;
-          display: inline-block;
           font-size: 0.8em;
         }
         .overlay {
@@ -43,7 +47,8 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         }
 
         .person-card:hover .overlay {
-          display: block;
+          display: grid;
+          align-content: space-between;
           position: absolute;
           width: 100%;
           height: 100%;
@@ -54,31 +59,37 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           padding: 2em;
         }
 
-        address {
-          text-align: center;
-          font-style: normal;
-          font-weight: 200;
-          margin-bottom: 2em;
-        }
-        address h3 {
+        h3 {
           text-transform: uppercase;
           font-weight: 200;
-          font-size: 1.5em;
+          font-size: 1.4em;
+          margin: 0;
+          text-align: center;
         }
 
-        address p {
-          margin: 0.5em 0;
+        .contact {
+          text-align: center;
+          font-weight: 200;
+          margin-bottom: 1em;
+        }
+
+        .contact .role {
+          margin: 0.3em 0 0.5em;
+        }
+
+        .contact p {
+          margin: 0.2em 0;
         }
 
         .social-links {
           display: grid;
           grid-auto-flow: column;
           justify-content: center;
-          grid-gap: 2em;
+          grid-gap: 1.5em;
         }
 
         .social-links a {
-          width: 30px;
+          width: 25px;
         }
       `}</style>
     </div>

@@ -8,7 +8,7 @@ type Props = {
 }
 const JobList: FunctionComponent<Props> = (props) => {
   return (
-    <section className='job-list'>
+    <section id='Stellenanzeigen' className='job-list'>
       <h2>Unsere offenen Stellen</h2>
       <ul>
         {props.jobs.map((job) => (
@@ -24,7 +24,7 @@ const JobList: FunctionComponent<Props> = (props) => {
       </ul>
       <style jsx>{`
         .job-list {
-          margin-top: 4em;
+          padding-top: 4em;
         }
 
         ul {
