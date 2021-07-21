@@ -127,14 +127,15 @@ const DasSindWir: FunctionComponent = () => {
 
         .persons {
           display: grid;
-          grid-template-columns: 170px;
+          grid-template-columns: 1fr;
           justify-content: center;
           grid-gap: 2em;
         }
 
         .job-list-link {
           box-sizing: border-box;
-          width: 100%;
+          width: 50%;
+          margin-left: 50%;
           display: grid;
           grid-template-areas: 'single-area';
           grid-template-columns: minmax(0, 1fr);
@@ -165,6 +166,7 @@ const DasSindWir: FunctionComponent = () => {
 
         .job-list-link p {
           line-height: 1.4em;
+          hyphens: auto;
         }
 
         @media ${minWidth(breakpoint.xs)} {
@@ -175,11 +177,17 @@ const DasSindWir: FunctionComponent = () => {
           .persons > :global(*:nth-child(5)) {
             grid-column: 2 / 2;
           }
+
+          .job-list-link {
+            grid-column: 2 / 2;
+            width: 100%;
+            margin-left: 0;
+          }
         }
 
         @media ${minWidth(breakpoint.sm)} {
           .persons {
-            grid-template-columns: repeat(3, minmax(0, 170px));
+            grid-template-columns: repeat(3, minmax(0, 200px));
           }
 
           .persons > :global(*:nth-child(1)) {
@@ -196,6 +204,23 @@ const DasSindWir: FunctionComponent = () => {
 
           .job-list-link {
             grid-column: 3 / 3;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .persons {
+            grid-template-columns: repeat(4, minmax(0, 200px));
+          }
+
+          .persons > :global(*:nth-child(7)) {
+            grid-column: 1 / 1;
+          }
+
+          .persons > :global(*:nth-child(8)) {
+            grid-column: unset;
+          }
+          .job-list-link {
+            grid-column: 4 / 4;
           }
         }
       `}</style>

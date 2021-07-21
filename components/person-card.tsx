@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Contact, ImageType } from 'lib/types'
 import { LinkedInIcon } from './social-icons'
 import * as colors from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
   image: ImageType
@@ -11,11 +12,13 @@ type Props = {
 const PersonCard: FunctionComponent<Props> = (props) => {
   return (
     <div className='person-card'>
-      <Image
-        {...props.image}
-        layout='responsive'
-        alt={`portait of ${props.contact.name}`}
-      />
+      <div className='image'>
+        <Image
+          {...props.image}
+          layout='responsive'
+          alt={`portait of ${props.contact.name}`}
+        />
+      </div>
       <div className='overlay'>
         <h3>{props.contact.name}</h3>
         <div className='contact'>
@@ -38,15 +41,19 @@ const PersonCard: FunctionComponent<Props> = (props) => {
       </div>
       <style jsx>{`
         .person-card {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-areas: 'image overlay';
           width: 100%;
           position: relative;
           font-size: 0.8em;
         }
-        .overlay {
-          display: none;
-        }
 
-        .person-card:hover .overlay {
+        .image {
+          grid-area: image;
+        }
+        .overlay {
+          grid-area: overlay;
           display: grid;
           align-content: space-between;
           position: absolute;
@@ -56,7 +63,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           left: 0;
           background-color: ${colors.lightBlue};
           color: white;
-          padding: 2em;
+          padding: 2em 1em 1em;
         }
 
         h3 {
@@ -74,11 +81,12 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         }
 
         .contact .role {
-          margin: 0.3em 0 0.5em;
+          margin: 0.3em 0 0.6em;
         }
 
         .contact p {
           margin: 0.2em 0;
+          line-height: 1.2em;
         }
 
         .social-links {
@@ -89,7 +97,28 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         }
 
         .social-links a {
-          width: 25px;
+          width: 15px;
+        }
+
+        @media ${minWidth(breakpoint.xs)} {
+          .person-card {
+            grid-template-columns: 1fr;
+            grid-template-areas: 'image';
+            font-size: 0.9em;
+          }
+          .overlay {
+            display: none;
+            grid-area: image;
+          }
+
+          .person-card:hover .overlay {
+            display: grid;
+            padding: 2em 1em 2em;
+          }
+
+          .social-links a {
+            width: 20px;
+          }
         }
       `}</style>
     </div>
