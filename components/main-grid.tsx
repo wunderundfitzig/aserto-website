@@ -20,6 +20,24 @@ const MainGrid: FunctionComponent = (props) => {
           grid-gap: 1.5em 2em;
         }
 
+        @media ${minWidth(breakpoint.xs)} {
+          .main-grid {
+            grid-template-columns: 0 1fr 10vw 0;
+          }
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .main-grid {
+            grid-template-columns: 0 1fr 20vw 0;
+          }
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          .main-grid {
+            grid-template-columns: 0 1fr 25vw 0;
+          }
+        }
+
         @media ${minWidth(breakpoint.l)} {
           .main-grid {
             grid-template-columns:

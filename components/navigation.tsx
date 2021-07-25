@@ -60,6 +60,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
         }
 
         .nav.on-frontpage {
+          grid-area: 3 / 2 / 5 / 4;
           display: flex;
           justify-content: end;
           justify-self: flex-end;
@@ -67,6 +68,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           align-items: center;
           color: white;
           padding-right: 1em;
+          margin-bottom: 1em;
         }
 
         ul {
@@ -109,6 +111,12 @@ const Navigation: FunctionComponent<Props> = (props) => {
           margin-bottom: 1em;
         }
 
+        @media ${minWidth(breakpoint.xs)} {
+          .nav.on-frontpage {
+            grid-area: 3 / 2 / 5 / 3;
+          }
+        }
+
         @media ${minWidth(breakpoint.l)} {
           .nav {
             grid-area: ${props.gridArea};
@@ -120,9 +128,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
           }
 
           .nav.on-frontpage {
-            grid-area: ${props.gridArea};
+            grid-area: 1 / footer / footer / 2;
             width: 150px;
             font-size: 1.4em;
+            margin-bottom: 0;
           }
 
           ul {

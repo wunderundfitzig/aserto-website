@@ -56,7 +56,7 @@ const Index: NextPage = () => {
           grid-row: 2 / 3;
           max-width: 10em;
           font-size: 1.5em;
-          margin: 0 0 1em 0;
+          margin: 0;
           font-weight: 200;
           line-height: 1.35em;
         }
@@ -65,7 +65,7 @@ const Index: NextPage = () => {
           position: relative;
           background-color: ${darken(0.2, colors.grey)};
           grid-column: 1 / 4;
-          grid-row: 3 / 4;
+          grid-row: 3 / 5;
           width: 100%;
           height: 100%;
         }
@@ -85,14 +85,10 @@ const Index: NextPage = () => {
         }
 
         .social-links {
-          grid-column: 3 / 4;
-          grid-row: 3 / 4;
+          grid-area: footer;
           justify-self: start;
           z-index: 1;
-          background-color: white;
           padding: 0.7em 0.5em 1.5em 0;
-          border-radius: 0 0.5em 0 0;
-          margin-left: -1em;
         }
 
         .brown-curve,
@@ -100,6 +96,15 @@ const Index: NextPage = () => {
         .main-curve {
           display: none;
           pointer-events: none;
+        }
+
+        @media ${minWidth(breakpoint.xs)} {
+          h1 {
+            grid-column: 1 / 3;
+          }
+          .image-wrapper {
+            grid-column: 1 / 3;
+          }
         }
 
         @media ${minWidth(breakpoint.l)} {
@@ -119,6 +124,14 @@ const Index: NextPage = () => {
             grid-row: 1 / 4;
             width: 100%;
             height: 100%;
+          }
+
+          .social-links {
+            grid-column: 3 / 4;
+            grid-row: 3 / 4;
+            background-color: white;
+            border-radius: 0 0.5em 0 0;
+            margin-left: -1em;
           }
 
           .brown-curve {

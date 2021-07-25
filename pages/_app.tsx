@@ -26,10 +26,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
             <AsertoLogo />
           </a>
         </Link>
-        <Navigation
-          onFrontpage={isIndexPage}
-          gridArea={isIndexPage ? '1 / footer / footer / 2' : 'navigation'}
-        />
+        <Navigation onFrontpage={isIndexPage} gridArea='navigation' />
         <Component {...pageProps} gridArea='main' />
         {!isIndexPage && <Footer gridArea='footer' />}
       </MainGrid>
@@ -41,6 +38,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
           z-index: 2;
           max-width: 100%;
           width: 90px;
+          min-width: 80px;
           justify-self: flex-end;
         }
 
