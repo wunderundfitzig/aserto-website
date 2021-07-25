@@ -60,9 +60,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
         }
 
         .nav.on-frontpage {
-          grid-area: 3 / 1 / 3 / 4;
           display: flex;
           justify-content: end;
+          justify-self: flex-end;
+          align-self: center;
           align-items: center;
           color: white;
           padding-right: 1em;
@@ -114,16 +115,12 @@ const Navigation: FunctionComponent<Props> = (props) => {
             width: 100%;
             font-size: 1em;
             align-self: start;
-            transition: transform 0.25s ease-in, font-size 0.1s ease-in;
             padding: 0;
             padding-right: 5px;
           }
 
           .nav.on-frontpage {
             grid-area: ${props.gridArea};
-            transition: none;
-            transform: translateX(calc((20vw + 250px) * -1))
-              translateY(calc(60vh - 330px));
             width: 150px;
             font-size: 1.4em;
           }

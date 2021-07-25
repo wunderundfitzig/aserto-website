@@ -26,7 +26,10 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
             <AsertoLogo />
           </a>
         </Link>
-        <Navigation onFrontpage={router.route === '/'} gridArea='navigation' />
+        <Navigation
+          onFrontpage={isIndexPage}
+          gridArea={isIndexPage ? '1 / footer / footer / 2' : 'navigation'}
+        />
         <Component {...pageProps} gridArea='main' />
         {!isIndexPage && <Footer gridArea='footer' />}
       </MainGrid>

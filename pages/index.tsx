@@ -155,6 +155,7 @@ const Index: NextPage = () => {
             grid-row: 1 / 4;
             z-index: 1;
             height: 100vh;
+            min-height: calc(100% + 4em);
           }
         }
       `}</style>
