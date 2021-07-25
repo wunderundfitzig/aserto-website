@@ -95,7 +95,7 @@ export const SimpleCutRoundCurve: FunctionComponent<CurveProps> = (props) => {
     <svg
       aria-hidden
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 270 385'
+      viewBox='0 0 230 385'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
       <path

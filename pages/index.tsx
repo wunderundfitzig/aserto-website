@@ -27,9 +27,9 @@ const Index: NextPage = () => {
         />
       </div>
       <div className='social-links'>
+        <SecondaryNavigation />
         <SocialLinks />
       </div>
-      <SecondaryNavigation gridArea='bottom-right' />
       <div className='main-curve'>
         <FrontpageCurve
           preserveAspectRatio='none'
@@ -109,8 +109,9 @@ const Index: NextPage = () => {
             grid-column: 3 / 5;
             grid-row: 2 / 3;
             max-width: 300px;
-            font-size: 2em;
-            margin-top: 1em;
+            font-size: 1.7em;
+            margin-top: 0em;
+            font-weight: 200;
           }
           .image-wrapper {
             position: relative;
@@ -124,8 +125,8 @@ const Index: NextPage = () => {
             display: block;
             grid-column: 3 / 5;
             grid-row: 2 / 4;
-            width: 270px;
-            height: 400px;
+            width: 200px;
+            height: 500px;
             max-height: 50%;
             justify-self: end;
             align-self: end;

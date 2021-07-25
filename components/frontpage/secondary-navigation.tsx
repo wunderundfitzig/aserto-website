@@ -9,13 +9,13 @@ const SecondaryNavigation: FunctionComponent<Props> = (props) => {
     <nav title='footer navigation'>
       <ul>
         <li>
-          <Link href='/kontakt'>
-            <a>Kontakt / Impressum</a>
+          <Link href='/datenschutz'>
+            <a>Datenschutz</a>
           </Link>
         </li>
         <li>
-          <Link href='/datenschutz'>
-            <a>Datenschutz</a>
+          <Link href='/kontakt'>
+            <a>Kontakt / Impressum</a>
           </Link>
         </li>
       </ul>
@@ -23,16 +23,14 @@ const SecondaryNavigation: FunctionComponent<Props> = (props) => {
         nav {
           grid-area: ${props.gridArea ? props.gridArea : 'none'};
           display: grid;
-          justify-content: flex-end;
-          align-items: flex-end;
-          padding-bottom: 1.5em;
+          margin-bottom: 1em;
         }
 
         ul {
           list-style: none;
           margin: 0;
           padding: 0;
-          text-align: right;
+          text-align: left;
           font-size: 0.8em;
         }
 

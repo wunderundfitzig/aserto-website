@@ -116,7 +116,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
             align-self: start;
             transition: transform 0.25s ease-in, font-size 0.1s ease-in;
             padding: 0;
-            padding-right: 10px;
+            padding-right: 5px;
           }
 
           .nav.on-frontpage {

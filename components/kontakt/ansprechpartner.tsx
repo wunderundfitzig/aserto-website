@@ -1,4 +1,4 @@
-import ContactCard from 'components/contact'
+import ContactCard from 'components/contact-card'
 import { FunctionComponent } from 'react'
 
 const Ansprechpartner: FunctionComponent = () => {

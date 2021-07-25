@@ -10,7 +10,7 @@ import JobAddHeader from 'components/karriere/job-add-header'
 import Button from 'components/button'
 import CopyUrlButton from 'components/copy-url-button'
 import AsertoLogo from 'components/aserto-logo'
-import ContactCard from 'components/contact'
+import ContactCard from 'components/contact-card'
 
 type Job = {
   id: string

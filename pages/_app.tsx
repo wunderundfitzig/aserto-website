@@ -36,6 +36,9 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
           position: relative;
           grid-area: logo;
           z-index: 2;
+          max-width: 100%;
+          width: 90px;
+          justify-self: flex-end;
         }
 
         @media ${minWidth(breakpoint.l)} {
