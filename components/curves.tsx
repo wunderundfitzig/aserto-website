@@ -57,35 +57,40 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
       aria-hidden
       className='curve'
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='50 100 1084.567 1148.952'
+      viewBox='0 250 950 1100'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
-      <defs>
-        <clipPath id='a'>
-          <path
-            d='M16.869 178.936v1248.952h1084.567V178.936zm957.179 977.907H753.356V595.475h220.692z'
-            transform='translate(104.561 -178.936)'
-            fill='none'
-          />
-        </clipPath>
-      </defs>
-      <g>
-        <g transform='translate(-121.43)' clipPath='url(#a)'>
-          <path
-            d='M854.22-29.224l307.04 511.252c58.5 95.37 42.916 174.748-72.834 219.925l-824 321.318c-159.39 57.51-128.8 141.459-127.1 215.643l15.374 147.092'
-            fill='none'
-            stroke={props.color}
-            strokeMiterlimit='10'
-          />
-        </g>
+      <g transform='translate(-121.43)'>
+        <path
+          d='M854.22-29.224l307.04 511.252c58.5 95.37 42.916 174.748-72.834 219.925l-824 321.318c-159.39 57.51-128.8 141.459-127.1 215.643l15.374 147.092'
+          fill='none'
+          stroke={props.color}
+          strokeMiterlimit='10'
+        />
       </g>
       <style jsx>{svgStyle}</style>
       <style jsx>{pathStyle}</style>
-      <style jsx>{`
-        .curve {
-          width: 800px;
-        }
-      `}</style>
+    </svg>
+  )
+}
+
+export const MobileFrontpageCurve: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      aria-hidden
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='-10 80 370 500'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <path
+        d='M379.82 7.661l31.078 54.77c15.636 27.91 11.697 43.41-16.982 55.659l-67.295 25.975c-68.02 26.056-32.116 57.241-3.727 95.671 0 0 50.4 69.134 51.25 70.375 17.564 25.63 15.11 51.217-30.09 65.469-30.133 9.5-124.71 39.933-283.728 91.295C-6.46 485.22 6.357 511.998 7.07 535.661l6.442 46.92'
+        stroke={props.color}
+        fill='none'
+        strokeLinecap='round'
+      />
+
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
     </svg>
   )
 }

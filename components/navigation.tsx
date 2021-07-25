@@ -69,6 +69,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           color: white;
           padding-right: 1em;
           margin-bottom: 1em;
+          z-index: 100;
         }
 
         ul {
@@ -129,13 +130,18 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
           .nav.on-frontpage {
             grid-area: 1 / footer / footer / 2;
-            width: 150px;
-            font-size: 1.4em;
+            font-size: 1.1em;
             margin-bottom: 0;
           }
 
           ul {
             display: block;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .nav.on-frontpage {
+            font-size: 1.3em;
           }
         }
       `}</style>

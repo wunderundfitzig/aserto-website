@@ -20,7 +20,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Favicons />
-      <MainGrid>
+      <MainGrid onFrontpage={isIndexPage}>
         <Link href='/'>
           <a className='logo-link'>
             <AsertoLogo />

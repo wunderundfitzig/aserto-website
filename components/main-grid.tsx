@@ -1,13 +1,17 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent } from 'react'
 
-const MainGrid: FunctionComponent = (props) => {
+type Props = {
+  onFrontpage: boolean
+}
+const MainGrid: FunctionComponent<Props> = (props) => {
   return (
     <div className='main-grid'>
       {props.children}
       <style jsx>{`
         .main-grid {
           display: grid;
+          height: ${props.onFrontpage ? '100vh' : 'auto'};
           min-height: 100vh;
           grid-template-columns: 0 1fr 80px 0;
           grid-template-rows: minmax(0, auto) auto 1fr auto;
@@ -50,7 +54,6 @@ const MainGrid: FunctionComponent = (props) => {
               '. footer footer bottom-right .';
             padding: 4em 0 0;
             grid-gap: 2em 3em;
-            min-height: 100vh;
           }
         }
       `}</style>

@@ -5,6 +5,7 @@ import { darken } from 'polished'
 import {
   CornerCurve,
   FrontpageCurve,
+  MobileFrontpageCurve,
   SimpleCutRoundCurve,
 } from 'components/curves'
 import SocialLinks from 'components/social-links'
@@ -26,12 +27,28 @@ const Index: NextPage = () => {
           alt=''
         />
       </div>
+      <div className='image-wrapper clipped-image'>
+        <Image
+          className='image'
+          src='/frontpage-banner-2.jpg'
+          layout='fill'
+          objectFit='cover'
+          objectPosition='right'
+          alt=''
+        />
+      </div>
       <div className='social-links'>
         <SecondaryNavigation />
         <SocialLinks />
       </div>
       <div className='main-curve'>
         <FrontpageCurve
+          preserveAspectRatio='none'
+          color={colors.backgroundBlue}
+        />
+      </div>
+      <div className='mobile-main-curve'>
+        <MobileFrontpageCurve
           preserveAspectRatio='none'
           color={colors.backgroundBlue}
         />
@@ -98,12 +115,50 @@ const Index: NextPage = () => {
           pointer-events: none;
         }
 
+        .mobile-main-curve {
+          display: block;
+          justify-self: flex-end;
+          grid-column: 1 / 4;
+          grid-row: 3 / 5;
+          z-index: 1;
+          max-width: 650px;
+          width: 100%;
+          height: 100%;
+        }
+
+        .clipped-image {
+          z-index: 10;
+          clip-path: inset(
+            calc(50% - 105px) 0 calc(50% - 75px) calc(100% - 100px)
+          );
+        }
+
         @media ${minWidth(breakpoint.xs)} {
           h1 {
             grid-column: 1 / 3;
           }
           .image-wrapper {
             grid-column: 1 / 3;
+          }
+
+          .clipped-image {
+            clip-path: inset(
+              calc(50% - 107px) 0 calc(50% - 75px) calc(100% - 100px)
+            );
+          }
+
+          .mobile-main-curve {
+            grid-column: 1 / 3;
+            grid-row: 3 / 5;
+            width: 90%;
+          }
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .clipped-image {
+            clip-path: inset(
+              calc(50% - 120px) 0 calc(50% - 85px) calc(100% - 120px)
+            );
           }
         }
 
@@ -124,6 +179,10 @@ const Index: NextPage = () => {
             grid-row: 1 / 4;
             width: 100%;
             height: 100%;
+          }
+
+          .clipped-image {
+            clip-path: inset(0 0 0 calc(100% - 140px));
           }
 
           .social-links {
@@ -159,16 +218,24 @@ const Index: NextPage = () => {
             z-index: 1;
           }
 
+          .mobile-main-curve {
+            display: none;
+          }
+
           .main-curve {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: -4em;
-            margin-right: -131px;
+            display: block;
+            justify-self: flex-end;
             grid-column: 1 / 3;
             grid-row: 1 / 4;
             z-index: 1;
-            height: 100vh;
-            min-height: calc(100% + 4em);
+            max-width: 650px;
+            width: 80%;
+            min-height: 100%;
+          }
+        }
+        @media ${minWidth(breakpoint.xxl)} {
+          .clipped-image {
+            clip-path: inset(0 0 0 calc(100% - 160px));
           }
         }
       `}</style>
