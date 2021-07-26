@@ -2,7 +2,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent } from 'react'
 
 type Props = {
-  onFrontpage: boolean
+  onFrontpage?: boolean
 }
 const MainGrid: FunctionComponent<Props> = (props) => {
   return (
