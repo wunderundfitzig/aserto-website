@@ -11,7 +11,7 @@ const cases = [
       'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
     category: 'Kommunikationskonzept',
     client: 'Nordkirche',
-    logo: { src: '/client-logo-placeholder-2.svg', width: 117, height: 82 },
+    logo: { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
     task:
       'Kostenlose Informationen über das tagesaktuelle Geschehen finden wir zahlreich im Internet. Doch wie gewinnen wir Nutzer*Innen, die für Qualitätsjournalismus zu zahlen bereit sind? Doch wie gewinnen wir Nutzer*Innen, die für Qualitätsjournalismus zu zahlen bereit sind?',
     solution:
@@ -24,7 +24,7 @@ const cases = [
       'Ut ut sunt aut accusamus quas optio quia est. Magnam iure aut omnis voluptatibus',
     category: 'Kommunikationskonzept',
     client: 'client 2',
-    logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
+    logo: { src: '/client-logo-placeholder-2.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
     solution:
@@ -37,7 +37,7 @@ const cases = [
       'Corporis amet et atque occaecati ipsam quo ab earum. Doloremque possimus?',
     category: 'Kommunikationskonzept',
     client: 'client 3',
-    logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
+    logo: { src: '/client-logo-placeholder-3.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
     solution:
@@ -50,7 +50,7 @@ const cases = [
       'Similique voluptate eligendi laboriosam qui. Debitis esse facilis consequatur?',
     category: 'Kommunikationskonzept',
     client: 'client 4',
-    logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
+    logo: { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
     solution:
@@ -63,7 +63,7 @@ const cases = [
       'Voluptate voluptates amet laborum laboriosam. Laborum dolores est non enim facilis non sint molestiae. Beatae odit explicabo ut sed quo ipsam accusantium soluta?',
     category: 'Kommunikationskonzept',
     client: 'client 5',
-    logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
+    logo: { src: '/client-logo-placeholder-2.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
     solution:
@@ -76,7 +76,7 @@ const cases = [
       'Accusantium natus est provident veniam mollitia deserunt. Assumenda repudiandae repudiandae?',
     category: 'Kommunikationskonzept',
     client: 'client with long name',
-    logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
+    logo: { src: '/client-logo-placeholder-3.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
     solution:
@@ -89,7 +89,7 @@ const cases = [
       'Placeat repellendus impedit id aut est autem. Veritatis sunt perferendis ducimus?',
     category: 'Kommunikationskonzept',
     client: 'client 7',
-    logo: { src: '/client-logo-placeholder-white.svg', width: 117, height: 82 },
+    logo: { src: '/client-logo-placeholder.svg', width: 117, height: 82 },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
     solution:

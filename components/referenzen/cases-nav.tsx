@@ -70,6 +70,17 @@ const CasesNav: FunctionComponent<Props> = (props) => {
           background-color: white;
         }
 
+        .client-logo {
+          filter: invert(1) brightness(2);
+          transition: filter;
+          transition-delay: 0.1s;
+          transition-duration: 0s;
+        }
+
+        .active .client-logo {
+          filter: none;
+        }
+
         .client-name {
           display: none;
         }
