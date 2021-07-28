@@ -6,11 +6,11 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 const UnserTeam: FunctionComponent = () => {
   return (
     <section>
-      <h2>Unser Team - interdisziplinär</h2>
+      <h2>Unser Team</h2>
       <p className='text-block'>
         In unseren dynamischen Projekten sind wir interdisziplinär unterwegs und
         vereinen dabei unterschiedliche Profile: Bei aserto arbeiten
-        Data-Scientists, Consultants und Specialists für Medienmonitoring und
+        Data-Scientists, Consultants und Specialists für Medienmonitoring- und
         Analyse. Von Datenanalyse und -Visualisierungen, empirischer
         Sozialforschung bis zur strategischen Kommunikationsberatung können wir
         alles abdecken. Die verschiedenen Perspektiven und Erfahrungen weiten
@@ -19,7 +19,7 @@ const UnserTeam: FunctionComponent = () => {
       <List inline color={colors.lightBlue}>
         <li>Consulting</li>
         <li>Data-Science</li>
-        <li>Medienmonitorung- und Analyse</li>
+        <li>Medienmonitoring- und Analyse</li>
       </List>
       <style jsx>{`
         h2 {
