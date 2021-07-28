@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { Contact, ImageType } from 'lib/types'
-import { LinkedInIcon } from './social-icons'
+import { LinkedInIcon, XingIcon } from './social-icons'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
@@ -29,7 +29,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         <div className='social-links'>
           {props.contact.xing && (
             <a href={props.contact.xing}>
-              <LinkedInIcon color='white' />
+              <XingIcon color='white' />
             </a>
           )}
           {props.contact.linkedIn && (

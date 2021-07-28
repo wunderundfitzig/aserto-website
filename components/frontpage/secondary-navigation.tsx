@@ -36,6 +36,7 @@ const SecondaryNavigation: FunctionComponent<Props> = (props) => {
 
         li {
           white-space: nowrap;
+          margin-bottom: 0.5em;
         }
       `}</style>
     </nav>

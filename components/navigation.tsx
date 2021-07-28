@@ -75,6 +75,8 @@ const Navigation: FunctionComponent<Props> = (props) => {
           color: white;
           padding-right: 1em;
           margin-bottom: 1em;
+          font-size: 1.5em;
+          font-weight: 200;
           z-index: 100;
         }
 
@@ -131,7 +133,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
         }
 
         .nav.on-frontpage li {
-          margin-bottom: 1em;
+          margin-bottom: 0.8em;
         }
 
         @media ${minWidth(breakpoint.xs)} {
@@ -152,7 +154,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
           .nav.on-frontpage {
             grid-area: 1 / footer / footer / 2;
-            font-size: 1.1em;
+            font-size: 1.5em;
             margin-bottom: 0;
           }
 
@@ -168,7 +170,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
         @media ${minWidth(breakpoint.xxl)} {
           .nav.on-frontpage {
-            font-size: 1.3em;
+            font-size: 1.5em;
           }
         }
       `}</style>

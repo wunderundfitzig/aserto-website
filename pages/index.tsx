@@ -76,7 +76,7 @@ const Index: NextPage = () => {
           grid-column: 1 / 4;
           grid-row: 2 / 3;
           max-width: 10em;
-          font-size: 1.5em;
+          font-size: 1.2em;
           margin: 0;
           font-weight: 200;
           line-height: 1.35em;
@@ -111,7 +111,7 @@ const Index: NextPage = () => {
           text-align: right;
           z-index: 1;
           color: white;
-          padding: 0.7em 0.5em 1.5em 0;
+          padding: 0.7em 2em 1.5em 0;
         }
 
         .corner-curve,
@@ -145,13 +145,14 @@ const Index: NextPage = () => {
         .clipped-image {
           z-index: 10;
           clip-path: inset(
-            calc(50% - 105px) 0 calc(50% - 75px) calc(100% - 100px)
+            calc(50% - 145px) 0 calc(50% - 100px) calc(100% - 145px)
           );
         }
 
         @media ${minWidth(breakpoint.xs)} {
           h1 {
             grid-column: 1 / 3;
+            font-size: 1.5em;
           }
           .image-wrapper {
             grid-column: 1 / 3;
@@ -159,13 +160,7 @@ const Index: NextPage = () => {
 
           .social-links {
             grid-area: footer / footer / footer / 3;
-            padding-right: 1em;
-          }
-
-          .clipped-image {
-            clip-path: inset(
-              calc(50% - 107px) 0 calc(50% - 75px) calc(100% - 100px)
-            );
+            padding-right: 2em;
           }
 
           .mobile-main-curve {
@@ -178,7 +173,7 @@ const Index: NextPage = () => {
         @media ${minWidth(breakpoint.s)} {
           .clipped-image {
             clip-path: inset(
-              calc(50% - 120px) 0 calc(50% - 85px) calc(100% - 120px)
+              calc(50% - 165px) 0 calc(50% - 130px) calc(100% - 165px)
             );
           }
 
@@ -207,7 +202,7 @@ const Index: NextPage = () => {
           }
 
           .clipped-image {
-            clip-path: inset(0 0 0 calc(100% - 140px));
+            clip-path: inset(0 0 0 calc(100% - 170px));
           }
 
           .social-links {
@@ -260,11 +255,6 @@ const Index: NextPage = () => {
             max-width: 650px;
             width: 80%;
             min-height: 100%;
-          }
-        }
-        @media ${minWidth(breakpoint.xxl)} {
-          .clipped-image {
-            clip-path: inset(0 0 0 calc(100% - 160px));
           }
         }
       `}</style>
