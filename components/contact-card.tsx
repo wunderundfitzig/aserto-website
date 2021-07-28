@@ -49,6 +49,15 @@ const ContactCard: FunctionComponent<Props> = (props) => {
         address p {
           margin: 0;
         }
+
+        @media print {
+          .contact-card {
+            display: block;
+          }
+          .image {
+            display: none;
+          }
+        }
       `}</style>
     </div>
   )

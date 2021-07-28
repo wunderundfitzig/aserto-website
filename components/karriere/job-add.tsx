@@ -146,7 +146,7 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             justify-content: flex-end;
             visibility: visible;
           }
-          aside {
+          .button-wrapper {
             display: none;
           }
 
