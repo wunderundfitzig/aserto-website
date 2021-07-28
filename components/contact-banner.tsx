@@ -103,6 +103,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
           address {
             text-align: right;
             padding-bottom: 0;
+            margin-bottom: 0;
           }
 
           .background {

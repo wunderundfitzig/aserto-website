@@ -1,5 +1,5 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { categoryBackgroundColors } from 'lib/colors'
+import { footerBackgroundColors } from 'lib/colors'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FunctionComponent } from 'react'
@@ -12,7 +12,7 @@ type Props = {
 const Footer: FunctionComponent<Props> = (props) => {
   const router = useRouter()
   const rootPath = router.pathname.split('/').slice(1)[0]
-  const backgroundColor = (categoryBackgroundColors as Record<string, string>)[
+  const backgroundColor = (footerBackgroundColors as Record<string, string>)[
     rootPath
   ]
 

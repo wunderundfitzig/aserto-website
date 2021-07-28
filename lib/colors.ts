@@ -29,10 +29,10 @@ export const categoryColors = {
   karriere: red,
 }
 
-export const categoryBackgroundColors = {
+export const footerBackgroundColors = {
   purpose: backgroundBeige,
   team: backgroundBlue,
-  leistungen: backgroundGreen,
+  leistungen: 'transparent',
   referenzen: backgroundDenim,
-  karriere: backgroundRed,
+  karriere: 'transparent',
 }
