@@ -18,10 +18,10 @@ const ReferenzenHeader: FunctionComponent = () => {
       <div className='image'>
         <Image
           priority
-          src='/___referenzen-placeholder-image-1.jpg'
+          src='/referenzen-placeholder-image-1.jpg'
           layout='fill'
           objectFit='cover'
-          objectPosition='top'
+          objectPosition='center'
           alt=''
         />
       </div>
@@ -66,7 +66,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           grid-area: image;
           position: relative;
           width: 100%;
-          padding-bottom: 80%;
+          padding-bottom: 60%;
         }
 
         .curve {
