@@ -1,9 +1,10 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { Contact, ImageType } from 'lib/types'
-import { LinkedInIcon, XingIcon } from './social-icons'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { LinkedInIcon, XingIcon } from 'components/social-icons'
+import { MoreInfoIcon } from 'components/icons'
 
 type Props = {
   image: ImageType
@@ -18,6 +19,9 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           layout='responsive'
           alt={`portait of ${props.contact.name}`}
         />
+      </div>
+      <div className='more-info-icon'>
+        <MoreInfoIcon color={colors.categoryColors.team} />
       </div>
       <div className='overlay'>
         <h3>{props.contact.name}</h3>
@@ -51,6 +55,13 @@ const PersonCard: FunctionComponent<Props> = (props) => {
 
         .image {
           grid-area: image;
+        }
+
+        .more-info-icon {
+          position: absolute;
+          top: 0.9em;
+          left: 1em;
+          width: 30px;
         }
         .overlay {
           grid-area: overlay;
