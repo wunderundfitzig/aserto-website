@@ -17,8 +17,9 @@ const Sloagan: FunctionComponent<Props> = (props) => {
       <p className='sloagen'>{props.children.sloagen}</p>
       <style jsx>{`
         .roofline {
-          font-size: 0.8em;
-          margin: 0 0 0.5em;
+          font-size: 1em;
+          text-transform: uppercase;
+          margin: 0 0 0.2em;
         }
         .sloagen {
           font-family: 'Usherwood';

@@ -58,8 +58,9 @@ const LeistungenContact: FunctionComponent = () => {
       {{
         title: (
           <>
-            Hast du Fragen zu unseren Leitungen?
-            <br /> Stell sie doch einfach Lars:
+            Haben Sie Fragen zu unserem Leistungs-Portfolio?
+            <br />
+            Kontaktieren Sie Herrn Drews gerne persönlich
           </>
         ),
         background: <Background />,

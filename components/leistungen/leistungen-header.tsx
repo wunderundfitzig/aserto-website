@@ -10,7 +10,6 @@ const LeistungenHeader: FunctionComponent = () => {
       <h1>Leistungen</h1>
       <Sloagan emphasisColor={colors.green}>
         {{
-          roofline: 'Das Beste aus zwei Welten:',
           sloagen: (
             <>
               Wir verbinden <em>Analysen</em>
@@ -39,7 +38,7 @@ const LeistungenHeader: FunctionComponent = () => {
 
         .open-circle {
           position: absolute;
-          top: -1.7em;
+          top: -2.5em;
           left: 50%;
           width: 50%;
           height: 25em;
@@ -47,8 +46,8 @@ const LeistungenHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.s)} {
           .open-circle {
-            top: -1.2em;
-            width: calc(100% - 15em);
+            top: -3em;
+            width: calc100% - 15em);
             height: 26em;
             left: 15em;
           }
@@ -56,28 +55,28 @@ const LeistungenHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.sm)} {
           .open-circle {
-            top: -0.6em;
+            top: -2.8em;
             padding-right: 5em;
           }
         }
 
         @media ${minWidth(breakpoint.ml)} {
           .open-circle {
-            top: -0.1em;
+            top: -1.9em;
             padding-right: 5em;
           }
         }
 
         @media ${minWidth(breakpoint.l)} {
           .open-circle {
-            top: -1.5em;
+            top: -3em;
             height: 30em;
           }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
           .open-circle {
-            top: -2em;
+            top: -3.1em;
             width: calc(100% - 20em);
             left: 20em;
             padding-right: 5em;
