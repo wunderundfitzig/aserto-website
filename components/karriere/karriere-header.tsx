@@ -31,13 +31,13 @@ const KarriereHeader: FunctionComponent = () => {
         />
       </div>
       <div className='line line-1'>
-        <EndlessLine color={colors.categoryColors.karriere} rotate={28} />
+        <EndlessLine color={colors.categoryColors.karriere} rotate={20} />
       </div>
       <div className='line line-2'>
-        <EndlessLine color={colors.categoryColors.karriere} rotate={-20} />
+        <EndlessLine color={colors.categoryColors.karriere} rotate={-25} />
       </div>
       <div className='line line-3'>
-        <EndlessLine color={colors.categoryColors.karriere} rotate={10} />
+        <EndlessLine color={colors.categoryColors.karriere} rotate={5} />
       </div>
       <style jsx>{`
         .karriere-header {
@@ -72,7 +72,7 @@ const KarriereHeader: FunctionComponent = () => {
           height: 100%;
           grid-area: lines;
           z-index: -1;
-          transform: translate(10%, -8%);
+          transform: translate(10%, 12%);
         }
 
         .line-1 {
@@ -81,21 +81,21 @@ const KarriereHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.xs)} {
           .line {
-            transform: translate(0, -10%);
+            transform: translate(0, 10%);
           }
         }
 
         @media ${minWidth(breakpoint.s)} {
           .line {
-            transform: translate(0, -5%);
+            transform: translate(0, 10%);
           }
         }
 
         @media ${minWidth(breakpoint.sm)} {
           .karriere-header {
-            grid-template-columns: minmax(200px, 20%) 1fr;
+            grid-template-columns: minmax(250px, 20%) 1fr;
             grid-template-rows: auto auto 200px;
-            grid-gap: 0 2em;
+            grid-gap: 0 2rem;
             grid-template-areas:
               'image title'
               'image slogan'
@@ -108,7 +108,7 @@ const KarriereHeader: FunctionComponent = () => {
           }
 
           .line {
-            transform: translate(0, 50px);
+            transform: translate(0, -50px);
           }
 
           .line-1 {
@@ -120,9 +120,15 @@ const KarriereHeader: FunctionComponent = () => {
           }
         }
 
+        @media ${minWidth(breakpoint.sm)} {
+          .line {
+            transform: translate(0, 50px);
+          }
+        }
+
         @media ${minWidth(breakpoint.l)} {
           .karriere-header {
-            grid-template-columns: minmax(200px, 35%) 1fr;
+            grid-template-columns: minmax(250px, 40%) 1fr;
           }
           .image {
             margin-top: -5em;
@@ -131,7 +137,14 @@ const KarriereHeader: FunctionComponent = () => {
             margin-left: -3em;
           }
           .line {
-            transform: translate(0, 70px);
+            transform: translate(150px, 10px);
+          }
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .karriere-header {
+            grid-template-columns: minmax(250px, 35%) 1fr;
+            grid-gap: 0 4rem;
           }
         }
 
@@ -139,6 +152,10 @@ const KarriereHeader: FunctionComponent = () => {
           .image {
             width: 100%;
             margin-left: 0;
+          }
+
+          .line {
+            transform: translate(150px, 70px);
           }
         }
       `}</style>

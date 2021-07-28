@@ -105,12 +105,13 @@ const Prinzipen: FunctionComponent = () => {
           background-color: white;
           padding: 3rem 1rem 1rem;
           margin: 0 -1rem;
+          max-width: 28rem;
         }
 
         .statement {
           grid-column: span 2;
           background-color: white;
-          max-width: 28em;
+          max-width: 28rem;
           padding: 1em;
           margin: 0 -1rem;
         }
