@@ -39,8 +39,8 @@ const Prinzipen: FunctionComponent = () => {
             content: (
               <p>
                 unserer Mitarbeiter*innen im Fokus. So haben z.B. einige unserer
-                Kolleg*innen eine Fortbildung zum systemischen Berater
-                absolviert oder zum X. Damit dies alles möglich ist,
+                Kolleg*innen eine Fortbildung zum systemischen Berater oder
+                Projektmanager absolviert. Damit dies alles möglich ist,
                 unterstützen wir uns im Team gegenseitig.
               </p>
             ),
@@ -69,8 +69,8 @@ const Prinzipen: FunctionComponent = () => {
             content: (
               <p>
                 wird bei uns ernstgenommen und wir möchten, dass unsere
-                Kolleg*innen genügend Zeit zum Regenerien haben (Zeit haben, um
-                die Akkus wieder aufzuladen).
+                Kolleg*innen genügend Zeit haben, um die Akkus wieder
+                aufzuladen.
               </p>
             ),
           }}

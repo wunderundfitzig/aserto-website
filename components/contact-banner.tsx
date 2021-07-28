@@ -8,13 +8,17 @@ type Props = {
   contact: Contact
   children: {
     title: ReactElement
+    text?: ReactElement
     background: ReactElement
   }
 }
 const ContactBanner: FunctionComponent<Props> = (props) => {
   return (
     <aside className='contact-banner'>
-      <h2>{props.children.title}</h2>
+      <div className='title-wrapper'>
+        <h2>{props.children.title}</h2>
+        {props.children.text && <p>{props.children.text}</p>}
+      </div>
       <div className='image'>
         <Image
           {...props.image}
@@ -39,10 +43,16 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
           justify-items: center;
         }
 
-        h2 {
+        .title-wrapper {
           grid-area: title;
           text-align: center;
           margin-top: 2em;
+          max-width: 28rem;
+        }
+
+        .title-wrapper p {
+          max-width: 28rem;
+          margin-bottom: 2.5em;
         }
 
         .image {
@@ -81,8 +91,9 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
             align-items: end;
           }
 
-          h2 {
+          .title-wrapper {
             text-align: left;
+            max-width: none;
           }
 
           .image {
@@ -102,7 +113,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.ml)} {
-          h2 {
+          .title-wrapper {
             text-align: left;
           }
           .image {
@@ -114,7 +125,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.xxl)} {
-          h2 {
+          .title-wrapper {
             margin: 4em 0 -0.05em;
           }
         }

@@ -46,10 +46,12 @@ const KarriereContact: FunctionComponent = () => {
   return (
     <ContactBanner image={contactImage} contact={contact}>
       {{
-        title: (
+        title: <>Wir haben gerade keine passende Stelle für Dich?</>,
+        text: (
           <>
-            Initiativ Bewerben? <br />
-            Schreibe doch einfach Jana:
+            Du hast aber das Gefühl, perfekt zu uns zu passen? Kein Problem -
+            sende uns gerne eine Initiativbewerbung. Du hast noch Fragen? Dann
+            melde Dich bei Anna Begau.
           </>
         ),
         background: <Background />,

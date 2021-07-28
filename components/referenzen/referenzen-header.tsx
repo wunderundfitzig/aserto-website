@@ -177,18 +177,14 @@ const ReferenzenHeader: FunctionComponent = () => {
           h1 {
             padding-top: 1em;
             margin-top: -1em;
-            padding-left: 4rem;
           }
           .image {
             margin-top: -5em;
-            margin-left: 0;
-            width: 100%;
             padding-top: 80%;
           }
 
           .text-block {
             width: 80%;
-            padding-left: 4rem;
           }
 
           .curve {
@@ -197,6 +193,16 @@ const ReferenzenHeader: FunctionComponent = () => {
             min-height: calc(100% + 50em);
             width: 90%;
             max-height: 1500px;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          h1 {
+            padding-left: 4rem;
+          }
+
+          .text-block {
+            padding-left: 4rem;
           }
         }
 
