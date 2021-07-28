@@ -38,7 +38,8 @@ const Quote: FunctionComponent<Props> = (props) => {
         blockquote {
           font-family: 'Usherwood';
           margin: 0.3em 0;
-          font-size: 1.6em;
+          font-size: 2em;
+          font-weight: bold;
         }
       `}</style>
     </figure>

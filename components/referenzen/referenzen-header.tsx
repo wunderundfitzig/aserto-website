@@ -66,7 +66,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           grid-area: image;
           position: relative;
           width: 100%;
-          padding-bottom: 60%;
+          padding-bottom: 80%;
         }
 
         .curve {
@@ -85,7 +85,6 @@ const ReferenzenHeader: FunctionComponent = () => {
           grid-area: space;
           width: 100%;
           height: 100%;
-          transform: translateY(3em);
         }
 
         @media ${minWidth(breakpoint.s)} {
