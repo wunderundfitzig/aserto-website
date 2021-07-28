@@ -28,3 +28,11 @@ export const categoryColors = {
   referenzen: denim,
   karriere: red,
 }
+
+export const categoryBackgroundColors = {
+  purpose: backgroundBeige,
+  team: backgroundBlue,
+  leistungen: backgroundGreen,
+  referenzen: backgroundDenim,
+  karriere: backgroundRed,
+}

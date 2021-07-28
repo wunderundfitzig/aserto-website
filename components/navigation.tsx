@@ -22,6 +22,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const rootPath = router.pathname.split('/').slice(1)[0]
+  const highlightColor = (categoryColors as Record<string, string>)[rootPath]
 
   useEffect(() => {
     setIsOpen(false)
@@ -125,7 +126,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
         li.active {
           font-weight: bold;
-          color: ${(categoryColors as Record<string, string>)[rootPath]};
+          color: ${highlightColor};
         }
 
         .nav.open li.active {

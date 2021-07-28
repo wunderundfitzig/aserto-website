@@ -1,5 +1,7 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { categoryBackgroundColors } from 'lib/colors'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { FunctionComponent } from 'react'
 import AsertoLogo from './aserto-logo'
 import SocialLinks from './social-links'
@@ -8,8 +10,24 @@ type Props = {
   gridArea: string
 }
 const Footer: FunctionComponent<Props> = (props) => {
+  const router = useRouter()
+  const rootPath = router.pathname.split('/').slice(1)[0]
+  const backgroundColor = (categoryBackgroundColors as Record<string, string>)[
+    rootPath
+  ]
+
   return (
     <footer className='footer'>
+      <svg viewBox='0 0 100 100' className='background-rect'>
+        <rect
+          x={-1000}
+          y={0}
+          width={2000}
+          height={100}
+          fill={backgroundColor}
+          fillOpacity={0.5}
+        />
+      </svg>
       <div className='logo'>
         <AsertoLogo />
       </div>
@@ -39,13 +57,26 @@ const Footer: FunctionComponent<Props> = (props) => {
       </nav>
       <style jsx>{`
         .footer {
+          position: relative;
+          pointer-events: relative;
           grid-area: ${props.gridArea};
           display: grid;
           grid-gap: 2em;
           line-height: 1.5em;
           font-size: 0.8em;
           grid-auto-flow: row;
-          padding: 3em 0;
+          padding: 3rem 0;
+          margin-top: -2rem;
+        }
+
+        .background-rect {
+          position: absolute;
+          z-index: -1;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: visible;
         }
 
         address {
@@ -66,7 +97,7 @@ const Footer: FunctionComponent<Props> = (props) => {
             grid-template-columns: 50px auto auto 1fr auto;
             align-items: start;
             grid-gap: 5em;
-            padding: 4em 0 4em;
+            padding: 5rem 0 4rem;
           }
 
           .logo {
