@@ -20,7 +20,7 @@ export function useIntersectionObserver(
   options: {
     topOffset: (height: number) => number
   }
-): number {
+): number | null {
   const { height } = useWindowSize()
   const [intersecting, dispatch] = useReducer(
     reducer,
@@ -56,5 +56,5 @@ export function useIntersectionObserver(
     }
   }, [refs, height]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  return activeSectionIndex === -1 ? 0 : activeSectionIndex
+  return activeSectionIndex === -1 ? null : activeSectionIndex
 }

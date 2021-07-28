@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react'
+import React, { FunctionComponent, useEffect, useMemo, useRef } from 'react'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'
 import { useIntersectionObserver } from 'lib/use-intersection-observer'
+import { useRouter } from 'next/router'
 
 const cases = [
   {
@@ -99,16 +100,22 @@ const cases = [
 ]
 
 const Cases: FunctionComponent = () => {
+  const router = useRouter()
   const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
   const sectionIndex = useIntersectionObserver(sectionRefs.current, {
     topOffset: (height: number) => height * 0.5,
   })
 
-  const activeCaseId = cases[sectionIndex].id
+  const activeCaseId = cases[sectionIndex ?? 0].id
 
   useEffect(() => {
-    history.replaceState(null, 'null', `#${activeCaseId}`)
-  }, [activeCaseId])
+    if (sectionIndex === null) {
+      router.replace(`/referenzen`, undefined, { scroll: false })
+    } else {
+      history.replaceState(null, 'null', `#${activeCaseId}`)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sectionIndex, activeCaseId])
 
   return (
     <section className='cases'>
