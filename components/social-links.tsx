@@ -26,20 +26,24 @@ const IconLink: FunctionComponent<IconLinkProps> = (props) => {
   )
 }
 
-const SocialLinks: FunctionComponent = () => {
+type Props = {
+  color: string
+}
+
+const SocialLinks: FunctionComponent<Props> = (props) => {
   return (
     <div className='social-icons'>
       <IconLink url='https://www.linkedin.com/company/aserto'>
-        <LinkedInIcon color='black' />
+        <LinkedInIcon color={props.color} />
       </IconLink>
       <IconLink url='https://www.instagram.com/aserto_richtungsweisend'>
-        <InstagramIcon color='black' />
+        <InstagramIcon color={props.color} />
       </IconLink>
       <IconLink url='https://twitter.com/aserto_de'>
-        <TwitterIcon color='black' />
+        <TwitterIcon color={props.color} />
       </IconLink>
       <IconLink url='https://www.facebook.com/aserto.de/'>
-        <FacebookIcon color='black' />
+        <FacebookIcon color={props.color} />
       </IconLink>
       <style jsx>{`
         .social-icons {

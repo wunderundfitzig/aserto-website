@@ -12,8 +12,12 @@ import SocialLinks from 'components/social-links'
 import SecondaryNavigation from 'components/frontpage/secondary-navigation'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import * as colors from 'lib/colors'
+import { useWindowSize } from 'lib/use-window-size'
 
 const Index: NextPage = () => {
+  const { width } = useWindowSize()
+  const isBelowBreakpointL = (width ?? 0) < breakpoint.l
+
   return (
     <>
       <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
@@ -39,7 +43,7 @@ const Index: NextPage = () => {
       </div>
       <div className='social-links'>
         <SecondaryNavigation />
-        <SocialLinks />
+        <SocialLinks color={isBelowBreakpointL ? 'white' : 'black'} />
       </div>
       <div className='main-curve'>
         <FrontpageCurve
@@ -103,12 +107,13 @@ const Index: NextPage = () => {
 
         .social-links {
           grid-area: footer;
-          justify-self: start;
+          justify-self: flex-end;
+          text-align: right;
           z-index: 1;
+          color: white;
           padding: 0.7em 0.5em 1.5em 0;
         }
 
-        .brown-curve,
         .corner-curve,
         .main-curve {
           display: none;
@@ -116,6 +121,7 @@ const Index: NextPage = () => {
         }
 
         .mobile-main-curve {
+          pointer-events: none;
           display: block;
           justify-self: flex-end;
           grid-column: 1 / 4;
@@ -124,6 +130,16 @@ const Index: NextPage = () => {
           max-width: 650px;
           width: 100%;
           height: 100%;
+        }
+
+        .brown-curve {
+          pointer-events: none;
+          grid-column: 1 / 3;
+          grid-row: 1 / 3;
+          height: 6em;
+          transform: rotate(150deg) scaleX(-1) translateX(-20px) translateY(2em);
+          transform-origin: center;
+          width: 50%;
         }
 
         .clipped-image {
@@ -139,6 +155,11 @@ const Index: NextPage = () => {
           }
           .image-wrapper {
             grid-column: 1 / 3;
+          }
+
+          .social-links {
+            grid-area: footer / footer / footer / 3;
+            padding-right: 1em;
           }
 
           .clipped-image {
@@ -159,6 +180,10 @@ const Index: NextPage = () => {
             clip-path: inset(
               calc(50% - 120px) 0 calc(50% - 85px) calc(100% - 120px)
             );
+          }
+
+          .brown-curve {
+            transform: rotate(150deg) scaleX(-1) translateY(3em);
           }
         }
 
@@ -189,8 +214,11 @@ const Index: NextPage = () => {
             grid-column: 3 / 4;
             grid-row: 3 / 4;
             background-color: white;
+            color: black;
             border-radius: 0 0.5em 0 0;
             margin-left: -1em;
+            justify-self: flex-start;
+            text-align: left;
           }
 
           .brown-curve {
@@ -203,6 +231,7 @@ const Index: NextPage = () => {
             justify-self: end;
             align-self: end;
             margin-right: -3em;
+            transform: none;
           }
 
           .corner-curve {

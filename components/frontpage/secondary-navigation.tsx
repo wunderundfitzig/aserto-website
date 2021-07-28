@@ -30,7 +30,6 @@ const SecondaryNavigation: FunctionComponent<Props> = (props) => {
           list-style: none;
           margin: 0;
           padding: 0;
-          text-align: left;
           font-size: 0.8em;
         }
 
