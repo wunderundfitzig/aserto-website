@@ -24,6 +24,7 @@ const SecondaryNavigation: FunctionComponent<Props> = (props) => {
           grid-area: ${props.gridArea ? props.gridArea : 'none'};
           display: grid;
           margin-bottom: 1em;
+          z-index: 1;
         }
 
         ul {
