@@ -26,7 +26,7 @@ const UnserTeam: FunctionComponent = () => {
           margin-top: 2em;
         }
         .text-block {
-          max-width: 35em;
+          max-width: 45rem;
           margin-bottom: 3em;
         }
 

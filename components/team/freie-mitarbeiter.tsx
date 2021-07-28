@@ -7,14 +7,20 @@ const FreieMitarbeiter: FunctionComponent = () => {
         Unterstützt werden wir zudem durch unsere Projektmitarbeiter*innen:
       </h2>
       <div className='text-block'>
-        Alexandra Porgann, Anica Lammers , Dominik Hahn, Julian Hinrichsen,
-        Katarina Heitz , Lukas Kellermann, Marie Sudmeier, Minha Marie Yeo,
-        Moritz Schäfer, Nico Garms , Paula Hutecker, Rabea Adam, Sabrina
-        Sawadsky, Simon Weigold
+        <p>
+          Alexandra Porgann, Anica Lammers , Dominik Hahn, Julian Hinrichsen,
+          Katarina Heitz , Lukas Kellermann, Marie Sudmeier, Minha Marie Yeo,
+          Moritz Schäfer, Nico Garms , Paula Hutecker, Rabea Adam, Sabrina
+          Sawadsky, Simon Weigold
+        </p>
       </div>
       <style jsx>{`
         section {
           margin: 4em 0 10em;
+        }
+
+        h2 {
+          max-width: 30rem;
         }
 
         .text-block {

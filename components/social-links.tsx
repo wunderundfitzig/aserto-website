@@ -1,12 +1,6 @@
 import Link from 'next/link'
 import React, { FunctionComponent } from 'react'
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-  XingIcon,
-} from 'components/social-icons'
+import { InstagramIcon, LinkedInIcon, XingIcon } from 'components/social-icons'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type IconLinkProps = {

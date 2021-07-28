@@ -35,6 +35,7 @@ const GlobalStyles: FunctionComponent = () => (
     h2 {
       font-weight: 200;
       font-size: 1.7em;
+      line-height: 1.4em;
       margin: 0 0 1em;
     }
 
@@ -51,8 +52,9 @@ const GlobalStyles: FunctionComponent = () => (
 
     p {
       font-size: 1em;
-      line-height: 1.7em;
+      line-height: 1.9em;
       margin: 1em 0;
+      font-weight: 200;
     }
 
     * {
