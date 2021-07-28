@@ -7,21 +7,24 @@ type Size = {
 
 export function useWindowSize(): Size {
   const getSize = (): Size => {
-    if (!process.browser) return { width: undefined, height: undefined }
-
     return {
       width: window.innerWidth,
       height: window.innerHeight,
     }
   }
 
-  const [windowSize, setWindowSize] = useState(getSize())
+  const [windowSize, setWindowSize] = useState<Size>({
+    width: undefined,
+    height: undefined,
+  })
 
   useEffect(() => {
     function onResize() {
       setWindowSize(getSize())
     }
 
+    // set inital value delayed so inital render matches server
+    setTimeout(onResize, 0)
     window.addEventListener('resize', onResize)
     return () => {
       window.removeEventListener('resize', onResize)
