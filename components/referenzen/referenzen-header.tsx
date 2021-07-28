@@ -10,15 +10,15 @@ const ReferenzenHeader: FunctionComponent = () => {
       <h1>Referenzen</h1>
       <div className='text-block'>
         <p>
-          Für Wirtschaft, Wissenschaft und Institutionen verschaffen wir
-          Durchblick, bestimmten die Richtung, bauen Hürden ab oder gestalten
-          Transformationen.
+          Für Akteure aus Wirtschaft und Wissenschaft und Institutionen
+          verschaffen Durchblick, bestimmten die Richtung, bauen Hürden ab oder
+          gestalten Transformationen.
         </p>
       </div>
       <div className='image'>
         <Image
           priority
-          src='/referenzen-placeholder-image-1.jpg'
+          src='/___referenzen-placeholder-image-1.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='top'
@@ -125,7 +125,7 @@ const ReferenzenHeader: FunctionComponent = () => {
 
           .image {
             width: calc(100% + 2em);
-            padding-top: 120%;
+            padding-top: 80%;
             margin-left: -2em;
           }
 
@@ -147,7 +147,7 @@ const ReferenzenHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.ml)} {
           .referenzen-header {
-            grid-template-columns: minmax(300px, 30%) 1fr;
+            grid-template-columns: 1fr 1fr;
           }
 
           h1 {
@@ -171,22 +171,24 @@ const ReferenzenHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.l)} {
           .referenzen-header {
-            grid-template-columns: minmax(320px, 40%) 1fr;
+            grid-template-columns: 1fr 1fr;
           }
 
           h1 {
             padding-top: 1em;
             margin-top: -1em;
+            padding-left: 4rem;
           }
           .image {
             margin-top: -5em;
             margin-left: 0;
             width: 100%;
-            padding-top: 100%;
+            padding-top: 80%;
           }
 
           .text-block {
             width: 80%;
+            padding-left: 4rem;
           }
 
           .curve {
@@ -203,7 +205,7 @@ const ReferenzenHeader: FunctionComponent = () => {
             margin-top: -5em;
             margin-left: 0;
             width: 100%;
-            padding-top: 80%;
+            padding-top: 60%;
           }
           .curve {
             transform: translate(0, -10em);
