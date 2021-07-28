@@ -16,7 +16,7 @@ import { useWindowSize } from 'lib/use-window-size'
 
 const Index: NextPage = () => {
   const { width } = useWindowSize()
-  const isBelowBreakpointL = (width ?? 0) < breakpoint.l
+  const whiteIcons = (width ?? 0) > breakpoint.xs && (width ?? 0) < breakpoint.l
 
   return (
     <>
@@ -43,7 +43,7 @@ const Index: NextPage = () => {
       </div>
       <div className='social-links'>
         <SecondaryNavigation />
-        <SocialLinks color={isBelowBreakpointL ? 'white' : 'black'} />
+        <SocialLinks color={whiteIcons ? 'white' : 'black'} />
       </div>
       <div className='main-curve'>
         <FrontpageCurve
@@ -86,7 +86,7 @@ const Index: NextPage = () => {
           position: relative;
           background-color: ${darken(0.2, colors.grey)};
           grid-column: 1 / 4;
-          grid-row: 3 / 5;
+          grid-row: 3 / 4;
           width: 100%;
           height: 100%;
         }
@@ -107,11 +107,15 @@ const Index: NextPage = () => {
 
         .social-links {
           grid-area: footer;
+          width: 100%;
+          display: grid;
+          direction: rtl;
+          justify-content: space-between;
+          grid-template-columns: 1fr 1fr;
           justify-self: flex-end;
           text-align: right;
           z-index: 1;
-          color: white;
-          padding: 0.7em 2em 1.5em 0;
+          color: black;
         }
 
         .corner-curve,
@@ -125,7 +129,7 @@ const Index: NextPage = () => {
           display: block;
           justify-self: flex-end;
           grid-column: 1 / 4;
-          grid-row: 3 / 5;
+          grid-row: 3 / 4;
           z-index: 1;
           max-width: 650px;
           width: 100%;
@@ -156,11 +160,16 @@ const Index: NextPage = () => {
           }
           .image-wrapper {
             grid-column: 1 / 3;
+            grid-row: 3 / 5;
           }
 
           .social-links {
+            display: block;
+            width: auto;
             grid-area: footer / footer / footer / 3;
-            padding-right: 2em;
+            color: white;
+            padding: 0.7em 1.5rem 1em 0;
+            direction: ltr;
           }
 
           .mobile-main-curve {

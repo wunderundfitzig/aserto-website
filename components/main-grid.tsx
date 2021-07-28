@@ -11,7 +11,6 @@ const MainGrid: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .main-grid {
           display: grid;
-          height: ${props.onFrontpage ? '100vh' : 'auto'};
           min-height: 100vh;
           grid-template-columns: 0 1fr 80px 0;
           grid-template-rows: minmax(0, auto) auto 1fr auto;
@@ -27,6 +26,7 @@ const MainGrid: FunctionComponent<Props> = (props) => {
         @media ${minWidth(breakpoint.xs)} {
           .main-grid {
             grid-template-columns: 0 1fr 10vw 0;
+            height: ${props.onFrontpage ? '100vh' : 'auto'};
           }
         }
 

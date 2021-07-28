@@ -21,7 +21,7 @@ const SecondaryNavigation: FunctionComponent<Props> = (props) => {
       </ul>
       <style jsx>{`
         nav {
-          grid-area: ${props.gridArea ? props.gridArea : 'none'};
+          grid-area: ${props.gridArea ? props.gridArea : 'unset'};
           display: grid;
           margin-bottom: 1em;
           z-index: 1;

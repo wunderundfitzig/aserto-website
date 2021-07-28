@@ -67,14 +67,14 @@ const Navigation: FunctionComponent<Props> = (props) => {
         }
 
         .nav.on-frontpage {
-          grid-area: 3 / 2 / 5 / 4;
+          grid-area: 3 / 2 / 4 / 4;
           display: flex;
           justify-content: end;
           justify-self: flex-end;
           align-self: center;
           align-items: center;
           color: white;
-          padding-right: 1em;
+          padding-right: 1.5rem;
           margin-bottom: 1em;
           font-size: 1.35em;
           font-weight: 200;
