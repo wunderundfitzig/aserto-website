@@ -151,6 +151,7 @@ const Prinzipen: FunctionComponent = () => {
 
           h2 {
             grid-area: title;
+            padding-top: 6rem;
           }
 
           .image {
@@ -161,6 +162,7 @@ const Prinzipen: FunctionComponent = () => {
             grid-area: image-1;
             width: 80%;
             justify-self: flex-end;
+            margin-top: 6rem;
           }
           .image-2 {
             grid-area: image-2;
@@ -189,13 +191,8 @@ const Prinzipen: FunctionComponent = () => {
           }
         }
         @media ${minWidth(breakpoint.xl)} {
-          h2 {
-            padding-top: 6rem;
-          }
-
           .image-1 {
             width: 60%;
-            margin-top: 6rem;
             justify-self: flex-end;
           }
         }

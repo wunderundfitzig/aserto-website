@@ -27,7 +27,7 @@ const Footer: FunctionComponent<Props> = (props) => {
         0511 515678 0
       </address>
       <address className='scial-icons'>
-        <SocialLinks />
+        <SocialLinks color='black' />
       </address>
       <nav title='footer navigation' className='footer-navigation'>
         <Link href='/kontakt'>

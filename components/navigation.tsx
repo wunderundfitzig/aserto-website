@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import NavigationButton from 'components/navigation-button'
-import { backgroundBlue, categoryColors } from 'lib/colors'
+import { categoryColors } from 'lib/colors'
 import { useRouter } from 'next/router'
 
 const navItems = [
@@ -90,7 +90,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           height: 100%;
           visibility: hidden;
           opacity: 0;
-          transition: opacity 0.5s;
+          transition: opacity 0.3s ease-in-out;
         }
 
         .nav.on-frontpage ul {
@@ -158,6 +158,11 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
           ul {
             display: block;
+            position: static;
+            width: unset;
+            height: unset;
+            visibility: visible;
+            opacity: 1;
           }
         }
 
