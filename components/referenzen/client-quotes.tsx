@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from 'react'
 import Slider from 'components/slider'
 import Quote from 'components/referenzen/quote'
 import { ArrowIcon } from 'components/icons'
+import { categoryColors } from 'lib/colors'
 
 const quotes = [
   {
@@ -34,7 +35,7 @@ const ClientQuotes: FunctionComponent = () => {
           setSlideIndex(slideIndex - 1)
         }}
       >
-        <ArrowIcon />
+        <ArrowIcon color={categoryColors.referenzen} />
       </button>
       <Slider index={slideIndex} onNavigation={setSlideIndex}>
         {(index: number) => {
@@ -59,7 +60,7 @@ const ClientQuotes: FunctionComponent = () => {
           setSlideIndex(slideIndex + 1)
         }}
       >
-        <ArrowIcon rotate={180} />
+        <ArrowIcon rotate={180} color={categoryColors.referenzen} />
       </button>
       <style jsx>{`
         .client-quotes {

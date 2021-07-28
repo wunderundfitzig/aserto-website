@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react'
 import Link from 'next/link'
 import * as colors from 'lib/colors'
 import { MoreInfoIcon } from 'components/icons'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
   jobs: { id: string; title: string }[]
@@ -24,7 +25,7 @@ const JobList: FunctionComponent<Props> = (props) => {
       </ul>
       <style jsx>{`
         .job-list {
-          padding-top: 4em;
+          padding-top: 4rem;
         }
 
         ul {
@@ -44,6 +45,12 @@ const JobList: FunctionComponent<Props> = (props) => {
 
         li:last-child a {
           border-bottom: 0;
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .job-list {
+            margin: 4rem 0;
+          }
         }
       `}</style>
     </section>

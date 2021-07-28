@@ -1,3 +1,4 @@
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent, ReactElement } from 'react'
 
 type Props = {
@@ -25,9 +26,9 @@ const Quote: FunctionComponent<Props> = (props) => {
           text-align: center;
           display: block;
           width: auto;
-          max-width: 30em;
+          max-width: 50em;
           background-color: white;
-          padding: 2em;
+          padding: 2em 4em;
         }
         figcaption {
           margin: 0;
@@ -38,8 +39,14 @@ const Quote: FunctionComponent<Props> = (props) => {
         blockquote {
           font-family: 'Usherwood';
           margin: 0.3em 0;
-          font-size: 2em;
+          font-size: 1.6em;
           font-weight: bold;
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          blockquote {
+            font-size: 2em;
+          }
         }
       `}</style>
     </figure>
