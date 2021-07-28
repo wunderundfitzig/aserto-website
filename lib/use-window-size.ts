@@ -6,13 +6,6 @@ type Size = {
 }
 
 export function useWindowSize(): Size {
-  const getSize = (): Size => {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    }
-  }
-
   const [windowSize, setWindowSize] = useState<Size>({
     width: undefined,
     height: undefined,
@@ -20,7 +13,10 @@ export function useWindowSize(): Size {
 
   useEffect(() => {
     function onResize() {
-      setWindowSize(getSize())
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
     }
 
     // set inital value delayed so inital render matches server
