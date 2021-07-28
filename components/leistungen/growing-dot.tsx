@@ -58,7 +58,7 @@ const GrowingDot: FunctionComponent = () => {
   const bigCircleSize = isPastLastSlide ? fullScreenSize : 0
 
   return (
-    <div ref={wrapperRef} className='growing-dot'>
+    <section ref={wrapperRef} className='growing-dot'>
       <svg className='dot'>
         <mask id='growing-dot-mask'>
           <rect x='-100%' y='0' width='300%' height='100%' fill='white' />
@@ -88,21 +88,20 @@ const GrowingDot: FunctionComponent = () => {
         </g>
       </svg>
       <div className='inner'>
-        <p className='first-text'>
+        <h2 className='first-text'>
           <span>
             Wie richtungs
             <wbr />
             weisende
           </span>
           <span>Ergebnisse enstehen</span>
-        </p>
-        <h3
-          className='start'
+        </h2>
+        <div
+          className='outline-cirlce start'
           style={{ visibility: scrolledPixels > 285 ? 'visible' : 'hidden' }}
         >
-          Start:
           <Circle />
-        </h3>
+        </div>
         <div
           className='section auftragsklaerung'
           style={{
@@ -115,12 +114,12 @@ const GrowingDot: FunctionComponent = () => {
             klärung
           </h4>
         </div>
-        <h3
-          className='micro'
+        <div
+          className='outline-cirlce micro'
           style={{ visibility: scrolledPixels > 805 ? 'visible' : 'hidden' }}
         >
-          Micro Ebene: <Circle />
-        </h3>
+          <Circle />
+        </div>
         <div
           className='section analyse'
           style={{
@@ -134,12 +133,12 @@ const GrowingDot: FunctionComponent = () => {
             oder in eine Datenanalyse zu überführen.
           </p>
         </div>
-        <h3
-          className='macro'
+        <div
+          className='outline-cirlce macro'
           style={{ visibility: scrolledPixels > 1515 ? 'visible' : 'hidden' }}
         >
-          Macro Ebene: <Circle />
-        </h3>
+          <Circle />
+        </div>
         <div
           className='section verdichtung'
           style={{
@@ -152,15 +151,9 @@ const GrowingDot: FunctionComponent = () => {
             im Rauschen. Und erläutern, was diese zu bedeuten haben.
           </p>
         </div>
-        <h3
-          className='meta'
-          style={{ visibility: scrolledPixels > 2400 ? 'visible' : 'hidden' }}
-        >
-          Meta Ebene:
-        </h3>
         <div
           className='section ergebnisse'
-          style={{ opacity: scrolledPixels > 2500 ? 1 : 0 }}
+          style={{ opacity: scrolledPixels > 2400 ? 1 : 0 }}
         >
           <h4>
             Holistische Einbettung der Ergebnisse in unternehmensrelevante
@@ -177,7 +170,7 @@ const GrowingDot: FunctionComponent = () => {
       <style jsx>{`
         .growing-dot {
           position: relative;
-          height: 3700px;
+          height: 3500px;
           margin-top: -25vh;
           margin-bottom: 0;
         }
@@ -206,7 +199,7 @@ const GrowingDot: FunctionComponent = () => {
           align-items: center;
         }
 
-        h3 {
+        .outline-cirlce {
           position: relative;
           display: flex;
           flex: 0 0 auto;
@@ -219,7 +212,7 @@ const GrowingDot: FunctionComponent = () => {
           z-index: -1;
         }
 
-        h3 svg {
+        .outline-cirlce svg {
           position: absolute;
           width: 100%;
           height: 100%;
@@ -256,6 +249,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .start {
+          width: 212px;
           height: 212px;
         }
 
@@ -287,6 +281,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .micro {
+          width: 318px;
           height: 318px;
         }
 
@@ -304,14 +299,8 @@ const GrowingDot: FunctionComponent = () => {
           width: 300px;
         }
 
-        .meta {
-          border: none;
-          z-index: 1;
-          margin-top: 300px;
-        }
-
         .ergebnisse {
-          margin-top: 100px;
+          margin-top: 530px;
           max-width: 500px;
           margin-bottom: calc(50vh - 250px);
         }
@@ -362,7 +351,7 @@ const GrowingDot: FunctionComponent = () => {
           }
         }
       `}</style>
-    </div>
+    </section>
   )
 }
 
