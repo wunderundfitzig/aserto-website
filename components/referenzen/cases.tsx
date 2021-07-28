@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useMemo, useRef } from 'react'
+import React, { FunctionComponent, useEffect, useRef } from 'react'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'

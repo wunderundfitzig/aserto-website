@@ -40,6 +40,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
           width: 90px;
           min-width: 80px;
           justify-self: flex-end;
+          z-index: 100;
         }
 
         @media ${minWidth(breakpoint.l)} {

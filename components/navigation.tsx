@@ -28,7 +28,14 @@ const Navigation: FunctionComponent<Props> = (props) => {
       {!onFrontpage && (
         <NavigationButton
           navigationIsOpen={isOpen}
-          onClick={() => setIsOpen((isOpen) => !isOpen)}
+          onClick={() => {
+            if (!isOpen) {
+              window.scroll(0, 0)
+            }
+            setTimeout(() => {
+              setIsOpen((isOpen) => !isOpen)
+            }, 300)
+          }}
         />
       )}
       <ul>
@@ -54,6 +61,9 @@ const Navigation: FunctionComponent<Props> = (props) => {
         })}
       </ul>
       <style jsx>{`
+        :global(body) {
+          overflow: ${isOpen ? 'hidden' : 'inherit'};
+        }
         .nav {
           grid-area: ${props.gridArea};
           z-index: 10;
@@ -77,25 +87,37 @@ const Navigation: FunctionComponent<Props> = (props) => {
           padding: 0;
           margin: 0;
           text-align: right;
-          display: ${onFrontpage ? 'block' : 'none'};
-        }
-
-        .nav.open ul {
           position: fixed;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          border-top: 6em solid white;
-          border-right: 3em solid white;
-          padding-right: 1.6em;
-          padding-bottom: 1em;
-          background-color: ${backgroundBlue};
-          overflow: auto;
-          color: black;
+          visibility: hidden;
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+
+        .nav.on-frontpage ul {
+          position: static;
+          width: unset;
+          height: unset;
+          visibility: visible;
+          opacity: 1;
+        }
+
+        .nav.open ul {
+          visibility: visible;
+          display: grid;
+          opacity: 1;
+
+          background-color: white;
+          padding-top: 5rem;
+          padding-bottom: 7rem;
+          padding-right: 2.3rem;
+          font-size: 1.5em;
+          justify-content: flex-end;
+          align-content: center;
+          font-weight: 200;
         }
 
         li {
@@ -106,6 +128,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
         li.active {
           font-weight: bold;
           color: ${(categoryColors as Record<string, string>)[rootPath]};
+        }
+
+        .nav.open li.active {
+          font-weight: normal;
         }
 
         .nav.on-frontpage li {
