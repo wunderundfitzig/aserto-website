@@ -14,7 +14,7 @@ const KarriereHeader: FunctionComponent = () => {
           {{
             sloagen: (
               <>
-                Wir sind <em>menschlich, verbindlich und relevant.</em>
+                Wir sind <em>menschlich, verbindlich</em> und <em>relevant.</em>
               </>
             ),
           }}
