@@ -76,7 +76,7 @@ const Index: NextPage = () => {
           grid-column: 1 / 4;
           grid-row: 2 / 3;
           max-width: 10em;
-          font-size: 1.2em;
+          font-size: 1.5em;
           margin: 0;
           font-weight: 200;
           line-height: 1.35em;
@@ -145,7 +145,7 @@ const Index: NextPage = () => {
         .clipped-image {
           z-index: 10;
           clip-path: inset(
-            calc(50% - 145px) 0 calc(50% - 100px) calc(100% - 145px)
+            calc(50% - 135px) 0 calc(50% - 90px) calc(100% - 145px)
           );
         }
 
@@ -173,7 +173,7 @@ const Index: NextPage = () => {
         @media ${minWidth(breakpoint.s)} {
           .clipped-image {
             clip-path: inset(
-              calc(50% - 165px) 0 calc(50% - 130px) calc(100% - 165px)
+              calc(50% - 145px) 0 calc(50% - 100px) calc(100% - 125px)
             );
           }
 

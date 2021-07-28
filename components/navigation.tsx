@@ -75,7 +75,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           color: white;
           padding-right: 1em;
           margin-bottom: 1em;
-          font-size: 1.5em;
+          font-size: 1.35em;
           font-weight: 200;
           z-index: 100;
         }
