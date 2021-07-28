@@ -27,7 +27,7 @@ const Index: NextPage = () => {
           src='/frontpage-banner-2.jpg'
           layout='fill'
           objectFit='cover'
-          objectPosition='right'
+          objectPosition='center'
           alt=''
         />
       </div>
@@ -37,7 +37,7 @@ const Index: NextPage = () => {
           src='/frontpage-banner-2.jpg'
           layout='fill'
           objectFit='cover'
-          objectPosition='right'
+          objectPosition='center'
           alt=''
         />
       </div>
