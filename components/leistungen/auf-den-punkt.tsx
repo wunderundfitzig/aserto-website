@@ -38,7 +38,8 @@ const AufDenPunkt: FunctionComponent = () => {
       </div>
       <style jsx>{`
         .auf-den-punkt {
-          margin-top: 4em;
+          margin-top: 4rem;
+          margin-bottom: 6rem;
           position: relative;
           display: grid;
           grid-template-rows: auto auto auto;
@@ -67,8 +68,8 @@ const AufDenPunkt: FunctionComponent = () => {
           z-index: -1;
           grid-area: image / image / list / list;
           width: 100%;
-          height: calc(100% + 230px);
-          margin-top: 65px;
+          height: calc(100% + 430px);
+          margin-top: 130px;
         }
 
         @media ${minWidth(breakpoint.sm)} {
@@ -93,7 +94,7 @@ const AufDenPunkt: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.ml)} {
           .auf-den-punkt {
-            margin-top: 2em;
+            margin-top: 2rem;
             position: relative;
             display: grid;
             grid-template-columns: 1fr 1fr;

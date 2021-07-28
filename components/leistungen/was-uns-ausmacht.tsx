@@ -57,6 +57,10 @@ const WasUnsAusmacht: FunctionComponent = () => {
           max-width: 27em;
         }
 
+        .text-block p {
+          margin-top: 0;
+        }
+
         @media ${minWidth(breakpoint.s)} {
           .image {
             height: 400px;

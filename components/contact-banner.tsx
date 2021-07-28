@@ -47,12 +47,12 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
           grid-area: title;
           text-align: center;
           margin-top: 2em;
+          margin-bottom: 2.5rem;
           max-width: 28rem;
         }
 
         .title-wrapper p {
           max-width: 28rem;
-          margin-bottom: 2.5em;
         }
 
         .image {
@@ -85,7 +85,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
             grid-template-areas:
               'title title'
               'address image';
-            grid-template-columns: 1fr 35%;
+            grid-template-columns: minmax(70%, 1fr) minmax(auto, 250px);
             grid-gap: 0 2em;
             justify-items: stretch;
             align-items: end;
@@ -98,7 +98,6 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
 
           .image {
             width: 100%;
-            max-width: 250px;
           }
 
           address {
@@ -116,9 +115,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
           .title-wrapper {
             text-align: left;
           }
-          .image {
-            max-width: 300px;
-          }
+
           .background {
             padding-top: 100px;
           }
