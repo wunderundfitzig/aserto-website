@@ -108,12 +108,16 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           margin: 3em auto;
           display: grid;
           grid-template-columns: auto auto;
+          grid-template-areas:
+            'image address'
+            'buttons buttons';
           grid-gap: 2em;
           align-items: flex-end;
         }
 
         .button-wrapper {
           display: grid;
+          grid-area: buttons;
           grid-gap: 1em;
           justify-items: flex-end;
         }
@@ -123,6 +127,12 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             position: static;
             grid-area: 1 / main;
             min-height: calc(100vh - 7rem);
+          }
+        }
+
+        @media ${minWidth(breakpoint.sm)} {
+          aside {
+            grid-template-areas: 'image address buttons';
           }
         }
 

@@ -189,11 +189,13 @@ const Prinzipen: FunctionComponent = () => {
           }
         }
         @media ${minWidth(breakpoint.xl)} {
-          .prinzipen {
+          h2 {
+            padding-top: 6rem;
           }
 
           .image-1 {
             width: 60%;
+            margin-top: 6rem;
             justify-self: flex-end;
           }
         }
