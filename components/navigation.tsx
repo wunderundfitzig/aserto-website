@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import NavigationButton from 'components/navigation-button'
@@ -23,6 +23,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
   const router = useRouter()
   const rootPath = router.pathname.split('/').slice(1)[0]
 
+  useEffect(() => {
+    setIsOpen(false)
+  }, [router.pathname])
+
   return (
     <nav className={`nav ${isOpen && 'open'} ${onFrontpage && 'on-frontpage'}`}>
       {!onFrontpage && (
@@ -46,15 +50,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
               className={`/${rootPath}` === navItem.slug ? 'active' : undefined}
             >
               <Link href={navItem.slug}>
-                {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-                <a
-                  onClick={() => {
-                    setIsOpen(false)
-                  }}
-                >
-                  {navItem.label}
-                </a>
-                {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+                <a>{navItem.label}</a>
               </Link>
             </li>
           )
