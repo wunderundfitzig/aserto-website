@@ -26,6 +26,7 @@ const JobList: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .job-list {
           padding-top: 4rem;
+          padding-bottom: 4rem;
         }
 
         ul {

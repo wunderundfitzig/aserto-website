@@ -20,6 +20,7 @@ const Statement: FunctionComponent<Props> = (props) => {
         .statement::before {
           position: absolute;
           left: 0;
+          top: -7px;
           content: '';
           display: inline-block;
           width: 5px;

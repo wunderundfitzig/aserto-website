@@ -72,7 +72,7 @@ const KarriereHeader: FunctionComponent = () => {
           height: 100%;
           grid-area: lines;
           z-index: -1;
-          transform: translate(10%, 12%);
+          transform: translate(10%, -5%) rotate(7deg);
         }
 
         .line-1 {
@@ -81,13 +81,13 @@ const KarriereHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.xs)} {
           .line {
-            transform: translate(0, 10%);
+            transform: translate(0, -5%) rotate(5deg);
           }
         }
 
         @media ${minWidth(breakpoint.s)} {
           .line {
-            transform: translate(0, 10%);
+            transform: translate(0, 0) rotate(5deg);
           }
         }
 
@@ -108,7 +108,7 @@ const KarriereHeader: FunctionComponent = () => {
           }
 
           .line {
-            transform: translate(0, -50px);
+            transform: translate(0, -20px);
           }
 
           .line-1 {
@@ -120,9 +120,9 @@ const KarriereHeader: FunctionComponent = () => {
           }
         }
 
-        @media ${minWidth(breakpoint.sm)} {
+        @media ${minWidth(breakpoint.ml)} {
           .line {
-            transform: translate(0, 50px);
+            transform: translate(0, 10px);
           }
         }
 
@@ -137,7 +137,7 @@ const KarriereHeader: FunctionComponent = () => {
             margin-left: -3em;
           }
           .line {
-            transform: translate(150px, 10px);
+            transform: translate(150px, 30px);
           }
         }
 

@@ -1,19 +1,30 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { categoryColors } from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import Statement from 'components/statement'
+import { EndlessLine } from 'components/curves'
+
 import image1 from 'public/karriere-placeholder-image-2.jpg'
 import image2 from 'public/karriere-placeholder-image-3.jpg'
-import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const Prinzipen: FunctionComponent = () => {
   return (
     <section className='prinzipen'>
+      <div className='line line-1'>
+        <EndlessLine color={categoryColors.karriere} rotate={35} />
+      </div>
+      <div className='line line-2'>
+        <EndlessLine color={categoryColors.karriere} rotate={-30} />
+      </div>
+      <div className='line line-3'>
+        <EndlessLine color={categoryColors.karriere} rotate={35} />
+      </div>
       <h2>Unsere Prinzipen</h2>
       <div className='statement statement-1'>
         <Statement color={categoryColors.karriere}>
           {{
-            title: <p>Offenheit und Wertschätzung</p>,
+            title: <h3>Offenheit und Wertschätzung</h3>,
             content: (
               <p>
                 gegenüber Kolleg*innen und Kund*innen prägen unseren Umgang. Von
@@ -97,14 +108,17 @@ const Prinzipen: FunctionComponent = () => {
       </div>
       <style jsx>{`
         .prinzipen {
+          position: relative;
           display: grid;
           grid-template-columns: 1fr 1fr;
+          margin-top: 5rem;
         }
 
         h2 {
           background-color: white;
-          padding: 3rem 1rem 1rem;
+          padding: 0.5em 1rem 1rem;
           margin: 0 -1rem;
+          grid-column: span 2;
           max-width: 28rem;
         }
 
@@ -122,9 +136,32 @@ const Prinzipen: FunctionComponent = () => {
         }
 
         .image-1 {
+          position: static;
           grid-column: 2 / 2;
           width: calc(100% + 2em);
           margin-left: -2em;
+          z-index: -2;
+        }
+
+        .line {
+          pointer-events: none;
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          z-index: -10;
+        }
+
+        .line-1 {
+          transform: translateY(-30px);
+        }
+
+        .line-2 {
+          transform: translateY(500px);
+        }
+
+        .line-3 {
+          transform: translateY(550px);
+          z-index: -1;
         }
 
         @media ${minWidth(breakpoint.s)} {
@@ -138,8 +175,28 @@ const Prinzipen: FunctionComponent = () => {
           }
         }
 
+        @media ${minWidth(breakpoint.sm)} {
+          .line-1 {
+            transform: translateY(96px);
+          }
+
+          .line-2 {
+            transform: translateY(780px);
+          }
+
+          .line-3 {
+            display: none;
+          }
+
+          .statement-3 {
+            margin-top: 4rem;
+          }
+        }
+
         @media ${minWidth(breakpoint.m)} {
           .prinzipen {
+            margin-top: 10rem;
+
             grid-template-areas:
               'title       image-1'
               'statement-1 image-1'
@@ -152,7 +209,6 @@ const Prinzipen: FunctionComponent = () => {
 
           h2 {
             grid-area: title;
-            padding-top: 6rem;
           }
 
           .image {
@@ -169,6 +225,16 @@ const Prinzipen: FunctionComponent = () => {
             grid-area: image-2;
             width: calc(100% - 1em);
             align-self: flex-end;
+            z-index: -2;
+          }
+
+          .line-1 {
+            transform: translateY(200px);
+          }
+
+          .line-2 {
+            transform: translateY(1100px);
+            z-index: -1;
           }
 
           .statement {
@@ -191,10 +257,39 @@ const Prinzipen: FunctionComponent = () => {
             grid-area: statement-5;
           }
         }
+        @media ${minWidth(breakpoint.l)} {
+          .line-1 {
+            transform: translateY(300px);
+          }
+
+          .line-2 {
+            transform: translateY(1200px);
+            z-index: -1;
+          }
+        }
         @media ${minWidth(breakpoint.xl)} {
+          .line-1 {
+            transform: translateY(350px);
+          }
+
+          .line-2 {
+            transform: translateY(1200px);
+            z-index: -1;
+          }
           .image-1 {
-            width: 60%;
+            width: 300px;
             justify-self: flex-end;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .line-1 {
+            transform: translateY(500px);
+            z-index: -1;
+          }
+
+          .line-2 {
+            display: none;
           }
         }
       `}</style>
