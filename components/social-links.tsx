@@ -24,6 +24,7 @@ const IconLink: FunctionComponent<IconLinkProps> = (props) => {
 
 type Props = {
   color: string
+  align?: 'flex-start' | 'flex-end' | 'center'
 }
 
 const SocialLinks: FunctionComponent<Props> = (props) => {
@@ -48,15 +49,9 @@ const SocialLinks: FunctionComponent<Props> = (props) => {
         .social-icons {
           display: grid;
           grid-auto-flow: column;
-          justify-content: flex-end;
-          align-items: center;
+          justify-content: flex-start;
+          align-items: ${props.align || 'center'};
           grid-gap: 1.5em;
-        }
-
-        @media ${minWidth(breakpoint.l)} {
-          .social-icons {
-            justify-content: flex-start;
-          }
         }
       `}</style>
     </div>

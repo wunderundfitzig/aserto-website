@@ -1,5 +1,6 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { footerBackgroundColors } from 'lib/colors'
+import { useWindowSize } from 'lib/use-window-size'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FunctionComponent } from 'react'
@@ -11,6 +12,7 @@ type Props = {
 }
 const Footer: FunctionComponent<Props> = (props) => {
   const router = useRouter()
+  const { width } = useWindowSize()
   const rootPath = router.pathname.split('/').slice(1)[0]
   const backgroundColor = (footerBackgroundColors as Record<string, string>)[
     rootPath
@@ -31,7 +33,7 @@ const Footer: FunctionComponent<Props> = (props) => {
       <div className='logo'>
         <AsertoLogo />
       </div>
-      <address className='adress'>
+      <address className='address'>
         aserto GmnH & Co. KG
         <br />
         Kriegerstr. 44 <br />
@@ -44,15 +46,15 @@ const Footer: FunctionComponent<Props> = (props) => {
         <br />
         0511 515678 0
       </address>
-      <address className='scial-icons'>
+      <address className='social-icons'>
         <SocialLinks color='black' />
       </address>
       <nav title='footer navigation' className='footer-navigation'>
-        <Link href='/kontakt'>
-          <a>Kontakt / Impressum</a>
-        </Link>
         <Link href='/datenschutz'>
           <a>Datenschutz</a>
+        </Link>
+        <Link href='/kontakt'>
+          <a>Kontakt / Impressum</a>
         </Link>
       </nav>
       <style jsx>{`
@@ -62,9 +64,13 @@ const Footer: FunctionComponent<Props> = (props) => {
           grid-area: ${props.gridArea};
           display: grid;
           grid-gap: 2em;
+          grid-template-columns: 1fr 1fr;
+          grid-template-areas:
+            'logo     logo'
+            'address  nav'
+            'contact  social';
           line-height: 1.5em;
           font-size: 0.8em;
-          grid-auto-flow: row;
           padding: 3rem 0;
           margin-top: -2rem;
         }
@@ -79,21 +85,47 @@ const Footer: FunctionComponent<Props> = (props) => {
           overflow: visible;
         }
 
-        address {
-          font-style: normal;
+        .address {
+          grid-area: address;
+        }
+
+        .contact {
+          grid-area: contact;
         }
 
         .logo {
           width: 50px;
+          grid-area: logo;
+        }
+
+        .social-icons {
+          grid-area: social;
         }
 
         .footer-navigation {
+          grid-area: nav;
           align-self: start;
           display: grid;
         }
 
+        address {
+          font-style: normal;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .footer {
+            grid-template-rows: auto auto;
+            grid-template-columns: auto auto 1fr auto;
+
+            grid-template-areas:
+              'logo logo logo logo'
+              'address contact social nav';
+          }
+        }
+
         @media ${minWidth(breakpoint.l)} {
           .footer {
+            grid-template-areas: 'logo address contact social nav';
             grid-template-columns: 50px auto auto 1fr auto;
             align-items: start;
             grid-gap: 5em;
