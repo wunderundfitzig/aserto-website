@@ -242,6 +242,32 @@ export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
   )
 }
 
+export const CutLine: FunctionComponent<CurveProps & { rotate: number }> = (
+  props
+) => {
+  return (
+    <svg
+      aria-hidden
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 100 100'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <line
+        x1={0}
+        y1={100}
+        x2={10000}
+        y2={100}
+        fill='none'
+        transform={`rotate(${props.rotate}, 0, 100)`}
+        stroke={props.color}
+        strokeLinecap='round'
+      />
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
+    </svg>
+  )
+}
+
 export const CheckmarkLine: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 125 100'>

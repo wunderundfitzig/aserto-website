@@ -45,7 +45,6 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
 
         .title-wrapper {
           grid-area: title;
-          text-align: center;
           margin-top: 2em;
           margin-bottom: 2.5rem;
           max-width: 28rem;
