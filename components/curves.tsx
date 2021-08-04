@@ -22,6 +22,11 @@ export const formatAlignment = (alignment?: Alignment): string | undefined => {
 }
 
 const svgStyle = css`
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
   svg {
     display: block;
     width: 100%;
@@ -29,6 +34,15 @@ const svgStyle = css`
     overflow: visible;
     stroke-width: 6px;
     pointer-events: none;
+  }
+
+  path,
+  line {
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 5000;
+    stroke-dashoffset: 5000;
+    animation: dash 3s linear forwards;
+    animation-delay: 1s;
   }
 
   @media ${minWidth(breakpoint.ml)} {
@@ -41,13 +55,6 @@ const svgStyle = css`
     svg {
       stroke-width: 10px;
     }
-  }
-`
-
-const pathStyle = css`
-  path,
-  line {
-    vector-effect: non-scaling-stroke;
   }
 `
 
@@ -69,7 +76,6 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
         />
       </g>
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -90,7 +96,6 @@ export const MobileFrontpageCurve: FunctionComponent<CurveProps> = (props) => {
       />
 
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -109,7 +114,6 @@ export const SimpleCutRoundCurve: FunctionComponent<CurveProps> = (props) => {
         d='M782.592 399.004C532.37 174.97 265.882-96.156 79.639 54.564-8.504 125.004 3.57 250.685 39.359 399.578'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -129,7 +133,6 @@ export const CornerCurve: FunctionComponent<CurveProps> = (props) => {
         d='M-496.378 1774.925S118.41 372.125 119.075 371.476c74.835-186.635 45.648-253.511-129.51-355.72'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -149,7 +152,6 @@ export const OpenCircle: FunctionComponent<CurveProps> = (props) => {
         d='M14.345 256.572C119.632 40.702 379.979-48.943 595.85 56.344 811.721 161.632 901.366 421.978 796.078 637.85 714.27 805.58 538.848 897.104 363.5 880.203 213.885 865.822 82.315 775.17 15.584 640.493'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -170,7 +172,6 @@ export const SkewedHalfCircle: FunctionComponent<CurveProps> = (props) => {
         strokeLinecap='round'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -191,7 +192,6 @@ export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
         strokeMiterlimit='10'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -211,7 +211,6 @@ export const RoundCurve: FunctionComponent<CurveProps> = (props) => {
         strokeLinecap='round'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -237,7 +236,20 @@ export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
         strokeLinecap='round'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
+      <style jsx>{`
+        @keyframes dash {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+        path,
+        line {
+          stroke-dasharray: 40000;
+          stroke-dashoffset: 40000;
+          animation: dash 20s linear forwards;
+          animation-delay: -9s;
+        }
+      `}</style>
     </svg>
   )
 }
@@ -263,7 +275,6 @@ export const CutLine: FunctionComponent<CurveProps & { rotate: number }> = (
         strokeLinecap='round'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -282,7 +293,6 @@ export const CheckmarkLine: FunctionComponent<CurveProps> = (props) => {
         d='M7-6L117.828 94 166 62.759'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -306,7 +316,6 @@ export const LeftRightTurnCurve: FunctionComponent<CurveProps> = (props) => {
         mask='url(#left-right-turn-curve-mask)'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
@@ -331,7 +340,6 @@ export const PurposeCurve: FunctionComponent<CurveProps> = (props) => {
         mask='url(#purpose-curve-mask)'
       />
       <style jsx>{svgStyle}</style>
-      <style jsx>{pathStyle}</style>
     </svg>
   )
 }
