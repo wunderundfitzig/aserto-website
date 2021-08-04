@@ -291,12 +291,12 @@ export const LeftRightTurnCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='110 -95 400 400'
+      viewBox='90 -170 400 500'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
       <mask id='left-right-turn-curve-mask'>
-        <rect x={110} y={-95} width={400} height={800} fill='white' />
-        <rect x={110} y={135} width={400} height={60} />
+        <rect x={0} y={-95} width={600} height={800} fill='white' />
+        <rect x={110} y={95} width={400} height={60} />
       </mask>
       <path
         d='M532.913 357.268s-154.24 102.816-154.45 102.866c-26.955 15.248-33.984 2.379-41.21-12.767-7.225-15.145-120.491-332.421-142.407-383.4-21.916-50.978-31.502-65.76-78.586-37.84-47.083 27.918-104.753 61.93-104.753 61.93'

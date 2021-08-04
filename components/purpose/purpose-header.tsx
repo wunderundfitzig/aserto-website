@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
-import { breakpoint } from 'lib/breakpoints'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
 import { LeftRightTurnCurve } from 'components/curves'
 
@@ -36,8 +36,20 @@ const PurposeHeader: FunctionComponent = () => {
           top: -2rem;
           left: -2rem;
           width: calc(100% + 4rem);
-          padding-bottom: 100%;
+          padding-bottom: 130%;
           z-index: -1;
+        }
+
+        .header-image::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 300px;
+          z-index: 1;
+          background: linear-gradient(
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0)
+          );
         }
 
         .mobile-curve {
@@ -47,11 +59,67 @@ const PurposeHeader: FunctionComponent = () => {
           height: 100%;
         }
 
-        @media ${breakpoint.l} {
+        @media ${minWidth(breakpoint.xs)} {
           .header-image {
-            width: 100%;
+            padding-bottom: 80%;
+          }
+
+          .mobile-curve :global(path) {
+            transform: translateX(25px);
+          }
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          .header-image {
+            padding-bottom: 60%;
+          }
+
+          .mobile-curve :global(path) {
+            transform: translate(25px, 10px);
+          }
+        }
+
+        @media ${minWidth(breakpoint.ml)} {
+          .header-image {
+            top: -8rem;
+            padding-bottom: 70%;
+          }
+
+          .header-image::before {
+            height: 300px;
+            background: linear-gradient(
+              rgba(255, 255, 255, 0.8) 0%,
+              rgba(255, 255, 255, 0.7) 20%,
+              rgba(255, 255, 255, 0)
+            );
+          }
+
+          .mobile-curve :global(path) {
+            transform: translate(25px, 0px);
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .header-image {
+            width: calc(100% + 3rem);
             height: 600px;
             top: -9rem;
+            left: -3rem;
+          }
+
+          .header-image::before {
+            display: none;
+          }
+
+          .mobile-curve {
+            display: none;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .header-image {
+            width: calc(100% + 2rem);
+            left: -2rem;
           }
         }
       `}</style>
