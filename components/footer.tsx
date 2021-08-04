@@ -1,6 +1,5 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { footerBackgroundColors } from 'lib/colors'
-import { useWindowSize } from 'lib/use-window-size'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FunctionComponent } from 'react'
@@ -12,7 +11,6 @@ type Props = {
 }
 const Footer: FunctionComponent<Props> = (props) => {
   const router = useRouter()
-  const { width } = useWindowSize()
   const rootPath = router.pathname.split('/').slice(1)[0]
   const backgroundColor = (footerBackgroundColors as Record<string, string>)[
     rootPath
