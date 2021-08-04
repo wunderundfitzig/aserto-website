@@ -31,17 +31,37 @@ const PurposeHeader: FunctionComponent = () => {
           />
         </div>
       </div>
+      <div className='text-box'>
+        <p>
+          Wir leben in einem Zeitalter der digitalen Transformation, in dem
+          Unternehmen durch richtungsweisende Entscheidungen den Wandel aktiv
+          mitgestalten können. Daraus ergibt sich ein enormes Potenzial für die
+          Zukunft, beispielsweise in Bezug auf die Entstehung neuer
+          Geschäftsmodelle. Gleichzeitig kann der digitale Transformationsdruck
+          aber auch Unsicherheiten auslösen. Uns stehen immer mehr Daten zur
+          Verfügung. In dieser Flut an Informationen und Meinungen fällt es
+          jedoch keineswegs leicht, die richtigen Entscheidungen abzuleiten.
+        </p>
+      </div>
 
       <style jsx>{`
         header {
           position: relative;
-          height: 1000px;
+          display: grid;
+          grid-template-areas:
+            'image'
+            'text';
+          margin-bottom: 6rem;
+        }
+
+        h1 {
+          grid-area: image;
         }
 
         .header-image {
-          position: absolute;
-          top: -2rem;
+          position: relative;
           left: -2rem;
+          grid-area: image;
           width: calc(100% + 4rem);
           padding-bottom: 130%;
           z-index: -1;
@@ -71,6 +91,11 @@ const PurposeHeader: FunctionComponent = () => {
           display: none;
         }
 
+        .text-box {
+          grid-area: text;
+          margin-top: 40vw;
+        }
+
         @media ${minWidth(breakpoint.xs)} {
           .header-image {
             padding-bottom: 70%;
@@ -78,6 +103,23 @@ const PurposeHeader: FunctionComponent = () => {
 
           .mobile-curve :global(path) {
             transform: translateX(25px);
+          }
+
+          .text-box {
+            margin-top: 30vw;
+          }
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .text-box {
+            margin-top: 25vw;
+            max-width: 25rem;
+          }
+        }
+
+        @media ${minWidth(breakpoint.sm)} {
+          .text-box {
+            margin-top: 6rem;
           }
         }
 
@@ -89,8 +131,7 @@ const PurposeHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.ml)} {
           .header-image {
-            top: -8rem;
-
+            margin-top: -8rem;
             padding-bottom: 70%;
           }
           .header-image::before {
@@ -108,7 +149,7 @@ const PurposeHeader: FunctionComponent = () => {
         @media ${minWidth(breakpoint.l)} {
           .header-image {
             width: calc(100% + 3rem);
-            top: -9rem;
+            margin-top: -9rem;
             left: -3rem;
             padding-bottom: 75%;
           }
@@ -123,6 +164,11 @@ const PurposeHeader: FunctionComponent = () => {
 
           .desctop-curve {
             display: block;
+          }
+
+          .text-box {
+            max-width: 30rem;
+            margin-top: 8rem;
           }
         }
 
