@@ -310,3 +310,28 @@ export const LeftRightTurnCurve: FunctionComponent<CurveProps> = (props) => {
     </svg>
   )
 }
+
+export const PurposeCurve: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='1450 340 1440 1100'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <mask id='purpose-curve-mask'>
+        <rect x={0} y={0} width={5000} height={2000} fill='white' />
+        <rect className='dot-mask' x={1600} y={920} width={500} height={130} />
+        <rect x={2300} y={1000} width={590} height={440} />
+      </mask>
+      <path
+        d='M5351.854 98.31S2312.816 1513.966 2312.237 1514.087c-74.501 36.927-93.741 6.116-113.501-30.158s-328.624-796.597-388.5-918.715-86.148-157.495-216.289-89.913S7.006 1409.255 7.006 1409.255'
+        fill='none'
+        stroke={props.color}
+        strokeLinecap='round'
+        mask='url(#purpose-curve-mask)'
+      />
+      <style jsx>{svgStyle}</style>
+      <style jsx>{pathStyle}</style>
+    </svg>
+  )
+}

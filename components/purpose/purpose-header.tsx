@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
-import { LeftRightTurnCurve } from 'components/curves'
+import { LeftRightTurnCurve, PurposeCurve } from 'components/curves'
 
 import purposeHeaderImage from 'public/images/purpose-header.jpg'
 
@@ -18,8 +18,14 @@ const PurposeHeader: FunctionComponent = () => {
           objectFit='cover'
           objectPosition='center'
         />
-        <div className='mobile-curve'>
+        <div className='curve mobile-curve'>
           <LeftRightTurnCurve
+            color={categoryColors.purpose}
+            preserveAspectRatio='none'
+          />
+        </div>
+        <div className='curve desctop-curve'>
+          <PurposeCurve
             color={categoryColors.purpose}
             preserveAspectRatio='none'
           />
@@ -29,6 +35,7 @@ const PurposeHeader: FunctionComponent = () => {
       <style jsx>{`
         header {
           position: relative;
+          height: 1000px;
         }
 
         .header-image {
@@ -52,16 +59,21 @@ const PurposeHeader: FunctionComponent = () => {
           );
         }
 
-        .mobile-curve {
+        .curve {
           position: absolute;
           top: 0;
           width: 100%;
           height: 100%;
+          z-index: 2;
+        }
+
+        .desctop-curve {
+          display: none;
         }
 
         @media ${minWidth(breakpoint.xs)} {
           .header-image {
-            padding-bottom: 80%;
+            padding-bottom: 70%;
           }
 
           .mobile-curve :global(path) {
@@ -73,27 +85,21 @@ const PurposeHeader: FunctionComponent = () => {
           .header-image {
             padding-bottom: 60%;
           }
-
-          .mobile-curve :global(path) {
-            transform: translate(25px, 10px);
-          }
         }
 
         @media ${minWidth(breakpoint.ml)} {
           .header-image {
             top: -8rem;
+
             padding-bottom: 70%;
           }
-
           .header-image::before {
             height: 300px;
             background: linear-gradient(
-              rgba(255, 255, 255, 0.8) 0%,
-              rgba(255, 255, 255, 0.7) 20%,
+              rgba(255, 255, 255, 0.7) 0%,
               rgba(255, 255, 255, 0)
             );
           }
-
           .mobile-curve :global(path) {
             transform: translate(25px, 0px);
           }
@@ -102,9 +108,9 @@ const PurposeHeader: FunctionComponent = () => {
         @media ${minWidth(breakpoint.l)} {
           .header-image {
             width: calc(100% + 3rem);
-            height: 600px;
             top: -9rem;
             left: -3rem;
+            padding-bottom: 75%;
           }
 
           .header-image::before {
@@ -114,12 +120,31 @@ const PurposeHeader: FunctionComponent = () => {
           .mobile-curve {
             display: none;
           }
+
+          .desctop-curve {
+            display: block;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .header-image {
+            padding-bottom: 65%;
+          }
+
+          .desctop-curve :global(.dot-mask) {
+            transform: translateY(20px);
+          }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
           .header-image {
-            width: calc(100% + 2rem);
-            left: -2rem;
+            width: calc(100% + 5rem);
+            left: -5rem;
+            padding-bottom: 55%;
+          }
+
+          .desctop-curve :global(.dot-mask) {
+            transform: translateY(35px);
           }
         }
       `}</style>
