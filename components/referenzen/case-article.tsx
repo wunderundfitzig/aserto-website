@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react'
-import * as colors from 'lib/colors'
-import Statement from 'components/statement'
+import { categoryColors } from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import Statement from 'components/statement'
+import Motto from 'components/motto'
 
 type Props = {
   case: {
@@ -22,19 +23,26 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
     >
       <div className='inner'>
         <header>
-          <p className='roofline'>
-            {props.case.client} – {props.case.category}
-          </p>
-          <h3>{props.case.title}</h3>
+          <Motto color={categoryColors.referenzen}>
+            {{
+              roofline: (
+                <p className='roofline'>
+                  {props.case.client} – {props.case.category}
+                </p>
+              ),
+              title: <h3>{props.case.title}</h3>,
+            }}
+          </Motto>
+          <p className='roofline'></p>
         </header>
         <main className='statements'>
-          <Statement color={colors.categoryColors.referenzen}>
+          <Statement color={categoryColors.referenzen}>
             {{
               title: <h4>Die Herausforderung</h4>,
               content: <p>{props.case.task}</p>,
             }}
           </Statement>
-          <Statement color={colors.categoryColors.referenzen}>
+          <Statement color={categoryColors.referenzen}>
             {{
               title: <h4>Die Lösung</h4>,
               content: <p>{props.case.solution}</p>,
@@ -58,18 +66,6 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
           opacity: 1;
         }
 
-        .roofline {
-          font-size: 0.9em;
-          margin: 0 0 0.3em;
-          font-weight: 200;
-        }
-
-        h3 {
-          font-weight: 600;
-          color: ${colors.categoryColors.referenzen};
-          font-size: 1.2em;
-        }
-
         .statements {
           display: grid;
           grid-template-rows: auto auto;
@@ -91,14 +87,13 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.sm)} {
-          .roofline {
+          p.roofline {
             margin-top: 3em;
           }
 
           h3 {
             max-width: 30em;
             margin-bottom: 3em;
-            font-size: 1.4em;
           }
         }
 
