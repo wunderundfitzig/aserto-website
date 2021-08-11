@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
-import Sloagan from 'components/sloagan'
+import Slogan from 'components/slogan'
 import { TriangleLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import HeaderBackground from 'components/header-background'
@@ -16,7 +16,7 @@ const TeamHeader: FunctionComponent = () => {
       />
       <h1>Team</h1>
       <div className='sloagen-wrapper'>
-        <Sloagan emphasisColor={colors.lightBlue}>
+        <Slogan emphasisColor={colors.lightBlue}>
           {{
             sloagen: (
               <>
@@ -25,7 +25,7 @@ const TeamHeader: FunctionComponent = () => {
               </>
             ),
           }}
-        </Sloagan>
+        </Slogan>
       </div>
       <div className='image'>
         <Image

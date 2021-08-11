@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
-import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import List from 'components/list'
+import { categoryColors } from 'lib/colors'
 
 const WasUnsAusmacht: FunctionComponent = () => {
   return (
@@ -27,7 +27,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
           Durch belastbare, verständliche Erkenntnisse und durch einen
           wertschätzenden, verbindlichen Dialog mit den Beteiligten.
         </p>
-        <List color={colors.lightGreen}>
+        <List color={categoryColors.leistungen}>
           <>Consulting</>
           <>Data-Science</>
           <>Medienmonitoring- und Analyse</>

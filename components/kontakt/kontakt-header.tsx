@@ -1,7 +1,7 @@
 import HeaderBackground from 'components/header-background'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
-import Sloagan from 'components/sloagan'
+import Slogan from 'components/slogan'
 import { CheckmarkLine } from 'components/curves'
 
 const KontaktHeader: FunctionComponent = () => {
@@ -17,7 +17,7 @@ const KontaktHeader: FunctionComponent = () => {
       </div>
       <div className='inner'>
         <h1>Kontakt</h1>
-        <Sloagan emphasisColor={colors.grey}>
+        <Slogan emphasisColor={colors.grey}>
           {{
             sloagen: (
               <>
@@ -31,7 +31,7 @@ const KontaktHeader: FunctionComponent = () => {
               </>
             ),
           }}
-        </Sloagan>
+        </Slogan>
       </div>
 
       <style jsx>{`

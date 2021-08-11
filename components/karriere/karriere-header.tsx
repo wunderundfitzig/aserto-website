@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
-import Sloagan from 'components/sloagan'
+import Slogan from 'components/slogan'
 import { EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
@@ -10,7 +10,7 @@ const KarriereHeader: FunctionComponent = () => {
     <header className='karriere-header'>
       <h1>Karriere</h1>
       <div className='slogan'>
-        <Sloagan emphasisColor={colors.categoryColors.karriere}>
+        <Slogan emphasisColor={colors.categoryColors.karriere}>
           {{
             sloagen: (
               <>
@@ -18,7 +18,7 @@ const KarriereHeader: FunctionComponent = () => {
               </>
             ),
           }}
-        </Sloagan>
+        </Slogan>
       </div>
       <div className='image'>
         <Image

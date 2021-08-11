@@ -1,5 +1,5 @@
 import { OpenCircle } from 'components/curves'
-import Sloagan from 'components/sloagan'
+import Slogan from 'components/slogan'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
@@ -8,7 +8,7 @@ const LeistungenHeader: FunctionComponent = () => {
   return (
     <header className='leistungen-header'>
       <h1>Leistungen</h1>
-      <Sloagan emphasisColor={colors.green}>
+      <Slogan emphasisColor={colors.green}>
         {{
           sloagen: (
             <>
@@ -19,7 +19,7 @@ const LeistungenHeader: FunctionComponent = () => {
             </>
           ),
         }}
-      </Sloagan>
+      </Slogan>
       <div className='open-circle'>
         <OpenCircle
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Mid', fit: 'slice' }}

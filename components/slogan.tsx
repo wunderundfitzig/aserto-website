@@ -8,20 +8,20 @@ type Props = {
     sloagen: ReactNode
   }
 }
-const Sloagan: FunctionComponent<Props> = (props) => {
+const Slogan: FunctionComponent<Props> = (props) => {
   return (
     <div>
       {props.children.roofline && (
         <p className='roofline'>{props.children.roofline}</p>
       )}
-      <p className='sloagen'>{props.children.sloagen}</p>
+      <p className='slogan'>{props.children.sloagen}</p>
       <style jsx>{`
         .roofline {
           font-size: 1em;
           text-transform: uppercase;
           margin: 0 0 0.2em;
         }
-        .sloagen {
+        .slogan {
           font-family: 'Usherwood';
           font-size: 1.6em;
           line-height: 1.4em;
@@ -29,19 +29,19 @@ const Sloagan: FunctionComponent<Props> = (props) => {
           margin: 0;
         }
 
-        .sloagen :global(em) {
+        .slogan :global(em) {
           color: ${props.emphasisColor};
           font-style: normal;
         }
 
         @media ${minWidth(breakpoint.s)} {
-          .sloagen {
+          .slogan {
             font-size: 1.8em;
           }
         }
 
         @media ${minWidth(breakpoint.ml)} {
-          .sloagen {
+          .slogan {
             font-size: 2.2em;
           }
         }
@@ -50,7 +50,7 @@ const Sloagan: FunctionComponent<Props> = (props) => {
           .roofline {
             font-size: 0.8em;
           }
-          .sloagen {
+          .slogan {
             font-size: 2.5em;
           }
         }
@@ -59,4 +59,4 @@ const Sloagan: FunctionComponent<Props> = (props) => {
   )
 }
 
-export default Sloagan
+export default Slogan
