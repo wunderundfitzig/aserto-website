@@ -51,7 +51,7 @@ const PurposeHeader: FunctionComponent = () => {
           grid-template-areas:
             'image'
             'text';
-          margin-bottom: 6rem;
+          margin-bottom: 4rem;
         }
 
         h1 {

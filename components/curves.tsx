@@ -12,6 +12,7 @@ type Alignment =
 
 type CurveProps = {
   color: string
+  className?: string
   preserveAspectRatio?: Alignment
 }
 
@@ -338,6 +339,25 @@ export const PurposeCurve: FunctionComponent<CurveProps> = (props) => {
         stroke={props.color}
         strokeLinecap='round'
         mask='url(#purpose-curve-mask)'
+      />
+      <style jsx>{svgStyle}</style>
+    </svg>
+  )
+}
+
+export const DownhillCurve: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='500 450 1100 1750'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+      className={props.className}
+    >
+      <path
+        d='M20.667 378.483s550.746 141.872 551.527 142.376c125.741 33.761 137.462 74.2 137.374 259.926s3.8 178.102 6.999 277.491 60.04 153.148 146.292 153.224 343.324-9.422 421.319-12.73 163.906-7.998 173.072 109.448 81.68 856.77 81.68 856.77'
+        fill='none'
+        stroke={props.color}
+        strokeLinecap='round'
       />
       <style jsx>{svgStyle}</style>
     </svg>

@@ -9,14 +9,13 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 const MenschenUndDaten: FunctionComponent = () => {
   return (
     <section className='menschen-und-daten'>
+      <h2>Es braucht Menschen und Daten:</h2>
       <div className='image'>
         <Image src={officeImage} layout='fill' objectFit='cover' alt='' />
       </div>
-      <h2>Es braucht Menschen und Daten:</h2>
       <div className='text'>
         <p>
           Diese Erkenntnis hat uns zur Gründung von aserto im Jahr 2003 bewegt.
-          <br />
           Unsere Vision war und ist es:
         </p>
         <List color={categoryColors.purpose}>
@@ -30,23 +29,23 @@ const MenschenUndDaten: FunctionComponent = () => {
         section {
           display: grid;
           grid-template-areas:
-            'image'
             'title'
+            'image'
             'text';
         }
 
         .image {
-          grid-area: image;
           position: relative;
+          grid-area: image;
           width: 100%;
           max-height: 0;
-          padding-bottom: 50%;
+          padding-bottom: 80%;
           overflow: hidden;
         }
 
         h2 {
           grid-area: title;
-          margin-top: 2rem;
+          width: calc(100% - 3rem);
         }
 
         .text {
@@ -56,6 +55,12 @@ const MenschenUndDaten: FunctionComponent = () => {
 
         .text p {
           margin-bottom: 3rem;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .image {
+            padding-bottom: 50%;
+          }
         }
 
         @media ${minWidth(breakpoint.m)} {
