@@ -5,6 +5,7 @@ import { FunctionComponent } from 'react'
 const Quotes: FunctionComponent = () => {
   return (
     <section className='quotes'>
+      <h2>Was braucht es, um zukunftsweisende Entscheidungen zu treffen?</h2>
       <figure>
         <Motto color={categoryColors.purpose} align='right'>
           {{
@@ -18,8 +19,6 @@ const Quotes: FunctionComponent = () => {
           }}
         </Motto>
       </figure>
-
-      <h2>Was braucht es, um zukunftsweisende Entscheidungen zu treffen?</h2>
       <figure>
         <Motto color={categoryColors.purpose}>
           {{

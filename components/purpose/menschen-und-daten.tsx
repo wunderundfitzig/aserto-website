@@ -40,7 +40,7 @@ const MenschenUndDaten: FunctionComponent = () => {
           position: relative;
           width: 100%;
           max-height: 0;
-          padding-bottom: 120%;
+          padding-bottom: 50%;
           overflow: hidden;
         }
 
@@ -66,6 +66,11 @@ const MenschenUndDaten: FunctionComponent = () => {
             grid-template-areas:
               'title title'
               'text  image';
+          }
+
+          .image {
+            position: relative;
+            padding-bottom: 120%;
           }
 
           h2 {
