@@ -1,6 +1,8 @@
-import { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
+import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import List from 'components/list'
 
 const WasUnsAusmacht: FunctionComponent = () => {
   return (
@@ -25,6 +27,11 @@ const WasUnsAusmacht: FunctionComponent = () => {
           Durch belastbare, verständliche Erkenntnisse und durch einen
           wertschätzenden, verbindlichen Dialog mit den Beteiligten.
         </p>
+        <List color={colors.lightGreen}>
+          <>Consulting</>
+          <>Data-Science</>
+          <>Medienmonitoring- und Analyse</>
+        </List>
       </div>
 
       <style jsx>{`
@@ -59,6 +66,10 @@ const WasUnsAusmacht: FunctionComponent = () => {
 
         .text-block p {
           margin-top: 0;
+        }
+
+        .text-block p:last-of-type {
+          margin-bottom: 3rem;
         }
 
         @media ${minWidth(breakpoint.s)} {

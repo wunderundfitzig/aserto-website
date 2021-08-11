@@ -243,6 +243,7 @@ const GrowingDot: FunctionComponent = () => {
 
         .section p {
           font-size: 0.9em;
+          line-height: 1.5em;
           color: white;
           text-align: center;
           margin: 1em 0 0;

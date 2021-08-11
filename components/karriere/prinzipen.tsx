@@ -27,10 +27,11 @@ const Prinzipen: FunctionComponent = () => {
             title: <h3>Offenheit und Wertschätzung</h3>,
             content: (
               <p>
-                gegenüber Kolleg*innen und Kund*innen prägen unseren Umgang. Von
-                Geschäftsführung bis zu Praktikant*innen begegnen wir uns auf
-                Augenhöhe, haben ein offenes Ohr füreinander, disktutieren über
-                Ideen und finden gemeinsam Lösungen.
+                Offenheit und Wertschätzung gegenüber Kolleg*innen und
+                Kund*innen prägen unseren Umgang. Von Geschäftsführung bis zu
+                Praktikant*innen begegnen wir uns auf Augenhöhe, haben ein
+                offenes Ohr füreinander, disktutieren über Ideen und finden
+                gemeinsam Lösungen.
               </p>
             ),
           }}
@@ -42,13 +43,10 @@ const Prinzipen: FunctionComponent = () => {
       <div className='statement statement-2'>
         <Statement color={categoryColors.karriere}>
           {{
-            title: (
-              <h3>
-                Daneben steht die fachliche und persönliche Weiterentwicklung
-              </h3>
-            ),
+            title: <h3>Fachliche und persönliche Weiterentwicklung</h3>,
             content: (
               <p>
+                Daneben steht die fachliche und persönliche Weiterentwicklung
                 unserer Mitarbeiter*innen im Fokus. So haben z.B. einige unserer
                 Kolleg*innen eine Fortbildung zum systemischen Berater oder
                 Projektmanager absolviert. Damit dies alles möglich ist,
@@ -64,10 +62,10 @@ const Prinzipen: FunctionComponent = () => {
             title: <h3>Dynamische Kundenprojekte</h3>,
             content: (
               <p>
-                heißt bei uns, dass wir uns schnell und tief in neue Themen
-                einarbeiten können, und das bei verschiedenen Timings. Neben
-                heißen Projektphasen gibt es dann aber auch wieder ruhige
-                Phasen.
+                Dynamische Kundenprojekte heißt bei uns, dass wir uns schnell
+                und tief in neue Themen einarbeiten können, und das bei
+                verschiedenen Timings. Neben heißen Projektphasen gibt es dann
+                aber auch wieder ruhige Phasen.
               </p>
             ),
           }}
@@ -76,12 +74,12 @@ const Prinzipen: FunctionComponent = () => {
       <div className='statement statement-4'>
         <Statement color={categoryColors.karriere}>
           {{
-            title: <h3>Denn Work-Life-Balance</h3>,
+            title: <h3>Work-Life-Balance</h3>,
             content: (
               <p>
-                wird bei uns ernstgenommen und wir möchten, dass unsere
-                Kolleg*innen genügend Zeit haben, um die Akkus wieder
-                aufzuladen.
+                Denn Work-Life-Balance wird bei uns ernstgenommen und wir
+                möchten, dass unsere Kolleg*innen genügend Zeit haben, um die
+                Akkus wieder aufzuladen.
               </p>
             ),
           }}
@@ -93,14 +91,14 @@ const Prinzipen: FunctionComponent = () => {
       <div className='statement statement-5'>
         <Statement color={categoryColors.karriere}>
           {{
-            title: <h3>Denn TEAMWORK</h3>,
+            title: <h3>Teamwork</h3>,
             content: (
               <p>
-                wird bei aserto großgeschrieben. Das heiß auch, dass wir in
-                kleinen Projektteams arbeiten, uns gegenseitig vertreten und
-                feste Ansprechpartner*innen haben. Unsere geringe Fluktuation
-                und eine durchschnittliche Betriebszugehörigkeit von X Jahren
-                bestätigen das.
+                Denn Teamwork wird bei aserto großgeschrieben. Das heiß auch,
+                dass wir in kleinen Projektteams arbeiten, uns gegenseitig
+                vertreten und feste Ansprechpartner*innen haben. Unsere geringe
+                Fluktuation und eine durchschnittliche Betriebszugehörigkeit von
+                X Jahren bestätigen das.
               </p>
             ),
           }}
