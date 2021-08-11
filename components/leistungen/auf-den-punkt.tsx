@@ -20,14 +20,12 @@ const AufDenPunkt: FunctionComponent = () => {
 
       <div className='list'>
         <List color={categoryColors.leistungen}>
-          <li>Relevanz und Überzeugungskraft durch 18 Jahre Erfahrung.</li>
-          <li>
-            Hohe Systemkompetenz durch über 500 richtungsweisende Projekte.
-          </li>
-          <li>
+          <>Relevanz und Überzeugungskraft durch 18 Jahre Erfahrung.</>
+          <>Hohe Systemkompetenz durch über 500 richtungsweisende Projekte.</>
+          <>
             Strategischer Partner für Entscheider*innen aus Wirtschaft,
             Wissenschaft und Institutionen.
-          </li>
+          </>
         </List>
       </div>
       <div className='circle'>

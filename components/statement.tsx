@@ -4,14 +4,16 @@ type Props = {
   color: string
   children: {
     title: ReactElement
-    content: ReactElement
+    content?: ReactElement
   }
 }
 const Statement: FunctionComponent<Props> = (props) => {
   return (
     <div className='statement'>
       <div>{props.children.title}</div>
-      <div className='content'>{props.children.content}</div>
+      {props.children.content && (
+        <div className='content'>{props.children.content}</div>
+      )}
       <style jsx>{`
         .statement {
           position: relative;
@@ -20,7 +22,7 @@ const Statement: FunctionComponent<Props> = (props) => {
         .statement::before {
           position: absolute;
           left: 0;
-          top: -7px;
+          top: -6px;
           content: '';
           display: inline-block;
           width: 5px;

@@ -17,9 +17,9 @@ const UnserTeam: FunctionComponent = () => {
         unseren Blick und bereichern unsere Ergebnisse.
       </p>
       <List inline color={colors.lightBlue}>
-        <li>Consulting</li>
-        <li>Data-Science</li>
-        <li>Medienmonitoring- und Analyse</li>
+        <>Consulting</>
+        <>Data-Science</>
+        <>Medienmonitoring- und Analyse</>
       </List>
       <style jsx>{`
         h2 {
