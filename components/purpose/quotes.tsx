@@ -77,14 +77,6 @@ const Quotes: FunctionComponent = () => {
           padding: 0;
         }
 
-        blockquote::before {
-          content: '“';
-        }
-
-        blockquote::after {
-          content: '”';
-        }
-
         .quotes :global(.curve) {
           position: absolute;
           top: 6rem;
