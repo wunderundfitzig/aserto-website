@@ -17,6 +17,7 @@ const pds = new PoissonDiskSampling(
     shape: [49, 200],
     minDistance: 2,
     maxDistance: 3,
+    tries: 10,
   },
   rng
 )
@@ -47,10 +48,12 @@ export const AnimatedCurve: FunctionComponent = () => {
     [100, 220],
   ]
 
-  const scrolled = scrolledPixels + (height ?? 0)
-  const isRight = scrolled > 1000 && scrolled < 1800
+  const scrolled = scrolledPixels + (height ? height / 2 : 0)
+  const isRight = scrolled > 500 && scrolled < 1300
+  const scrolledToDotsAnimation = scrolled > 700
 
   useEffect(() => {
+    if (dotsOnCurve.length === 0) return
     pds.reset()
     dotsOnCurve.forEach((dot) => {
       pds.addPoint(unproject(dot, dottedLineVisualisationOffset))
@@ -65,7 +68,7 @@ export const AnimatedCurve: FunctionComponent = () => {
   useEffect(() => {
     if (curveRef.current === null) return
     const curveLength = curveRef.current.getTotalLength()
-    let length = 0
+    let length = 3
     const step = 3
     const dots: Point[] = []
     while (length < curveLength) {
@@ -79,17 +82,18 @@ export const AnimatedCurve: FunctionComponent = () => {
   }, [])
 
   useEffect(() => {
+    if (!scrolledToDotsAnimation) {
+      setVisibleDotsCount(0)
+      return
+    }
     if (visibleDotsCount >= dotsOnCurve.length) return
-    setTimeout(
-      () => setVisibleDotsCount(visibleDotsCount + 1),
-      visibleDotsCount === 0 ? 2000 : 100
-    )
-  }, [dotsOnCurve, visibleDotsCount])
+    setTimeout(() => setVisibleDotsCount(visibleDotsCount + 1), 100)
+  }, [dotsOnCurve, visibleDotsCount, scrolledToDotsAnimation])
 
   return (
     <section ref={wrapperRef} className='animated-curve'>
       <div className={`scroller ${isRight ? 'right' : 'left'}`}>
-        <h2>Dafür braucht es Menschen und Daten</h2>
+        <h2>Dafür braucht es…</h2>
         <div className='row left'>
           <div className='image-wrapper'>
             <Image src={image1} layout='fill' alt='' objectFit='cover' />
