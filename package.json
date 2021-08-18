@@ -25,6 +25,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-markdown": "^6.0.2",
+    "seedrandom": "^3.0.5",
     "uninstall": "^0.0.0"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@types/lodash": "^4.14.168",
     "@types/poisson-disk-sampling": "^2.2.0",
     "@types/react": "^17.0.3",
+    "@types/seedrandom": "^3.0.1",
     "@types/styled-jsx": "^2.2.8",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "cli-real-favicon": "^0.0.8",

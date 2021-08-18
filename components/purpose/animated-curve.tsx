@@ -1,120 +1,96 @@
 import { FunctionComponent, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import PoissonDiskSampling from 'poisson-disk-sampling'
+import seedrandom from 'seedrandom'
 import * as colors from 'lib/colors'
 import { useScrolledPixels } from 'lib/use-scrolled-pixels'
 
 import image1 from 'public/images/purpose-1.jpg'
 import image2 from 'public/images/purpose-2.jpg'
 import image3 from 'public/images/purpose-3.jpg'
+import { curvedPath } from 'lib/curved-path'
+import { useWindowSize } from 'lib/use-window-size'
 
-const pds = new PoissonDiskSampling({
-  shape: [50, 165],
-  minDistance: 2,
-  maxDistance: 3,
-  tries: 10,
-})
+const rng = seedrandom('seed')
+const pds = new PoissonDiskSampling(
+  {
+    shape: [49, 200],
+    minDistance: 2,
+    maxDistance: 3,
+  },
+  rng
+)
 
-// this is from https://bl.ocks.org/1wheel/ac027026e8e73bab7b65cfe17e257140
-function curvedPath(data: [number, number][], p: number) {
-  return (
-    'M' +
-    data
-      .map((d, i) => {
-        if (!i) return d.join(' ')
-        if (i == data.length - 1) return 'L ' + d.join(' ')
-
-        const [x0, y0] = data[i - 1]
-        const [x1, y1] = data[i + 0]
-        const [x2, y2] = data[i + 1]
-
-        return [
-          'L',
-          lerp(x1, x0, p),
-          lerp(y1, y0, p),
-          'C',
-          d.join(' '),
-          d.join(' '),
-          lerp(x1, x2, p),
-          lerp(y1, y2, p),
-        ].join(' ')
-      })
-      .join(' ')
-  )
-}
-
-function lerp(a: number, b: number, t: number) {
-  return a + t * (b - a)
-}
-
-type Dot = { cx: number; cy: number }
 type Point = [number, number]
+
+const dottedLineVisualisationOffset = { x: 101, y: 1 }
+function project(point: Point, offset: { x: number; y: number }): Point {
+  return [point[0] + offset.x, point[1] + offset.y]
+}
+function unproject(point: Point, offset: { x: number; y: number }): Point {
+  return [point[0] - offset.x, point[1] - offset.y]
+}
 
 export const AnimatedCurve: FunctionComponent = () => {
   const wrapperRef = useRef(null)
+  const { height } = useWindowSize()
   const scrolledPixels = useScrolledPixels(wrapperRef)
   const curveRef = useRef<SVGPathElement | null>(null)
-  const [dots, setDots] = useState<Dot[]>([])
-  const [points, setPoints] = useState<Point[]>([])
+  const [backgroundDots, setBackgroundDots] = useState<Point[]>([])
+  const [dotsOnCurve, setDotsOnCurve] = useState<Point[]>([])
   const [visibleDotsCount, setVisibleDotsCount] = useState(0)
   const curvePoints: [number, number][] = [
-    [65, 0],
+    [65, 2],
     [30, 48],
     [145, 115],
     [50, 180],
     [100, 220],
   ]
 
-  const isRight = scrolledPixels > 200 && scrolledPixels < 900
+  const scrolled = scrolledPixels + (height ?? 0)
+  const isRight = scrolled > 1000 && scrolled < 1800
 
   useEffect(() => {
     pds.reset()
-    dots.forEach((dot) => {
-      pds.addPoint([dot.cx - 100, dot.cy - 60])
+    dotsOnCurve.forEach((dot) => {
+      pds.addPoint(unproject(dot, dottedLineVisualisationOffset))
     })
-    const points = pds.getAllPoints() as Point[]
     pds.fill()
-    setPoints(points)
-  }, [dots])
+    const points = pds.getAllPoints() as Point[]
+    setBackgroundDots(
+      points.map((point) => project(point, dottedLineVisualisationOffset))
+    )
+  }, [dotsOnCurve])
 
   useEffect(() => {
     if (curveRef.current === null) return
     const curveLength = curveRef.current.getTotalLength()
-    let length = 2.6
+    let length = 0
     const step = 3
-    const dots: Dot[] = []
+    const dots: Point[] = []
     while (length < curveLength) {
       const point = curveRef.current.getPointAtLength(length)
       if (point.x > 101 && point.y < 190) {
-        dots.push({ cx: point.x, cy: point.y })
+        dots.push([point.x, point.y])
       }
       length += step
     }
-    setDots(dots)
+    setDotsOnCurve(dots)
   }, [])
 
   useEffect(() => {
-    if (visibleDotsCount >= dots.length) return
+    if (visibleDotsCount >= dotsOnCurve.length) return
     setTimeout(
       () => setVisibleDotsCount(visibleDotsCount + 1),
       visibleDotsCount === 0 ? 2000 : 100
     )
-  }, [dots, visibleDotsCount])
+  }, [dotsOnCurve, visibleDotsCount])
 
   return (
     <section ref={wrapperRef} className='animated-curve'>
-      <div className={`scroller ${isRight && 'right'}`}>
-        <svg className='background' viewBox='0 0 200 400'>
-          <rect
-            fill={colors.lightBeige}
-            x={100}
-            y={0}
-            width={100}
-            height={400}
-          />
-        </svg>
+      <div className={`scroller ${isRight ? 'right' : 'left'}`}>
         <h2>Dafür braucht es Menschen und Daten</h2>
-        <div className='row'>
+        <div className='row left'>
           <div className='image-wrapper'>
             <Image src={image1} layout='fill' alt='' objectFit='cover' />
           </div>
@@ -126,22 +102,20 @@ export const AnimatedCurve: FunctionComponent = () => {
             </p>
           </div>
         </div>
-
         <div className='row right'>
           <div></div>
           <div className='text'>
             <h3>Daten</h3>
             <p>
-              die mithilfe statistischer Methoden als Signale im Datenrauschen
-              sichtbar werden.
+              Daten, die mithilfe statistischer Methoden als Signale im
+              Datenrauschen sichtbar werden.
             </p>
           </div>
         </div>
-
-        <div className='row'>
+        <div className='row left'>
           <div className='text'>
             <h3>Menschen</h3>
-            <p>die Signale richtig deuten und in Beziehung setzen.</p>
+            <p>Menschen, die Signale richtig deuten und in Beziehung setzen.</p>
           </div>
           <div className='image-wrapper'>
             <Image src={image3} layout='fill' alt='' objectFit='cover' />
@@ -149,7 +123,11 @@ export const AnimatedCurve: FunctionComponent = () => {
         </div>
 
         <svg className='line' viewBox='0 0 200 400'>
+          <clipPath id='curve-clip-path'>
+            <path d='M 0 0 H 100 V 150 H 200 V 400 H 0 Z' />
+          </clipPath>
           <path
+            clipPath={isRight ? 'url(#curve-clip-path)' : ''}
             ref={curveRef}
             d={curvedPath(curvePoints, 0.2)}
             fill='none'
@@ -160,25 +138,19 @@ export const AnimatedCurve: FunctionComponent = () => {
         </svg>
 
         <svg className='visualisations' viewBox='0 0 200 400'>
-          <rect
-            fill={colors.lightBeige}
-            x={100}
-            y={60}
-            width={50}
-            height={165}
-          />
-          {points.map((point, idx) => (
+          {backgroundDots.map((dot, idx) => (
             <circle
-              cx={point[0] + 100}
-              cy={point[1] + 60}
-              key={idx}
+              cx={dot[0]}
+              cy={dot[1]}
+              key={'background-dot' + idx}
               r={0.5}
               fill={colors.categoryColors.purpose}
             />
           ))}
-          {dots.map((dot, idx) => (
+          {dotsOnCurve.map((dot, idx) => (
             <circle
-              {...dot}
+              cx={dot[0]}
+              cy={dot[1]}
               key={idx}
               r={0.5}
               fill={
@@ -188,6 +160,11 @@ export const AnimatedCurve: FunctionComponent = () => {
           ))}
         </svg>
       </div>
+      <style jsx global>{`
+        body {
+          overflow-x: hidden;
+        }
+      `}</style>
       <style jsx>{`
         section {
           margin-top: 6rem;
@@ -200,8 +177,21 @@ export const AnimatedCurve: FunctionComponent = () => {
           transition: transform 1s ease-out;
         }
 
+        .scroller::before {
+          content: ' ';
+          transition: background-color 1s ease-out;
+        }
+
         .scroller.right {
           transform: translateX(-50%);
+        }
+
+        .scroller.right::before {
+          position: absolute;
+          width: 300vw;
+          height: 100%;
+          left: -100vw;
+          background-color: ${colors.lightBeige};
         }
 
         h2 {
@@ -215,11 +205,34 @@ export const AnimatedCurve: FunctionComponent = () => {
           grid-template-columns: 1fr 1fr;
           align-items: center;
           margin-bottom: 20%;
+          transition: opacity 0.3s;
         }
 
         .row.right {
           margin-left: 50%;
           z-index: 1;
+        }
+
+        .scroller.right .row.left {
+           {
+            /* transform: translateX(-200%); */
+          }
+          opacity: 0;
+        }
+
+        .scroller.left .row.right {
+           {
+            /* transform: translateX(200%); */
+          }
+          opacity: 0;
+        }
+
+        .visualisations {
+          transition: opacity 1s ease-out;
+        }
+
+        .scroller.left .visualisations {
+          opacity: 0;
         }
 
         .row h3 {
