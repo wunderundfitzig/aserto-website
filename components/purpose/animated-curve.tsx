@@ -1,15 +1,46 @@
 import { FunctionComponent, useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import PoissonDiskSampling from 'poisson-disk-sampling'
 import seedrandom from 'seedrandom'
 import * as colors from 'lib/colors'
-import { useScrolledPixels } from 'lib/use-scrolled-pixels'
 
-import image1 from 'public/images/purpose-1.jpg'
-import image2 from 'public/images/purpose-2.jpg'
-import image3 from 'public/images/purpose-3.jpg'
 import { curvedPath } from 'lib/curved-path'
-import { useWindowSize } from 'lib/use-window-size'
+import { useIntersectionObserver } from 'lib/use-intersection-observer'
+import AnimatedCurveRow from './animated-curve-row'
+
+const rows = [
+  {
+    category: 'menschen',
+    image: '/images/purpose-1.jpg',
+    text:
+      'Menschen, die zuhören und die richtigen Fragen stellen, damit ein möglichst umfassendes Gesamtbild entsteht.',
+  },
+  {
+    category: 'daten',
+    text:
+      'Daten, die mithilfe statistischer Methoden als Signale im Datenrauschen sichtbar werden.',
+  },
+  {
+    category: 'menschen',
+    image: '/images/purpose-3.jpg',
+    imagePosition: 'right',
+    text: 'Menschen, die Signale richtig deuten und in Beziehung setzen.',
+  },
+  {
+    category: 'daten',
+    text:
+      'Daten, damit gesicherte Erkenntnisse und sachlich gestützte Prognosen entstehen.',
+  },
+  {
+    category: 'menschen',
+    image: '/images/purpose-2.jpg',
+    text:
+      'Menschen, die Erkenntnisse prägnant verdichten und in Lösungen und Handlungsperspektiven denken.',
+  },
+  {
+    category: 'daten',
+    text: 'Daten, die Veränderungen sichtbar machen.',
+  },
+] as const
 
 const rng = seedrandom('seed')
 const pds = new PoissonDiskSampling(
@@ -33,9 +64,10 @@ function unproject(point: Point, offset: { x: number; y: number }): Point {
 }
 
 export const AnimatedCurve: FunctionComponent = () => {
-  const wrapperRef = useRef(null)
-  const { height } = useWindowSize()
-  const scrolledPixels = useScrolledPixels(wrapperRef)
+  const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
+  const _activeSectionIndex = useIntersectionObserver(sectionRefs.current, {
+    topOffset: (height) => height / 2,
+  })
   const curveRef = useRef<SVGPathElement | null>(null)
   const [backgroundDots, setBackgroundDots] = useState<Point[]>([])
   const [dotsOnCurve, setDotsOnCurve] = useState<Point[]>([])
@@ -48,9 +80,9 @@ export const AnimatedCurve: FunctionComponent = () => {
     [100, 220],
   ]
 
-  const scrolled = scrolledPixels + (height ? height / 2 : 0)
-  const isRight = scrolled > 500 && scrolled < 1300
-  const scrolledToDotsAnimation = scrolled > 700
+  const activeSectionIndex = _activeSectionIndex || 0
+  const isRight = activeSectionIndex % 2 !== 0
+  const scrolledToDotsAnimation = activeSectionIndex >= 1
 
   useEffect(() => {
     if (dotsOnCurve.length === 0) return
@@ -91,41 +123,24 @@ export const AnimatedCurve: FunctionComponent = () => {
   }, [dotsOnCurve, visibleDotsCount, scrolledToDotsAnimation])
 
   return (
-    <section ref={wrapperRef} className='animated-curve'>
+    <section className='animated-curve'>
       <div className={`scroller ${isRight ? 'right' : 'left'}`}>
         <h2>Dafür braucht es…</h2>
-        <div className='row left'>
-          <div className='image-wrapper'>
-            <Image src={image1} layout='fill' alt='' objectFit='cover' />
-          </div>
-          <div className='text'>
-            <h3>Menschen</h3>
-            <p>
-              Menschen, die zuhören und die richtigen Fragen stellen, damit ein
-              möglichst umfassendes Gesamtbild entsteht.
-            </p>
-          </div>
-        </div>
-        <div className='row right'>
-          <div></div>
-          <div className='text'>
-            <h3>Daten</h3>
-            <p>
-              Daten, die mithilfe statistischer Methoden als Signale im
-              Datenrauschen sichtbar werden.
-            </p>
-          </div>
-        </div>
-        <div className='row left'>
-          <div className='text'>
-            <h3>Menschen</h3>
-            <p>Menschen, die Signale richtig deuten und in Beziehung setzen.</p>
-          </div>
-          <div className='image-wrapper'>
-            <Image src={image3} layout='fill' alt='' objectFit='cover' />
-          </div>
-        </div>
-
+        {rows.map((row, idx) => {
+          return (
+            <AnimatedCurveRow
+              key={idx}
+              ref={(ref: HTMLDivElement) => {
+                sectionRefs.current[idx] = ref
+              }}
+              isActive={
+                (isRight && row.category === 'daten') ||
+                (!isRight && row.category === 'menschen')
+              }
+              {...row}
+            />
+          )
+        })}
         <svg className='line' viewBox='0 0 200 400'>
           <clipPath id='curve-clip-path'>
             <path d='M 0 0 H 100 V 150 H 200 V 400 H 0 Z' />
@@ -177,7 +192,6 @@ export const AnimatedCurve: FunctionComponent = () => {
         .scroller {
           position: relative;
           width: 200%;
-          height: 10000px;
           transition: transform 1s ease-out;
         }
 
@@ -202,57 +216,12 @@ export const AnimatedCurve: FunctionComponent = () => {
           margin-bottom: 6rem;
         }
 
-        .row {
-          position: relative;
-          width: 50%;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          align-items: center;
-          margin-bottom: 20%;
-          transition: opacity 0.3s;
-        }
-
-        .row.right {
-          margin-left: 50%;
-          z-index: 1;
-        }
-
-        .scroller.right .row.left {
-           {
-            /* transform: translateX(-200%); */
-          }
-          opacity: 0;
-        }
-
-        .scroller.left .row.right {
-           {
-            /* transform: translateX(200%); */
-          }
-          opacity: 0;
-        }
-
         .visualisations {
           transition: opacity 1s ease-out;
         }
 
         .scroller.left .visualisations {
           opacity: 0;
-        }
-
-        .row h3 {
-          font-weight: 200;
-          color: ${colors.categoryColors.purpose};
-          text-transform: uppercase;
-        }
-
-        .image-wrapper {
-          position: relative;
-          width: 100%;
-          padding-bottom: 100%;
-        }
-
-        .text {
-          padding: 3rem;
         }
 
         svg {
