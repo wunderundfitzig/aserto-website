@@ -85,7 +85,8 @@ export const AnimatedCurve: FunctionComponent = () => {
     [300, 160],
     [300, 190],
     [65, 270],
-    [150, 350],
+    [130, 320],
+    [90, 350],
   ]
 
   const activeSectionIndex = _activeSectionIndex || 0
