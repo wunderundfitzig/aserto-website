@@ -103,7 +103,7 @@ const Cases: FunctionComponent = () => {
   const router = useRouter()
   const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
   const sectionIndex = useIntersectionObserver(sectionRefs.current, {
-    topOffset: (height: number) => height * 0.5,
+    topOffset: (height) => height * 0.5,
   })
 
   const activeCaseId = cases[sectionIndex ?? 0].id

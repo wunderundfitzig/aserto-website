@@ -16,6 +16,7 @@ const rows = [
   },
   {
     category: 'daten',
+    textBackgroundColor: colors.lightBeige,
     text:
       'Daten, die mithilfe statistischer Methoden als Signale im Datenrauschen sichtbar werden.',
   },
@@ -33,6 +34,7 @@ const rows = [
   {
     category: 'menschen',
     image: '/images/purpose-2.jpg',
+    imagePosition: 'right',
     text:
       'Menschen, die Erkenntnisse prägnant verdichten und in Lösungen und Handlungsperspektiven denken.',
   },
@@ -45,7 +47,7 @@ const rows = [
 const rng = seedrandom('seed')
 const pds = new PoissonDiskSampling(
   {
-    shape: [49, 200],
+    shape: [200, 150],
     minDistance: 2,
     maxDistance: 3,
     tries: 10,
@@ -66,7 +68,7 @@ function unproject(point: Point, offset: { x: number; y: number }): Point {
 export const AnimatedCurve: FunctionComponent = () => {
   const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
   const _activeSectionIndex = useIntersectionObserver(sectionRefs.current, {
-    topOffset: (height) => height / 2,
+    topOffset: (height) => height * 0.5,
   })
   const curveRef = useRef<SVGPathElement | null>(null)
   const [backgroundDots, setBackgroundDots] = useState<Point[]>([])
@@ -75,9 +77,14 @@ export const AnimatedCurve: FunctionComponent = () => {
   const curvePoints: [number, number][] = [
     [65, 2],
     [30, 48],
-    [145, 115],
-    [50, 180],
-    [100, 220],
+    [145, 90],
+    [50, 160],
+    [110, 230],
+    [170, 160],
+    [300, 160],
+    [300, 190],
+    [65, 270],
+    [150, 350],
   ]
 
   const activeSectionIndex = _activeSectionIndex || 0
@@ -92,20 +99,22 @@ export const AnimatedCurve: FunctionComponent = () => {
     })
     pds.fill()
     const points = pds.getAllPoints() as Point[]
-    setBackgroundDots(
-      points.map((point) => project(point, dottedLineVisualisationOffset))
+    const projectedPoints = points.map((point) =>
+      project(point, dottedLineVisualisationOffset)
     )
+
+    setBackgroundDots(projectedPoints)
   }, [dotsOnCurve])
 
   useEffect(() => {
     if (curveRef.current === null) return
     const curveLength = curveRef.current.getTotalLength()
-    let length = 3
+    let length = 1
     const step = 3
     const dots: Point[] = []
     while (length < curveLength) {
       const point = curveRef.current.getPointAtLength(length)
-      if (point.x > 101 && point.y < 190) {
+      if (point.x > 101 && point.y < 160) {
         dots.push([point.x, point.y])
       }
       length += step
@@ -143,7 +152,7 @@ export const AnimatedCurve: FunctionComponent = () => {
         })}
         <svg className='line' viewBox='0 0 200 400'>
           <clipPath id='curve-clip-path'>
-            <path d='M 0 0 H 100 V 150 H 200 V 400 H 0 Z' />
+            <path d='M 0 0 H 100 V 150 H 250 V 400 H 0 Z' />
           </clipPath>
           <path
             clipPath={isRight ? 'url(#curve-clip-path)' : ''}

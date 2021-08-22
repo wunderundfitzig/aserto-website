@@ -8,6 +8,7 @@ type Props = {
   isActive: boolean
   image?: string
   text: string
+  textBackgroundColor?: string
 }
 const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
   props,
@@ -40,7 +41,7 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
             ? '"image text"'
             : '"text image"'};
           align-items: center;
-          margin-bottom: 20%;
+          margin-bottom: 10%;
           opacity: 0;
           transition: opacity 0.3s;
         }
@@ -70,6 +71,7 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
         .text {
           grid-area: text;
           padding: 3rem;
+          background-color: ${props.textBackgroundColor ?? 'transparent'};
         }
       `}</style>
     </div>
