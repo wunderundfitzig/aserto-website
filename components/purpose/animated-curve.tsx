@@ -6,6 +6,7 @@ import * as colors from 'lib/colors'
 import { curvedPath } from 'lib/curved-path'
 import { useIntersectionObserver } from 'lib/use-intersection-observer'
 import AnimatedCurveRow from './animated-curve-row'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const rows = [
   {
@@ -150,7 +151,7 @@ export const AnimatedCurve: FunctionComponent = () => {
             />
           )
         })}
-        <svg className='line' viewBox='0 0 200 400'>
+        <svg className='line' viewBox='0 0 200 350' preserveAspectRatio='none'>
           <clipPath id='curve-clip-path'>
             <path d='M 0 0 H 100 V 150 H 250 V 400 H 0 Z' />
           </clipPath>
@@ -165,25 +166,37 @@ export const AnimatedCurve: FunctionComponent = () => {
           />
         </svg>
 
-        <svg className='visualisations' viewBox='0 0 200 400'>
+        <svg
+          className='visualisations'
+          viewBox='0 0 200 350'
+          preserveAspectRatio='none'
+        >
           {backgroundDots.map((dot, idx) => (
-            <circle
-              cx={dot[0]}
-              cy={dot[1]}
+            <line
+              x1={dot[0]}
+              y1={dot[1]}
+              x2={dot[0] + 0.000001}
+              y2={dot[1] + 0.000001}
               key={'background-dot' + idx}
               r={0.5}
-              fill={colors.categoryColors.purpose}
+              stroke={colors.categoryColors.purpose}
+              strokeWidth={10}
+              strokeLinecap='round'
             />
           ))}
           {dotsOnCurve.map((dot, idx) => (
-            <circle
-              cx={dot[0]}
-              cy={dot[1]}
-              key={idx}
+            <line
+              x1={dot[0]}
+              y1={dot[1]}
+              x2={dot[0] + 0.000001}
+              y2={dot[1] + 0.000001}
+              key={'background-dot' + idx}
               r={0.5}
-              fill={
+              stroke={
                 idx < visibleDotsCount ? 'white' : colors.categoryColors.purpose
               }
+              strokeWidth={10}
+              strokeLinecap='round'
             />
           ))}
         </svg>
@@ -238,10 +251,32 @@ export const AnimatedCurve: FunctionComponent = () => {
           width: 100%;
           top: 0;
           overflow: visible;
+          height: 100%;
+          stroke-width: 6px;
+        }
+
+        .line {
+        }
+        path,
+        line {
+          vector-effect: non-scaling-stroke;
+          stroke-width: 6;
         }
 
         circle {
           transition: fill 0.3s ease-in-out;
+        }
+
+        @media ${minWidth(breakpoint.ml)} {
+          line {
+            stroke-width: 8;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          line {
+            stroke-width: 10;
+          }
         }
       `}</style>
     </section>

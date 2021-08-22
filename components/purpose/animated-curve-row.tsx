@@ -41,7 +41,7 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
             ? '"image text"'
             : '"text image"'};
           align-items: center;
-          margin-bottom: 10%;
+          min-height: 100vh;
           opacity: 0;
           transition: opacity 0.3s;
         }
