@@ -1,0 +1,71 @@
+name: deploy to aserto server
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run build task
+        run: npm run build
+
+      - name: Create deploy folder
+        run: |
+          mkdir deploy
+          cp -a .next ./deploy
+          cp next.config.js ./deploy
+          cp .env ./deploy
+          cp package.json ./deploy
+          cp -a node_modules ./deploy
+          cp -a public ./deploy
+      - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment
+        id: deployment
+        with:
+          token: '${{ github.token }}'
+          production_environment: true
+          environment: aserto/dev
+
+      - name: Deploy to Server
+        uses: mdallasanta/ssh-scp-deploy@{version}
+        with:
+          local: 'deploy'
+          remote: '~/www/asertoWeb/'
+          host: ${{secrets.DEPLOY_HOST}}
+          port: ${{secrets.DEPLOY_PORT}}
+          user: ${{secrets.DEPLOY_USERNAME}}
+          password: ${{secrets.DEPLOY_PASSWORD}}
+          pre_upload: echo "rm ~/www/asertoWeb/index.html"
+
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: '${{ github.token }}'
+          state: 'success'
+          environment_url: 'https://neu.aserto.de'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: '${{ github.token }}'
+          state: 'failure'
+          environment_url: 'https://neu.aserto.de'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
