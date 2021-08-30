@@ -42,7 +42,7 @@ jobs:
           environment: aserto/dev
 
       - name: Deploy to Server
-        uses: mdallasanta/ssh-scp-deploy@{version}
+        uses: mdallasanta/ssh-scp-deploy@1.0.4
         with:
           local: 'deploy'
           remote: '~/www/asertoWeb/'
