@@ -4,6 +4,7 @@ import Link from 'next/link'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { ImageType } from 'lib/types'
+import { imageLoader } from 'lib/image-loader'
 
 type Props = {
   cases: {
@@ -28,6 +29,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
               <a>
                 <div className='client-logo'>
                   <Image
+                    loader={imageLoader}
                     {...caseArticle.logo}
                     alt={`${caseArticle.client} Logo`}
                   />

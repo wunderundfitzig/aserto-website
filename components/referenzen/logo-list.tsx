@@ -3,6 +3,7 @@ import Image from 'next/dist/client/image'
 import * as colors from 'lib/colors'
 import { EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { imageLoader } from 'lib/image-loader'
 
 const logos = [
   {
@@ -92,7 +93,7 @@ const LogoList: FunctionComponent = () => {
       <ul>
         {logos.map((logo, idx) => (
           <li key={idx}>
-            <Image {...logo} alt={logo.client} />
+            <Image loader={imageLoader} {...logo} alt={logo.client} />
           </li>
         ))}
       </ul>

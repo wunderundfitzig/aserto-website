@@ -5,6 +5,7 @@ import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { LinkedInIcon, XingIcon } from 'components/social-icons'
 import { MoreInfoIcon } from 'components/icons'
+import { imageLoader } from 'lib/image-loader'
 
 type Props = {
   image: ImageType
@@ -15,6 +16,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
     <div className='person-card'>
       <div className='image'>
         <Image
+          loader={imageLoader}
           {...props.image}
           layout='responsive'
           alt={`portait of ${props.contact.name}`}

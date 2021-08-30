@@ -5,13 +5,20 @@ import List from 'components/list'
 
 import officeImage from 'public/referenzen-placeholder-image-1.jpg'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { imageLoader } from 'lib/image-loader'
 
 const MenschenUndDaten: FunctionComponent = () => {
   return (
     <section className='menschen-und-daten'>
       <h2>Es braucht Menschen und Daten:</h2>
       <div className='image'>
-        <Image src={officeImage} layout='fill' objectFit='cover' alt='' />
+        <Image
+          loader={imageLoader}
+          src={officeImage}
+          layout='fill'
+          objectFit='cover'
+          alt=''
+        />
       </div>
       <div className='text'>
         <p>

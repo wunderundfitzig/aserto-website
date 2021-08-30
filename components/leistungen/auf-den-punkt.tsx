@@ -4,6 +4,7 @@ import List from 'components/list'
 import { categoryColors } from 'lib/colors'
 import { SkewedHalfCircle } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { imageLoader } from 'lib/image-loader'
 
 const AufDenPunkt: FunctionComponent = () => {
   return (
@@ -11,6 +12,7 @@ const AufDenPunkt: FunctionComponent = () => {
       <h2>Auf den Punkt gebracht</h2>
       <div className='image'>
         <Image
+          loader={imageLoader}
           src='/leistungen-placeholder-image-2.jpg'
           width={1200}
           height={857}

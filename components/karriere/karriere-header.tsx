@@ -4,6 +4,7 @@ import * as colors from 'lib/colors'
 import Slogan from 'components/slogan'
 import { EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { imageLoader } from 'lib/image-loader'
 
 const KarriereHeader: FunctionComponent = () => {
   return (
@@ -22,6 +23,7 @@ const KarriereHeader: FunctionComponent = () => {
       </div>
       <div className='image'>
         <Image
+          loader={imageLoader}
           priority
           src='/karriere-placeholder-image.jpg'
           layout='fill'

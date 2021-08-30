@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import List from 'components/list'
 import { categoryColors } from 'lib/colors'
+import { imageLoader } from 'lib/image-loader'
 
 const WasUnsAusmacht: FunctionComponent = () => {
   return (
@@ -10,6 +11,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
       <h2>Was uns ausmacht</h2>
       <div className='image'>
         <Image
+          loader={imageLoader}
           priority
           src='/leistungen-placeholder-image-1.jpg'
           layout='fill'

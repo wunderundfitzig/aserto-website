@@ -7,6 +7,7 @@ import { EndlessLine } from 'components/curves'
 
 import image1 from 'public/karriere-placeholder-image-2.jpg'
 import image2 from 'public/karriere-placeholder-image-3.jpg'
+import { imageLoader } from 'lib/image-loader'
 
 const Prinzipen: FunctionComponent = () => {
   return (
@@ -38,7 +39,7 @@ const Prinzipen: FunctionComponent = () => {
         </Statement>
       </div>
       <div className='image image-1'>
-        <Image src={image1} layout='responsive' alt='' />
+        <Image loader={imageLoader} src={image1} layout='responsive' alt='' />
       </div>
       <div className='statement statement-2'>
         <Statement color={categoryColors.karriere}>
@@ -86,7 +87,7 @@ const Prinzipen: FunctionComponent = () => {
         </Statement>
       </div>
       <div className='image image-2'>
-        <Image src={image2} layout='responsive' alt='' />
+        <Image loader={imageLoader} src={image2} layout='responsive' alt='' />
       </div>
       <div className='statement statement-5'>
         <Statement color={categoryColors.karriere}>

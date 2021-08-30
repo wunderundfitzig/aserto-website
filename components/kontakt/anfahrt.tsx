@@ -1,12 +1,18 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import mapImage from 'public/images/karte-placeholder.png'
+import { imageLoader } from 'lib/image-loader'
 
 const Anfahrt: FunctionComponent = () => {
   return (
     <section className='anfahrt'>
       <h2>Anfahrt</h2>
-      <Image layout='responsive' src={mapImage} alt='Anfahrtkarte' />
+      <Image
+        loader={imageLoader}
+        layout='responsive'
+        src={mapImage}
+        alt='Anfahrtkarte'
+      />
       <style jsx>
         {`
           h2 {

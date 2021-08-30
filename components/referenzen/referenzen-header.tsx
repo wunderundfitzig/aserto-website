@@ -3,6 +3,7 @@ import Image from 'next/image'
 import * as colors from 'lib/colors'
 import { RoundCurve, EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { imageLoader } from 'lib/image-loader'
 
 const ReferenzenHeader: FunctionComponent = () => {
   return (
@@ -17,6 +18,7 @@ const ReferenzenHeader: FunctionComponent = () => {
       </div>
       <div className='image'>
         <Image
+          loader={imageLoader}
           priority
           src='/referenzen-placeholder-image-1.jpg'
           layout='fill'

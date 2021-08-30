@@ -2,6 +2,7 @@ import { FunctionComponent, ReactElement } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { Contact, ImageType } from 'lib/types'
+import { imageLoader } from 'lib/image-loader'
 
 type Props = {
   image: ImageType
@@ -21,6 +22,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
       </div>
       <div className='image'>
         <Image
+          loader={imageLoader}
           {...props.image}
           layout='responsive'
           alt={`Portait von ${props.contact.name}`}

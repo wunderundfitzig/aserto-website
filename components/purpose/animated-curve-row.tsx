@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
+import { imageLoader } from 'lib/image-loader'
 
 type Props = {
   category: 'menschen' | 'daten'
@@ -24,7 +25,13 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
     >
       {props.image && (
         <div className='image-wrapper'>
-          <Image src={props.image} layout='fill' alt='' objectFit='cover' />
+          <Image
+            loader={imageLoader}
+            src={props.image}
+            layout='fill'
+            alt=''
+            objectFit='cover'
+          />
         </div>
       )}
       <div className='text'>

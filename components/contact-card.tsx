@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { Contact, ImageType } from 'lib/types'
 import { ReactElement } from 'react-markdown'
+import { imageLoader } from 'lib/image-loader'
 
 type Props = {
   image: ImageType
@@ -15,7 +16,11 @@ const ContactCard: FunctionComponent<Props> = (props) => {
   return (
     <div className='contact-card'>
       <div className='image'>
-        <Image {...props.image} alt={`Portait von ${props.contact.name}`} />
+        <Image
+          loader={imageLoader}
+          {...props.image}
+          alt={`Portait von ${props.contact.name}`}
+        />
       </div>
       <address>
         {props.children?.title ?? <h3>Ihr Kontakt</h3>}

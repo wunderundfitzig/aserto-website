@@ -24,15 +24,6 @@ jobs:
       - name: Run build task
         run: npm run build
 
-      - name: Create deploy folder
-        run: |
-          mkdir deploy
-          cp -a .next ./deploy
-          cp next.config.js ./deploy
-          cp .env ./deploy
-          cp package.json ./deploy
-          cp -a node_modules ./deploy
-          cp -a public ./deploy
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment
         id: deployment
@@ -44,7 +35,7 @@ jobs:
       - name: Deploy to Server
         uses: mdallasanta/ssh-scp-deploy@v1.0.4
         with:
-          local: 'deploy'
+          local: 'out'
           remote: '~/www/asertoWeb/'
           host: ${{secrets.DEPLOY_HOST}}
           port: ${{secrets.DEPLOY_PORT}}

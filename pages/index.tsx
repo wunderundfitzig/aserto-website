@@ -13,6 +13,7 @@ import SecondaryNavigation from 'components/frontpage/secondary-navigation'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import * as colors from 'lib/colors'
 import { useWindowSize } from 'lib/use-window-size'
+import { imageLoader } from 'lib/image-loader'
 
 const Index: NextPage = () => {
   const { width } = useWindowSize()
@@ -23,6 +24,7 @@ const Index: NextPage = () => {
       <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
+          loader={imageLoader}
           className='image'
           src='/frontpage-banner-2.jpg'
           layout='fill'
@@ -33,6 +35,7 @@ const Index: NextPage = () => {
       </div>
       <div className='image-wrapper clipped-image'>
         <Image
+          loader={imageLoader}
           className='image'
           src='/frontpage-banner-2.jpg'
           layout='fill'

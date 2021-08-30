@@ -5,6 +5,7 @@ import Slogan from 'components/slogan'
 import { TriangleLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import HeaderBackground from 'components/header-background'
+import { imageLoader } from 'lib/image-loader'
 
 const TeamHeader: FunctionComponent = () => {
   return (
@@ -29,6 +30,7 @@ const TeamHeader: FunctionComponent = () => {
       </div>
       <div className='image'>
         <Image
+          loader={imageLoader}
           priority
           src='/team-placeholder-image.jpg'
           width='1200'
