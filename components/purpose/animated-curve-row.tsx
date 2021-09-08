@@ -2,6 +2,7 @@ import { forwardRef } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
 import { imageLoader } from 'lib/image-loader'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
   category: 'menschen' | 'daten'
@@ -9,7 +10,7 @@ type Props = {
   isActive: boolean
   image?: string
   text: string
-  textBackgroundColor?: string
+  onBackground?: boolean
 }
 const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
   props,
@@ -40,14 +41,16 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
       </div>
       <style jsx>{`
         .row {
-          position: relative;
           width: 50%;
+          position: relative;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-areas: ${imagePosition === 'left'
-            ? '"image text"'
-            : '"text image"'};
-          align-items: center;
+          grid-gap: 0;
+          grid-template-rows: auto auto;
+          grid-template-areas:
+            'text'
+            'image';
+          justify-content: center;
+          align-content: space-around;
           min-height: 100vh;
           opacity: 0;
           transition: opacity 0.3s;
@@ -77,8 +80,35 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
 
         .text {
           grid-area: text;
-          padding: 3rem;
-          background-color: ${props.textBackgroundColor ?? 'transparent'};
+          max-width: 18rem;
+          padding: 2rem;
+          background-color: ${props.category === 'daten'
+            ? colors.lightBeige
+            : 'white'};
+          z-index: 1;
+        }
+
+        @media ${minWidth(breakpoint.sm)} {
+          .row {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: ${imagePosition === 'left'
+              ? '"image text"'
+              : '"text image"'};
+            align-items: center;
+          }
+
+          .row.daten {
+            z-index: 1;
+          }
+
+          .text {
+            max-width: none;
+            padding: 3rem;
+            background-color: ${props.category === 'daten' && props.onBackground
+              ? colors.lightBeige
+              : 'transparent'};
+          }
         }
       `}</style>
     </div>

@@ -17,7 +17,7 @@ const rows = [
   },
   {
     category: 'daten',
-    textBackgroundColor: colors.lightBeige,
+    onBackground: true,
     text:
       'Daten, die mithilfe statistischer Methoden als Signale im Datenrauschen sichtbar werden.',
   },
@@ -203,7 +203,8 @@ export const AnimatedCurve: FunctionComponent = () => {
         </svg>
       </div>
       <style jsx global>{`
-        body {
+        body,
+        html {
           overflow-x: hidden;
         }
       `}</style>
