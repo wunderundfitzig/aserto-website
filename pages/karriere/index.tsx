@@ -6,6 +6,7 @@ import KarriereContact from 'components/karriere/karriere-contact'
 import JobList from 'components/karriere/job-list'
 import JobAdd from 'components/karriere/job-add'
 import Prinzipen from 'components/karriere/prinzipen'
+import Metadata from 'components/metadata'
 import { jobs } from 'content/jobs'
 
 const KarrierePage: NextPage<PageProps> = (props) => {
@@ -18,6 +19,19 @@ const KarrierePage: NextPage<PageProps> = (props) => {
 
   return (
     <>
+      {job === undefined ? (
+        <Metadata
+          title='aserto | Karriere'
+          description='Wir sind menschlich, verbindlich und relevant.'
+          slug='/karriere'
+        />
+      ) : (
+        <Metadata
+          title='aserto | Karriere | Stellenausschreibung'
+          description={job.title}
+          slug={`/karriere/${job.id}`}
+        />
+      )}
       <article
         hidden={job !== undefined}
         style={{ gridArea: props.gridArea, display: 'block' }}

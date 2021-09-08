@@ -2,6 +2,11 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { darken } from 'polished'
 
+import { breakpoint, minWidth } from 'lib/breakpoints'
+import * as colors from 'lib/colors'
+import { useWindowSize } from 'lib/use-window-size'
+import { imageLoader } from 'lib/image-loader'
+
 import {
   CornerCurve,
   FrontpageCurve,
@@ -10,10 +15,7 @@ import {
 } from 'components/curves'
 import SocialLinks from 'components/social-links'
 import SecondaryNavigation from 'components/frontpage/secondary-navigation'
-import { breakpoint, minWidth } from 'lib/breakpoints'
-import * as colors from 'lib/colors'
-import { useWindowSize } from 'lib/use-window-size'
-import { imageLoader } from 'lib/image-loader'
+import Metadata from 'components/metadata'
 
 const Index: NextPage = () => {
   const { width } = useWindowSize()
@@ -21,6 +23,11 @@ const Index: NextPage = () => {
 
   return (
     <>
+      <Metadata
+        title='aserto'
+        description='Wir begleiten bei Richtungsweisenden Entscheidungen'
+        slug='/'
+      />
       <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
