@@ -21,6 +21,9 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Set dev robots txt
+        run: mv public/robots.dev.txt public/robots.txt
+
       - name: Run build task
         run: npm run build
 
