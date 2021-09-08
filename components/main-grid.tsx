@@ -11,7 +11,7 @@ const MainGrid: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .main-grid {
           display: grid;
-          min-height: 100vh;
+          min-height: ${props.onFrontpage ? '600px' : '100vh'};
           grid-template-columns: 0 1fr 80px 0;
           grid-template-rows: minmax(0, auto) auto 1fr auto;
           grid-template-areas:
