@@ -7,6 +7,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
+    "images:resize": "node scripts/images-resize.js",
     "generate:favicons": "real-favicon generate favicon-description.json public/favicons/favicon-data.json public/favicons"
   },
   "husky": {
@@ -26,6 +27,7 @@
     "react-dom": "17.0.2",
     "react-markdown": "^6.0.2",
     "seedrandom": "^3.0.5",
+    "sharp": "^0.29.1",
     "uninstall": "^0.0.0"
   },
   "devDependencies": {

@@ -1,8 +1,9 @@
-import sharp from 'sharp'
-import fs from 'fs'
-import path from 'path'
+const sharp = require('sharp')
+const fs = require('fs')
+const path = require('path')
 
-export const imageResizeTargets = [320, 640, 768, 1024, 1280, 1536, 2048]
+const extensions = ['.jpg', '.png', '.svg']
+const imageResizeTargets = [320, 640, 768, 1024, 1280, 1536, 2048]
 
 /**
  * The following code is taken from https://gist.github.com/adamwdraper/4212319
@@ -12,7 +13,7 @@ export const imageResizeTargets = [320, 640, 768, 1024, 1280, 1536, 2048]
  *
  */
 
-const walkPath = '../app/public/images'
+const walkPath = 'public/images'
 
 function walk(dir, done) {
   fs.readdir(dir, function (error, list) {
@@ -38,11 +39,16 @@ function walk(dir, done) {
           })
         } else {
           const ext = path.extname(file)
+          if (!extensions.includes(ext)) {
+            next()
+            return
+          }
           const filename = path.basename(file).split('.').slice(0, -1).join('.')
-          console.log(`Now resizing: ${file}`)
+          const dirname = path.dirname(file).replace(/\//g, '-')
+          console.log(`Now resizing: ${dirname}/${filename}${ext}`)
 
           imageResizeTargets.forEach((size) => {
-            const output = `../app/public/images/${filename}-${size}${ext}`
+            const output = `public/resized-images/${dirname}-${filename}-${size}${ext}`
             sharp(file)
               .resize({ width: size, withoutEnlargement: true })
               .toFile(output)
