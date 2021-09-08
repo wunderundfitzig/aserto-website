@@ -62,7 +62,6 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
     const projectedPoints = points.map((point) =>
       project(point, dottedLineVisualisationOffset)
     )
-    console.log('bgdots')
     setBackgroundDots(projectedPoints)
   }, [dotsOnCurve])
 
@@ -100,7 +99,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
         {dotsOnCurve.map((dot, idx) => (
           <path
             d={`M${dot[0]} ${dot[1]} h0.001`}
-            key={'background-dot' + idx}
+            key={'line-dot' + idx}
             fill='none'
             stroke={
               idx < visibleDotsCount ? 'white' : colors.categoryColors.purpose
