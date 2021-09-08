@@ -33,7 +33,7 @@ const Index: NextPage = () => {
         <Image
           loader={imageLoader}
           className='image'
-          src='/images/frontpage-banner.jpg'
+          src='/images/index/frontpage-banner.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='center'
@@ -44,7 +44,7 @@ const Index: NextPage = () => {
         <Image
           loader={imageLoader}
           className='image'
-          src='/images/frontpage-banner.jpg'
+          src='/images/index/frontpage-banner.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='center'
