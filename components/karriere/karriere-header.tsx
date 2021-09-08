@@ -25,7 +25,7 @@ const KarriereHeader: FunctionComponent = () => {
         <Image
           loader={imageLoader}
           priority
-          src='/karriere-placeholder-image.jpg'
+          src='/images/karriere/karriere-image.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='center'

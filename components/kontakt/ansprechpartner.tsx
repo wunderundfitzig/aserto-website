@@ -5,7 +5,7 @@ const Ansprechpartner: FunctionComponent = () => {
   const contactImage = {
     width: 188,
     height: 246,
-    src: '/contact-placeholder-image.jpg',
+    src: 'images/kontakt/ansprechpartner.jpg',
   }
   const contact = {
     name: 'Prof. Dr. Lars Harden ',

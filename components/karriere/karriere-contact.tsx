@@ -36,7 +36,7 @@ const KarriereContact: FunctionComponent = () => {
   const contactImage = {
     width: 188,
     height: 246,
-    src: '/contact-placeholder-image.jpg',
+    src: '/images/karriere/kontakt-image.jpg',
   }
   const contact = {
     name: 'Prof. Dr. Jana Harden ',

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { categoryColors } from 'lib/colors'
 import List from 'components/list'
 
-import officeImage from 'public/referenzen-placeholder-image-1.jpg'
+import officeImage from 'public/images/purpose/purpose.jpg'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { imageLoader } from 'lib/image-loader'
 

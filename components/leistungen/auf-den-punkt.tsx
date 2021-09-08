@@ -13,7 +13,7 @@ const AufDenPunkt: FunctionComponent = () => {
       <div className='image'>
         <Image
           loader={imageLoader}
-          src='/leistungen-placeholder-image-2.jpg'
+          src='/images/leistungen/leistungen-image-2.jpg'
           width={1200}
           height={857}
           alt=''

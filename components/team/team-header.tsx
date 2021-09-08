@@ -32,7 +32,7 @@ const TeamHeader: FunctionComponent = () => {
         <Image
           loader={imageLoader}
           priority
-          src='/team-placeholder-image.jpg'
+          src='/images/team/team-image.jpg'
           width='1200'
           height='857'
           alt=''

@@ -4,7 +4,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
 import { LeftRightTurnCurve, PurposeCurve } from 'components/curves'
 
-import purposeHeaderImage from 'public/images/purpose-header.jpg'
+import purposeHeaderImage from 'public/images/purpose/purpose-header.jpg'
 import { imageLoader } from 'lib/image-loader'
 
 const PurposeHeader: FunctionComponent = () => {

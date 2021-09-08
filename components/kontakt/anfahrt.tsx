@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
-import mapImage from 'public/images/karte-placeholder.png'
+import mapImage from 'public/images/kontakt/karte.png'
 import { imageLoader } from 'lib/image-loader'
 
 const Anfahrt: FunctionComponent = () => {

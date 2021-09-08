@@ -2,12 +2,13 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { categoryColors } from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { imageLoader } from 'lib/image-loader'
+
 import Statement from 'components/statement'
 import { EndlessLine } from 'components/curves'
 
-import image1 from 'public/karriere-placeholder-image-2.jpg'
-import image2 from 'public/karriere-placeholder-image-3.jpg'
-import { imageLoader } from 'lib/image-loader'
+import image1 from 'public/images/karriere/karriere-image-2.jpg'
+import image2 from 'public/images/karriere/karriere-image-3.jpg'
 
 const Prinzipen: FunctionComponent = () => {
   return (

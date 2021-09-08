@@ -13,7 +13,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
         <Image
           loader={imageLoader}
           priority
-          src='/leistungen-placeholder-image-1.jpg'
+          src='/images/leistungen/leistungen-image-1.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='center'

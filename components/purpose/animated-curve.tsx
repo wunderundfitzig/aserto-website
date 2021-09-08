@@ -10,7 +10,7 @@ import DotsVisualisation from './dots-visualisation'
 const rows = [
   {
     category: 'menschen',
-    image: '/images/purpose-1.jpg',
+    image: '/images/purpose/purpose-1.jpg',
     text:
       'Menschen, die zuhören und die richtigen Fragen stellen, damit ein möglichst umfassendes Gesamtbild entsteht.',
   },
@@ -22,7 +22,7 @@ const rows = [
   },
   {
     category: 'menschen',
-    image: '/images/purpose-3.jpg',
+    image: '/images/purpose/purpose-3.jpg',
     imagePosition: 'right',
     text: 'Menschen, die Signale richtig deuten und in Beziehung setzen.',
   },
@@ -33,7 +33,7 @@ const rows = [
   },
   {
     category: 'menschen',
-    image: '/images/purpose-2.jpg',
+    image: '/images/purpose/purpose-2.jpg',
     imagePosition: 'right',
     text:
       'Menschen, die Erkenntnisse prägnant verdichten und in Lösungen und Handlungsperspektiven denken.',
