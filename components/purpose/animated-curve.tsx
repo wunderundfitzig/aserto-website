@@ -115,7 +115,7 @@ export const AnimatedCurve: FunctionComponent = () => {
       `}</style>
       <style jsx>{`
         section {
-          margin-top: 6rem;
+          margin-top: 3rem;
         }
 
         .scroller {

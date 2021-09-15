@@ -39,6 +39,7 @@ const MenschenUndDaten: FunctionComponent = () => {
             'title'
             'image'
             'text';
+          margin-top: 3rem;
         }
 
         .image {
@@ -57,7 +58,7 @@ const MenschenUndDaten: FunctionComponent = () => {
 
         .text {
           grid-area: text;
-          margin-bottom: 6rem;
+          margin-top: 1rem;
         }
 
         .text p {
