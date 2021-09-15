@@ -60,7 +60,8 @@ const CasesNav: FunctionComponent<Props> = (props) => {
 
         a {
           height: 60px;
-          display: block;
+          display: flex;
+          align-items: center;
           padding: 0.8em;
           transition: background-color, color, font-weight;
           transition-delay: 0.1s;

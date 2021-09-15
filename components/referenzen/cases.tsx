@@ -13,7 +13,7 @@ const cases = [
     category: 'Kommunikationskonzept',
     client: 'Nordkirche',
     logo: {
-      src: 'images/referenzen/client-logo-placeholder.svg',
+      src: '/images/referenzen/client-logo-placeholder.svg',
       width: 117,
       height: 82,
     },
@@ -30,9 +30,9 @@ const cases = [
     category: 'Kommunikationskonzept',
     client: 'client 2',
     logo: {
-      src: 'images/referenzen/client-logo-placeholder-2.svg',
+      src: '/images/referenzen/client-logo-placeholder-2.svg',
       width: 117,
-      height: 82,
+      height: 50,
     },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -47,9 +47,9 @@ const cases = [
     category: 'Kommunikationskonzept',
     client: 'client 3',
     logo: {
-      src: 'images/referenzen/client-logo-placeholder-3.svg',
+      src: '/images/referenzen/client-logo-placeholder-3.svg',
       width: 117,
-      height: 82,
+      height: 30,
     },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -64,7 +64,7 @@ const cases = [
     category: 'Kommunikationskonzept',
     client: 'client 4',
     logo: {
-      src: 'images/referenzen/client-logo-placeholder.svg',
+      src: '/images/referenzen/client-logo-placeholder.svg',
       width: 117,
       height: 82,
     },
@@ -81,9 +81,9 @@ const cases = [
     category: 'Kommunikationskonzept',
     client: 'client 5',
     logo: {
-      src: 'images/referenzen/client-logo-placeholder-2.svg',
+      src: '/images/referenzen/client-logo-placeholder-2.svg',
       width: 117,
-      height: 82,
+      height: 50,
     },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -98,9 +98,9 @@ const cases = [
     category: 'Kommunikationskonzept',
     client: 'client with long name',
     logo: {
-      src: 'images/referenzen/client-logo-placeholder-3.svg',
+      src: '/images/referenzen/client-logo-placeholder-3.svg',
       width: 117,
-      height: 82,
+      height: 30,
     },
     task:
       'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
@@ -115,7 +115,7 @@ const cases = [
     category: 'Kommunikationskonzept',
     client: 'client 7',
     logo: {
-      src: 'images/referenzen/client-logo-placeholder.svg',
+      src: '/images/referenzen/client-logo-placeholder.svg',
       width: 117,
       height: 82,
     },

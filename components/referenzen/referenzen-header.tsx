@@ -20,7 +20,7 @@ const ReferenzenHeader: FunctionComponent = () => {
         <Image
           loader={imageLoader}
           priority
-          src='images/referenzen/referenzen-image.jpg'
+          src='/images/referenzen/referenzen-image.jpg'
           layout='fill'
           objectFit='cover'
           objectPosition='center'
