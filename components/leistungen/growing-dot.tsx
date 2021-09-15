@@ -108,11 +108,11 @@ const GrowingDot: FunctionComponent = () => {
             opacity: scrolledPixels > 300 && scrolledPixels < 650 ? 1 : 0,
           }}
         >
-          <h4>
+          <h3>
             Auftrags-
             <br />
             klärung
-          </h4>
+          </h3>
         </div>
         <div
           className='outline-cirlce micro'
@@ -126,7 +126,7 @@ const GrowingDot: FunctionComponent = () => {
             opacity: scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0,
           }}
         >
-          <h4>Analyse von Daten, Strukturen und Dynamiken:</h4>
+          <h3>Analyse von Daten, Strukturen und Dynamiken:</h3>
           <p>
             Im ersten Schritt sammeln und aggregieren wir alle verfügbaren
             Informationen, um diese dann je nach Fragestellung in ein Konzept
@@ -145,7 +145,7 @@ const GrowingDot: FunctionComponent = () => {
             opacity: scrolledPixels > 1610 && scrolledPixels < 2300 ? 1 : 0,
           }}
         >
-          <h4>Verdichtung & maßvolle Akzentuierung der relevanten Aspekte:</h4>
+          <h3>Verdichtung & maßvolle Akzentuierung der relevanten Aspekte:</h3>
           <p>
             In einer Vielzahl von Informationen und Daten finden wir die Signale
             im Rauschen. Und erläutern, was diese zu bedeuten haben.
@@ -155,10 +155,10 @@ const GrowingDot: FunctionComponent = () => {
           className='section ergebnisse'
           style={{ opacity: scrolledPixels > 2400 ? 1 : 0 }}
         >
-          <h4>
+          <h3>
             Holistische Einbettung der Ergebnisse in unternehmensrelevante
             Kontexte:
-          </h4>
+          </h3>
           <p>
             Reine Datenanalysen finden bei uns nicht statt, wir setzen unsere
             Analysen und Konzepte immer in den unternehmensrelevanten Kontext.
@@ -218,7 +218,7 @@ const GrowingDot: FunctionComponent = () => {
           height: 100%;
         }
 
-        h4 {
+        h3 {
           font-weight: 200;
           text-align: center;
           color: ${colors.lightGreen};

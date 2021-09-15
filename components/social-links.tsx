@@ -4,12 +4,15 @@ import { InstagramIcon, LinkedInIcon, XingIcon } from 'components/social-icons'
 
 type IconLinkProps = {
   url: string
+  title: string
 }
 const IconLink: FunctionComponent<IconLinkProps> = (props) => {
   return (
     <>
       <Link href={props.url}>
-        <a target='_blank'>{props.children}</a>
+        <a title={props.title} target='_blank' rel='noreferrer'>
+          {props.children}
+        </a>
       </Link>
       <style jsx>{`
         a {
@@ -29,13 +32,22 @@ type Props = {
 const SocialLinks: FunctionComponent<Props> = (props) => {
   return (
     <div className='social-icons'>
-      <IconLink url='https://www.linkedin.com/company/aserto'>
+      <IconLink
+        title='aserto linkedin profile'
+        url='https://www.linkedin.com/company/aserto'
+      >
         <LinkedInIcon color={props.color} />
       </IconLink>
-      <IconLink url='https://www.xing.com/pages/aserto'>
+      <IconLink
+        title='aserto xing profile'
+        url='https://www.xing.com/pages/aserto'
+      >
         <XingIcon color={props.color} />
       </IconLink>
-      <IconLink url='https://www.instagram.com/aserto_richtungsweisend'>
+      <IconLink
+        title='aserto instagram profile'
+        url='https://www.instagram.com/aserto_richtungsweisend'
+      >
         <InstagramIcon color={props.color} />
       </IconLink>
       {/* <IconLink url='https://twitter.com/aserto_de'>

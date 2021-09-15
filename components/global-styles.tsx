@@ -8,6 +8,7 @@ const GlobalStyles: FunctionComponent = () => (
       font-weight: 200;
       src: url('/fonts/312FA8_0_0.woff2') format('woff2'),
         url('/fonts/312FA8_0_0.woff') format('woff');
+      font-display: swap;
     }
 
     @font-face {
@@ -15,6 +16,7 @@ const GlobalStyles: FunctionComponent = () => (
       font-weight: 400;
       src: url('/fonts/312FA8_1_0.woff2') format('woff2'),
         url('/fonts/312FA8_1_0.woff') format('woff');
+      font-display: swap;
     }
 
     html,
