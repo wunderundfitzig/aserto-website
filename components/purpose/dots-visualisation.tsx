@@ -45,6 +45,7 @@ const BackgroundDots: FunctionComponent<BackgroundDotsProps> = (props) => {
 type Props = {
   isScrolledIntoView: boolean
   curveElememt: SVGPathElement | null
+  curvePoints: Point[]
 }
 const DotsVisualisation: FunctionComponent<Props> = (props) => {
   const [backgroundDots, setBackgroundDots] = useState<Point[]>([])
@@ -79,7 +80,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
       length += step
     }
     setDotsOnCurve(dots)
-  }, [props.curveElememt])
+  }, [props.curveElememt, props.curvePoints])
 
   useEffect(() => {
     if (!props.isScrolledIntoView) {

@@ -46,6 +46,7 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
           display: grid;
           grid-gap: 0;
           grid-template-rows: min-content 1fr;
+          grid-template-columns: 1fr;
           grid-template-areas:
             'text'
             'image';
@@ -79,14 +80,15 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
           grid-area: image;
           position: relative;
           width: calc(100% + 2rem);
-          padding-bottom: 100%;
+          padding-bottom: 120%;
           margin-left: -2rem;
         }
 
         .text {
           grid-area: text;
-          max-width: 18rem;
-          padding: 2rem 2rem 2rem 0;
+          max-width: 20rem;
+          padding: 2rem;
+          padding-left: 0;
           background-color: ${props.category === 'daten'
             ? colors.lightBeige
             : 'white'};
@@ -98,7 +100,8 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
         }
 
         @media ${minWidth(breakpoint.sm)} {
-          .row {
+          .row,
+          .row.daten {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr;
             grid-template-areas: ${imagePosition === 'left'
@@ -114,9 +117,14 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
           .text {
             max-width: none;
             padding: 3rem;
+            padding-left: 0;
             background-color: ${props.category === 'daten' && props.onBackground
               ? colors.lightBeige
               : 'transparent'};
+          }
+
+          .image-wrapper {
+            margin-left: 0;
           }
         }
       `}</style>

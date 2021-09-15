@@ -6,11 +6,13 @@ import { useIntersectionObserver } from 'lib/use-intersection-observer'
 import AnimatedCurveRow from './animated-curve-row'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import DotsVisualisation from './dots-visualisation'
+import { useWindowSize } from 'lib/use-window-size'
 
 const rows = [
   {
     category: 'menschen',
     image: '/images/purpose/purpose-1.jpg',
+    imagePosition: 'right',
     text:
       'Menschen, die zuhören und die richtigen Fragen stellen, damit ein möglichst umfassendes Gesamtbild entsteht.',
   },
@@ -44,28 +46,46 @@ const rows = [
   },
 ] as const
 
+const desctopCurvePoints: [number, number][] = [
+  [90, 2],
+  [55, 45],
+  [145, 90],
+  [40, 180],
+  [110, 230],
+  [170, 160],
+  [300, 160],
+  [300, 190],
+  [77, 266],
+  [120, 320],
+  [90, 350],
+]
+
+const mobileCurvePoints: [number, number][] = [
+  [90, 2],
+  [20, 48],
+  [185, 90],
+  [40, 160],
+  [110, 210],
+  [220, 160],
+  [300, 160],
+  [300, 190],
+  [65, 270],
+  [130, 318],
+  [80, 370],
+]
+
 export const AnimatedCurve: FunctionComponent = () => {
+  const { width } = useWindowSize()
   const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
   const _activeSectionIndex = useIntersectionObserver(sectionRefs.current, {
     topOffset: (height) => height * 0.5,
   })
   const curveRef = useRef<SVGPathElement | null>(null)
-  const curvePoints: [number, number][] = [
-    [65, 2],
-    [30, 48],
-    [145, 90],
-    [50, 160],
-    [110, 230],
-    [170, 160],
-    [300, 160],
-    [300, 190],
-    [65, 270],
-    [130, 320],
-    [90, 350],
-  ]
 
   const activeSectionIndex = _activeSectionIndex || 0
   const isRight = activeSectionIndex % 2 !== 0
+  const useMobileCurve = (width ?? 0) < breakpoint.sm
+  const curvePoints = useMobileCurve ? mobileCurvePoints : desctopCurvePoints
 
   return (
     <section className='animated-curve'>
@@ -86,7 +106,7 @@ export const AnimatedCurve: FunctionComponent = () => {
             />
           )
         })}
-        <svg viewBox='0 0 200 350' preserveAspectRatio='none'>
+        <svg viewBox='0 0 200 365' preserveAspectRatio='none'>
           <clipPath id='curve-clip-path'>
             <path d='M 0 0 H 100 V 150 H 250 V 400 H 0 Z' />
           </clipPath>
@@ -102,6 +122,7 @@ export const AnimatedCurve: FunctionComponent = () => {
           <g className='visualisations'>
             <DotsVisualisation
               isScrolledIntoView={activeSectionIndex >= 1}
+              curvePoints={curvePoints}
               curveElememt={curveRef.current}
             />
           </g>
@@ -122,6 +143,7 @@ export const AnimatedCurve: FunctionComponent = () => {
           position: relative;
           width: 200%;
           transition: transform 1s ease-out;
+          padding-bottom: 12rem;
         }
 
         .scroller::before {
@@ -139,10 +161,6 @@ export const AnimatedCurve: FunctionComponent = () => {
           height: 100%;
           left: -100vw;
           background-color: ${colors.lightBeige};
-        }
-
-        h2 {
-          margin-bottom: 6rem;
         }
 
         .visualisations {
