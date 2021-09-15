@@ -12,6 +12,7 @@
 /.next/
 /out/
 /public/resized-images/*
+!/public/resized-images/.gitkeep
 
 # production
 /build
