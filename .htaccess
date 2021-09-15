@@ -1,12 +1,16 @@
+# Redirect paths from old website
+
 Redirect 301 "/ueber-aserto" "/team"
 Redirect 301 "/beratungsangebot" "/leistungen"
 RedirectMatch 301 ^/beratungsangebot/.\*$ "/leistungen"
 Redirect 301 "/datenschutzerklaerung" "/datenschutz"
 Redirect 301 "/impressum" "/kontakt"
 
+# Set Cache headers by file type:
+
 # 30 days
 
-<FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|css|svg|webp)$">
+<FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|css|svg|webp|woff|woff2)$">
 Header set Cache-Control "max-age=2592000, public"
 </FilesMatch>
 
