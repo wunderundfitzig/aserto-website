@@ -32,7 +32,8 @@ const Button: FunctionComponent<Props> = (props) => {
           border-radius: 4px;
           padding: 0.5em 1em;
           box-shadow: none;
-          font-family: Userwood serif;
+          font-family: 'Usherwood', serif;
+          font-weight: bold;
           letter-spacing: 0.06em;
           cursor: pointer;
         }

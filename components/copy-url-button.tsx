@@ -62,7 +62,8 @@ const CopyUrlButton: FunctionComponent<Props> = (props) => {
           background-color: ${props.color};
           font-size: 0.9em;
           border-radius: 4px;
-          font-family: Userwood serif;
+          font-family: 'Usherwood', serif;
+          font-weight: bold;
           letter-spacing: 0.06em;
           cursor: default;
         }
