@@ -27,6 +27,9 @@ jobs:
       - name: Run build task
         run: npm run build
 
+      - name: Copy htacess file
+        run: mv .htaccess out/.htaccess
+
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment
         id: deployment
