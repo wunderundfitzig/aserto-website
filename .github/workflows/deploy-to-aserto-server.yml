@@ -27,7 +27,7 @@ jobs:
       - name: Run build task
         run: npm run build
 
-      - name: Copy htacess file
+      - name: Copy htaccess file
         run: mv .htaccess out/.htaccess
 
       - uses: chrnorm/deployment-action@releases/v1
@@ -41,7 +41,7 @@ jobs:
       - name: Deploy to Server
         uses: mdallasanta/ssh-scp-deploy@v1.0.4
         with:
-          local: './out/*'
+          local: './out/(*|.*)'
           remote: '~/www/asertoWeb/'
           host: ${{secrets.DEPLOY_HOST}}
           port: ${{secrets.DEPLOY_PORT}}
