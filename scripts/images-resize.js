@@ -2,8 +2,25 @@ const sharp = require('sharp')
 const fs = require('fs')
 const path = require('path')
 
-const extensions = ['.jpg', '.png', '.svg']
-const imageResizeTargets = [320, 640, 768, 1024, 1280, 1536, 2048]
+const extensions = ['.jpg', '.png']
+const imageResizeTargets = [
+  16,
+  32,
+  48,
+  64,
+  96,
+  128,
+  256,
+  384,
+  640,
+  750,
+  828,
+  1080,
+  1200,
+  1920,
+  2048,
+  3840,
+]
 
 /**
  * The following code is taken from https://gist.github.com/adamwdraper/4212319

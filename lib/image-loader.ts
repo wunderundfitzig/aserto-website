@@ -14,7 +14,24 @@ function findClosestSize(width: number, list: number[]): number {
   })
 }
 
-const imageResizeTargets = [320, 640, 768, 1024, 1280, 1536, 2048]
+const imageResizeTargets = [
+  16,
+  32,
+  48,
+  64,
+  96,
+  128,
+  256,
+  384,
+  640,
+  750,
+  828,
+  1080,
+  1200,
+  1920,
+  2048,
+  3840,
+]
 export const imageLoader: ImageLoader = ({ src, width }) => {
   const closestWidth = findClosestSize(width, imageResizeTargets)
   let newSrc = src.replace('/_next/static/image/public', '')
@@ -22,5 +39,6 @@ export const imageLoader: ImageLoader = ({ src, width }) => {
   const splitted = newSrc.split('.')
   const file = splitted[0]
   const ext = splitted[splitted.length - 1]
-  return `/resized-images/public${file}-${closestWidth}.${ext}`
+  if (ext === 'svg') return `${src}#${width}`
+  return `/resized-images/public${file}-${closestWidth}.${ext}#${width}`
 }
