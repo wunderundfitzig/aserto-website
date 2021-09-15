@@ -5,7 +5,7 @@ const Ansprechpartner: FunctionComponent = () => {
   const contactImage = {
     width: 188,
     height: 246,
-    src: 'images/kontakt/ansprechpartner.jpg',
+    src: '/images/kontakt/ansprechpartner.jpg',
   }
   const contact = {
     name: 'Prof. Dr. Lars Harden ',
@@ -18,6 +18,7 @@ const Ansprechpartner: FunctionComponent = () => {
       <ContactCard image={contactImage} contact={contact}>
         {{ title: <h3>Ihr Kontakt für Initiative Bewerbungen</h3> }}
       </ContactCard>
+      <p>&nbsp;</p>
       <ContactCard reverse image={contactImage} contact={contact}>
         {{ title: <h3>Ihr Kontakt für Fragen Zum Thema Leistungen</h3> }}
       </ContactCard>

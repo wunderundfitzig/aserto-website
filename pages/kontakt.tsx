@@ -1,7 +1,6 @@
 import { NextPage } from 'next'
 import { PageProps } from 'pages/_app'
 import KontaktHeader from 'components/kontakt/kontakt-header'
-import Anfahrt from 'components/kontakt/anfahrt'
 import Impressum from 'components/kontakt/impressum'
 import Ansprechpartner from 'components/kontakt/ansprechpartner'
 import Metadata from 'components/metadata'
@@ -16,7 +15,6 @@ const Kontakt: NextPage<PageProps> = (props) => {
       />
       <main>
         <KontaktHeader />
-        <Anfahrt />
         <Ansprechpartner />
         <Impressum />
       </main>
