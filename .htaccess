@@ -1,1 +1,4 @@
-Redirect 301 "/ueber-aserto" "/purpose"
+Redirect 301 "/ueber-aserto" "/team"
+Redirect 301 "/beratungsangebot/*" "/leistungen"
+Redirect 301 "/datenschutzerklaerung" "/datenschutz"
+Redirect 301 "/impressum" "/kontakt"
