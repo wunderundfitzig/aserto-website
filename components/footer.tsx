@@ -44,7 +44,7 @@ const Footer: FunctionComponent<Props> = (props) => {
         <br />
         0511 515678 0
       </address>
-      <address className='social-icons'>
+      <address className='icons'>
         <SocialLinks color='black' />
       </address>
       <nav title='footer navigation' className='footer-navigation'>
@@ -70,7 +70,6 @@ const Footer: FunctionComponent<Props> = (props) => {
           line-height: 1.5em;
           font-size: 0.8em;
           padding: 3rem 0;
-          margin-top: -2rem;
         }
 
         .background-rect {
@@ -96,7 +95,7 @@ const Footer: FunctionComponent<Props> = (props) => {
           grid-area: logo;
         }
 
-        .social-icons {
+        .icons {
           grid-area: social;
         }
 
@@ -134,7 +133,7 @@ const Footer: FunctionComponent<Props> = (props) => {
             margin-top: 0.4em;
           }
 
-          .scial-icons {
+          .icons {
             align-self: center;
             justify-self: center;
           }

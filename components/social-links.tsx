@@ -31,7 +31,7 @@ type Props = {
 
 const SocialLinks: FunctionComponent<Props> = (props) => {
   return (
-    <div className='social-icons'>
+    <div className='icons'>
       <IconLink
         title='aserto linkedin profile'
         url='https://www.linkedin.com/company/aserto'
@@ -57,7 +57,7 @@ const SocialLinks: FunctionComponent<Props> = (props) => {
         <FacebookIcon color={props.color} />
       </IconLink> */}
       <style jsx>{`
-        .social-icons {
+        .icons {
           display: grid;
           grid-auto-flow: column;
           justify-content: flex-start;

@@ -51,7 +51,7 @@ const Index: NextPage = () => {
           alt=''
         />
       </div>
-      <div className='social-links'>
+      <div className='secondary-and-social-nav'>
         <SecondaryNavigation />
         <SocialLinks color={whiteIcons ? 'white' : 'black'} />
       </div>
@@ -115,7 +115,8 @@ const Index: NextPage = () => {
           );
         }
 
-        .social-links {
+        .secondary-and-social-nav {
+          display: block;
           grid-area: footer;
           width: 100%;
           display: grid;
@@ -173,7 +174,7 @@ const Index: NextPage = () => {
             grid-row: 3 / 5;
           }
 
-          .social-links {
+          .secondary-and-social-nav {
             display: block;
             width: auto;
             grid-area: footer / footer / footer / 3;
@@ -224,7 +225,7 @@ const Index: NextPage = () => {
             clip-path: inset(0 0 0 calc(100% - 170px));
           }
 
-          .social-links {
+          .secondary-and-social-nav {
             grid-column: 3 / 4;
             grid-row: 3 / 4;
             background-color: white;
