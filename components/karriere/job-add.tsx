@@ -39,14 +39,7 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             <ReactMarkdown>{job.content}</ReactMarkdown>
           </main>
           <aside>
-            <ContactCard
-              image={{
-                src: '/contact-placeholder-image.jpg',
-                width: 188,
-                height: 246,
-              }}
-              contact={job.contact}
-            />
+            <ContactCard image={job.contactImage} contact={job.contact} />
             <div className='button-wrapper'>
               <CopyUrlButton color={colors.categoryColors.karriere}>
                 Link kopieren
@@ -101,6 +94,24 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           font-weight: 200;
           max-width: 40rem;
           margin: 0 auto;
+          line-height: 1.5em;
+        }
+
+        .content :global(h2) {
+          font-size: 1.2em;
+          margin-top: 1.5em;
+        }
+
+        .content :global(p) {
+          line-height: 1.5em;
+        }
+
+        .content :global(ul) {
+          padding: 0 0 1em 1em;
+        }
+
+        .content :global(li) {
+          margin: 0.5em 0;
         }
 
         aside {
