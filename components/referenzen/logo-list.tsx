@@ -74,12 +74,17 @@ const logos = [
     width: 480,
     height: 113,
   },
-
   {
     client: 'VHV Gruppe',
     src: '/images/referenzen/vhv-logo.svg',
     width: 1016,
     height: 143,
+  },
+  {
+    client: 'Welthungerhilfe',
+    src: '/images/referenzen/welthungerhilfe.svg',
+    width: 159,
+    height: 101,
   },
   {
     client: 'Die ZEIT',
