@@ -9,8 +9,7 @@ import Navigation from 'components/navigation'
 import GlobalStyles from 'components/global-styles'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import Footer from 'components/footer'
-
-const FontTrackinCode = dynamic(() => import('components/font-tracking-code'))
+import FontTrackingScript from 'components/font-tracking-script'
 
 export type PageProps = {
   gridArea: string
@@ -23,7 +22,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Favicons />
-      <FontTrackinCode />
+      <FontTrackingScript />
       <MainGrid onFrontpage={isIndexPage}>
         <Link href='/'>
           <a className='logo-link' title='aserto startpage'>
