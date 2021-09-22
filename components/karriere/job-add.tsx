@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { Contact } from 'lib/types'
+import { Contact, ImageType } from 'lib/types'
 import MainGrid from 'components/main-grid'
 import JobAddHeader from 'components/karriere/job-add-header'
 import Button from 'components/button'
@@ -16,6 +16,7 @@ type Job = {
   id: string
   title: string
   content: string
+  contactImage: ImageType
   contact: Contact
 }
 

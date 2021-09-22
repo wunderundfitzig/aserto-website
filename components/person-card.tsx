@@ -94,7 +94,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           font-weight: 200;
           margin-bottom: 0;
           font-size: 0.8em;
-          word-break: break-word;
+          overflow-wrap: break-word;
         }
 
         .contact .role {

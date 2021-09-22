@@ -104,7 +104,7 @@ const LogoList: FunctionComponent = () => {
         <EndlessLine color={colors.categoryColors.referenzen} rotate={-35} />
       </div>
       <div className='line-3'>
-        <EndlessLine color={colors.categoryColors.referenzen} rotate={30} />
+        <EndlessLine color={colors.categoryColors.referenzen} rotate={40} />
       </div>
       <style jsx>{`
         .logo-list {

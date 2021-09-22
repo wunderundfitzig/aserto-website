@@ -255,7 +255,7 @@ const GrowingDot: FunctionComponent = () => {
           width: 100%;
           margin: calc(50vh - 20px) 0 0;
           font-size: 1em;
-          word-break: break-word;
+          overflow-wrap: break-word;
           text-align: right;
           display: grid;
           grid-template-columns: 1fr 1fr;

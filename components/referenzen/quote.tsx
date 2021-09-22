@@ -18,17 +18,22 @@ const Quote: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .quote {
           display: grid;
+          grid-template-columns: minmax(0, 1fr);
           margin: 0;
-          justify-content: center;
+          height: 100%;
+          min-height: 300px;
+          justify-items: center;
+          align-items: center;
         }
 
         .inner {
           text-align: center;
           display: block;
           width: auto;
+          overflow-wrap: break-word;
           max-width: 50em;
+          padding: 2em 1em;
           background-color: white;
-          padding: 2em 4em;
         }
         figcaption {
           margin: 0;
@@ -39,13 +44,17 @@ const Quote: FunctionComponent<Props> = (props) => {
         blockquote {
           font-family: 'Usherwood';
           margin: 0.3em 0;
-          font-size: 1.6em;
+          font-size: 1.5em;
           font-weight: bold;
         }
 
         @media ${minWidth(breakpoint.m)} {
           blockquote {
-            font-size: 2em;
+            font-size: 1.7em;
+          }
+
+          .inner {
+            padding: 2em 4em;
           }
         }
       `}</style>

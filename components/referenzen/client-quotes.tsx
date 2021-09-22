@@ -3,23 +3,30 @@ import Slider from 'components/slider'
 import Quote from 'components/referenzen/quote'
 import { ArrowIcon } from 'components/icons'
 import { categoryColors } from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const quotes = [
   {
-    author: 'Max Muster',
-    quote: 'Wir brauchten eine Entscheidung, die wir fundiert umsetzen können',
+    author: 'DIE ZEIT, Nils von der Call, CMO',
+    quote:
+      'aserto begleitet seit vielen Jahren unsere erfolgreiche Entwicklung mit evidenzbasiertem Input, aus dem sich klare, praktische Handlungsempfehlungen ableiten lassen.',
   },
   {
-    author: 'Tina Muster',
-    quote: 'Quote 2',
+    author:
+      'Diakonie Deutschland, Matthias Sobolewski, CVD/Referatsleiter Aktuelles',
+    quote:
+      'Dank des gemeinsam mit aserto entwickelten Tools können wir auf kurzfristige Entwicklungen medienadäquat reagieren.',
   },
   {
-    author: 'Paul Muster',
-    quote: 'Quote 3',
+    author:
+      'HUK Coburg, Dr. Kerstin Bartels, Leiterin Unternehmenskommunikation',
+    quote: 'aserto unterscheidet täglich das Wichtige vom Unwichtigen.',
   },
   {
-    author: 'Laura Muster',
-    quote: 'Quote 4',
+    author:
+      'Nordkirche, Matthias Birgden, Kommunikationsdirektor Organisationskommunikation',
+    quote:
+      'aserto begleitet die Modernisierung kirchlicher Kommunikation – kompetent und evidenzbasiert.',
   },
 ]
 
@@ -66,7 +73,8 @@ const ClientQuotes: FunctionComponent = () => {
         .client-quotes {
           display: grid;
           grid-template-columns: 15px 1fr 15px;
-          margin: 10em 0 12em;
+          grid-gap: 0 1rem;
+          margin: 10em -1rem 12em;
         }
 
         .slide-button {
@@ -79,6 +87,12 @@ const ClientQuotes: FunctionComponent = () => {
         .slide-button:disabled {
           opacity: 0.2;
           cursor: default;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          .client-quotes {
+            margin: 10em 0 12em;
+          }
         }
       `}</style>
     </section>
