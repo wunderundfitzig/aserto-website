@@ -11,9 +11,9 @@ const ReferenzenHeader: FunctionComponent = () => {
       <h1>Referenzen</h1>
       <div className='text-block'>
         <p>
-          Für Akteure aus Wirtschaft und Wissenschaft und Institutionen
-          verschaffen Durchblick, bestimmten die Richtung, bauen Hürden ab oder
-          gestalten Transformationen.
+          Für Entscheider*innen aus Wirtschaft, Wissenschaft und Institutionen
+          verschaffen Durchblick, erleichtern Richtungsentscheidungen, bauen
+          Hürden ab oder gestalten Transformationen.
         </p>
       </div>
       <div className='image'>

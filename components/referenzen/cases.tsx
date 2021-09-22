@@ -166,10 +166,6 @@ const Cases: FunctionComponent = () => {
       </div>
 
       <style jsx>{`
-        section {
-          margin-bottom: -2rem;
-        }
-
         h2 {
           text-align: right;
         }

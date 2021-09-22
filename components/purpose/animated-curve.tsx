@@ -14,35 +14,35 @@ const rows = [
     image: '/images/purpose/purpose-1.jpg',
     imagePosition: 'right',
     text:
-      'Menschen, die zuhören und die richtigen Fragen stellen, damit ein möglichst umfassendes Gesamtbild entsteht.',
+      'die zuhören und die richtigen Fragen stellen, damit ein möglichst umfassendes Gesamtbild entsteht.',
   },
   {
     category: 'daten',
     onBackground: true,
     text:
-      'Daten, die mithilfe statistischer Methoden als Signale im Datenrauschen sichtbar werden.',
+      'die mithilfe statistischer Methoden als Signale im Datenrauschen sichtbar werden.',
   },
   {
     category: 'menschen',
     image: '/images/purpose/purpose-3.jpg',
     imagePosition: 'right',
-    text: 'Menschen, die Signale richtig deuten und in Beziehung setzen.',
+    text: 'die Signale richtig deuten und in Beziehung setzen.',
   },
   {
     category: 'daten',
     text:
-      'Daten, damit gesicherte Erkenntnisse und sachlich gestützte Prognosen entstehen.',
+      'damit gesicherte Erkenntnisse und sachlich gestützte Prognosen entstehen.',
   },
   {
     category: 'menschen',
     image: '/images/purpose/purpose-2.jpg',
     imagePosition: 'right',
     text:
-      'Menschen, die Erkenntnisse prägnant verdichten und in Lösungen und Handlungsperspektiven denken.',
+      'die Erkenntnisse prägnant verdichten und in Lösungen und Handlungsperspektiven denken.',
   },
   {
     category: 'daten',
-    text: 'Daten, die Veränderungen sichtbar machen.',
+    text: 'die Veränderungen sichtbar machen.',
   },
 ] as const
 

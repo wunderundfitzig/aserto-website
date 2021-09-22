@@ -30,9 +30,9 @@ const WasUnsAusmacht: FunctionComponent = () => {
           wertschätzenden, verbindlichen Dialog mit den Beteiligten.
         </p>
         <List color={categoryColors.leistungen}>
-          <>Consulting</>
-          <>Data-Science</>
-          <>Medienmonitoring- und Analyse</>
+          <>Analyse</>
+          <>Strategie</>
+          <>Steuerung</>
         </List>
       </div>
 

@@ -126,7 +126,7 @@ const GrowingDot: FunctionComponent = () => {
             opacity: scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0,
           }}
         >
-          <h3>Analyse von Daten, Strukturen und Dynamiken:</h3>
+          <h3>Analyse:</h3>
           <p>
             Im ersten Schritt sammeln und aggregieren wir alle verfügbaren
             Informationen, um diese dann je nach Fragestellung in ein Konzept
@@ -145,7 +145,7 @@ const GrowingDot: FunctionComponent = () => {
             opacity: scrolledPixels > 1610 && scrolledPixels < 2300 ? 1 : 0,
           }}
         >
-          <h3>Verdichtung & maßvolle Akzentuierung der relevanten Aspekte:</h3>
+          <h3>Verdichtung & maßvolle Akzentuierung:</h3>
           <p>
             In einer Vielzahl von Informationen und Daten finden wir die Signale
             im Rauschen. Und erläutern, was diese zu bedeuten haben.
@@ -155,14 +155,11 @@ const GrowingDot: FunctionComponent = () => {
           className='section ergebnisse'
           style={{ opacity: scrolledPixels > 2400 ? 1 : 0 }}
         >
-          <h3>
-            Holistische Einbettung der Ergebnisse in unternehmensrelevante
-            Kontexte:
-          </h3>
+          <h3>Ganzheitliche Betrachtung:</h3>
           <p>
             Reine Datenanalysen finden bei uns nicht statt, wir setzen unsere
             Analysen und Konzepte immer in den unternehmensrelevanten Kontext.
-            Denn nur wenn wir die Hintergründe kennen, schaffen wir Relevanz.
+            Denn nur, wenn wir die Hintergründe kennen, schaffen wir Relevanz.
           </p>
         </div>
       </div>

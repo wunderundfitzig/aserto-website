@@ -25,14 +25,13 @@ const Footer: FunctionComponent<Props> = (props) => {
           width={2000}
           height={100}
           fill={backgroundColor}
-          fillOpacity={0.5}
         />
       </svg>
       <div className='logo'>
         <AsertoLogo />
       </div>
       <address className='address'>
-        aserto GmnH & Co. KG
+        aserto GmbH & Co. KG
         <br />
         Kriegerstr. 44 <br />
         30161 Hannover

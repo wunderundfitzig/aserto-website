@@ -51,47 +51,6 @@ const Impressum: FunctionComponent = () => {
       </Statement>
       <Statement color={colors.grey}>
         {{
-          title: (
-            <h3>Das Impressum gilt auch für folgende Social-Media-Profile</h3>
-          ),
-
-          content: (
-            <ul>
-              <li>
-                <a
-                  href='https://www.xing.com/profile/Lars_Harden
-'
-                >
-                  https://www.xing.com/profile/Lars_Harden
-                </a>
-              </li>
-              <li>
-                <a
-                  href='https://www.xing.com/profile/Annika_Wolf20
-'
-                >
-                  https://www.xing.com/profile/Annika_Wolf20
-                </a>
-              </li>
-              <li>
-                <a
-                  href='https://www.xing.com/profile/Mareike_Franz2
-'
-                >
-                  https://www.xing.com/profile/Mareike_Franz2
-                </a>
-              </li>
-              <li>
-                <a href='https://www.xing.com/profile/Daniela_Charrier'>
-                  https://www.xing.com/profile/Daniela_Charrier
-                </a>
-              </li>
-            </ul>
-          ),
-        }}
-      </Statement>
-      <Statement color={colors.grey}>
-        {{
           title: <h3>Rechtshinweise</h3>,
           content: (
             <>

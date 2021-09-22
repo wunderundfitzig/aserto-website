@@ -1,3 +1,5 @@
+import { transparentize } from 'polished'
+
 export const backgroundBlue = '#A8C9E8'
 export const lightBlue = '#5F99D2'
 export const blue = '#0066C2'
@@ -30,9 +32,9 @@ export const categoryColors = {
 }
 
 export const footerBackgroundColors = {
-  purpose: backgroundBeige,
-  team: backgroundBlue,
-  leistungen: 'transparent',
-  referenzen: backgroundDenim,
-  karriere: 'transparent',
+  purpose: transparentize(0.5, backgroundBeige),
+  team: transparentize(0.5, backgroundBlue),
+  leistungen: 'white',
+  referenzen: 'white',
+  karriere: 'white',
 }

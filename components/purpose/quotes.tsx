@@ -14,8 +14,8 @@ const Quotes: FunctionComponent = () => {
             roofline: <figcaption>Daniel Keys Moran:</figcaption>,
             title: (
               <blockquote>
-                You can have data without information, but you cannot have
-                information without data.
+                „You can have data without information, but you cannot have
+                information without data.“
               </blockquote>
             ),
           }}
@@ -27,8 +27,8 @@ const Quotes: FunctionComponent = () => {
             roofline: <figcaption>Hans Rosling:</figcaption>,
             title: (
               <blockquote>
-                The world cannot be understood without numbers. But the world
-                cannot be understood with numbers alone.
+                „The world cannot be understood without numbers. But the world
+                cannot be understood with numbers alone.“
               </blockquote>
             ),
           }}

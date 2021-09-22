@@ -16,8 +16,8 @@ const DasSindWir: FunctionComponent = () => {
         <Link href='/karriere#Stellenanzeigen'>
           <a className='job-list-link'>
             <div>
-              <h3>Du möchtest unser Team ergänzen?</h3>
-              <p>Hier geht`s zu den Stellenausschreibungen</p>
+              <h3>Und Du?</h3>
+              <p>Hier entlang.</p>
             </div>
           </a>
         </Link>

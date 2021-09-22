@@ -5,6 +5,7 @@ import ReferenzenHeader from 'components/referenzen/referenzen-header'
 import { NextPage } from 'next'
 import { PageProps } from 'pages/_app'
 import Metadata from 'components/metadata'
+import ReferenzenContact from 'components/referenzen/referenzen-contact'
 
 const LeistungenPage: NextPage<PageProps> = (props) => {
   return (
@@ -20,6 +21,7 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
         <ClientQuotes />
         <Cases />
       </main>
+      <ReferenzenContact />
     </article>
   )
 }

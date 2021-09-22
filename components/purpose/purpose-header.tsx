@@ -36,9 +36,8 @@ const PurposeHeader: FunctionComponent = () => {
       <div className='text-box'>
         <p>
           Wir leben in einem Zeitalter der digitalen Transformation, in dem
-          Unternehmen durch richtungsweisende Entscheidungen den Wandel aktiv
-          mitgestalten können. Daraus ergibt sich ein enormes Potenzial für die
-          Zukunft, beispielsweise in Bezug auf die Entstehung neuer
+          Unternehmen und Institutionen vor richtungsweisenden Entscheidungen
+          stehen. Es bestehen enorme Chancen, beispielsweise durch neue
           Geschäftsmodelle. Gleichzeitig kann der digitale Transformationsdruck
           aber auch Unsicherheiten auslösen. Uns stehen immer mehr Daten zur
           Verfügung. In dieser Flut an Informationen und Meinungen fällt es

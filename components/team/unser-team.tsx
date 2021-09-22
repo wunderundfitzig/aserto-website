@@ -8,13 +8,11 @@ const UnserTeam: FunctionComponent = () => {
     <section>
       <h2>Unser Team</h2>
       <p className='text-block'>
-        In unseren dynamischen Projekten sind wir interdisziplinär unterwegs und
-        vereinen dabei unterschiedliche Profile: Bei aserto arbeiten
-        Data-Scientists, Consultants und Specialists für Medienmonitoring- und
-        Analyse. Von Datenanalyse und -Visualisierungen, empirischer
-        Sozialforschung bis zur strategischen Kommunikationsberatung können wir
-        alles abdecken. Die verschiedenen Perspektiven und Erfahrungen weiten
-        unseren Blick und bereichern unsere Ergebnisse.
+        In dynamischen Projekten arbeiten wir oft interdisziplinär. Unsere
+        Schwerpunkte sind Datenanalyse und -visualisierungen, empirische
+        Sozialforschung und strategische Kommunikationsberatung. Die
+        verschiedenen Perspektiven und Erfahrungen weiten unseren Blick und
+        bereichern unsere Ergebnisse.
       </p>
       <List inline color={colors.lightBlue}>
         <>Consulting</>

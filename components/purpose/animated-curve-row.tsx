@@ -36,7 +36,7 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
         </div>
       )}
       <div className='text'>
-        <h3>{props.category === 'daten' ? 'Daten' : 'Menschen'}</h3>
+        <h3>{props.category === 'daten' ? 'Daten,' : 'Menschen,'}</h3>
         <p>{props.text}</p>
       </div>
       <style jsx>{`
