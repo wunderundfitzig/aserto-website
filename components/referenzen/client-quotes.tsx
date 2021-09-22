@@ -53,7 +53,7 @@ const ClientQuotes: FunctionComponent = () => {
           return (
             <Quote>
               {{
-                author: <>Kunde: {quote.author}</>,
+                author: <>{quote.author}</>,
                 quote: <>„{quote.quote}“</>,
               }}
             </Quote>
