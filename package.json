@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run images:resize && next build && next export",
+    "build:code": "next build",
+    "build:export": "next export",
+    "build": "npm run images:resize && npm run build:code && npm run build:export",
     "start": "next start",
     "lint": "next lint",
     "images:resize": "node scripts/images-resize.js",

@@ -104,6 +104,7 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
           .row.daten {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr;
+            grid-gap: 0 3rem;
             grid-template-areas: ${imagePosition === 'left'
               ? '"image text"'
               : '"text image"'};
@@ -125,6 +126,12 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
 
           .image-wrapper {
             margin-left: 0;
+          }
+        }
+
+        @media ${minWidth(breakpoint.m)} {
+          .image-wrapper {
+            width: 100%;
           }
         }
       `}</style>

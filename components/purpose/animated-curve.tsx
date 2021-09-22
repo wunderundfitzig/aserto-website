@@ -177,6 +177,7 @@ export const AnimatedCurve: FunctionComponent = () => {
           top: 0;
           overflow: visible;
           height: 100%;
+          pointer-events: none;
         }
 
         svg :global(path),

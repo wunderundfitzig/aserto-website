@@ -80,7 +80,7 @@ const TeamHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.xs)} {
           .key-visual {
-            height: 150%;
+            height: 145%;
           }
         }
 
@@ -89,13 +89,8 @@ const TeamHeader: FunctionComponent = () => {
             width: 80%;
           }
           .key-visual {
-            height: 170%;
-          }
-        }
-
-        @media ${minWidth(breakpoint.m)} {
-          .key-visual {
-            height: 200%;
+            grid-area: title / title / image-2 / image-2;
+            height: 100%;
           }
         }
 

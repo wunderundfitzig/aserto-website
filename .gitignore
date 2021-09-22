@@ -10,6 +10,7 @@
 
 # next.js
 /.next/
+/.vercel/
 /out/
 /public/resized-images/*
 !/public/resized-images/.gitkeep
