@@ -25,7 +25,7 @@ const Index: NextPage = () => {
     <>
       <Metadata
         title='aserto'
-        description='Wir begleiten bei Richtungsweisenden Entscheidungen'
+        description='aserto begleitet bei richtungsweisenden Entscheidungen und verbindet Analysen mit Tiefgang und Beratung mit Substanz.'
         slug='/'
       />
       <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>

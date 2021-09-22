@@ -12,7 +12,7 @@ const LeistungenPage: NextPage<PageProps> = (props) => {
     <article style={{ gridArea: props.gridArea }}>
       <Metadata
         title='aserto | Leistungen'
-        description='Wir verbinden Analysen mit Tiefgang und Beratung mit Substanz.'
+        description='aserto begleitet Unternehmen und Institutionen bei richtungsweisenden Handlungen und eröffnet Möglichkeiten zur Veränderung.'
         slug='/leistungen'
       />
       <main>
