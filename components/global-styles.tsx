@@ -19,6 +19,16 @@ const GlobalStyles: FunctionComponent = () => (
       font-display: swap;
     }
 
+    @font-face {
+      font-family: 'Usherwood';
+      font-weight: 600;
+      src: url('Fonts/5729734/ee5e2d27-2565-4011-ab30-5723a1c3ecd2.woff2')
+          format('woff2'),
+        url('Fonts/5729734/e1438d26-2ed8-48ac-bb76-58de1a04d32c.woff')
+          format('woff');
+      font-display: swap;
+    }
+
     html,
     body {
       font-size: 14px;
