@@ -10,6 +10,7 @@ type Props = {
   cases: {
     id: string
     client: string
+    clientShortName?: string
     logo: ImageType
   }[]
   activeCaseId: string
@@ -34,7 +35,9 @@ const CasesNav: FunctionComponent<Props> = (props) => {
                     alt={`${caseArticle.client} Logo`}
                   />
                 </div>
-                <span className='client-name'>{caseArticle.client}</span>
+                <span className='client-name'>
+                  {caseArticle.clientShortName ?? caseArticle.client}
+                </span>
               </a>
             </Link>
           </li>
@@ -60,8 +63,9 @@ const CasesNav: FunctionComponent<Props> = (props) => {
 
         a {
           height: 60px;
-          display: flex;
+          display: grid;
           align-items: center;
+          justify-content: center;
           padding: 0.8em;
           transition: background-color, color, font-weight;
           transition-delay: 0.1s;
@@ -74,6 +78,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
         }
 
         .client-logo {
+          display: grid;
           filter: invert(1) brightness(2);
           transition: filter;
           transition-delay: 0.1s;

@@ -7,123 +7,67 @@ import { useRouter } from 'next/router'
 
 const cases = [
   {
-    id: 'case1',
+    id: 'die-zeit',
+    title: 'Wie kann DIE ZEIT gegen den Markttrend weiter wachsen?',
+    category: 'Leser*innen-zentrierte Weiterentwicklung',
+    client: 'DIE ZEIT',
+    logo: {
+      src: '/images/referenzen/zeit-logo.svg',
+      width: 346,
+      height: 37,
+    },
+    task:
+      'DIE ZEIT hat in den letzten Jahren viele Abonnent*innen neu hinzugewonnen. Um diese starke Position zu halten und auszubauen, möchte DIE ZEIT die Wünsche ihrer Leser*innen intensiv einbeziehen.',
+    solution:
+      'Zusammen mit der ZEIT hat aserto qualitative und quantitative Instrumentarien etabliert, die redaktionelle und verlegerische Konzepte prüfen und eine Leser*innen-zentrierte Weiterentwicklung ermöglichen.',
+  },
+  {
+    id: 'ewde',
     title:
-      'Wie wird evangelischer Glauben im digitalen Zeitalter kommuniziert?',
-    category: 'Kommunikationskonzept',
+      'Wie finden unsere Antworten auf gesellschaftliche Fragen hohe Resonanz?',
+    category: 'Issues Dashboard',
+    client: 'Das Evangelische Werk für Diakonie und Entwicklung (EWDE) ',
+    clientShortName: 'EWDE',
+    logo: {
+      src: '/images/referenzen/diakonie-logo.svg',
+      width: 284,
+      height: 93,
+    },
+    task:
+      'In einer sich wandelnden digitalen Öffentlichkeit müssen Wohlfahrtsverbände und Hilfsorganisationen immer kurzfristiger in der Lage sein, sich mit angemessenen und gleichzeitig klaren Positionen in gesellschaftliche Debatten einzubringen.',
+    solution:
+      'Die Lösung: Mithilfe eines Dashboard-gestützten Issues Management erkennen Diakonie Deutschland, Brot für die Welt und Diakonie Katastrophenhilfe frühzeitig, wie sich Debatten entwickeln.',
+  },
+  {
+    id: 'huk-coburg',
+    title:
+      'Wie können wir noch zielgruppenadäquater und themenspezifischer kommunizieren?',
+    category: 'Monitoring',
+    client: 'HUK Coburg',
+    logo: {
+      src: '/images/referenzen/huk-coburg-logo.svg',
+      width: 117,
+      height: 30,
+    },
+    task:
+      'Die Perspektiven auf Versicherungen werden immer differenzierter. Damit Kommunikation erfolgreich sein kann, muss sie an die öffentlich diskutierten Fragen anknüpfen.',
+    solution:
+      'Das gemeinsam entwickelte Dashboard bündelt alle Quellen und liefert komfortable Ad-hoc-Analysen zu tagesaktuellen Fragestellungen. Ein thematisch sortierter Newsletter verschafft allen Interessierten einen optimalen Überblick zur öffentlichen Sichtbarkeit.',
+  },
+  {
+    id: 'nordkirche',
+    title: 'Wie gelingt die Neugründung eines Kommunikationswerkes?',
+    category: 'Begleitung bei der Umsetzung eines Kommunikationskonzepts',
     client: 'Nordkirche',
     logo: {
-      src: '/images/referenzen/client-logo-placeholder.svg',
+      src: '/images/referenzen/logo-nordkirche.svg',
       width: 117,
       height: 82,
     },
     task:
-      'Kostenlose Informationen über das tagesaktuelle Geschehen finden wir zahlreich im Internet. Doch wie gewinnen wir Nutzer*Innen, die für Qualitätsjournalismus zu zahlen bereit sind? Doch wie gewinnen wir Nutzer*Innen, die für Qualitätsjournalismus zu zahlen bereit sind?',
+      'Im neuen Werk stellen sich Fragen nach Zielen, Führung, Kultur und Struktur. Gleichzeitig gilt es die interne Kommunikation, die Mitgliederkommunikation und Öffentlichkeitsarbeit auf den medialen Wandel einzustellen.',
     solution:
-      'Für DIE ZEIT machen wir die Treiber und Hürden der Nutzer*Innen auf dem Weg zum Digitalabo transparent. Der Weg für eine bessere Conversion ist frei. Für DIE ZEIT machen wir die Treiber und Hürden der Nutzer*Innen auf dem Weg zum Digitalabo transparent. Link zu einer Seite',
-    assets: [{ type: 'link', url: 'https://example.com' }],
-  },
-  {
-    id: 'case2',
-    title:
-      'Ut ut sunt aut accusamus quas optio quia est. Magnam iure aut omnis voluptatibus',
-    category: 'Kommunikationskonzept',
-    client: 'client 2',
-    logo: {
-      src: '/images/referenzen/client-logo-placeholder-2.svg',
-      width: 117,
-      height: 50,
-    },
-    task:
-      'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
-    solution:
-      'Gemeinsame Ziele, neue Strukturen und Kollaborationsformen schaffen Klarheit und eine stringente Orientierung an den Mitgliedern der Nordkirche.',
-    assets: [{ type: 'link', url: 'https://example.com' }],
-  },
-  {
-    id: 'case3',
-    title:
-      'Corporis amet et atque occaecati ipsam quo ab earum. Doloremque possimus?',
-    category: 'Kommunikationskonzept',
-    client: 'client 3',
-    logo: {
-      src: '/images/referenzen/client-logo-placeholder-3.svg',
-      width: 117,
-      height: 30,
-    },
-    task:
-      'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
-    solution:
-      'Gemeinsame Ziele, neue Strukturen und Kollaborationsformen schaffen Klarheit und eine stringente Orientierung an den Mitgliedern der Nordkirche.',
-    assets: [{ type: 'link', url: 'https://example.com' }],
-  },
-  {
-    id: 'case4',
-    title:
-      'Similique voluptate eligendi laboriosam qui. Debitis esse facilis consequatur?',
-    category: 'Kommunikationskonzept',
-    client: 'client 4',
-    logo: {
-      src: '/images/referenzen/client-logo-placeholder.svg',
-      width: 117,
-      height: 82,
-    },
-    task:
-      'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
-    solution:
-      'Gemeinsame Ziele, neue Strukturen und Kollaborationsformen schaffen Klarheit und eine stringente Orientierung an den Mitgliedern der Nordkirche.',
-    assets: [{ type: 'link', url: 'https://example.com' }],
-  },
-  {
-    id: 'case5',
-    title:
-      'Voluptate voluptates amet laborum laboriosam. Laborum dolores est non enim facilis non sint molestiae. Beatae odit explicabo ut sed quo ipsam accusantium soluta?',
-    category: 'Kommunikationskonzept',
-    client: 'client 5',
-    logo: {
-      src: '/images/referenzen/client-logo-placeholder-2.svg',
-      width: 117,
-      height: 50,
-    },
-    task:
-      'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
-    solution:
-      'Gemeinsame Ziele, neue Strukturen und Kollaborationsformen schaffen Klarheit und eine stringente Orientierung an den Mitgliedern der Nordkirche.',
-    assets: [{ type: 'link', url: 'https://example.com' }],
-  },
-  {
-    id: 'case6',
-    title:
-      'Accusantium natus est provident veniam mollitia deserunt. Assumenda repudiandae repudiandae?',
-    category: 'Kommunikationskonzept',
-    client: 'client with long name',
-    logo: {
-      src: '/images/referenzen/client-logo-placeholder-3.svg',
-      width: 117,
-      height: 30,
-    },
-    task:
-      'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
-    solution:
-      'Gemeinsame Ziele, neue Strukturen und Kollaborationsformen schaffen Klarheit und eine stringente Orientierung an den Mitgliedern der Nordkirche.',
-    assets: [{ type: 'link', url: 'https://example.com' }],
-  },
-  {
-    id: 'case7',
-    title:
-      'Placeat repellendus impedit id aut est autem. Veritatis sunt perferendis ducimus?',
-    category: 'Kommunikationskonzept',
-    client: 'client 7',
-    logo: {
-      src: '/images/referenzen/client-logo-placeholder.svg',
-      width: 117,
-      height: 82,
-    },
-    task:
-      'In Zeiten großer gesellschaftlicher Veränderungen stehen Kirchen vor der Aufgabe erfolgreich und effizient zu kommunizieren.',
-    solution:
-      'Gemeinsame Ziele, neue Strukturen und Kollaborationsformen schaffen Klarheit und eine stringente Orientierung an den Mitgliedern der Nordkirche.',
-    assets: [{ type: 'link', url: 'https://example.com' }],
+      'aserto begleitet die Umsetzung durch eine Moderation des Wandels und den Einbezug empirischer Ergebnisse (Befragungen, Gruppendiskussionen).',
   },
 ]
 
