@@ -12,7 +12,7 @@ const ReferenzenHeader: FunctionComponent = () => {
       <div className='text-block'>
         <p>
           Für Entscheider*innen aus Wirtschaft, Wissenschaft und Institutionen
-          verschaffen Durchblick, erleichtern Richtungsentscheidungen, bauen
+          verschaffen wir Durchblick, erleichtern Richtungsentscheidungen, bauen
           Hürden ab oder gestalten Transformationen.
         </p>
       </div>
