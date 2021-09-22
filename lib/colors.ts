@@ -37,4 +37,6 @@ export const footerBackgroundColors = {
   leistungen: 'white',
   referenzen: 'white',
   karriere: 'white',
+  kontakt: transparentize(0.5, backgroundGrey),
+  datenschutz: transparentize(0.5, backgroundGrey),
 }
