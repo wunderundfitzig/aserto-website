@@ -34,14 +34,14 @@ const Background: FunctionComponent = () => {
 
 const KarriereContact: FunctionComponent = () => {
   const contactImage = {
-    width: 188,
-    height: 246,
-    src: '/images/karriere/kontakt-image.jpg',
+    width: 696,
+    height: 975,
+    src: '/images/team/portraits/_VND4045.jpg',
   }
   const contact = {
-    name: 'Prof. Dr. Jana Harden ',
-    phone: '0511-515678-0',
-    mail: 'harden@aserto.de',
+    name: 'Anna Begau',
+    phone: '0511-515678-32',
+    mail: 'begau@aserto.de',
   }
 
   return (
@@ -53,14 +53,17 @@ const KarriereContact: FunctionComponent = () => {
           preserveAspectRatio='none'
         />
       </div>
-      <ContactBanner image={contactImage} contact={contact}>
+      <ContactBanner
+        contactCardTitle='Kontakt'
+        image={contactImage}
+        contact={contact}
+      >
         {{
           title: <>Wir haben gerade keine passende Stelle für Dich?</>,
           text: (
             <>
-              Du hast aber das Gefühl, perfekt zu uns zu passen? Kein Problem -
-              sende uns gerne eine Initiativbewerbung. Du hast noch Fragen? Dann
-              melde Dich bei Anna Begau.
+              Du hast aber das Gefühl, perfekt zu uns zu passen? Kein Problem –
+              sende uns gerne eine Initiativbewerbung.
             </>
           ),
           background: <Background />,

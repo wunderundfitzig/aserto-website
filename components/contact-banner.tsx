@@ -7,6 +7,7 @@ import { imageLoader } from 'lib/image-loader'
 type Props = {
   image: ImageType
   contact: Contact
+  contactCardTitle?: string
   children: {
     title: ReactElement
     text?: ReactElement
@@ -29,7 +30,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
         />
       </div>
       <address>
-        <h3>Ihr Kontakt</h3>
+        <h3>{props.contactCardTitle || 'Ihr Kontakt'}</h3>
         <p>{props.contact.name}</p>
         <p>{props.contact.phone}</p>
         <a href={`mailto:${props.contact.mail}`}>{props.contact.mail}</a>
@@ -43,6 +44,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
             'image'
             'address';
           justify-items: center;
+          margin-bottom: 2rem;
         }
 
         .title-wrapper {

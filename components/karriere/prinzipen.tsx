@@ -29,11 +29,9 @@ const Prinzipen: FunctionComponent = () => {
             title: <h3>Offenheit und Wertschätzung</h3>,
             content: (
               <p>
-                Offenheit und Wertschätzung gegenüber Kolleg*innen und
-                Kund*innen prägen unseren Umgang. Von Geschäftsführung bis zu
-                Praktikant*innen begegnen wir uns auf Augenhöhe, haben ein
-                offenes Ohr füreinander, disktutieren über Ideen und finden
-                gemeinsam Lösungen.
+                Von Geschäftsführung bis zu Praktikant*innen begegnen wir uns
+                auf Augenhöhe, haben ein offenes Ohr füreinander, disktutieren
+                über Ideen und finden gemeinsam Lösungen.
               </p>
             ),
           }}
@@ -48,11 +46,10 @@ const Prinzipen: FunctionComponent = () => {
             title: <h3>Fachliche und persönliche Weiterentwicklung</h3>,
             content: (
               <p>
-                Daneben steht die fachliche und persönliche Weiterentwicklung
-                unserer Mitarbeiter*innen im Fokus. So haben z.B. einige unserer
-                Kolleg*innen eine Fortbildung zum systemischen Berater oder
-                Projektmanager absolviert. Damit dies alles möglich ist,
-                unterstützen wir uns im Team gegenseitig.
+                Wir entwickeln uns ständig weiter – unsere Kompetenzen, unsere
+                Persönlichkeit, unser Urteilsvermögen. Weitergebildet haben wir
+                uns z. B. in systemischer Beratung, (agiles) Projektmanagement,
+                automatisierter Textanalyse, ....
               </p>
             ),
           }}
@@ -64,10 +61,8 @@ const Prinzipen: FunctionComponent = () => {
             title: <h3>Dynamische Kundenprojekte</h3>,
             content: (
               <p>
-                Dynamische Kundenprojekte heißt bei uns, dass wir uns schnell
-                und tief in neue Themen einarbeiten können, und das bei
-                verschiedenen Timings. Neben heißen Projektphasen gibt es dann
-                aber auch wieder ruhige Phasen.
+                Wir denken uns schnell und tief in neue Themen ein und arbeiten
+                flexibel und ausdauernd in dynamischen Umfeldern.
               </p>
             ),
           }}
@@ -79,9 +74,8 @@ const Prinzipen: FunctionComponent = () => {
             title: <h3>Work-Life-Balance</h3>,
             content: (
               <p>
-                Denn Work-Life-Balance wird bei uns ernstgenommen und wir
-                möchten, dass unsere Kolleg*innen genügend Zeit haben, um die
-                Akkus wieder aufzuladen.
+                Nach heißen Projektphasen kommen auch wieder ruhigere Phasen mit
+                Freiraum, in denen wir wissen zu regenerieren.
               </p>
             ),
           }}
@@ -96,11 +90,10 @@ const Prinzipen: FunctionComponent = () => {
             title: <h3>Teamwork</h3>,
             content: (
               <p>
-                Denn Teamwork wird bei aserto großgeschrieben. Das heiß auch,
-                dass wir in kleinen Projektteams arbeiten, uns gegenseitig
-                vertreten und feste Ansprechpartner*innen haben. Unsere geringe
-                Fluktuation und eine durchschnittliche Betriebszugehörigkeit von
-                X Jahren bestätigen das.
+                In kleinen Projektteams arbeiten wir aufgeschlossen,
+                eigenständig und verlässlich miteinander. Und das meist schon
+                länger: Jeder von uns ist im Durchschnitt schon mehr als sechs
+                Jahre bei aserto.
               </p>
             ),
           }}
