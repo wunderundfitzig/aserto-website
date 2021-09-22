@@ -23,15 +23,14 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         />
       </div>
       <div className='more-info-icon'>
-        <MoreInfoIcon color={colors.categoryColors.team} />
+        <MoreInfoIcon
+          color={colors.lightBlue}
+          borderWidth={4}
+          borderColor='white'
+        />
       </div>
+      <h3 className='front-name'>{props.contact.name}</h3>
       <div className='overlay'>
-        <h3>{props.contact.name}</h3>
-        <div className='contact'>
-          <p className='role'>{props.contact.role}</p>
-          <p>{props.contact.phone}</p>
-          <a href={`mailto:${props.contact.mail}`}>{props.contact.mail}</a>
-        </div>
         <div className='social-links'>
           {props.contact.xing && (
             <a href={props.contact.xing}>
@@ -44,6 +43,11 @@ const PersonCard: FunctionComponent<Props> = (props) => {
             </a>
           )}
         </div>
+        <div className='contact'>
+          <p className='role'>{props.contact.role}</p>
+          <p>{props.contact.phone}</p>
+          <a href={`mailto:${props.contact.mail}`}>{props.contact.mail}</a>
+        </div>
       </div>
       <style jsx>{`
         .person-card {
@@ -52,7 +56,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           grid-template-areas: 'image overlay';
           width: 100%;
           position: relative;
-          font-size: 0.8em;
+          margin-bottom: 3rem;
         }
 
         .image {
@@ -60,11 +64,21 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         }
 
         .more-info-icon {
-          position: absolute;
-          top: 0.9em;
-          left: 1em;
-          width: 30px;
+          display: none;
         }
+
+        .front-name {
+          position: absolute;
+          width: 100%;
+          text-transform: uppercase;
+          font-weight: 200;
+          margin: 0;
+          text-align: center;
+          font-size: 0.9rem;
+          bottom: -1.7rem;
+          text-align: right;
+        }
+
         .overlay {
           grid-area: overlay;
           display: grid;
@@ -76,36 +90,31 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           left: 0;
           background-color: ${colors.lightBlue};
           color: white;
-          padding: 2em 1em 1em;
-        }
-
-        h3 {
-          text-transform: uppercase;
-          font-weight: 200;
-          font-size: 1.4em;
-          margin: 0;
-          text-align: center;
+          padding: 1em;
         }
 
         .contact {
-          text-align: center;
+          text-align: right;
           font-weight: 200;
-          margin-bottom: 1em;
+          margin-bottom: 0;
+          font-size: 0.8em;
+          word-break: break-word;
         }
 
         .contact .role {
-          margin: 0.3em 0 0.6em;
+          margin: 0 0 1.5em;
+          font-weight: 400;
         }
 
         .contact p {
-          margin: 0.2em 0;
-          line-height: 1.2em;
+          margin: 0.5em 0;
+          line-height: 1.3em;
         }
 
         .social-links {
           display: grid;
           grid-auto-flow: column;
-          justify-content: center;
+          justify-content: start;
           grid-gap: 1.5em;
         }
 
@@ -119,6 +128,15 @@ const PersonCard: FunctionComponent<Props> = (props) => {
             grid-template-areas: 'image';
             font-size: 0.9em;
           }
+
+          .more-info-icon {
+            display: block;
+            position: absolute;
+            top: 0.9em;
+            left: 1em;
+            width: 30px;
+          }
+
           .overlay {
             display: none;
             grid-area: image;
@@ -126,7 +144,12 @@ const PersonCard: FunctionComponent<Props> = (props) => {
 
           .person-card:hover .overlay {
             display: grid;
-            padding: 2em 1em 2em;
+            padding: 1.5em 1em 1.5em 1.5em;
+          }
+
+          .contact {
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 1em;
           }
 
           .social-links a {

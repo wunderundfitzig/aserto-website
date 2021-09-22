@@ -3,11 +3,14 @@ import css from 'styled-jsx/css'
 
 type IconProps = {
   color?: string
+  borderColor?: string
+  borderWidth?: number
 }
 
 const iconStyles = css`
   .svg-icon {
     width: 100%;
+    paint-order: stroke fill markers;
   }
 `
 
@@ -81,15 +84,24 @@ export const ArrowIcon: FunctionComponent<IconProps & { rotate?: number }> = (
 }
 
 export const MoreInfoIcon: FunctionComponent<IconProps> = (props) => {
-  const { color = 'black' } = props
+  const {
+    color = 'black',
+    borderColor = 'transparent',
+    borderWidth = 0,
+  } = props
 
   return (
     <svg
       className='svg-icon'
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 70 16'
+      viewBox='-5 -5 80 26'
     >
-      <g fill={color} fillRule='nonzero'>
+      <g
+        fill={color}
+        stroke={borderColor}
+        strokeWidth={borderWidth}
+        fillRule='nonzero'
+      >
         <circle cx='8' cy='8' r='8' />
         <circle cx='35' cy='8' r='8' />
         <circle cx='62' cy='8' r='8' />
