@@ -37,6 +37,7 @@ const DasSindWir: FunctionComponent = () => {
         .job-list-link {
           box-sizing: border-box;
           width: 50%;
+          height: calc(100% - 3rem);
           margin-left: 50%;
           display: grid;
           grid-template-areas: 'single-area';

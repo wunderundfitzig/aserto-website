@@ -23,11 +23,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         />
       </div>
       <div className='more-info-icon'>
-        <MoreInfoIcon
-          color={colors.lightBlue}
-          borderWidth={4}
-          borderColor='white'
-        />
+        <MoreInfoIcon color={colors.grey} borderWidth={4} borderColor='white' />
       </div>
       <h3 className='front-name'>{props.contact.name}</h3>
       <div className='overlay'>
