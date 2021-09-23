@@ -21,6 +21,7 @@ const FreieMitarbeiter: FunctionComponent = () => {
 
         h2 {
           max-width: 30rem;
+          hyphens: auto;
         }
 
         .text-block {

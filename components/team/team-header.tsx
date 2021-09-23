@@ -30,6 +30,7 @@ const TeamHeader: FunctionComponent = () => {
       </div>
       <div className='image'>
         <Image
+          layout='responsive'
           loader={imageLoader}
           priority
           src='/images/team/team-image.jpg'
@@ -45,6 +46,7 @@ const TeamHeader: FunctionComponent = () => {
         .team-header {
           position: relative;
           display: grid;
+          grid-template-columns: minmax(0, 1fr);
           grid-template-areas:
             'title'
             'slogan'
@@ -59,7 +61,6 @@ const TeamHeader: FunctionComponent = () => {
 
         .sloagen-wrapper {
           grid-area: slogan;
-          width: 80%;
           max-width: 700px;
           z-index: 1;
         }
@@ -85,6 +86,10 @@ const TeamHeader: FunctionComponent = () => {
         }
 
         @media ${minWidth(breakpoint.s)} {
+          .sloagen-wrapper {
+            width: 80%;
+          }
+
           .image {
             width: 80%;
           }

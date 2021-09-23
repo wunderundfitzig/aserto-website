@@ -48,9 +48,8 @@ const PersonCard: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .person-card {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr minmax(0, 1fr);
           grid-template-areas: 'image overlay';
-          width: 100%;
           position: relative;
           margin-bottom: 3rem;
         }
@@ -90,7 +89,6 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           font-weight: 200;
           margin-bottom: 0;
           font-size: 0.8em;
-          overflow-wrap: break-word;
         }
 
         .contact .role {
@@ -101,6 +99,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         .contact p {
           margin: 0.5em 0;
           line-height: 1.3em;
+          hyphens: manual;
         }
 
         .network-links {

@@ -30,11 +30,12 @@ const GlobalStyles: FunctionComponent = () => (
 
     html,
     body {
-      font-size: 14px;
+      font-size: 15px;
       padding: 0;
       margin: 0;
       font-family: Sinova, sans-serif;
       scroll-behavior: smooth;
+      overflow-wrap: break-word;
     }
 
     h1 {
@@ -59,6 +60,7 @@ const GlobalStyles: FunctionComponent = () => (
     a {
       color: inherit;
       text-decoration: none;
+      word-break: break-word;
     }
 
     p {
@@ -70,13 +72,6 @@ const GlobalStyles: FunctionComponent = () => (
 
     * {
       box-sizing: border-box;
-    }
-
-    @media ${minWidth(breakpoint.s)} {
-      html,
-      body {
-        font-size: 15px;
-      }
     }
 
     @media ${minWidth(breakpoint.ml)} {
