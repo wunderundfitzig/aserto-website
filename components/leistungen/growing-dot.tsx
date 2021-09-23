@@ -230,7 +230,7 @@ const GrowingDot: FunctionComponent = () => {
 
         .first-text {
           width: 100%;
-          margin: calc(50vh - 20px) 0 0;
+          margin: calc(50vh - 40px) 0 0;
           font-size: 1em;
           overflow-wrap: break-word;
           text-align: right;
@@ -238,7 +238,7 @@ const GrowingDot: FunctionComponent = () => {
           grid-template-columns: 1fr 1fr;
           justify-items: end;
           font-weight: 200;
-          height: 200px;
+          height: 220px;
           transform: translateY(-0.8em);
         }
 
