@@ -43,7 +43,7 @@ export const Circle: FunctionComponent = () => {
   )
 }
 
-const LAST_SLIDE_OFFSET = 2300
+const LAST_SLIDE_OFFSET = 1500
 
 const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
@@ -53,8 +53,8 @@ const GrowingDot: FunctionComponent = () => {
   const isPastLastSlide = scrolledPixels > LAST_SLIDE_OFFSET
 
   const circleSize = isPastLastSlide
-    ? Math.sqrt(LAST_SLIDE_OFFSET * 20)
-    : Math.sqrt(Math.max(1, scrolledPixels) * 20)
+    ? Math.sqrt(LAST_SLIDE_OFFSET * 30)
+    : Math.sqrt(Math.max(1, scrolledPixels) * 30)
   const bigCircleSize = isPastLastSlide ? fullScreenSize : 0
 
   return (
@@ -97,27 +97,15 @@ const GrowingDot: FunctionComponent = () => {
           <span>Ergebnisse enstehen</span>
         </h2>
         <div
-          className='outline-cirlce start'
-          style={{ visibility: scrolledPixels > 285 ? 'visible' : 'hidden' }}
-        >
-          <Circle />
-        </div>
-        <div
-          className='section auftragsklaerung'
-          style={{
-            opacity: scrolledPixels > 300 && scrolledPixels < 650 ? 1 : 0,
-          }}
-        ></div>
-        <div
           className='outline-cirlce micro'
-          style={{ visibility: scrolledPixels > 805 ? 'visible' : 'hidden' }}
+          style={{ visibility: scrolledPixels > 310 ? 'visible' : 'hidden' }}
         >
           <Circle />
         </div>
         <div
           className='section analyse'
           style={{
-            opacity: scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0,
+            opacity: scrolledPixels > 300 && scrolledPixels < 800 ? 1 : 0,
           }}
         >
           <h3>Analyse:</h3>
@@ -129,14 +117,14 @@ const GrowingDot: FunctionComponent = () => {
         </div>
         <div
           className='outline-cirlce macro'
-          style={{ visibility: scrolledPixels > 1515 ? 'visible' : 'hidden' }}
+          style={{ visibility: scrolledPixels > 888 ? 'visible' : 'hidden' }}
         >
           <Circle />
         </div>
         <div
           className='section verdichtung'
           style={{
-            opacity: scrolledPixels > 1610 && scrolledPixels < 2300 ? 1 : 0,
+            opacity: scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0,
           }}
         >
           <h3>Verdichtung & maßvolle Akzentuierung:</h3>
@@ -147,7 +135,7 @@ const GrowingDot: FunctionComponent = () => {
         </div>
         <div
           className='section ergebnisse'
-          style={{ opacity: scrolledPixels > 2400 ? 1 : 0 }}
+          style={{ opacity: scrolledPixels > 1600 ? 1 : 0 }}
         >
           <h3>Ganzheitliche Betrachtung:</h3>
           <p>
@@ -161,7 +149,7 @@ const GrowingDot: FunctionComponent = () => {
       <style jsx>{`
         .growing-dot {
           position: relative;
-          height: 3500px;
+          height: 2630px;
           margin-top: -25vh;
           margin-bottom: 0;
         }
@@ -240,11 +228,6 @@ const GrowingDot: FunctionComponent = () => {
           margin: 1em 0 0;
         }
 
-        .start {
-          width: 212px;
-          height: 212px;
-        }
-
         .first-text {
           width: 100%;
           margin: calc(50vh - 20px) 0 0;
@@ -268,26 +251,17 @@ const GrowingDot: FunctionComponent = () => {
           text-align: left;
         }
 
-        .auftragsklaerung {
-          width: 100%;
-        }
-
         .micro {
-          width: 318px;
-          height: 318px;
-        }
-
-        .analyse {
-          margin-top: 100px;
+          width: 260px;
+          height: 260px;
         }
 
         .macro {
-          width: 410px;
-          height: 410px;
+          width: 390px;
+          height: 390px;
         }
 
         .verdichtung {
-          margin-top: 50px;
           width: 300px;
         }
 
