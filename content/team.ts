@@ -3,7 +3,7 @@ import { Contact, ImageType } from 'lib/types'
 export const persons: { image: ImageType; contact: Contact }[] = [
   {
     image: {
-      src: '/images/team/portraits/missing.jpg',
+      src: '/images/team/portraits/ggnieszka.jpg',
       width: 696,
       height: 975,
     },
