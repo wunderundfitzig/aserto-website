@@ -144,11 +144,19 @@ export const AnimatedCurve: FunctionComponent = () => {
           width: 200%;
           transition: transform 1s ease-out;
           padding-bottom: 12rem;
+          z-index: 200;
         }
 
         .scroller::before {
           content: ' ';
-          transition: background-color 1s ease-out;
+          position: absolute;
+          width: 300vw;
+          height: 100%;
+          left: -100vw;
+          background-color: ${colors.lightBeige};
+          opacity: 0;
+          transition: opacity 1s ease-out;
+          will-change: opacity;
         }
 
         .scroller.right {
@@ -156,11 +164,7 @@ export const AnimatedCurve: FunctionComponent = () => {
         }
 
         .scroller.right::before {
-          position: absolute;
-          width: 300vw;
-          height: 100%;
-          left: -100vw;
-          background-color: ${colors.lightBeige};
+          opacity: 1;
         }
 
         .visualisations {

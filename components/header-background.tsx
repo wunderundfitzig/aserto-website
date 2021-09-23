@@ -39,6 +39,7 @@ const HeaderBackground: FunctionComponent<Props> = (props) => {
             width: 100%;
             height: 100%;
             z-index: -1;
+            will-change: opacity;
             animation: fade-in 2.5s ease-in;
             overflow: visible;
           }
