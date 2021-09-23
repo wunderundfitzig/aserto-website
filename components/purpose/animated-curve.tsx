@@ -129,11 +129,9 @@ export const AnimatedCurve: FunctionComponent = () => {
         </svg>
       </div>
       <style jsx global>{`
-        html,
-        body {
-          width: 100%;
-          max-width: 100vw;
+        html {
           overflow-x: hidden;
+          overflow-x: clip;
         }
       `}</style>
       <style jsx>{`
