@@ -29,6 +29,7 @@ const Motto: FunctionComponent<Props> = (props) => {
 
         .roofline > :global(*) {
           margin: 0;
+          line-height: 1.5em;
         }
 
         .title {
