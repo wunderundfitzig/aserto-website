@@ -5,6 +5,7 @@ import MenschenUndDaten from 'components/purpose/menschen-und-daten'
 import Quotes from 'components/purpose/quotes'
 import AnimatedCurve from 'components/purpose/animated-curve'
 import Metadata from 'components/metadata'
+import SloganText from 'components/purpose/slogan-text'
 
 const PurposePage: NextPage<PageProps> = (props) => {
   return (
@@ -18,6 +19,7 @@ const PurposePage: NextPage<PageProps> = (props) => {
         <PurposeHeader />
         <Quotes />
         <MenschenUndDaten />
+        <SloganText />
         <AnimatedCurve />
       </main>
     </article>
