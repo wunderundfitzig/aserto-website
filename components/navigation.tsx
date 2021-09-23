@@ -145,19 +145,20 @@ const Navigation: FunctionComponent<Props> = (props) => {
           .nav {
             grid-area: ${props.gridArea};
             position: sticky;
-            top: 3rem;
-            mix-blend-mode: multiply;
-            width: 100%;
+            top: 0rem;
+            background-color: white;
+            width: calc(100% + 1.5rem);
+            padding: 3rem 1.1rem 1rem 0.5rem;
+            margin: -3rem -0.5rem 0;
             font-size: 1em;
             align-self: start;
-            padding: 0;
-            padding-right: 5px;
           }
 
           .nav.on-frontpage {
             grid-area: 1 / footer / footer / 2;
+            background-color: transparent;
             font-size: 1.5em;
-            margin-bottom: 0;
+            margin: 0;
           }
 
           ul {

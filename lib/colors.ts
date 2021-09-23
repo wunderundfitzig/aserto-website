@@ -1,4 +1,4 @@
-import { transparentize } from 'polished'
+import { tint } from 'polished'
 
 export const backgroundBlue = '#A8C9E8'
 export const lightBlue = '#5F99D2'
@@ -32,11 +32,11 @@ export const categoryColors = {
 }
 
 export const footerBackgroundColors = {
-  purpose: transparentize(0.5, backgroundBeige),
-  team: transparentize(0.5, backgroundBlue),
+  purpose: tint(0.5, backgroundBeige),
+  team: tint(0.5, backgroundBlue),
   leistungen: 'white',
   referenzen: 'white',
   karriere: 'white',
-  kontakt: transparentize(0.5, backgroundGrey),
-  datenschutz: transparentize(0.5, backgroundGrey),
+  kontakt: tint(0.5, backgroundGrey),
+  datenschutz: tint(0.5, backgroundGrey),
 }

@@ -69,6 +69,7 @@ const Footer: FunctionComponent<Props> = (props) => {
           line-height: 1.5em;
           font-size: 0.8em;
           padding: 3rem 0;
+          z-index: 200;
         }
 
         .background-rect {

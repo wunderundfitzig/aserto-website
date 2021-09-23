@@ -38,6 +38,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
       <div className='background'>{props.children.background}</div>
       <style jsx>{`
         .contact-banner {
+          position: relative;
           display: grid;
           grid-template-areas:
             'title'
@@ -45,6 +46,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
             'address';
           justify-items: center;
           margin-bottom: 2rem;
+          z-index: 110;
         }
 
         .title-wrapper {

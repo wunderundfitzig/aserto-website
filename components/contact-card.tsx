@@ -53,7 +53,7 @@ const ContactCard: FunctionComponent<Props> = (props) => {
           grid-area: address;
           font-style: normal;
           font-weight: 200;
-          margin: 2em 0 0;
+          margin: 2em 0 0.7em;
           text-align: ${props.reverse ? 'right' : 'left'};
         }
 
@@ -62,7 +62,9 @@ const ContactCard: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.s)} {
-          grid-template-columns: ${props.reverse ? '1fr auto' : 'auto 1fr'};
+          .contact-card {
+            grid-template-columns: ${props.reverse ? '1fr auto' : 'auto 1fr'};
+          }
         }
 
         @media print {

@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import AsertoLogo from 'components/aserto-logo'
 import Favicons from 'components/favicons'
@@ -43,7 +42,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
           width: 90px;
           min-width: 80px;
           justify-self: flex-end;
-          z-index: 100;
+          z-index: 110;
         }
 
         @media ${minWidth(breakpoint.l)} {

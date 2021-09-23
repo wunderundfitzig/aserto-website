@@ -152,6 +152,7 @@ const GrowingDot: FunctionComponent = () => {
           height: 2630px;
           margin-top: -25vh;
           margin-bottom: 0;
+          z-index: 110;
         }
 
         svg {
