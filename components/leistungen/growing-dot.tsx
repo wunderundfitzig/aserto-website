@@ -107,13 +107,7 @@ const GrowingDot: FunctionComponent = () => {
           style={{
             opacity: scrolledPixels > 300 && scrolledPixels < 650 ? 1 : 0,
           }}
-        >
-          <h3>
-            Auftrags-
-            <br />
-            klärung
-          </h3>
-        </div>
+        ></div>
         <div
           className='outline-cirlce micro'
           style={{ visibility: scrolledPixels > 805 ? 'visible' : 'hidden' }}

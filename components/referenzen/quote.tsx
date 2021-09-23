@@ -31,6 +31,7 @@ const Quote: FunctionComponent<Props> = (props) => {
           display: block;
           width: auto;
           overflow-wrap: break-word;
+          width: 100%;
           max-width: 50em;
           padding: 2em 1em;
           background-color: white;
