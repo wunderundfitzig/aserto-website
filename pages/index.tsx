@@ -28,7 +28,7 @@ const Index: NextPage = () => {
         description='aserto begleitet bei richtungsweisenden Entscheidungen und verbindet Analysen mit Tiefgang und Beratung mit Substanz.'
         slug='/'
       />
-      <h1>Wir begleiten bei Richtungsweisenden Entscheidungen</h1>
+      <h1>Wir begleiten bei richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
           loader={imageLoader}

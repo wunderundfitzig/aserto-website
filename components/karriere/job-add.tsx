@@ -116,15 +116,12 @@ const JobAdd: FunctionComponent<Props> = (props) => {
         }
 
         aside {
-          max-width: 40rem;
           margin: 3em auto;
           display: grid;
-          grid-template-columns: auto auto;
           grid-template-areas:
-            'image address'
-            'buttons buttons';
+            'contact-card'
+            'buttons';
           grid-gap: 2em;
-          align-items: flex-end;
         }
 
         .button-wrapper {
@@ -144,7 +141,10 @@ const JobAdd: FunctionComponent<Props> = (props) => {
 
         @media ${minWidth(breakpoint.sm)} {
           aside {
-            grid-template-areas: 'image address buttons';
+            grid-template-areas: 'contact-card buttons';
+            grid-template-columns: auto 1fr;
+            align-items: flex-end;
+            max-width: 40rem;
           }
         }
 

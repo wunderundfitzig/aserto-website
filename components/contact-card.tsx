@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Contact, ImageType } from 'lib/types'
 import { ReactElement } from 'react-markdown'
 import { imageLoader } from 'lib/image-loader'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
   image: ImageType
@@ -36,7 +37,7 @@ const ContactCard: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .contact-card {
           display: grid;
-          grid-template-columns: ${props.reverse ? '1fr auto' : 'auto 1fr'};
+          grid-template-columns: 1fr 1fr;
           grid-template-areas: ${props.reverse
             ? '"address image"'
             : '"image address"'};
@@ -58,6 +59,10 @@ const ContactCard: FunctionComponent<Props> = (props) => {
 
         address p {
           margin: 0;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          grid-template-columns: ${props.reverse ? '1fr auto' : 'auto 1fr'};
         }
 
         @media print {

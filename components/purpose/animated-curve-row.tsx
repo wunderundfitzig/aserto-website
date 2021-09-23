@@ -45,13 +45,13 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
           position: relative;
           display: grid;
           grid-gap: 0;
-          grid-template-rows: min-content 1fr;
+          grid-template-rows: min-content auto;
           grid-template-columns: 1fr;
           grid-template-areas:
             'text'
             'image';
           justify-content: start;
-          align-content: space-around;
+          align-content: flex-end;
           min-height: 100vh;
           opacity: 0;
           transition: opacity 0.3s;

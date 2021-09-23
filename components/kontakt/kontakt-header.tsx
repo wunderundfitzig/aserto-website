@@ -20,7 +20,9 @@ const KontaktHeader: FunctionComponent = () => {
               <>
                 aserto GmbH & Co. KG
                 <br />
-                Kriegerstr. 44 30161Hannover
+                Kriegerstr. 44
+                <br />
+                30161Hannover
                 <br />
                 Tel. 0511-515678-0
                 <br />
