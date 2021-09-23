@@ -21,7 +21,6 @@ const SloganText: FunctionComponent = () => {
       <style jsx>{`
         section {
           margin: 10rem 0;
-          font-size: 0.9em;
           max-width: 55em;
         }
       `}</style>
