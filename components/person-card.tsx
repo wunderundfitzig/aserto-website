@@ -12,6 +12,8 @@ type Props = {
   contact: Contact
 }
 const PersonCard: FunctionComponent<Props> = (props) => {
+  const mailParts = props.contact.mail.split('@')
+
   return (
     <div className='person-card'>
       <div className='image'>
@@ -42,7 +44,10 @@ const PersonCard: FunctionComponent<Props> = (props) => {
         <div className='contact'>
           <p className='role'>{props.contact.role}</p>
           <p>{props.contact.phone}</p>
-          <a href={`mailto:${props.contact.mail}`}>{props.contact.mail}</a>
+          <a href={`mailto:${props.contact.mail}`}>
+            {mailParts[0]}@<wbr />
+            {mailParts[1]}
+          </a>
         </div>
       </div>
       <style jsx>{`
