@@ -76,6 +76,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           font-size: 1.35em;
           font-weight: 200;
           z-index: 100;
+          mix-blend-mode: normal;
         }
 
         ul {

@@ -27,7 +27,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
       </div>
       <h3 className='front-name'>{props.contact.name}</h3>
       <div className='overlay'>
-        <div className='social-links'>
+        <div className='network-links'>
           {props.contact.xing && (
             <a href={props.contact.xing}>
               <XingIcon color='white' />
@@ -72,18 +72,14 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           text-align: center;
           font-size: 0.9rem;
           bottom: -1.7rem;
-          text-align: right;
+          text-align: left;
         }
 
         .overlay {
           grid-area: overlay;
           display: grid;
+          grid-template-rows: 1fr min-content;
           align-content: space-between;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
           background-color: ${colors.lightBlue};
           color: white;
           padding: 1em;
@@ -107,14 +103,14 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           line-height: 1.3em;
         }
 
-        .social-links {
+        .network-links {
           display: grid;
           grid-auto-flow: column;
           justify-content: start;
           grid-gap: 1.5em;
         }
 
-        .social-links a {
+        .network-links a {
           width: 15px;
         }
 
@@ -133,9 +129,17 @@ const PersonCard: FunctionComponent<Props> = (props) => {
             width: 30px;
           }
 
+          .front-name {
+            text-align: right;
+          }
+
           .overlay {
             display: none;
-            grid-area: image;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
           }
 
           .person-card:hover .overlay {
@@ -148,7 +152,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
             font-size: 1em;
           }
 
-          .social-links a {
+          .network-links a {
             width: 20px;
           }
         }
