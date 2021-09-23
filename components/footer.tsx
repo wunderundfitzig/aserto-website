@@ -123,6 +123,7 @@ const Footer: FunctionComponent<Props> = (props) => {
           .footer {
             grid-template-areas: 'logo address contact social nav';
             grid-template-columns: 50px auto auto 1fr auto;
+            grid-template-rows: auto;
             align-items: start;
             grid-gap: 5em;
             padding: 5rem 0 4rem;
