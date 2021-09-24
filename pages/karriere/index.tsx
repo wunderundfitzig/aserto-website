@@ -48,7 +48,7 @@ const KarrierePage: NextPage<PageProps> = (props) => {
       <style jsx>
         {`
           @media print {
-            .karriere-page * {
+            .karriere-page :global(*) {
               ${job !== undefined && 'display: none;'}
             }
           }

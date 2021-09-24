@@ -152,6 +152,12 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           @page {
             margin: 0;
           }
+          .job-add {
+            overflow: visible;
+            position: absolute;
+            background-color: transparent;
+          }
+
           .aserto-logo {
             display: grid;
             grid-template-columns: 80px;
@@ -164,6 +170,10 @@ const JobAdd: FunctionComponent<Props> = (props) => {
 
           .modal {
             padding: 0;
+          }
+
+          footer {
+            display: none;
           }
         }
       `}</style>
