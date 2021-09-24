@@ -37,7 +37,7 @@ const ContactCard: FunctionComponent<Props> = (props) => {
       <style jsx>{`
         .contact-card {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
           grid-template-areas: ${props.reverse
             ? '"address image"'
             : '"image address"'};
@@ -59,6 +59,7 @@ const ContactCard: FunctionComponent<Props> = (props) => {
 
         address p {
           margin: 0;
+          line-height: 1.5em;
         }
 
         @media ${minWidth(breakpoint.s)} {

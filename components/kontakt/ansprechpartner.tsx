@@ -1,4 +1,5 @@
 import ContactCard from 'components/contact-card'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent } from 'react'
 
 const Ansprechpartner: FunctionComponent = () => {
@@ -33,7 +34,13 @@ const Ansprechpartner: FunctionComponent = () => {
           mail: 'harden@aserto.de',
         }}
       >
-        {{ title: <h3>Kontakte für eine mögliche Zusammenarbeit</h3> }}
+        {{
+          title: (
+            <h3 className='lead-contact-title'>
+              Kontakte für eine mögliche Zusammenarbeit
+            </h3>
+          ),
+        }}
       </ContactCard>
       <p></p>
       <ContactCard
@@ -55,6 +62,20 @@ const Ansprechpartner: FunctionComponent = () => {
         h2 {
           margin-top: 2em;
           text-align: right;
+        }
+
+        .lead-contact-title {
+          width: 200%;
+          text-align: left;
+          margin-bottom: 6rem;
+        }
+
+        @media ${minWidth(350)} {
+          .lead-contact-title {
+            width: unset;
+            text-align: unset;
+            margin-bottom: 1em;
+          }
         }
       `}</style>
     </section>
