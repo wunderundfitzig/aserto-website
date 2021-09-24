@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import AsertoLogo from 'components/aserto-logo'
 import Favicons from 'components/favicons'
@@ -8,7 +9,11 @@ import Navigation from 'components/navigation'
 import GlobalStyles from 'components/global-styles'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import Footer from 'components/footer'
-import FontTrackingScript from 'components/font-tracking-script'
+
+const FontTrackingScript = dynamic(
+  () => import('components/font-tracking-script'),
+  { ssr: false }
+)
 
 export type PageProps = {
   gridArea: string
