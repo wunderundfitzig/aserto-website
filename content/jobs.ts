@@ -3,7 +3,7 @@ export const jobs = [
     id: 'junior-empirical-data-scientist',
     title: '(Junior) Empirical Data-Scientist (m/w/d; Vollzeit)',
     contactImage: {
-      src: '/images/team/portraits/_VND4045.jpg',
+      src: '/images/team/portraits/anna.jpg',
       width: 696 / 4,
       height: 975 / 4,
     },
@@ -119,7 +119,7 @@ Wir freuen uns auf Deine aussagekräftige Bewerbung, bevorzugt per E-Mail.`,
     id: 'flexible-projektmitarbeit',
     title: 'Flexible Projektmitarbeit',
     contactImage: {
-      src: '/images/team/portraits/_VND4045.jpg',
+      src: '/images/team/portraits/anna.jpg',
       width: 696 / 4,
       height: 975 / 4,
     },
@@ -155,7 +155,7 @@ Interesse geweckt? Wir freuen uns auf Deine aussagekräftige Bewerbung (mit Ansc
     id: 'praktikum-bei-aserto',
     title: 'Praktikum bei aserto',
     contactImage: {
-      src: '/images/team/portraits/_VND4045.jpg',
+      src: '/images/team/portraits/anna.jpg',
       width: 696 / 4,
       height: 975 / 4,
     },

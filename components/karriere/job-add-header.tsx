@@ -60,6 +60,12 @@ const JobAddHeader: FunctionComponent<Props> = (props) => {
         </Link>
       </div>
       <style jsx>{`
+        header {
+          position: sticky;
+          top: 0;
+          padding-top: 1.5rem;
+          background-color: white;
+        }
         .close-button {
           display: block;
           width: 15px;

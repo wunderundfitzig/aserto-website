@@ -29,9 +29,9 @@ export const persons: { image: ImageType; contact: Contact }[] = [
   },
   {
     image: {
-      src: '/images/team/portraits/_VND4045.jpg',
-      width: 696,
-      height: 975,
+      src: '/images/team/portraits/anna.jpg',
+      width: 348,
+      height: 488,
     },
     contact: {
       name: 'Anna Begau',

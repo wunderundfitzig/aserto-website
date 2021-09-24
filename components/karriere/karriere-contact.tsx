@@ -34,9 +34,9 @@ const Background: FunctionComponent = () => {
 
 const KarriereContact: FunctionComponent = () => {
   const contactImage = {
-    width: 696,
-    height: 975,
-    src: '/images/team/portraits/_VND4045.jpg',
+    src: '/images/team/portraits/anna.jpg',
+    width: 348,
+    height: 488,
   }
   const contact = {
     name: 'Anna Begau',
