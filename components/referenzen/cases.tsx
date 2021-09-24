@@ -13,8 +13,8 @@ const cases = [
     client: 'DIE ZEIT',
     logo: {
       src: '/images/referenzen/zeit-logo.svg',
-      width: 346,
-      height: 37,
+      width: 781,
+      height: 112,
     },
     task:
       'DIE ZEIT hat in den letzten Jahren viele Abonnent*innen neu hinzugewonnen. Um diese starke Position zu halten und auszubauen, möchte DIE ZEIT die Wünsche ihrer Leser*innen intensiv einbeziehen.',

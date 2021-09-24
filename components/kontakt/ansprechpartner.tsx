@@ -1,5 +1,5 @@
 import ContactCard from 'components/contact-card'
-import { breakpoint, minWidth } from 'lib/breakpoints'
+import { minWidth } from 'lib/breakpoints'
 import { FunctionComponent } from 'react'
 
 const Ansprechpartner: FunctionComponent = () => {
