@@ -126,6 +126,19 @@ const PersonCard: FunctionComponent<Props> = (props) => {
             font-size: 0.9em;
           }
 
+          .image {
+            overflow: hidden;
+          }
+
+          .image :global(img) {
+            transition: filter 0.5s;
+          }
+
+          .person-card:hover .image :global(img) {
+            filter: blur(5px);
+            overflow: hidden;
+          }
+
           .more-info-icon {
             display: block;
             position: absolute;
@@ -134,22 +147,28 @@ const PersonCard: FunctionComponent<Props> = (props) => {
             width: 30px;
           }
 
+          .person-card:hover .more-info-icon {
+            display: none;
+          }
+
           .front-name {
             text-align: right;
           }
 
           .overlay {
-            display: none;
             position: absolute;
+            display: grid;
+            padding: 1.5em 1em 1.5em 1.5em;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
+            opacity: 0;
+            transition: opacity 0.4s;
           }
 
           .person-card:hover .overlay {
-            display: grid;
-            padding: 1.5em 1em 1.5em 1.5em;
+            opacity: 0.9;
           }
 
           .contact {
