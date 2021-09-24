@@ -55,7 +55,7 @@ const desctopCurvePoints: [number, number][] = [
   [170, 160],
   [300, 160],
   [300, 190],
-  [77, 266],
+  [60, 266],
   [120, 320],
   [90, 350],
 ]
@@ -147,23 +147,36 @@ export const AnimatedCurve: FunctionComponent = () => {
           z-index: 200;
         }
 
-        .scroller::before {
+        .scroller::after {
           content: ' ';
           position: absolute;
           width: 300vw;
           height: 100%;
+          top: 0;
           left: -100vw;
           background-color: ${colors.lightBeige};
           opacity: 0;
           transition: opacity 1s ease-out;
           will-change: opacity;
+          z-index: -1;
+        }
+
+        .scroller::before {
+          content: ' ';
+          position: absolute;
+          width: 300vw;
+          height: 100%;
+          top: 0;
+          left: -100vw;
+          background-color: white;
+          z-index: -2;
         }
 
         .scroller.right {
           transform: translateX(-50%);
         }
 
-        .scroller.right::before {
+        .scroller.right::after {
           opacity: 1;
         }
 
