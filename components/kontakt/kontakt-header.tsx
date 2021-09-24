@@ -22,7 +22,7 @@ const KontaktHeader: FunctionComponent = () => {
                 <br />
                 Kriegerstr. 44
                 <br />
-                30161Hannover
+                30161 Hannover
                 <br />
                 Tel. 0511-515678-0
                 <br />

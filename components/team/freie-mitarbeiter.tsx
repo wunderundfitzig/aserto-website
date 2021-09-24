@@ -8,10 +8,9 @@ const FreieMitarbeiter: FunctionComponent = () => {
       </h2>
       <div className='text-block'>
         <p>
-          Alexandra Porgann, Anica Lammers , Dominik Hahn, Julian Hinrichsen,
-          Katarina Heitz , Lukas Kellermann, Marie Sudmeier, Minha Marie Yeo,
-          Moritz Schäfer, Nico Garms , Paula Hutecker, Rabea Adam, Sabrina
-          Sawadsky, Simon Weigold
+          Anica Lammers, Dominik Hahn, Julian Hinrichsen, Katarina Heitz, Lucy
+          Fröhlich, Marie Christin Sudmeier, Minha Marie Yeo, Moritz Schäfer,
+          Nico Garms, Paula Hutecker, Sabrina Sawadsky, Simon Weigold
         </p>
       </div>
       <style jsx>{`
