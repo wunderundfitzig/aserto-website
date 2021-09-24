@@ -45,10 +45,14 @@ const KarrierePage: NextPage<PageProps> = (props) => {
         <KarriereContact />
       </article>
       {job !== undefined && <JobAdd jobs={jobs} jobIndex={jobIndex} />}
-      <style jsx>
+      <style jsx global>
         {`
           @media print {
-            .karriere-page :global(*) {
+            .karriere-page * {
+              ${job !== undefined && 'display: none;'}
+            }
+
+            footer * {
               ${job !== undefined && 'display: none;'}
             }
           }

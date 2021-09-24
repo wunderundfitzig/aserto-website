@@ -172,8 +172,9 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             padding: 0;
           }
 
-          footer {
-            display: none;
+          content :global(li),
+          aside {
+            page-break-inside: avoid;
           }
         }
       `}</style>
