@@ -21,8 +21,8 @@ const TeamHeader: FunctionComponent = () => {
           {{
             sloagen: (
               <>
-                Wir bei aserto sind über <em>20 feste Mitarbeiter*innen</em> und
-                rund ein Dutzend <em>freier Projektmitarbeiter*innen.</em>
+                Wir erarbeiten <em>Ergebnisse mit Relevanz</em> und beraten mit{' '}
+                <em>Substanz</em>.
               </>
             ),
           }}

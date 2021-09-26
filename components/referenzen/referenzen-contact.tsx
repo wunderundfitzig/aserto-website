@@ -36,7 +36,7 @@ const ReferenzenContact: FunctionComponent = () => {
   const contactImage = {
     width: 696,
     height: 975,
-    src: '/images/team/portraits/_VND4453.jpg',
+    src: '/images/team/portraits/_VND4574.jpg',
   }
   const contact = {
     name: 'Prof. Dr. Lars Harden',

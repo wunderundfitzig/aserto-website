@@ -26,7 +26,7 @@ const Ansprechpartner: FunctionComponent = () => {
         image={{
           width: 696 / 3,
           height: 975 / 3,
-          src: '/images/team/portraits/_VND4453.jpg',
+          src: '/images/team/portraits/_VND4574.jpg',
         }}
         contact={{
           name: 'Prof. Dr. Lars Harden',

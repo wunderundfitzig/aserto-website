@@ -111,7 +111,7 @@ export const persons: { image: ImageType; contact: Contact }[] = [
   },
   {
     image: {
-      src: '/images/team/portraits/_VND4906.jpg',
+      src: '/images/team/portraits/_VND7515.jpg',
       width: 696,
       height: 975,
     },
@@ -192,7 +192,7 @@ export const persons: { image: ImageType; contact: Contact }[] = [
   },
   {
     image: {
-      src: '/images/team/portraits/_VND4453.jpg',
+      src: '/images/team/portraits/_VND4574.jpg',
       width: 696,
       height: 975,
     },
