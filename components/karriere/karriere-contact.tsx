@@ -63,7 +63,7 @@ const KarriereContact: FunctionComponent = () => {
           text: (
             <>
               Du hast aber das Gefühl, perfekt zu uns zu passen? Kein Problem –
-              sende uns gerne eine Initiativbewerbung.
+              sende uns gern eine Initiativbewerbung.
             </>
           ),
           background: <Background />,

@@ -22,7 +22,7 @@ const Prinzipen: FunctionComponent = () => {
       <div className='line line-3'>
         <EndlessLine color={categoryColors.karriere} rotate={35} />
       </div>
-      <h2>Unsere Prinzipen</h2>
+      <h2>Unsere Prinizipien</h2>
       <div className='statement statement-1'>
         <Statement color={categoryColors.karriere}>
           {{
@@ -30,7 +30,7 @@ const Prinzipen: FunctionComponent = () => {
             content: (
               <p>
                 Von Geschäftsführung bis zu Praktikant*innen begegnen wir uns
-                auf Augenhöhe, haben ein offenes Ohr füreinander, disktutieren
+                auf Augenhöhe, haben ein offenes Ohr füreinander, diskutieren
                 über Ideen und finden gemeinsam Lösungen.
               </p>
             ),
@@ -48,8 +48,8 @@ const Prinzipen: FunctionComponent = () => {
               <p>
                 Wir entwickeln uns ständig weiter – unsere Kompetenzen, unsere
                 Persönlichkeit, unser Urteilsvermögen. Weitergebildet haben wir
-                uns z. B. in systemischer Beratung, (agiles) Projektmanagement,
-                automatisierter Textanalyse, ....
+                uns z. B. in systemischer Beratung, in (agilem)
+                Projektmanagement, automatisierter Textanalyse.
               </p>
             ),
           }}
@@ -75,7 +75,7 @@ const Prinzipen: FunctionComponent = () => {
             content: (
               <p>
                 Nach heißen Projektphasen kommen auch wieder ruhigere Phasen mit
-                Freiraum, in denen wir wissen zu regenerieren.
+                Freiraum, in denen wir uns regenerieren.
               </p>
             ),
           }}
