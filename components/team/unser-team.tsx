@@ -9,7 +9,7 @@ const UnserTeam: FunctionComponent = () => {
       <h2>Unser Team</h2>
       <p className='text-block'>
         In dynamischen Projekten arbeiten wir oft interdisziplinär. Unsere
-        Schwerpunkte sind Datenanalyse und -visualisierungen, empirische
+        Schwerpunkte sind Datenanalyse und Datenvisualisierungen, empirische
         Sozialforschung und strategische Kommunikationsberatung. Die
         verschiedenen Perspektiven und Erfahrungen weiten unseren Blick und
         bereichern unsere Ergebnisse.

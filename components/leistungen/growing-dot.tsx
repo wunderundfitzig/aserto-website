@@ -94,7 +94,7 @@ const GrowingDot: FunctionComponent = () => {
             <wbr />
             weisende
           </span>
-          <span>Ergebnisse enstehen</span>
+          <span>Ergebnisse entstehen</span>
         </h2>
         <div
           className='outline-cirlce micro'
@@ -127,10 +127,10 @@ const GrowingDot: FunctionComponent = () => {
             opacity: scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0,
           }}
         >
-          <h3>Verdichtung & maßvolle Akzentuierung:</h3>
+          <h3>Verdichtung und maßvolle Akzentuierung:</h3>
           <p>
             In einer Vielzahl von Informationen und Daten finden wir die Signale
-            im Rauschen. Und erläutern, was diese zu bedeuten haben.
+            im Rauschen. Und wir erläutern, was diese zu bedeuten haben.
           </p>
         </div>
         <div
@@ -139,7 +139,7 @@ const GrowingDot: FunctionComponent = () => {
         >
           <h3>Ganzheitliche Betrachtung:</h3>
           <p>
-            Reine Datenanalysen finden bei uns nicht statt, wir setzen unsere
+            Reine Datenanalysen finden bei uns nicht statt. Wir setzen unsere
             Analysen und Konzepte immer in den unternehmensrelevanten Kontext.
             Denn nur, wenn wir die Hintergründe kennen, schaffen wir Relevanz.
           </p>

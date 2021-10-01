@@ -26,7 +26,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
           Handlungen und eröffnet Möglichkeiten zur Veränderung:
         </p>
         <p>
-          Durch belastbare, verständliche Erkenntnisse und durch einen
+          durch belastbare, verständliche Erkenntnisse und durch einen
           wertschätzenden, verbindlichen Dialog mit den Beteiligten.
         </p>
         <List color={categoryColors.leistungen}>

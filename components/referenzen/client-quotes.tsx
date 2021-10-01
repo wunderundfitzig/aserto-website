@@ -7,13 +7,13 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const quotes = [
   {
-    author: 'DIE ZEIT, Nils von der Call, CMO',
+    author: 'DIE ZEIT, Nils von der Kall, CMO',
     quote:
       'aserto begleitet seit vielen Jahren unsere erfolgreiche Entwicklung mit evidenzbasiertem Input, aus dem sich klare, praktische Handlungsempfehlungen ableiten lassen.',
   },
   {
     author:
-      'Diakonie Deutschland, Matthias Sobolewski, CVD/Referatsleiter Aktuelles',
+      'Diakonie Deutschland, Matthias Sobolweski, CvD/Referatsleiter Aktuelles',
     quote:
       'Dank des gemeinsam mit aserto entwickelten Tools können wir auf kurzfristige Entwicklungen medienadäquat reagieren.',
   },

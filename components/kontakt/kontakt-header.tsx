@@ -24,7 +24,7 @@ const KontaktHeader: FunctionComponent = () => {
                 <br />
                 30161 Hannover
                 <br />
-                Tel. 0511-515678-0
+                0511-515678-0
                 <br />
                 <a href='mailto:info@aserto.de'>info@aserto.de</a>
               </>

@@ -23,11 +23,11 @@ const MenschenUndDaten: FunctionComponent = () => {
       <div className='text'>
         <p>
           Diese Erkenntnis hat uns zur Gründung von aserto im Jahr 2003 bewegt.
-          Unsere Vision war und ist es:
+          Unsere Vision war und ist:
         </p>
         <List color={categoryColors.purpose}>
           <>Beratung evidenzbasierter gestalten</>
-          <>Wissenschaft zu Wirksamkeit zu verhelfen</>
+          <>Wissenschaft zu Wirksamkeit verhelfen</>
           <>Ständig größere Datenmengen in kürzester Zeit greifbar machen</>
         </List>
       </div>

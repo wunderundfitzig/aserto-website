@@ -18,6 +18,7 @@ const Impressum: FunctionComponent = () => {
               30161 Hannover
               <br />
               Tel.: 0511-515678-0
+              <br />
               <a href='mailto:info@aserto.de'>info@aserto.de</a>
             </p>
           ),
@@ -54,7 +55,6 @@ const Impressum: FunctionComponent = () => {
           title: <h3>Rechtshinweise</h3>,
           content: (
             <>
-              {' '}
               <p>
                 Die enthaltenen Angaben und Informationen in diesem
                 Internet-Angebot wurden von der aserto GmbH & Co. KG („aserto“)
@@ -75,10 +75,10 @@ const Impressum: FunctionComponent = () => {
                 fremden Inhalte daraufhin überprüft, ob etwaige Rechtsverstöße
                 bestehen. Zu dem Zeitpunkt waren keine Rechtsverstöße
                 ersichtlich. aserto hat keinerlei Einfluss auf die aktuelle und
-                zukünftige Gestaltung, sowie auf die Inhalte der verknüpften
+                zukünftige Gestaltung sowie auf die Inhalte der verknüpften
                 Seiten. Das Setzen von externen Links bedeutet nicht, dass sich
                 aserto die hinter dem Verweis oder Link liegenden Inhalte zu
-                Eigen macht. Eine ständige Kontrolle der externen Links ist für
+                eigen macht. Eine ständige Kontrolle der externen Links ist für
                 aserto ohne konkrete Hinweise auf Rechtsverstöße nicht zumutbar.
                 Bei Kenntnis von Rechtsverstößen werden jedoch derartige externe
                 Links unverzüglich gelöscht.

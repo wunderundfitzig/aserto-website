@@ -22,7 +22,7 @@ const TeamHeader: FunctionComponent = () => {
             sloagen: (
               <>
                 Wir erarbeiten <em>Ergebnisse mit Relevanz</em> und beraten mit{' '}
-                <em>Substanz</em>.
+                <em>Substanz.</em>
               </>
             ),
           }}

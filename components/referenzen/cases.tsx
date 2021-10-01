@@ -36,7 +36,7 @@ const cases = [
     task:
       'In einer sich wandelnden digitalen Öffentlichkeit müssen Wohlfahrtsverbände und Hilfsorganisationen immer kurzfristiger in der Lage sein, sich mit angemessenen und gleichzeitig klaren Positionen in gesellschaftliche Debatten einzubringen.',
     solution:
-      'Die Lösung: Mithilfe eines Dashboard-gestützten Issues Management erkennen Diakonie Deutschland, Brot für die Welt und Diakonie Katastrophenhilfe frühzeitig, wie sich Debatten entwickeln.',
+      'Mithilfe eines Dashboard-gestützten Issue Mangements erkennen Diakonie Deutschland, Brot für die Welt und Diakonie Katastrophenhilfe frühzeitig, wie sich Debatten entwickeln.',
   },
   {
     id: 'huk-coburg',
@@ -65,7 +65,7 @@ const cases = [
       height: 82,
     },
     task:
-      'Im neuen Werk stellen sich Fragen nach Zielen, Führung, Kultur und Struktur. Gleichzeitig gilt es die interne Kommunikation, die Mitgliederkommunikation und Öffentlichkeitsarbeit auf den medialen Wandel einzustellen.',
+      'Im neuen Werk stellen sich Fragen nach Zielen, Führung, Kultur und Struktur. Gleichzeitig gilt es die interne Kommunikation, die Mitgliederkommunikation und die Öffentlichkeitsarbeit auf den medialen Wandel einzustellen.',
     solution:
       'aserto begleitet die Umsetzung durch eine Moderation des Wandels und den Einbezug empirischer Ergebnisse (Befragungen, Gruppendiskussionen).',
   },

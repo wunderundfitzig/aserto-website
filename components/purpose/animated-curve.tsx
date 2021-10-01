@@ -38,7 +38,7 @@ const rows = [
     image: '/images/purpose/purpose-2.jpg',
     imagePosition: 'right',
     text:
-      'die Erkenntnisse prägnant verdichten und in Lösungen und Handlungsperspektiven denken.',
+      'die Erkenntnisse prägnant verdichten und die in Lösungen und Handlungsperspektiven denken.',
   },
   {
     category: 'daten',
@@ -90,7 +90,7 @@ export const AnimatedCurve: FunctionComponent = () => {
   return (
     <section className='animated-curve'>
       <div className={`scroller ${isRight ? 'right' : 'left'}`}>
-        <h2>Dafür braucht es…</h2>
+        <h2>Dafür braucht es&nbsp;…</h2>
         {rows.map((row, idx) => {
           return (
             <AnimatedCurveRow
