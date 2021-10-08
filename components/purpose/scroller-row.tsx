@@ -13,7 +13,7 @@ type Props = {
 const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
   return (
     <div
-      className={`row ${props.isActive && 'active'} ${
+      className={`row ${props.isActive ? 'active' : ''} ${
         props.category === 'daten' ? 'daten' : 'meschen'
       }`}
       ref={ref}
@@ -59,6 +59,7 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
             'text';
           z-index: 1;
           opacity: 1;
+          transition: none;
         }
 
         .row.active {
@@ -89,6 +90,7 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
 
         .row.daten .text {
           padding: 2rem;
+          background-color: ${colors.lightBeige};
         }
 
         @media ${minWidth(breakpoint.sm)} {
