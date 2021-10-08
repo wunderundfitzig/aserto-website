@@ -6,6 +6,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 
 import DotsVisualisation from './dots-visualisation'
 import MovingCurve from './moving-curve'
+import ConfidenceIntervall from './confidence-intervall'
 
 const desctopCurvePoints: [number, number][] = [
   [90, 2],
@@ -53,9 +54,23 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
       preserveAspectRatio='none'
     >
       <clipPath id='curve-clip-path'>
-        <path d='M 0 0 H 100 V 150 H 400 V 260 H 70 V 400 H 0 Z' />
+        <path d='M 0 0 H 100 V 150 H 400 V 150 H 109 V 230 L 400 150 V 260 H 70 V 400 H 0 Z' />
       </clipPath>
-
+      <g className='visualisations'>
+        <DotsVisualisation
+          isScrolledIntoView={props.activeSectionIndex >= 1}
+          curvePoints={curvePoints}
+          curveElememt={curveRef.current}
+        />
+        <ConfidenceIntervall
+          isScrolledIntoView={props.activeSectionIndex >= 3}
+          curvePoints={curvePoints}
+        />
+        <MovingCurve
+          curvePoints={curvePoints}
+          isScrolledIntoView={props.activeSectionIndex >= 5}
+        />
+      </g>
       <path
         clipPath={props.isRight ? 'url(#curve-clip-path)' : ''}
         ref={curveRef}
@@ -64,18 +79,6 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
         stroke={colors.categoryColors.purpose}
         strokeLinecap='round'
       />
-
-      <g className='visualisations'>
-        <DotsVisualisation
-          isScrolledIntoView={props.activeSectionIndex >= 1}
-          curvePoints={curvePoints}
-          curveElememt={curveRef.current}
-        />
-        <MovingCurve
-          curvePoints={curvePoints}
-          isScrolledIntoView={props.activeSectionIndex >= 5}
-        />
-      </g>
       <style jsx>{`
         svg {
           position: absolute;
