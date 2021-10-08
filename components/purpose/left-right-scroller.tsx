@@ -9,20 +9,17 @@ const rows = [
   {
     category: 'menschen',
     image: '/images/purpose/purpose-1.jpg',
-    imagePosition: 'right',
     text:
       'die zuhören und die richtigen Fragen stellen, damit ein möglichst umfassendes Gesamtbild entsteht.',
   },
   {
     category: 'daten',
-    onBackground: true,
     text:
       'die mithilfe statistischer Methoden als Signale im Datenrauschen sichtbar werden.',
   },
   {
     category: 'menschen',
     image: '/images/purpose/purpose-3.jpg',
-    imagePosition: 'right',
     text: 'die Signale richtig deuten und in Beziehung setzen.',
   },
   {
@@ -33,7 +30,6 @@ const rows = [
   {
     category: 'menschen',
     image: '/images/purpose/purpose-2.jpg',
-    imagePosition: 'right',
     text:
       'die Erkenntnisse prägnant verdichten und in Lösungen und Handlungsperspektiven denken.',
   },

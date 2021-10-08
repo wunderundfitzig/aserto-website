@@ -6,14 +6,11 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
   category: 'menschen' | 'daten'
-  imagePosition?: 'left' | 'right'
   isActive: boolean
   image?: string
   text: string
-  onBackground?: boolean
 }
 const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
-  const imagePosition = props.imagePosition || 'left'
   return (
     <div
       className={`row ${props.isActive && 'active'} ${
@@ -61,6 +58,7 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
             'image'
             'text';
           z-index: 1;
+          opacity: 1;
         }
 
         .row.active {
@@ -86,9 +84,6 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
           max-width: 20rem;
           padding: 2rem;
           padding-left: 0;
-          background-color: ${props.category === 'daten'
-            ? colors.lightBeige
-            : 'white'};
           z-index: 1;
         }
 
@@ -102,23 +97,19 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr;
             grid-gap: 0 3rem;
-            grid-template-areas: ${imagePosition === 'left'
-              ? '"image text"'
-              : '"text image"'};
+            grid-template-areas: 'text image';
             align-items: center;
           }
 
           .row.daten {
             z-index: 1;
+            grid-template-areas: 'image text';
           }
 
           .text {
             max-width: none;
             padding: 3rem;
             padding-left: 0;
-            background-color: ${props.category === 'daten' && props.onBackground
-              ? colors.lightBeige
-              : 'transparent'};
           }
 
           .image-wrapper {
