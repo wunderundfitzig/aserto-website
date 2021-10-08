@@ -102,11 +102,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
   }, [dotsOnCurve, visibleDotsCount, props.isScrolledIntoView])
 
   return (
-    <g
-      className={`dots-visualisation ${
-        props.isScrolledIntoView ? 'in-view' : 'hidden'
-      } ${props.isRight ? 'right' : 'left'}`}
-    >
+    <g className={`dots-visualisation ${props.isRight ? 'right' : 'left'}`}>
       <g className='background-dots'>
         <BackgroundDots dots={backgroundDots} />
       </g>
@@ -130,17 +126,12 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
           transition: stroke 1s ease-in-out;
         }
 
-        .curve-dots,
         .background-dots {
           opacity: 0;
           transition: opacity 1s;
         }
 
         .right .background-dots {
-          opacity: 1;
-        }
-
-        .in-view .curve-dots {
           opacity: 1;
         }
       `}</style>
