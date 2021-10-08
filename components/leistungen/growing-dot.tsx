@@ -65,6 +65,7 @@ const GrowingDot: FunctionComponent = () => {
         </mask>
         <g mask='url(#growing-dot-mask)'>
           <circle
+            className='growing-circle'
             style={{
               transform: `scale(${circleSize + 30})`,
               transformOrigin: '50% 50%',
@@ -165,7 +166,11 @@ const GrowingDot: FunctionComponent = () => {
           pointer-events: none;
         }
 
-        svg .big-circle {
+        .growing-circle {
+          will-change: transform;
+        }
+
+        .big-circle {
           transition: transform 2s;
         }
 
