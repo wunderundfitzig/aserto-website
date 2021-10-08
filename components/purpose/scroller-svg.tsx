@@ -5,6 +5,7 @@ import { useWindowSize } from 'lib/use-window-size'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 import DotsVisualisation from './dots-visualisation'
+import MovingCurve from './moving-curve'
 
 const desctopCurvePoints: [number, number][] = [
   [90, 2],
@@ -17,7 +18,7 @@ const desctopCurvePoints: [number, number][] = [
   [300, 190],
   [60, 258],
   [120, 320],
-  [90, 350],
+  [90, 370],
 ]
 
 const mobileCurvePoints: [number, number][] = [
@@ -52,8 +53,9 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
       preserveAspectRatio='none'
     >
       <clipPath id='curve-clip-path'>
-        <path d='M 0 0 H 100 V 150 H 250 V 400 H 0 Z' />
+        <path d='M 0 0 H 100 V 150 H 400 V 260 H 70 V 400 H 0 Z' />
       </clipPath>
+
       <path
         clipPath={props.isRight ? 'url(#curve-clip-path)' : ''}
         ref={curveRef}
@@ -68,6 +70,10 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
           isScrolledIntoView={props.activeSectionIndex >= 1}
           curvePoints={curvePoints}
           curveElememt={curveRef.current}
+        />
+        <MovingCurve
+          curvePoints={curvePoints}
+          isScrolledIntoView={props.activeSectionIndex >= 5}
         />
       </g>
       <style jsx>{`

@@ -111,7 +111,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
       </g>
       <style jsx>{`
         path {
-          transition: stroke 0.3s ease-in-out;
+          transition: fill 0.3s ease-in-out;
         }
       `}</style>
     </g>
