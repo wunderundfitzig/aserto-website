@@ -14,7 +14,7 @@ function makeOffsetCurve(
   )
 }
 
-const offsetSteps = [0, 0.25, 0.5, 0.75]
+const offsetSteps = [0, 0.2, 0.4, 0.6, 0.8]
 
 type Props = {
   isScrolledIntoView: boolean
