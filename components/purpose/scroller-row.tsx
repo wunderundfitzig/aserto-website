@@ -113,6 +113,10 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
             padding-left: 0;
           }
 
+          .meschen .text {
+            background-color: transparent;
+          }
+
           .image-wrapper {
             margin-left: 0;
           }
