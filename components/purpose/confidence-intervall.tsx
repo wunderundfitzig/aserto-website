@@ -1,12 +1,41 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
+import * as colors from 'lib/colors'
+import { curvedPath } from 'lib/curved-path'
 
-type Props = { isScrolledIntoView: boolean; curvePoints: [number, number][] }
+type Props = {
+  isScrolledIntoView: boolean
+  curvePoints: [number, number][]
+}
 const ConfidenceIntervall: FunctionComponent<Props> = (props) => {
+  const maxOffset = 4000
+  const [offset, setOffset] = useState(0)
+  const curveSection: [number, number][] = props.curvePoints.slice(3, 7)
+
+  useEffect(() => {
+    if (!props.isScrolledIntoView) {
+      setOffset(0)
+      return
+    }
+    if (offset >= maxOffset) return
+    requestAnimationFrame(() => {
+      setOffset(offset + 15)
+    })
+  }, [props.isScrolledIntoView, offset, maxOffset])
+
   return (
     <g>
       <path
-        d='M 109 226 Q 120 227 140 150 H 185 Q 130 230 109 228'
-        fill='white'
+        d='M 109 227.05 Q 120 228 130 153 H 200 Q 125 229 109 227.05 Z'
+        stroke={colors.categoryColors.purpose}
+        fill={colors.categoryColors.purpose}
+        opacity={0.3}
+      />
+      <path
+        d={curvedPath(curveSection, 0.2)}
+        stroke={colors.categoryColors.purpose}
+        strokeDasharray={4400}
+        strokeDashoffset={3500 - offset}
+        fill='none'
       />
     </g>
   )

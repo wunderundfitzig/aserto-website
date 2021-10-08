@@ -3,13 +3,14 @@ import PoissonDiskSampling from 'poisson-disk-sampling'
 import seedrandom from 'seedrandom'
 
 import * as colors from 'lib/colors'
+import { transparentize } from 'polished'
 
 const rng = seedrandom('seed')
 const pds = new PoissonDiskSampling(
   {
     shape: [200, 150],
-    minDistance: 2,
-    maxDistance: 3,
+    minDistance: 1.8,
+    maxDistance: 2.2,
     tries: 10,
   },
   rng
@@ -34,7 +35,7 @@ const BackgroundDots: FunctionComponent<BackgroundDotsProps> = (props) => {
           d={`M${dot[0]} ${dot[1]} h0.001`}
           key={'background-dot' + idx}
           fill='none'
-          stroke={colors.categoryColors.purpose}
+          stroke={transparentize(0.75, colors.categoryColors.purpose)}
           strokeLinecap='round'
         />
       ))}
@@ -55,12 +56,18 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
   useEffect(() => {
     if (dotsOnCurve.length === 0) return
     pds.reset()
-    dotsOnCurve.forEach((dot) => {
-      pds.addPoint(unproject(dot, dottedLineVisualisationOffset))
+    const unprojectedDotsOnCurve = dotsOnCurve.map((dot) =>
+      unproject(dot, dottedLineVisualisationOffset)
+    )
+    unprojectedDotsOnCurve.forEach((dot) => {
+      pds.addPoint(dot)
     })
     pds.fill()
     const points = pds.getAllPoints() as Point[]
-    const projectedPoints = points.map((point) =>
+    const filteredPoints = points.filter(
+      (point) => !unprojectedDotsOnCurve.includes(point)
+    )
+    const projectedPoints = filteredPoints.map((point) =>
       project(point, dottedLineVisualisationOffset)
     )
     setBackgroundDots(projectedPoints)
@@ -70,7 +77,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
     if (props.curveElememt === null) return
     const curveLength = props.curveElememt.getTotalLength()
     let length = 1
-    const step = 3
+    const step = 2.5
     const dots: Point[] = []
     while (length < curveLength) {
       const point = props.curveElememt.getPointAtLength(length)
@@ -90,7 +97,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
     if (visibleDotsCount >= dotsOnCurve.length) return
     setTimeout(() => {
       setVisibleDotsCount(visibleDotsCount + 1)
-    }, 100)
+    }, 50)
   }, [dotsOnCurve, visibleDotsCount, props.isScrolledIntoView])
 
   return (
@@ -103,7 +110,9 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
             key={'line-dot' + idx}
             fill='none'
             stroke={
-              idx < visibleDotsCount ? 'white' : colors.categoryColors.purpose
+              idx < visibleDotsCount
+                ? colors.categoryColors.purpose
+                : transparentize(0.75, colors.categoryColors.purpose)
             }
             strokeLinecap='round'
           />
