@@ -129,7 +129,6 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
         .background-dots {
           opacity: 0;
           transition: opacity 1s;
-          will-change: opacity;
         }
 
         .right .background-dots {

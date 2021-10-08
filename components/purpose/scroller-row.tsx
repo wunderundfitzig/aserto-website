@@ -58,8 +58,6 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
             'image'
             'text';
           z-index: 1;
-          opacity: 1;
-          transition: none;
         }
 
         .row.active {
@@ -86,9 +84,10 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
           padding: 2rem;
           padding-left: 0;
           z-index: 1;
+          background-color: white;
         }
 
-        .row.daten .text {
+        .daten .text {
           padding: 2rem;
           background-color: ${colors.lightBeige};
         }

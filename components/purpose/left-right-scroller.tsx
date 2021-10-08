@@ -89,6 +89,7 @@ export const LeftRightScroller: FunctionComponent = () => {
           transition: transform 1s ease-out;
           padding-bottom: 12rem;
           z-index: 200;
+          will-change: transform;
         }
 
         .scroller::after {
@@ -100,8 +101,8 @@ export const LeftRightScroller: FunctionComponent = () => {
           left: -100vw;
           background-color: ${colors.lightBeige};
           opacity: 0;
-          transition: opacity 1s ease-out;
           will-change: opacity;
+          transition: opacity 1s ease-out;
           z-index: -1;
         }
 
