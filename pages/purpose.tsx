@@ -3,7 +3,7 @@ import { PageProps } from './_app'
 import PurposeHeader from 'components/purpose/purpose-header'
 import MenschenUndDaten from 'components/purpose/menschen-und-daten'
 import Quotes from 'components/purpose/quotes'
-import AnimatedCurve from 'components/purpose/animated-curve'
+import LeftRightScroller from 'components/purpose/left-right-scroller'
 import Metadata from 'components/metadata'
 import SloganText from 'components/purpose/slogan-text'
 
@@ -20,7 +20,7 @@ const PurposePage: NextPage<PageProps> = (props) => {
         <Quotes />
         <MenschenUndDaten />
         <SloganText />
-        <AnimatedCurve />
+        <LeftRightScroller />
       </main>
     </article>
   )

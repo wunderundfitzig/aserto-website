@@ -12,10 +12,7 @@ type Props = {
   text: string
   onBackground?: boolean
 }
-const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
-  props,
-  ref
-) {
+const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
   const imagePosition = props.imagePosition || 'left'
   return (
     <div
@@ -139,4 +136,4 @@ const AnimatedCurveRow = forwardRef<HTMLDivElement, Props>(function row(
   )
 })
 
-export default AnimatedCurveRow
+export default ScrollerRow
