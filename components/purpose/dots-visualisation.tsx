@@ -45,6 +45,7 @@ const BackgroundDots: FunctionComponent<BackgroundDotsProps> = (props) => {
 
 type Props = {
   isScrolledIntoView: boolean
+  isRight: boolean
   curveElememt: SVGPathElement | null
   curvePoints: Point[]
 }
@@ -101,9 +102,15 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
   }, [dotsOnCurve, visibleDotsCount, props.isScrolledIntoView])
 
   return (
-    <g className='dots-visualisation'>
-      <BackgroundDots dots={backgroundDots} />
-      <g>
+    <g
+      className={`dots-visualisation ${
+        props.isScrolledIntoView ? 'in-view' : 'hidden'
+      } ${props.isRight ? 'right' : 'left'}`}
+    >
+      <g className='background-dots'>
+        <BackgroundDots dots={backgroundDots} />
+      </g>
+      <g className='curve-dots'>
         {dotsOnCurve.map((dot, idx) => (
           <path
             d={`M${dot[0]} ${dot[1]} h0.001`}
@@ -120,7 +127,21 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
       </g>
       <style jsx>{`
         path {
-          transition: fill 0.3s ease-in-out;
+          transition: stroke 1s ease-in-out;
+        }
+
+        .curve-dots,
+        .background-dots {
+          opacity: 0;
+          transition: opacity 1s;
+        }
+
+        .right .background-dots {
+          opacity: 1;
+        }
+
+        .in-view .curve-dots {
+          opacity: 1;
         }
       `}</style>
     </g>

@@ -48,21 +48,19 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
   const curvePoints = useMobileCurve ? mobileCurvePoints : desctopCurvePoints
 
   return (
-    <svg
-      viewBox='0 0 200 365'
-      className={props.isRight ? 'right' : 'left'}
-      preserveAspectRatio='none'
-    >
+    <svg viewBox='0 0 200 365' preserveAspectRatio='none'>
       <clipPath id='curve-clip-path'>
         <path d='M 0 0 H 100 V 150 H 400 V 150 H 109 V 230 L 400 150 V 260 H 70 V 400 H 0 Z' />
       </clipPath>
       <g className='visualisations'>
         <DotsVisualisation
           isScrolledIntoView={props.activeSectionIndex >= 1}
+          isRight={props.isRight}
           curvePoints={curvePoints}
           curveElememt={curveRef.current}
         />
         <ConfidenceIntervall
+          isRight={props.isRight}
           isScrolledIntoView={props.activeSectionIndex >= 3}
           curvePoints={curvePoints}
         />
@@ -72,7 +70,7 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
         />
       </g>
       <path
-        clipPath={props.isRight ? 'url(#curve-clip-path)' : ''}
+        clipPath={'url(#curve-clip-path)'}
         ref={curveRef}
         d={curvedPath(curvePoints, 0.2)}
         fill='none'
@@ -93,14 +91,6 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
         svg :global(line) {
           vector-effect: non-scaling-stroke;
           stroke-width: 6px;
-        }
-
-        .visualisations {
-          transition: opacity 1s ease-out;
-        }
-
-        svg.left .visualisations {
-          opacity: 0;
         }
 
         @media ${minWidth(breakpoint.ml)} {
