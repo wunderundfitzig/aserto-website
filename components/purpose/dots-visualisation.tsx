@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, memo, useEffect, useState } from 'react'
 import PoissonDiskSampling from 'poisson-disk-sampling'
 import seedrandom from 'seedrandom'
 
@@ -42,6 +42,7 @@ const BackgroundDots: FunctionComponent<BackgroundDotsProps> = (props) => {
     </g>
   )
 }
+const MemoizedBackgroundDots = memo(BackgroundDots)
 
 type Props = {
   isScrolledIntoView: boolean
@@ -104,7 +105,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
   return (
     <g className={`dots-visualisation ${props.isRight ? 'right' : 'left'}`}>
       <g className='background-dots'>
-        <BackgroundDots dots={backgroundDots} />
+        <MemoizedBackgroundDots dots={backgroundDots} />
       </g>
       <g className='curve-dots'>
         {dotsOnCurve.map((dot, idx) => (
