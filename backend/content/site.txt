@@ -1,1 +1,33 @@
-Title: Site Title
+Title: aserto website
+
+----
+
+Address:
+
+aserto GmbH & Co. KG
+Kriegerstr. 44
+30161 Hannover
+
+----
+
+Phone-number: 
+
+----
+
+Info-mail: 
+
+----
+
+Job-mail: 
+
+----
+
+Linkedin-url: 
+
+----
+
+Xing-url: 
+
+----
+
+Instagram-url: 

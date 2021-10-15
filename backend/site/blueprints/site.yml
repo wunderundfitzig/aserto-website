@@ -1,3 +1,69 @@
 title: Site
-preset: pages
 unlisted: true
+
+options:
+  preview: https://aserto.de
+
+columns:
+  main:
+    width: 2/3
+    sections:
+      main_pages:
+        headline: Main Pages
+        type: pages
+        status: published
+        layout: cards
+        sortable: false
+        image:
+          back: black
+        template:
+          - all_news
+          - all_creatives
+          - work
+
+      content:
+        headline: Metadata
+        type: fields
+        fields:
+          page_settings:
+            label: Page Settings
+            type: headline
+            numbered: false
+          address:
+            label: Adresse
+            type: textarea
+            buttons: false
+            icon: road-sign
+          phone_number:
+            label: Telefonnummer
+            type: tel
+          info_mail:
+            label: Info E-Mail
+            type: email
+          job_mail:
+            label: Jobs E-Mail
+            type: email
+          linkedin_url:
+            label: Linkedin URL
+            type: url
+            icon: linkedin
+          xing_url:
+            label: Xing URL
+            type: url
+          instagram_url:
+            label: Instagram URL
+            type: url
+            icon: instagram
+
+  # sidebar
+  sidebar:
+    width: 1/3
+    sections:
+      # a list of subpages
+      deploy:
+        type: fields
+        headline: Deploy
+        fields:
+          deploy:
+            type: webhook
+            label: Deploy website
