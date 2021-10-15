@@ -7,6 +7,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: website/dev
+      url: https://new.aserto.de
+      production: false
 
     steps:
       - name: Cancel Previous Runs
@@ -37,14 +41,6 @@ jobs:
         working-directory: frontend
         run: mv .htaccess out/htaccess
 
-      - uses: chrnorm/deployment-action@releases/v1
-        name: Create GitHub deployment
-        id: deployment
-        with:
-          token: "${{ github.token }}"
-          production_environment: false
-          environment: website/dev
-
       - name: Deploy to dev Server
         uses: mdallasanta/ssh-scp-deploy@v1.0.4
         with:
@@ -56,21 +52,3 @@ jobs:
           password: ${{secrets.DEPLOY_PASSWORD}}
           pre_upload: rm -r ~/www/NewAsertoWeb/*
           post_upload: mv ~/www/NewAsertoWeb/htaccess ~/www/NewAsertoWeb/.htaccess
-
-      - name: Update deployment status (success)
-        if: success()
-        uses: chrnorm/deployment-status@releases/v1
-        with:
-          token: "${{ github.token }}"
-          state: "success"
-          target_url: "https://new.aserto.de"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-
-      - name: Update deployment status (failure)
-        if: failure()
-        uses: chrnorm/deployment-status@releases/v1
-        with:
-          token: "${{ github.token }}"
-          state: "failure"
-          target_url: "https://new.aserto.de"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
