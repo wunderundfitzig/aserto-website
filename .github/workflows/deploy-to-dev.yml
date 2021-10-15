@@ -14,7 +14,10 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: "16.x"
+
+      - name: Move to frontend folder
+        run: cd frontend
 
       - name: Install npm dependencies
         run: npm ci
@@ -32,15 +35,15 @@ jobs:
         name: Create GitHub deployment
         id: deployment
         with:
-          token: '${{ github.token }}'
+          token: "${{ github.token }}"
           production_environment: false
           environment: website/dev
 
       - name: Deploy to dev Server
         uses: mdallasanta/ssh-scp-deploy@v1.0.4
         with:
-          local: './out/*'
-          remote: '~/www/NewAsertoWeb/'
+          local: "./out/*"
+          remote: "~/www/NewAsertoWeb/"
           host: ${{secrets.DEPLOY_HOST}}
           port: ${{secrets.DEPLOY_PORT}}
           user: ${{secrets.DEPLOY_USERNAME}}
@@ -52,16 +55,16 @@ jobs:
         if: success()
         uses: chrnorm/deployment-status@releases/v1
         with:
-          token: '${{ github.token }}'
-          state: 'success'
-          target_url: 'https://new.aserto.de'
+          token: "${{ github.token }}"
+          state: "success"
+          target_url: "https://new.aserto.de"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Update deployment status (failure)
         if: failure()
         uses: chrnorm/deployment-status@releases/v1
         with:
-          token: '${{ github.token }}'
-          state: 'failure'
-          target_url: 'https://new.aserto.de'
+          token: "${{ github.token }}"
+          state: "failure"
+          target_url: "https://new.aserto.de"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
