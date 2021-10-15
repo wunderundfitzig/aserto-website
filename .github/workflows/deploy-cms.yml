@@ -47,7 +47,6 @@ jobs:
             rm -r ~/www/CmsAsertoWeb/kirby 
             & rm -r ~/www/CmsAsertoWeb/vendor
             & rm -r ~/www/CmsAsertoWeb/site/blueprints
-            & rm -r ~/www/CmsAsertoWeb/site/accounts
             & rm -r ~/www/CmsAsertoWeb/site/snippets
             & rm -r ~/www/CmsAsertoWeb/site/templates
             & rm -r ~/www/CmsAsertoWeb/site/config
