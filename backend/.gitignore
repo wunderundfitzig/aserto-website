@@ -47,3 +47,8 @@ Icon
 # License
 # ---------------
 /site/config/.license
+
+
+# Secrets
+# ----------------
+.env
