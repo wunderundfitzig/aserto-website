@@ -22,10 +22,10 @@ jobs:
           access_token: ${{ github.token }}
 
       - uses: actions/checkout@v2
-      - run: php -m
 
       - uses: php-actions/composer@v6
         with:
+          php_extensions: gd
           dev: no
           args: --working-dir backend
 
