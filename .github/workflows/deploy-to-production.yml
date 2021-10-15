@@ -51,7 +51,7 @@ jobs:
         with:
           token: '${{ github.token }}'
           state: 'success'
-          environment_url: 'https://aserto.de'
+          target_url: 'https://aserto.de'
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Update deployment status (failure)
@@ -60,5 +60,5 @@ jobs:
         with:
           token: '${{ github.token }}'
           state: 'failure'
-          environment_url: 'https://aserto.de'
+          target_url: 'https://aserto.de'
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
