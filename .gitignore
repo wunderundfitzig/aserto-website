@@ -1,22 +1,19 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
 /coverage
 
 # next.js
-/.next/
-/.vercel/
-/out/
-/public/resized-images/*
-!/public/resized-images/.gitkeep
-
-# production
-/build
+.next/
+.vercel/
+/frontend/out/
+/frontend/public/resized-images/*
+!/frontend/public/resized-images/.gitkeep
 
 # misc
 .DS_Store
