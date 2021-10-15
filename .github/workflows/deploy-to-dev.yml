@@ -16,19 +16,20 @@ jobs:
         with:
           node-version: "16.x"
 
-      - name: Move to frontend folder
-        run: cd frontend
-
       - name: Install npm dependencies
+        working-directory: frontend
         run: npm ci
 
       - name: Set dev robots txt
+        working-directory: frontend
         run: mv public/robots.dev.txt public/robots.txt
 
       - name: Run build task
+        working-directory: frontend
         run: npm run build
 
       - name: Copy htaccess file
+        working-directory: frontend
         run: mv .htaccess out/htaccess
 
       - uses: chrnorm/deployment-action@releases/v1
@@ -42,7 +43,7 @@ jobs:
       - name: Deploy to dev Server
         uses: mdallasanta/ssh-scp-deploy@v1.0.4
         with:
-          local: "./out/*"
+          local: "./frontend/out/*"
           remote: "~/www/NewAsertoWeb/"
           host: ${{secrets.DEPLOY_HOST}}
           port: ${{secrets.DEPLOY_PORT}}
