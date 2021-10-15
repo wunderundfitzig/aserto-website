@@ -10,7 +10,6 @@ jobs:
     environment:
       name: website/dev
       url: https://new.aserto.de
-      production: false
 
     steps:
       - name: Cancel Previous Runs
