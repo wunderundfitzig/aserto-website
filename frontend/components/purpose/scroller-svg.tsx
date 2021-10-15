@@ -46,11 +46,14 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
 
   const useMobileCurve = (width ?? 0) < breakpoint.sm
   const curvePoints = useMobileCurve ? mobileCurvePoints : desctopCurvePoints
+  const clip = useMobileCurve
+    ? 'M 0 0 H 100 V 150 H 109 V 230 L 400 150 V 275 H 70 V 400 H 0 Z'
+    : 'M 0 0 H 100 V 150 H 109 V 230 L 400 150 V 260 H 70 V 400 H 0 Z'
 
   return (
     <svg viewBox='0 0 200 365' preserveAspectRatio='none'>
       <clipPath id='curve-clip-path'>
-        <path d='M 0 0 H 100 V 150 H 400 V 150 H 109 V 230 L 400 150 V 260 H 70 V 400 H 0 Z' />
+        <path d={clip} />
       </clipPath>
       <g className='visualisations'>
         <DotsVisualisation

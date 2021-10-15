@@ -10,7 +10,7 @@ function makeOffsetCurve(
   offset: number
 ): [number, number][] {
   return curve.map((point, idx) =>
-    idx === 1 ? [point[0] + offset, point[1]] : point
+    idx === 2 ? [point[0] + offset, point[1]] : point
   )
 }
 
@@ -24,7 +24,7 @@ const MovingCurve: FunctionComponent<Props> = (props) => {
   const { width } = useWindowSize()
   const maxOffset = (width ?? 0) < breakpoint.sm ? 50 : 30
   const [offset, setOffset] = useState(0)
-  const movingCurve: [number, number][] = props.curvePoints.slice(-3)
+  const movingCurve: [number, number][] = props.curvePoints.slice(-4)
 
   useEffect(() => {
     if (!props.isScrolledIntoView) {
