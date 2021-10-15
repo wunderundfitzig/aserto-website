@@ -1,8 +1,8 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import { curvedPath } from 'lib/curved-path'
 
-const confidenceIntervall: [number, number][] = [
+const desctopConfidenceIntervall: [number, number][] = [
   [109, 227],
   [110, 226],
   [130, 153],
@@ -14,26 +14,30 @@ const confidenceIntervall: [number, number][] = [
   [109, 227],
 ]
 
+const mobileConfidenceIntervall: [number, number][] = [
+  [109, 207],
+  [110, 207.5],
+  [170, 153],
+  [200, 153],
+  [400, 153],
+  [400, 170],
+  [250, 170],
+  [120, 207.5],
+  [109, 207.5],
+]
+
 type Props = {
   isScrolledIntoView: boolean
   isRight: boolean
+  useMobileCurve: boolean
   curvePoints: [number, number][]
 }
 const ConfidenceIntervall: FunctionComponent<Props> = (props) => {
-  const maxOffset = 4000
-  const [offset, setOffset] = useState(0)
+  const maxOffset = props.useMobileCurve ? 2000 : 2500
   const curveSection: [number, number][] = props.curvePoints.slice(3, 7)
-
-  useEffect(() => {
-    if (!props.isScrolledIntoView) {
-      setOffset(0)
-      return
-    }
-    if (offset >= maxOffset) return
-    requestAnimationFrame(() => {
-      setOffset(offset + 15)
-    })
-  }, [props.isScrolledIntoView, offset, maxOffset])
+  const confidenceIntervall = props.useMobileCurve
+    ? mobileConfidenceIntervall
+    : desctopConfidenceIntervall
 
   return (
     <g className={`${props.isRight ? 'right' : 'left'}`}>
@@ -47,11 +51,10 @@ const ConfidenceIntervall: FunctionComponent<Props> = (props) => {
         fill={colors.categoryColors.purpose}
       />
       <path
+        className={`line ${props.isScrolledIntoView ? 'drawn' : 'undrawn'}`}
         clipPath='url(#confidence-intervall-clip-path)'
         d={curvedPath(curveSection, 0.2)}
         stroke={colors.categoryColors.purpose}
-        strokeDasharray={4400}
-        strokeDashoffset={3500 - offset}
         fill='none'
       />
       <style jsx>{`
@@ -62,6 +65,16 @@ const ConfidenceIntervall: FunctionComponent<Props> = (props) => {
 
         .right .confidence-intervall {
           opacity: 0.2;
+        }
+
+        .line {
+          stroke-dasharray: ${maxOffset};
+          stroke-dashoffset: ${maxOffset};
+        }
+
+        .line.drawn {
+          transition: stroke-dashoffset 4s;
+          stroke-dashoffset: 0;
         }
       `}</style>
     </g>

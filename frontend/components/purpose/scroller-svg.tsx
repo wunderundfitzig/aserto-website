@@ -62,6 +62,7 @@ const ScrollerSvg: FunctionComponent<Props> = (props) => {
         <ConfidenceIntervall
           isRight={props.isRight}
           isScrolledIntoView={props.activeSectionIndex >= 3}
+          useMobileCurve={useMobileCurve}
           curvePoints={curvePoints}
         />
         <MovingCurve
