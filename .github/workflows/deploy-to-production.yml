@@ -2,7 +2,10 @@ name: deploy to production (aserto.de)
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - frontend/**
 
 jobs:
   deploy:
