@@ -9,7 +9,7 @@ $trigger_deploy_route = "/trigger-deploy-" . $_ENV['TRIGGER_DEPLOY_KEY'];
 
 return [
     'pju.webhook-field.hooks' => [
-        'netlify_deploy' => [
+        'github_deploy_action' => [
             'url' => $url . $trigger_deploy_route
         ]
     ],

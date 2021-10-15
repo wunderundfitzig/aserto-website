@@ -67,3 +67,4 @@ columns:
           deploy:
             type: webhook
             label: Deploy website
+            name: github_deploy_action
