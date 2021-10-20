@@ -12,8 +12,8 @@ export const getStaticProps: GetStaticProps<KarrierePageProps> = async (
     query: "page('karriere')",
     select: {
       title: true,
-      seotitle: true,
-      seodescription: true,
+      seotitle: `page.find('${jobslug}').seotitle.or(page.find('${jobslug}').title)`,
+      seodescription: `page.find('${jobslug}').seodescription`,
       jobs: {
         query: 'page.children',
         select: { title: true, slug: true },

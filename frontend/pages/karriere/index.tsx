@@ -19,7 +19,7 @@ type Job = {
 
 export type KarrierePageProps = {
   title: string
-  seotitle?: string
+  seotitle: string
   seodescription: string
   jobs: { slug: string; title: string }[]
   job?: Job
@@ -27,19 +27,16 @@ export type KarrierePageProps = {
 const KarrierePage: NextPage<PageProps & KarrierePageProps> = (props) => {
   return (
     <>
-      {props.job === undefined ? (
-        <Metadata
-          title={props.seotitle ?? props.title}
-          description={props.seodescription}
-          slug='/karriere'
-        />
-      ) : (
-        <Metadata
-          title={props.seotitle ?? props.job.title}
-          description={props.seodescription}
-          slug={`/karriere/jobs/${props.job.slug}`}
-        />
-      )}
+      <Metadata
+        title={props.seotitle}
+        description={props.seodescription}
+        slug={
+          props.job === undefined
+            ? '/karriere'
+            : `/karriere/jobs/${props.job.slug}`
+        }
+      />
+
       <article
         hidden={props.job !== undefined}
         style={{ gridArea: props.gridArea, display: 'block' }}
@@ -75,7 +72,7 @@ export const getStaticProps: GetStaticProps<KarrierePageProps> = async () => {
     query: "page('karriere')",
     select: {
       title: true,
-      seotitle: true,
+      seotitle: 'page.seotitle.or(page.title)',
       seodescription: true,
       jobs: {
         query: 'page.children',
