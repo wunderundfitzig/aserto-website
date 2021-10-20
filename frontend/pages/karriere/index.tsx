@@ -27,15 +27,19 @@ export type KarrierePageProps = {
 const KarrierePage: NextPage<PageProps & KarrierePageProps> = (props) => {
   return (
     <>
-      <Metadata
-        title={props.seotitle ?? props.title}
-        description={props.seodescription}
-        slug={
-          props.job === undefined
-            ? '/karriere'
-            : `/karriere/jobs/${props.job.slug}`
-        }
-      />
+      {props.job === undefined ? (
+        <Metadata
+          title={props.seotitle ?? props.title}
+          description={props.seodescription}
+          slug='/karriere'
+        />
+      ) : (
+        <Metadata
+          title={props.seotitle ?? props.job.title}
+          description={props.seodescription}
+          slug={`/karriere/jobs/${props.job.slug}`}
+        />
+      )}
       <article
         hidden={props.job !== undefined}
         style={{ gridArea: props.gridArea, display: 'block' }}
