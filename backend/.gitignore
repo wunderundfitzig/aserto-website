@@ -32,9 +32,10 @@ Icon
 /site/cache/*
 !/site/cache/index.html
 
-# Accounts
+# Accounts / content
 # ---------------
 
+/content
 /site/accounts/*
 !/site/accounts/index.html
 
