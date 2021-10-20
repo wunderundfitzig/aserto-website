@@ -31,8 +31,15 @@ fields:
       - type: text
         content:
           text: Wir freuen uns auf Deine aussagekräftige Bewerbung
-
     fieldsets:
       - heading
       - text
       - list
+
+  contact:
+    label: Contact
+    type: pages
+    multiple: false
+    query: site.find('team')
+    subpages: false
+    empty: No contact selected yet
