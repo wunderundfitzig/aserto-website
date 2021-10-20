@@ -19,7 +19,7 @@ type Job = {
 
 export type KarrierePageProps = {
   title: string
-  seotitle: string
+  seotitle?: string
   seodescription: string
   jobs: { slug: string; title: string }[]
   job?: Job
@@ -27,19 +27,15 @@ export type KarrierePageProps = {
 const KarrierePage: NextPage<PageProps & KarrierePageProps> = (props) => {
   return (
     <>
-      {props.job === undefined ? (
-        <Metadata
-          title='aserto | Karriere'
-          description='Wir sind menschlich, verbindlich und relevant.'
-          slug='/karriere'
-        />
-      ) : (
-        <Metadata
-          title='aserto | Karriere | Stellenausschreibung'
-          description={props.job.title}
-          slug={`/karriere/${props.job.slug}`}
-        />
-      )}
+      <Metadata
+        title={props.seotitle ?? props.title}
+        description={props.seodescription}
+        slug={
+          props.job === undefined
+            ? '/karriere'
+            : `/karriere/jobs/${props.job.slug}`
+        }
+      />
       <article
         hidden={props.job !== undefined}
         style={{ gridArea: props.gridArea, display: 'block' }}
