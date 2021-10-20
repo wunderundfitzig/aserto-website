@@ -1,0 +1,18 @@
+title: Karriere
+preset: page
+
+options:
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  preview: false
+
+files: false
+
+pages:
+  headline: Jobs
+  templates: job-add
+
+fields:
+  seo: fields/seo

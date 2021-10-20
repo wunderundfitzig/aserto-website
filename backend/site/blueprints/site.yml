@@ -8,24 +8,21 @@ columns:
   main:
     width: 2/3
     sections:
-      main_pages:
+      mainPages:
         headline: Main Pages
         type: pages
         status: published
         layout: cards
         sortable: false
+        create: false
         image:
           back: black
-        template:
-          - all_news
-          - all_creatives
-          - work
 
       content:
         headline: Metadata
         type: fields
         fields:
-          page_settings:
+          pageSettings:
             label: Page Settings
             type: headline
             numbered: false
@@ -34,23 +31,23 @@ columns:
             type: textarea
             buttons: false
             icon: road-sign
-          phone_number:
+          phoneNumber:
             label: Telefonnummer
             type: tel
-          info_mail:
+          infoMail:
             label: Info E-Mail
             type: email
-          job_mail:
+          jobMail:
             label: Jobs E-Mail
             type: email
-          linkedin_url:
+          linkedinUrl:
             label: Linkedin URL
             type: url
             icon: linkedin
-          xing_url:
+          xingUrl:
             label: Xing URL
             type: url
-          instagram_url:
+          instagramUrl:
             label: Instagram URL
             type: url
             icon: instagram

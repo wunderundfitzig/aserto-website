@@ -10,24 +10,24 @@ Kriegerstr. 44
 
 ----
 
-Phone-number: 
+Phonenumber: 
 
 ----
 
-Info-mail: 
+Infomail: 
 
 ----
 
-Job-mail: 
+Jobmail: 
 
 ----
 
-Linkedin-url: 
+Linkedinurl: 
 
 ----
 
-Xing-url: 
+Xingurl: 
 
 ----
 
-Instagram-url: 
+Instagramurl: 

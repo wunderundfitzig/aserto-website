@@ -1,0 +1,9 @@
+type: group
+fields:
+  seoTitle:
+    label: SEO Title
+    type: text
+    placeholder: "defaults to page title when empty"
+  seoDescription:
+    label: SEO Description
+    type: text
