@@ -8,6 +8,10 @@ $url = "https://cms.aserto.de";
 $trigger_deploy_route = "/trigger-deploy-" . $_ENV['TRIGGER_DEPLOY_KEY'];
 
 return [
+    'api' => [
+        'basicAuth' => true,
+        'allowInsecure' => true
+    ],
     'pju.webhook-field.hooks' => [
         'github_deploy_action' => [
             'url' => $url . $trigger_deploy_route
