@@ -1,14 +1,13 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { PageProps } from '../_app'
+import { Contact, ImageType } from 'lib/types'
+import { queryBackend } from 'lib/kirby-query'
 import KarriereHeader from 'components/karriere/karriere-header'
 import KarriereContact from 'components/karriere/karriere-contact'
 import JobList from 'components/karriere/job-list'
 import JobAdd from 'components/karriere/job-add'
 import Prinzipen from 'components/karriere/prinzipen'
 import Metadata from 'components/metadata'
-import { Contact, ImageType } from 'lib/types'
-import { privateConfig } from 'lib/config/private-config'
-import { getBasicAuthHeader } from 'lib/basic-auth'
 
 type Job = {
   slug: string
@@ -18,14 +17,14 @@ type Job = {
   contact: Contact
 }
 
-type Props = {
+export type KarrierePageProps = {
   title: string
   seotitle: string
   seodescription: string
   jobs: { slug: string; title: string }[]
   job?: Job
 }
-const KarrierePage: NextPage<PageProps & Props> = (props) => {
+const KarrierePage: NextPage<PageProps & KarrierePageProps> = (props) => {
   return (
     <>
       {props.job === undefined ? (
@@ -71,31 +70,20 @@ const KarrierePage: NextPage<PageProps & Props> = (props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const result = await fetch(`https://cms.aserto.de/api/query`, {
-    method: 'POST',
-    headers: {
-      ...getBasicAuthHeader(
-        privateConfig.backendUser,
-        privateConfig.backendPassword
-      ),
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: "page('karriere')",
-      select: {
-        title: true,
-        seotitle: true,
-        seodescription: true,
-        jobs: {
-          query: 'page.children',
-          select: { title: true, slug: true },
-        },
+export const getStaticProps: GetStaticProps<KarrierePageProps> = async () => {
+  const result = await queryBackend({
+    query: "page('karriere')",
+    select: {
+      title: true,
+      seotitle: true,
+      seodescription: true,
+      jobs: {
+        query: 'page.children',
+        select: { title: true, slug: true },
       },
-    }),
+    },
   })
-  const resultJson = await result.json()
-  return { props: resultJson.result }
+  return { props: result as KarrierePageProps }
 }
 
 export default KarrierePage
