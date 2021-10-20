@@ -3,7 +3,7 @@
 return [
     'api' => [
         'basicAuth' => true,
-        'allowInsecure' => true
+        'allowInsecure' => true,
     ],
     'pju.webhook-field.hooks' => [
         'github_deploy_action' => [

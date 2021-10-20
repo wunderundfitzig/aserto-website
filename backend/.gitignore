@@ -32,10 +32,11 @@ Icon
 /site/cache/*
 !/site/cache/index.html
 
-# Accounts / content
+# Accounts / content / plugins
 # ---------------
 
-/content/
+/content
+/plugins
 /site/accounts/*
 !/site/accounts/index.html
 
