@@ -23,10 +23,14 @@ export const getStaticProps: GetStaticProps<KarrierePageProps> = async (
         select: {
           slug: true,
           title: true,
-          content: 'page.body',
+          content: 'page.body.toBlocks.toHtml',
           contact: {
             query: 'page.contact.toPage',
-            select: { name: 'page.title', mail: 'page.email', phone: true },
+            select: {
+              name: 'page.title',
+              mail: 'page.email',
+              phone: true,
+            },
           },
           contactImage: {
             query: 'page.contact.toPage.image',
@@ -36,7 +40,6 @@ export const getStaticProps: GetStaticProps<KarrierePageProps> = async (
       },
     },
   })
-  console.log(result)
   return { props: result as KarrierePageProps }
 }
 

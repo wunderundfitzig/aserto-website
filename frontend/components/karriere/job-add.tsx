@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react'
 import { transparentize } from 'polished'
-import ReactMarkdown from 'react-markdown'
 
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
@@ -36,9 +35,10 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             <AsertoLogo />
           </div>
           <JobAddHeader jobs={props.jobs} jobIndex={jobIndex} />
-          <main className='content'>
-            <ReactMarkdown>{props.job.content}</ReactMarkdown>
-          </main>
+          <main
+            className='content'
+            dangerouslySetInnerHTML={{ __html: props.job.content }}
+          />
           <aside>
             <ContactCard
               image={props.job.contactImage}

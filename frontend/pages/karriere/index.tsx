@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { PageProps } from '../_app'
 import { Contact, ImageType } from 'lib/types'
 import { queryBackend } from 'lib/kirby-query'
