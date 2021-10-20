@@ -15,6 +15,7 @@ columns:
         layout: cards
         sortable: false
         create: false
+        status: listed
         image:
           back: black
 

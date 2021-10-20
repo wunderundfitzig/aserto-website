@@ -21,6 +21,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "fefe": "^3.2.0",
     "lodash": "^4.17.21",
     "next": "^11.1.2",
     "poisson-disk-sampling": "^2.2.2",

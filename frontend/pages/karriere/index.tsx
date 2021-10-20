@@ -1,5 +1,4 @@
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import { GetStaticProps, NextPage } from 'next'
 import { PageProps } from '../_app'
 import KarriereHeader from 'components/karriere/karriere-header'
 import KarriereContact from 'components/karriere/karriere-contact'
@@ -7,19 +6,29 @@ import JobList from 'components/karriere/job-list'
 import JobAdd from 'components/karriere/job-add'
 import Prinzipen from 'components/karriere/prinzipen'
 import Metadata from 'components/metadata'
-import { jobs } from 'content/jobs'
+import { Contact, ImageType } from 'lib/types'
+import { privateConfig } from 'lib/config/private-config'
+import { getBasicAuthHeader } from 'lib/basic-auth'
 
-const KarrierePage: NextPage<PageProps> = (props) => {
-  const router = useRouter()
-  const { jobid } = router.query as { jobid?: string }
-  const jobIndex = jobs.findIndex(
-    (job) => jobid !== undefined && job.id === jobid
-  )
-  const job = jobs[jobIndex]
+type Job = {
+  slug: string
+  title: string
+  content: string
+  contactImage: ImageType
+  contact: Contact
+}
 
+type Props = {
+  title: string
+  seotitle: string
+  seodescription: string
+  jobs: { slug: string; title: string }[]
+  job?: Job
+}
+const KarrierePage: NextPage<PageProps & Props> = (props) => {
   return (
     <>
-      {job === undefined ? (
+      {props.job === undefined ? (
         <Metadata
           title='aserto | Karriere'
           description='Wir sind menschlich, verbindlich und relevant.'
@@ -28,38 +37,65 @@ const KarrierePage: NextPage<PageProps> = (props) => {
       ) : (
         <Metadata
           title='aserto | Karriere | Stellenausschreibung'
-          description={job.title}
-          slug={`/karriere/${job.id}`}
+          description={props.job.title}
+          slug={`/karriere/${props.job.slug}`}
         />
       )}
       <article
-        hidden={job !== undefined}
+        hidden={props.job !== undefined}
         style={{ gridArea: props.gridArea, display: 'block' }}
         className='karriere-page'
       >
         <main>
           <KarriereHeader />
           <Prinzipen />
-          <JobList jobs={jobs} />
+          <JobList jobs={props.jobs} />
         </main>
         <KarriereContact />
       </article>
-      {job !== undefined && <JobAdd jobs={jobs} jobIndex={jobIndex} />}
+      {props.job !== undefined && <JobAdd jobs={props.jobs} job={props.job} />}
       <style jsx global>
         {`
           @media print {
             .karriere-page * {
-              ${job !== undefined && 'display: none;'}
+              ${props.job !== undefined && 'display: none;'}
             }
 
             footer * {
-              ${job !== undefined && 'display: none;'}
+              ${props.job !== undefined && 'display: none;'}
             }
           }
         `}
       </style>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const result = await fetch(`https://cms.aserto.de/api/query`, {
+    method: 'POST',
+    headers: {
+      ...getBasicAuthHeader(
+        privateConfig.backendUser,
+        privateConfig.backendPassword
+      ),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: "page('karriere')",
+      select: {
+        title: true,
+        seotitle: true,
+        seodescription: true,
+        jobs: {
+          query: 'page.children',
+          select: { title: true, slug: true },
+        },
+      },
+    }),
+  })
+  const resultJson = await result.json()
+  return { props: resultJson.result }
 }
 
 export default KarrierePage

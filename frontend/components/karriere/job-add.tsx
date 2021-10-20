@@ -13,7 +13,7 @@ import AsertoLogo from 'components/aserto-logo'
 import ContactCard from 'components/contact-card'
 
 type Job = {
-  id: string
+  slug: string
   title: string
   content: string
   contactImage: ImageType
@@ -21,12 +21,12 @@ type Job = {
 }
 
 type Props = {
-  jobs: Job[]
-  jobIndex: number
+  jobs: { slug: string; title: string }[]
+  job: Job
 }
 
 const JobAdd: FunctionComponent<Props> = (props) => {
-  const job = props.jobs[props.jobIndex]
+  const jobIndex = props.jobs.findIndex((job) => job.slug === props.job.slug)
 
   return (
     <article className='job-add'>
@@ -35,12 +35,15 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           <div className='aserto-logo' aria-hidden='true'>
             <AsertoLogo />
           </div>
-          <JobAddHeader jobs={props.jobs} jobIndex={props.jobIndex} />
+          <JobAddHeader jobs={props.jobs} jobIndex={jobIndex} />
           <main className='content'>
-            <ReactMarkdown>{job.content}</ReactMarkdown>
+            <ReactMarkdown>{props.job.content}</ReactMarkdown>
           </main>
           <aside>
-            <ContactCard image={job.contactImage} contact={job.contact} />
+            <ContactCard
+              image={props.job.contactImage}
+              contact={props.job.contact}
+            />
             <div className='button-wrapper'>
               <CopyUrlButton color={colors.categoryColors.karriere}>
                 Link kopieren

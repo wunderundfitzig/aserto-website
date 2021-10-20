@@ -6,7 +6,7 @@ import Slider from 'components/slider'
 import { useRouter } from 'next/router'
 
 type Job = {
-  id: string
+  slug: string
   title: string
 }
 
@@ -35,7 +35,7 @@ const JobAddHeader: FunctionComponent<Props> = (props) => {
       </Link>
       <hr />
       <div className='slider-wrapper'>
-        <Link href={`/karriere/jobs/${prevJob.id}`} scroll={false}>
+        <Link href={`/karriere/jobs/${prevJob.slug}`} scroll={false}>
           <a className='arrow-icon prev'>
             <ArrowIcon color={colors.categoryColors.karriere} />
           </a>
@@ -44,7 +44,7 @@ const JobAddHeader: FunctionComponent<Props> = (props) => {
           index={props.jobIndex}
           onNavigation={(index: number) => {
             const job = props.jobs[clamp(index, props.jobs.length)]
-            router.push(`/karriere/jobs/${job.id}`)
+            router.push(`/karriere/jobs/${job.slug}`)
           }}
         >
           {(index: number) => {
@@ -53,7 +53,7 @@ const JobAddHeader: FunctionComponent<Props> = (props) => {
           }}
         </Slider>
 
-        <Link href={`/karriere/jobs/${nextJob.id}`} scroll={false}>
+        <Link href={`/karriere/jobs/${nextJob.slug}`} scroll={false}>
           <a className='arrow-icon next'>
             <ArrowIcon color={colors.categoryColors.karriere} rotate={180} />
           </a>

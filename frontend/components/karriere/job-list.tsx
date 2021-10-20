@@ -5,7 +5,7 @@ import { MoreInfoIcon } from 'components/icons'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
-  jobs: { id: string; title: string }[]
+  jobs: { slug: string; title: string }[]
 }
 const JobList: FunctionComponent<Props> = (props) => {
   return (
@@ -13,8 +13,8 @@ const JobList: FunctionComponent<Props> = (props) => {
       <h2>Unsere offenen Stellen</h2>
       <ul>
         {props.jobs.map((job) => (
-          <li key={job.id}>
-            <Link href={`/karriere/jobs/${job.id}`} scroll={false}>
+          <li key={job.slug}>
+            <Link href={`/karriere/jobs/${job.slug}`} scroll={false}>
               <a>
                 <span>{job.title}</span>
                 <MoreInfoIcon color={colors.categoryColors.karriere} />
