@@ -36,7 +36,7 @@ Icon
 # ---------------
 
 /content
-/plugins
+/site/plugins
 /site/accounts/*
 !/site/accounts/index.html
 
