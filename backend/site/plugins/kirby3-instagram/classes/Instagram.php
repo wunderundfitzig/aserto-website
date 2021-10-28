@@ -77,6 +77,7 @@ class Instagram
         }
         catch(\Exception $e)
         {
+            throw $e;
             site()->update([
                 'instagramAuth' => (boolean)false,
                 'instagramToken' => '',
