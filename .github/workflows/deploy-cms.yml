@@ -37,7 +37,7 @@ jobs:
           INSTAGRAM_CLIENT_SECRET: ${{secrets.INSTAGRAM_CLIENT_SECRET}}
 
       - name: install rsync
-        run: apt install sshpass rsync
+        run: sudo apt-get install sshpass rsync
 
       - name: Upload with rsync
         working-directory: backend
