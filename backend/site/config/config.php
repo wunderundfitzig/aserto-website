@@ -6,14 +6,22 @@ return [
     'api' => [
         'basicAuth' => true,
         'allowInsecure' => true,
-        'routes' => [
-            [
-                'pattern' => 'instagram/feed',
-                'action'  => function () {
-                    $feed = instagramFeed();
-                    return $feed->data();
-                }
-            ]
+    ],
+    'routes' => [
+        [
+            'pattern' => 'instagram/feed',
+            'action'  => function () {
+                $feed = instagramFeed();
+                return $feed->data();
+            }
+        ],
+        [
+            'pattern' => 'images/size/(:num)/assets/(:all)',
+            'action'  => function (int $size, string $path) {
+                $image = asset('assets/' . $path);
+                $hui = $image->resize($size);
+                return go($hui->url());
+            }
         ]
     ],
     'pju.webhook-field.hooks' => [
