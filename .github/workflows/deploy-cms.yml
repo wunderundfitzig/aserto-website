@@ -34,6 +34,12 @@ jobs:
         working-directory: backend
         run: mv .htaccess htaccess
 
+      - name: Create .env file
+        working-directory: backend
+        run: echo "INSTAGRAM_CLIENT_SECRET=${INSTAGRAM_CLIENT_SECRET}" >> .env
+        env:
+          INSTAGRAM_CLIENT_SECRET: ${{secrets.INSTAGRAM_CLIENT_SECRET}}
+
       - name: Deploy to Server
         uses: mdallasanta/ssh-scp-deploy@v1.0.4
         with:
@@ -50,4 +56,5 @@ jobs:
             & rm -r ~/www/CmsAsertoWeb/site/snippets
             & rm -r ~/www/CmsAsertoWeb/site/templates
             & rm -r ~/www/CmsAsertoWeb/site/config
+            & rm ~/www/CmsAsertoWeb/.env
           post_upload: mv ~/www/CmsAsertoWeb/htaccess ~/www/CmsAsertoWeb/.htaccess

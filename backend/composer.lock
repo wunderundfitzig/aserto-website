@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb631ce9504645431c67e70e14fd8ff9",
+    "content-hash": "46a9b5a88118d54ab66cac522703fab9",
     "packages": [
         {
             "name": "beebmx/kirby-env",
@@ -273,6 +273,46 @@
                 }
             ],
             "time": "2021-04-25T12:00:00+00:00"
+        },
+        {
+            "name": "genxbe/kirby3-instagram",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/genxbe/kirby3-instagram.git",
+                "reference": "bf20960ed40281983923d7f536fcd18926f4b96b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/genxbe/kirby3-instagram/zipball/bf20960ed40281983923d7f536fcd18926f4b96b",
+                "reference": "bf20960ed40281983923d7f536fcd18926f4b96b",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.1"
+            },
+            "type": "kirby-plugin",
+            "autoload": {
+                "psr-4": {
+                    "X\\": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Serrien",
+                    "email": "source@genx.be"
+                }
+            ],
+            "description": "Kirby3 plugin to fetch instagram photos from your profile.",
+            "support": {
+                "issues": "https://github.com/genxbe/kirby3-instagram/issues",
+                "source": "https://github.com/genxbe/kirby3-instagram/tree/1.0.5"
+            },
+            "time": "2021-04-08T13:47:10+00:00"
         },
         {
             "name": "getkirby/cms",
