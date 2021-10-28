@@ -17,11 +17,6 @@ Icon
 /.vscode
 /.idea
 
-# Composer
-# ---------------
-/kirby
-/vendor
-
 # -------------SECURITY-------------
 # NEVER publish these files via Git!
 # -------------SECURITY-------------
@@ -36,7 +31,6 @@ Icon
 # ---------------
 
 /content
-/site/plugins
 /site/accounts/*
 !/site/accounts/index.html
 
