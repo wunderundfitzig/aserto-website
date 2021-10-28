@@ -8,9 +8,10 @@ return [
         'allowInsecure' => true,
         'routes' => [
             [
-                'pattern' => 'instagram-feed',
+                'pattern' => 'instagram/feed',
                 'action'  => function () {
-                    return instagramFeed();
+                    $feed = instagramFeed();
+                    return $feed->data();
                 }
             ]
         ]
