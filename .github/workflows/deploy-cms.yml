@@ -41,7 +41,7 @@ jobs:
 
       - name: Upload with rsync
         working-directory: backend
-        run: sshpass -p $DEPLOY_PASSWORD rsync . $DEPLOY_USERNAME@$DEPLOY_HOST:~/www/CmsAsertoWeb/ --exclude-from=.deployignore --dry-run -avz
+        run: sshpass -p $DEPLOY_PASSWORD rsync . $DEPLOY_USERNAME@$DEPLOY_HOST:~/www/CmsAsertoWeb/ --exclude-from=.deployignore --dry-run -avz ssh -o StrictHostKeyChecking=no
         env:
           DEPLOY_HOST: ${{secrets.DEPLOY_HOST}}
           DEPLOY_PASSWORD: ${{secrets.DEPLOY_PASSWORD}}
