@@ -41,7 +41,7 @@ jobs:
 
       - name: Upload with rsync
         working-directory: backend
-        run: sshpass -p $DEPLOY_PASSWORD rsync . web71@s114.goserver.host:/home/www/CmsAsertoWeb --exclude-from=.deployignore --dry-run -avz -e "ssh -l web71 -o StrictHostKeyChecking=no"
+        run: sshpass -p $DEPLOY_PASSWORD rsync . web71@s114.goserver.host:/home/www/CmsAsertoWeb --exclude-from=.deployignore --dry-run -avz --delete -e "ssh -l web71 -o StrictHostKeyChecking=no"
         env:
           DEPLOY_HOST: ${{secrets.DEPLOY_HOST}}
           DEPLOY_PASSWORD: ${{secrets.DEPLOY_PASSWORD}}
