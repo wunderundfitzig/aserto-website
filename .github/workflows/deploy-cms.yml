@@ -30,31 +30,35 @@ jobs:
           dev: no
           args: --working-dir backend
 
-      - name: Make htaccess file uploadable
-        working-directory: backend
-        run: mv .htaccess htaccess
-
       - name: Create .env file
         working-directory: backend
         run: echo "INSTAGRAM_CLIENT_SECRET=${INSTAGRAM_CLIENT_SECRET}" >> .env
         env:
           INSTAGRAM_CLIENT_SECRET: ${{secrets.INSTAGRAM_CLIENT_SECRET}}
 
-      - name: Deploy to Server
-        uses: mdallasanta/ssh-scp-deploy@v1.0.4
-        with:
-          local: "./backend/*"
-          remote: "~/www/CmsAsertoWeb/"
-          host: ${{secrets.DEPLOY_HOST}}
-          port: ${{secrets.DEPLOY_PORT}}
-          user: ${{secrets.DEPLOY_USERNAME}}
-          password: ${{secrets.DEPLOY_PASSWORD}}
-          pre_upload: >
-            rm -r ~/www/CmsAsertoWeb/kirby 
-            & rm -r ~/www/CmsAsertoWeb/vendor
-            & rm -r ~/www/CmsAsertoWeb/site/blueprints
-            & rm -r ~/www/CmsAsertoWeb/site/snippets
-            & rm -r ~/www/CmsAsertoWeb/site/templates
-            & rm -r ~/www/CmsAsertoWeb/site/config
-            & rm ~/www/CmsAsertoWeb/.env
-          post_upload: mv ~/www/CmsAsertoWeb/htaccess ~/www/CmsAsertoWeb/.htaccess
+      - name: install rsync
+        run: apt install sshpass rsync
+
+      - name: Upload with rsync
+        working-directory: backend
+        run: sshpass -p $DEPLOY_PASSWORD rsync . $DEPLOY_USERNAME@$DEPLOY_HOST:~/www/CmsAsertoWeb/ --exclude-from=.deployignore --dry-run -avz
+        env:
+          DEPLOY_HOST: ${{secrets.DEPLOY_HOST}}
+          DEPLOY_PASSWORD: ${{secrets.DEPLOY_PASSWORD}}
+          DEPLOY_USERNAME: ${{secrets.DEPLOY_USERNAME}}
+        # with:
+        #   local: "./backend/*"
+        #   remote: "~/www/CmsAsertoWeb/"
+        #   host: ${{secrets.DEPLOY_HOST}}
+        #   port: ${{secrets.DEPLOY_PORT}}
+        #   user: ${{secrets.DEPLOY_USERNAME}}
+        #   password: ${{secrets.DEPLOY_PASSWORD}}
+        #   pre_upload: >
+        #     rm -r ~/www/CmsAsertoWeb/kirby
+        #     & rm -r ~/www/CmsAsertoWeb/vendor
+        #     & rm -r ~/www/CmsAsertoWeb/site/blueprints
+        #     & rm -r ~/www/CmsAsertoWeb/site/snippets
+        #     & rm -r ~/www/CmsAsertoWeb/site/templates
+        #     & rm -r ~/www/CmsAsertoWeb/site/config
+        #     & rm ~/www/CmsAsertoWeb/.env
+        #   post_upload: mv ~/www/CmsAsertoWeb/htaccess ~/www/CmsAsertoWeb/.htaccess
