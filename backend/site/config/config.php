@@ -6,6 +6,14 @@ return [
     'api' => [
         'basicAuth' => true,
         'allowInsecure' => true,
+        'routes' => [
+            [
+                'pattern' => 'instagram-feed',
+                'action'  => function () {
+                    return instagramFeed();
+                }
+            ]
+        ]
     ],
     'pju.webhook-field.hooks' => [
         'github_deploy_action' => [
