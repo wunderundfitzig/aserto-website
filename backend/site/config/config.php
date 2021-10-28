@@ -16,11 +16,11 @@ return [
             }
         ],
         [
-            'pattern' => 'images/size/(:num)/assets/(:all)',
+            'pattern' => 'images/size/(:num)/(:all)',
             'action'  => function (int $size, string $path) {
-                $image = asset('assets/' . $path);
-                $hui = $image->resize($size);
-                return go($hui->url());
+                $image = asset($path);
+                $resied = $image->resize($size);
+                return go($resied->url());
             }
         ]
     ],
