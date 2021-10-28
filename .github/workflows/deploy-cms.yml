@@ -24,6 +24,12 @@ jobs:
 
       - uses: actions/checkout@v2
 
+      - uses: php-actions/composer@v6
+        with:
+          php_extensions: gd
+          dev: no
+          args: --working-dir backend
+
       - name: Create .env file
         working-directory: backend
         run: echo "INSTAGRAM_CLIENT_SECRET=${INSTAGRAM_CLIENT_SECRET}" >> .env
