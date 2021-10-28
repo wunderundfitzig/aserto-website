@@ -1,0 +1,48 @@
+name: deploy to production (aserto.de)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - frontend/**
+      - .github/workflows/deploy-to-production.yml
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: website/production
+      url: https://aserto.de
+
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: Install npm dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Run build task
+        working-directory: frontend
+        run: npm run build
+
+      - name: install rsync
+        run: sudo apt-get install sshpass rsync
+
+      - name: Upload with rsync
+        working-directory: frontend/out
+        run: sshpass -p $DEPLOY_PASSWORD rsync . $DEPLOY_USERNAME@$DEPLOY_HOST:/home/www/asertoWeb -avz --delete -e "ssh -l web71 -o StrictHostKeyChecking=no"
+        env:
+          DEPLOY_HOST: ${{secrets.DEPLOY_HOST}}
+          DEPLOY_PASSWORD: ${{secrets.DEPLOY_PASSWORD}}
+          DEPLOY_USERNAME: ${{secrets.DEPLOY_USERNAME}}
