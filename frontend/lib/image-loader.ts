@@ -1,4 +1,5 @@
 import { ImageLoader } from 'next/image'
+import { publicConfig } from './config/public-config'
 
 // find closest resized element
 function findClosestSize(width: number, list: number[]): number {
@@ -33,6 +34,10 @@ const imageResizeTargets = [
   3840,
 ]
 export const imageLoader: ImageLoader = ({ src, width }) => {
+  if (src.startsWith(publicConfig.backendURL)) {
+    const path = src.replace(publicConfig.backendURL, '')
+    return `${publicConfig.backendURL}/images/size/${width}${path}`
+  }
   const closestWidth = findClosestSize(width, imageResizeTargets)
   let newSrc = src.replace('/_next/static/image/public', '')
   newSrc = newSrc.replace(/\//g, '-')

@@ -19,8 +19,8 @@ return [
             'pattern' => 'images/size/(:num)/(:all)',
             'action'  => function (int $size, string $path) {
                 $image = asset($path);
-                $resied = $image->resize($size);
-                return go($resied->url());
+                $resized = $image->resize($size);
+                return go($resized->url());
             }
         ]
     ],

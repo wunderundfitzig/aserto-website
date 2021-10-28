@@ -5,7 +5,7 @@ const validateConfig = object({
 })
 
 const result = validateConfig({
-  backendURL: process.env.BACKEND_URL,
+  backendURL: process.env.NEXT_PUBLIC_BACKEND_URL,
 })
 
 if (isFailure(result)) {
