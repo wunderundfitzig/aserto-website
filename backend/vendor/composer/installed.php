@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '797f9bb61e8abf5bd4cf0e2266327bf9a1742bdb',
+        'reference' => 'feaf66b36a050d49f3e7558dbbfec4b917fd8f59',
         'name' => 'getkirby/plainkit',
         'dev' => true,
     ),
@@ -88,7 +88,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '797f9bb61e8abf5bd4cf0e2266327bf9a1742bdb',
+            'reference' => 'feaf66b36a050d49f3e7558dbbfec4b917fd8f59',
             'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(
@@ -215,12 +215,12 @@
             'dev_requirement' => false,
         ),
         'pju/kirby-webhook-field' => array(
-            'pretty_version' => '1.1.1',
-            'version' => '1.1.1.0',
+            'pretty_version' => '1.1.2',
+            'version' => '1.1.2.0',
             'type' => 'kirby-plugin',
             'install_path' => __DIR__ . '/../../site/plugins/webhook-field',
             'aliases' => array(),
-            'reference' => 'e0ce1be565030e4ce2be0e3c387ca4b3a44d9b2a',
+            'reference' => '637494f80e755402a1455b86f6f5c2e6554dcbdf',
             'dev_requirement' => false,
         ),
         'psr/container' => array(

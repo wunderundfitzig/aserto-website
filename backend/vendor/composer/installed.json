@@ -1349,23 +1349,23 @@
         },
         {
             "name": "pju/kirby-webhook-field",
-            "version": "1.1.1",
-            "version_normalized": "1.1.1.0",
+            "version": "1.1.2",
+            "version_normalized": "1.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pju-/kirby-webhook-field.git",
-                "reference": "e0ce1be565030e4ce2be0e3c387ca4b3a44d9b2a"
+                "reference": "637494f80e755402a1455b86f6f5c2e6554dcbdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pju-/kirby-webhook-field/zipball/e0ce1be565030e4ce2be0e3c387ca4b3a44d9b2a",
-                "reference": "e0ce1be565030e4ce2be0e3c387ca4b3a44d9b2a",
+                "url": "https://api.github.com/repos/pju-/kirby-webhook-field/zipball/637494f80e755402a1455b86f6f5c2e6554dcbdf",
+                "reference": "637494f80e755402a1455b86f6f5c2e6554dcbdf",
                 "shasum": ""
             },
             "require": {
                 "getkirby/composer-installer": "^1.1"
             },
-            "time": "2020-08-09T13:53:08+00:00",
+            "time": "2021-10-21T13:43:14+00:00",
             "type": "kirby-plugin",
             "extra": {
                 "installer-name": "webhook-field"
@@ -1384,7 +1384,7 @@
             "description": "A Kirby 3 plugin providing a field to easily use webhooks, e.g. for deploying your site to services such as Netlify ",
             "support": {
                 "issues": "https://github.com/pju-/kirby-webhook-field/issues",
-                "source": "https://github.com/pju-/kirby-webhook-field/tree/master"
+                "source": "https://github.com/pju-/kirby-webhook-field/tree/1.1.2"
             },
             "install-path": "../../site/plugins/webhook-field"
         },
