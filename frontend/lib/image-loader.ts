@@ -34,9 +34,8 @@ const imageResizeTargets = [
   3840,
 ]
 export const imageLoader: ImageLoader = ({ src, width }) => {
-  if (src.startsWith(publicConfig.backendURL)) {
-    const path = src.replace(publicConfig.backendURL, '')
-    return `${publicConfig.backendURL}/images/size/${width}${path}`
+  if (!src.startsWith('/_next/static/') && !src.startsWith('/images')) {
+    return `${publicConfig.backendURL}/images/size/${width}/${src}`
   }
   const closestWidth = findClosestSize(width, imageResizeTargets)
   let newSrc = src.replace('/_next/static/image/public', '')

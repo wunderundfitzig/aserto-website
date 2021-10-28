@@ -1,4 +1,5 @@
 import { privateConfig } from './config/private-config'
+import { publicConfig } from './config/public-config'
 
 export const getBasicAuthHeader = (
   user: string,
@@ -8,7 +9,7 @@ export const getBasicAuthHeader = (
 })
 
 export const queryBackend = async (query: unknown): Promise<unknown> => {
-  const result = await fetch(`https://cms.aserto.de/api/query`, {
+  const result = await fetch(`${publicConfig.backendURL}/api/query`, {
     method: 'POST',
     headers: {
       ...getBasicAuthHeader(

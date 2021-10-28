@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<KarrierePageProps> = async (
           },
           contactImage: {
             query: 'page.contact.toPage.image',
-            select: { src: 'file.url', width: true, height: true },
+            select: { src: 'file.id', width: true, height: true },
           },
         },
       },

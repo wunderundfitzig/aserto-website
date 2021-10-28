@@ -18,8 +18,11 @@ return [
         [
             'pattern' => 'images/size/(:num)/(:all)',
             'action'  => function (int $size, string $path) {
-                $image = asset($path);
-                $resized = $image->resize($size);
+                $image = image($path);
+                if (!$image) return null;
+                $originalSize = $image->width();
+                $newSize = min($size, $originalSize);
+                $resized = $image->resize($newSize);
                 return go($resized->url());
             }
         ]
