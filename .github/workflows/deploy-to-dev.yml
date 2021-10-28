@@ -44,18 +44,13 @@ jobs:
           BACKEND_USER: ${{secrets.BACKEND_USER}}
           BACKEND_PASSWORD: ${{secrets.BACKEND_PASSWORD}}
 
-      - name: Copy htaccess file
-        working-directory: frontend
-        run: mv .htaccess out/htaccess
+      - name: install rsync
+        run: sudo apt-get install sshpass rsync
 
-      - name: Deploy to dev Server
-        uses: mdallasanta/ssh-scp-deploy@v1.0.4
-        with:
-          local: "./frontend/out/*"
-          remote: "~/www/NewAsertoWeb/"
-          host: ${{secrets.DEPLOY_HOST}}
-          port: ${{secrets.DEPLOY_PORT}}
-          user: ${{secrets.DEPLOY_USERNAME}}
-          password: ${{secrets.DEPLOY_PASSWORD}}
-          pre_upload: rm -r ~/www/NewAsertoWeb/*
-          post_upload: mv ~/www/NewAsertoWeb/htaccess ~/www/NewAsertoWeb/.htaccess
+      - name: Upload with rsync
+        working-directory: frontend/out
+        run: sshpass -p $DEPLOY_PASSWORD rsync . $DEPLOY_USERNAME@$DEPLOY_HOST:/home/www/NewAsertoWeb -avz --delete -e "ssh -l web71 -o StrictHostKeyChecking=no"
+        env:
+          DEPLOY_HOST: ${{secrets.DEPLOY_HOST}}
+          DEPLOY_PASSWORD: ${{secrets.DEPLOY_PASSWORD}}
+          DEPLOY_USERNAME: ${{secrets.DEPLOY_USERNAME}}
