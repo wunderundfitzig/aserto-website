@@ -3,7 +3,7 @@ preset: page
 
 options:
   changeSlug: false
-  changeStatus: false
+  changeStatus: true
   delete: false
   duplicate: false
   preview: false
