@@ -11,11 +11,6 @@ columns:
       mainPages:
         headline: Main Pages
         type: pages
-        status: published
-        layout: list
-        sortable: true
-        create: true
-        status: listed
         image:
           back: black
 
@@ -53,7 +48,6 @@ columns:
             type: url
             icon: instagram
           linkInstagram: linkInstagram
-
 
   # sidebar
   sidebar:
