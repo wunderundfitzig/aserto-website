@@ -1,6 +1,7 @@
 name: deploy to dev (new.aserto.de)
 
 on:
+  workflow_dispatch:
   repository_dispatch:
   push:
     branches:
