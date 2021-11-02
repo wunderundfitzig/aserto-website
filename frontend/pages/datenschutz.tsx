@@ -10,11 +10,7 @@ const Datenschutz: NextPage<PageProps<DatenschutzPageProps>> = (props) => {
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
-        <Metadata
-          title='aserto | Datenschutz'
-          description='Datenschutz hat für aserto einen hohen Stellenwert'
-          slug='/datenschutz'
-        />
+        <Metadata pageMeta={props.pageData} slug='/datenschutz' />
         <main>
           <DatenschutzHeader />
           <DatenschutzText />

@@ -13,11 +13,7 @@ const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
-        <Metadata
-          title={props.pageData.seotitle}
-          description={props.pageData.seodescription}
-          slug='/leistungen'
-        />
+        <Metadata pageMeta={props.pageData} slug='/leistungen' />
         <main>
           <LeistungenHeader />
           <WasUnsAusmacht />

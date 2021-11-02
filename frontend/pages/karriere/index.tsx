@@ -25,8 +25,7 @@ const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
   return (
     <>
       <Metadata
-        title={props.pageData.seotitle}
-        description={props.pageData.seodescription}
+        pageMeta={props.pageData}
         slug={
           props.pageData.job === undefined
             ? '/karriere'

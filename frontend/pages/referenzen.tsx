@@ -13,11 +13,7 @@ const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
-        <Metadata
-          title='aserto | Referenzen'
-          description='Für Akteure aus Wirtschaft und Wissenschaft und Institutionen verschaffen Durchblick, bestimmten die Richtung, bauen Hürden ab oder gestalten Transformationen.'
-          slug='/referenzen'
-        />
+        <Metadata pageMeta={props.pageData} slug='/referenzen' />
         <main>
           <ReferenzenHeader />
           <LogoList />

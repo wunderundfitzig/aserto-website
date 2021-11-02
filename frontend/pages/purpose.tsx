@@ -13,11 +13,7 @@ const PurposePage: NextPage<PageProps<PurposePageProps>> = (props) => {
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
-        <Metadata
-          title={props.pageData.seotitle}
-          description={props.pageData.seodescription}
-          slug='/purpose'
-        />
+        <Metadata pageMeta={props.pageData} slug='/purpose' />
         <main>
           <PurposeHeader />
           <Quotes />

@@ -25,11 +25,7 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
 
   return (
     <>
-      <Metadata
-        title={props.pageData.seotitle}
-        description={props.pageData.seodescription}
-        slug='/'
-      />
+      <Metadata pageMeta={props.pageData} slug='/' />
       <h1>Wir begleiten bei richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image

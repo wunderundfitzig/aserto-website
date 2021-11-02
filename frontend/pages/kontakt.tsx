@@ -11,11 +11,7 @@ const Kontakt: NextPage<PageProps<KontaktPageProps>> = (props) => {
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
-        <Metadata
-          title={props.pageData.seotitle}
-          description={props.pageData.seodescription}
-          slug='/kontakt'
-        />
+        <Metadata pageMeta={props.pageData} slug='/kontakt' />
         <main>
           <KontaktHeader />
           <Ansprechpartner />
