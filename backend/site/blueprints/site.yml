@@ -11,6 +11,8 @@ columns:
       mainPages:
         headline: Main Pages
         type: pages
+        create: false
+        status: listed
         image:
           back: black
 
