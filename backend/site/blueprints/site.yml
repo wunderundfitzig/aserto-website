@@ -12,6 +12,7 @@ columns:
         headline: Main Pages
         type: pages
         create: false
+        sortable: false
         status: listed
         image:
           back: black
