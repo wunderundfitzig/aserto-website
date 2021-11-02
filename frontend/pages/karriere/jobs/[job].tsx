@@ -1,14 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { queryBackend } from 'lib/kirby-query'
+import { queryBackend, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 import { KarrierePageProps } from '..'
 
 export { default } from '..'
 
-export const getStaticProps: GetStaticProps<KarrierePageProps> = async (
-  ctx
-) => {
+export const getStaticProps: GetStaticProps<
+  SiteQueryResult<KarrierePageProps>
+> = async (ctx) => {
   const jobslug = ctx.params?.job as string
-  const result = await queryBackend({
+  const result = await queryPageData<KarrierePageProps>({
     query: "page('karriere')",
     select: {
       title: true,
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<KarrierePageProps> = async (
       },
     },
   })
-  return { props: result as KarrierePageProps }
+  return { props: result }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

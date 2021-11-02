@@ -27,27 +27,21 @@ const IconLink: FunctionComponent<IconLinkProps> = (props) => {
 type Props = {
   color: string
   align?: 'flex-start' | 'flex-end' | 'center'
+  linkedinUrl: string
+  xingUrl: string
+  instagramUrl: string
 }
 
 const SocialLinks: FunctionComponent<Props> = (props) => {
   return (
     <div className='icons'>
-      <IconLink
-        title='aserto linkedin profile'
-        url='https://www.linkedin.com/company/aserto'
-      >
+      <IconLink title='aserto linkedin profile' url={props.linkedinUrl}>
         <LinkedInIcon color={props.color} />
       </IconLink>
-      <IconLink
-        title='aserto xing profile'
-        url='https://www.xing.com/pages/aserto'
-      >
+      <IconLink title='aserto xing profile' url={props.xingUrl}>
         <XingIcon color={props.color} />
       </IconLink>
-      <IconLink
-        title='aserto instagram profile'
-        url='https://www.instagram.com/aserto_richtungsweisend'
-      >
+      <IconLink title='aserto instagram profile' url={props.instagramUrl}>
         <InstagramIcon color={props.color} />
       </IconLink>
       {/* <IconLink url='https://twitter.com/aserto_de'>

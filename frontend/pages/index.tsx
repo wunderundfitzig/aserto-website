@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import { darken } from 'polished'
 
@@ -16,16 +16,18 @@ import {
 import SocialLinks from 'components/social-links'
 import SecondaryNavigation from 'components/frontpage/secondary-navigation'
 import Metadata from 'components/metadata'
+import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 
-const Index: NextPage = () => {
+type IndexPageProps = Record<string, never>
+const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
   const { width } = useWindowSize()
   const whiteIcons = (width ?? 0) > breakpoint.xs && (width ?? 0) < breakpoint.l
 
   return (
     <>
       <Metadata
-        title='aserto'
-        description='aserto begleitet bei richtungsweisenden Entscheidungen und verbindet Analysen mit Tiefgang und Beratung mit Substanz.'
+        title={props.pageData.seotitle}
+        description={props.pageData.seodescription}
         slug='/'
       />
       <h1>Wir begleiten bei richtungsweisenden Entscheidungen</h1>
@@ -53,7 +55,12 @@ const Index: NextPage = () => {
       </div>
       <div className='secondary-and-social-nav'>
         <SecondaryNavigation />
-        <SocialLinks color={whiteIcons ? 'white' : 'black'} />
+        <SocialLinks
+          color={whiteIcons ? 'white' : 'black'}
+          linkedinUrl={props.siteInfo.linkedinUrl}
+          xingUrl={props.siteInfo.xingUrl}
+          instagramUrl={props.siteInfo.instagramUrl}
+        />
       </div>
       <div className='main-curve'>
         <FrontpageCurve
@@ -280,6 +287,15 @@ const Index: NextPage = () => {
       `}</style>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps<
+  SiteQueryResult<IndexPageProps>
+> = async () => {
+  const result = await queryPageData<IndexPageProps>({
+    query: 'page("index")',
+  })
+  return { props: result }
 }
 
 export default Index

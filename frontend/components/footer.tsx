@@ -1,13 +1,15 @@
-import { breakpoint, minWidth } from 'lib/breakpoints'
-import { footerBackgroundColors } from 'lib/colors'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FunctionComponent } from 'react'
+import { breakpoint, minWidth } from 'lib/breakpoints'
+import { footerBackgroundColors } from 'lib/colors'
+import { SiteInfo } from 'lib/kirby-query'
 import AsertoLogo from './aserto-logo'
 import SocialLinks from './social-links'
 
 type Props = {
   gridArea: string
+  siteInfo: SiteInfo
 }
 const Footer: FunctionComponent<Props> = (props) => {
   const router = useRouter()
@@ -30,21 +32,20 @@ const Footer: FunctionComponent<Props> = (props) => {
       <div className='logo'>
         <AsertoLogo />
       </div>
-      <address className='address'>
-        aserto GmbH & Co. KG
-        <br />
-        Kriegerstr. 44 <br />
-        30161 Hannover
-      </address>
+      <address className='address'>{props.siteInfo.address}</address>
       <address className='contact'>
-        <a href='mailto:job@aserto.de'>job@aserto.de</a>
+        <a href={`mailto:${props.siteInfo.infoMail}`}>
+          {props.siteInfo.infoMail}
+        </a>
         <br />
-        <a href='info:job@aserto.de'>info@aserto.de</a>
+        <a href={`mailto:${props.siteInfo.jobMail}`}>
+          {props.siteInfo.jobMail}
+        </a>
         <br />
-        0511 515678 0
+        {props.siteInfo.phoneNumber}
       </address>
       <address className='icons'>
-        <SocialLinks color='black' />
+        <SocialLinks {...props.siteInfo} color='black' />
       </address>
       <nav title='footer navigation' className='footer-navigation'>
         <Link href='/datenschutz'>
@@ -84,6 +85,7 @@ const Footer: FunctionComponent<Props> = (props) => {
 
         .address {
           grid-area: address;
+          white-space: pre-line;
         }
 
         .contact {

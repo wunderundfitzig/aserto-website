@@ -1,13 +1,13 @@
 import { GetStaticProps, NextPage } from 'next'
-import { PageProps } from '../_app'
 import { Contact, ImageType } from 'lib/types'
-import { queryBackend } from 'lib/kirby-query'
+import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 import KarriereHeader from 'components/karriere/karriere-header'
 import KarriereContact from 'components/karriere/karriere-contact'
 import JobList from 'components/karriere/job-list'
 import JobAdd from 'components/karriere/job-add'
 import Prinzipen from 'components/karriere/prinzipen'
 import Metadata from 'components/metadata'
+import Footer from 'components/footer'
 
 type Job = {
   slug: string
@@ -18,47 +18,47 @@ type Job = {
 }
 
 export type KarrierePageProps = {
-  title: string
-  seotitle: string
-  seodescription: string
   jobs: { slug: string; title: string }[]
   job?: Job
 }
-const KarrierePage: NextPage<PageProps & KarrierePageProps> = (props) => {
+const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
   return (
     <>
       <Metadata
-        title={props.seotitle}
-        description={props.seodescription}
+        title={props.pageData.seotitle}
+        description={props.pageData.seodescription}
         slug={
-          props.job === undefined
+          props.pageData.job === undefined
             ? '/karriere'
-            : `/karriere/jobs/${props.job.slug}`
+            : `/karriere/jobs/${props.pageData.job.slug}`
         }
       />
 
       <article
-        hidden={props.job !== undefined}
+        hidden={props.pageData.job !== undefined}
         style={{ gridArea: props.gridArea, display: 'block' }}
         className='karriere-page'
       >
         <main>
           <KarriereHeader />
           <Prinzipen />
-          <JobList jobs={props.jobs} />
+          <JobList jobs={props.pageData.jobs} />
         </main>
         <KarriereContact />
       </article>
-      {props.job !== undefined && <JobAdd jobs={props.jobs} job={props.job} />}
+      <Footer gridArea='footer' siteInfo={props.siteInfo} />
+      {props.pageData.job !== undefined && (
+        <JobAdd jobs={props.pageData.jobs} job={props.pageData.job} />
+      )}
       <style jsx global>
         {`
           @media print {
             .karriere-page * {
-              ${props.job !== undefined && 'display: none;'}
+              ${props.pageData.job !== undefined && 'display: none;'}
             }
 
             footer * {
-              ${props.job !== undefined && 'display: none;'}
+              ${props.pageData.job !== undefined && 'display: none;'}
             }
           }
         `}
@@ -67,8 +67,10 @@ const KarrierePage: NextPage<PageProps & KarrierePageProps> = (props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<KarrierePageProps> = async () => {
-  const result = await queryBackend({
+export const getStaticProps: GetStaticProps<
+  SiteQueryResult<KarrierePageProps>
+> = async () => {
+  const result = await queryPageData<KarrierePageProps>({
     query: "page('karriere')",
     select: {
       title: true,
@@ -80,7 +82,7 @@ export const getStaticProps: GetStaticProps<KarrierePageProps> = async () => {
       },
     },
   })
-  return { props: result as KarrierePageProps }
+  return { props: result }
 }
 
 export default KarrierePage

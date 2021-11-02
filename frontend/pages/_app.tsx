@@ -8,14 +8,13 @@ import MainGrid from 'components/main-grid'
 import Navigation from 'components/navigation'
 import GlobalStyles from 'components/global-styles'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import Footer from 'components/footer'
 
 const FontTrackingScript = dynamic(
   () => import('components/font-tracking-script'),
   { ssr: false }
 )
 
-export type PageProps = {
+export type LocalPageProps = {
   gridArea: string
 }
 
@@ -35,7 +34,6 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
         </Link>
         <Navigation onFrontpage={isIndexPage} gridArea='navigation' />
         <Component {...pageProps} gridArea='main' />
-        {!isIndexPage && <Footer gridArea='footer' />}
       </MainGrid>
       <GlobalStyles />
       <style jsx>{`
