@@ -12,9 +12,9 @@ columns:
         headline: Main Pages
         type: pages
         status: published
-        layout: cards
-        sortable: false
-        create: false
+        layout: list
+        sortable: true
+        create: true
         status: listed
         image:
           back: black
