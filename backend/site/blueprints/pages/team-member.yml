@@ -29,10 +29,6 @@ fields:
   xingUrl:
     label: Xing URL
     type: url
-  instagramUrl:
-    label: Instagram URL
-    type: url
-    icon: instagram
 
 sidebar:
   image:

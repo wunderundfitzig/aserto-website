@@ -31,12 +31,12 @@ const PersonCard: FunctionComponent<Props> = (props) => {
       <div className='overlay'>
         <div className='network-links'>
           {props.contact.xing && (
-            <a href={props.contact.xing}>
+            <a href={props.contact.xing} target='_blank' rel='noreferrer'>
               <XingIcon color='white' />
             </a>
           )}
           {props.contact.linkedIn && (
-            <a href={props.contact.linkedIn}>
+            <a href={props.contact.linkedIn} target='_blank' rel='noreferrer'>
               <LinkedInIcon color='white' />
             </a>
           )}
