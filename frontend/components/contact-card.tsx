@@ -20,6 +20,8 @@ const ContactCard: FunctionComponent<Props> = (props) => {
     <div className='contact-card'>
       <div className='image'>
         <Image
+          layout='responsive'
+          sizes={`(min-width: ${breakpoint.s}px) 174px, 50vw`}
           loader={imageLoader}
           {...props.image}
           alt={`Portait von ${props.contact.name}`}
@@ -65,6 +67,10 @@ const ContactCard: FunctionComponent<Props> = (props) => {
         @media ${minWidth(breakpoint.s)} {
           .contact-card {
             grid-template-columns: ${props.reverse ? '1fr auto' : 'auto 1fr'};
+          }
+
+          .image {
+            width: 174px;
           }
         }
 
