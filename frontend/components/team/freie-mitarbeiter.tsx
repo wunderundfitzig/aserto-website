@@ -7,17 +7,9 @@ type Props = {
 const FreieMitarbeiter: FunctionComponent<Props> = (props) => {
   return (
     <section className='freie-mitarbeiter'>
-      <h2>
-        {props.title}
-        Unterstützt werden wir zudem durch unsere Projektmitarbeiter*innen:
-      </h2>
+      <h2>{props.title}</h2>
       <div className='text-block'>
-        <p>
-          {props.names}
-          Anica Lammers, Dominik Hahn, Julian Hinrichsen, Katarina Heitz, Lucy
-          Fröhlich, Marie Christin Sudmeier, Minha Marie Yeo, Moritz Schäfer,
-          Nico Garms, Paula Hutecker, Sabrina Sawadsky, Simon Weigold
-        </p>
+        <p>{props.names}</p>
       </div>
       <style jsx>{`
         section {

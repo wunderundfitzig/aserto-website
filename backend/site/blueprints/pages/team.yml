@@ -20,3 +20,17 @@ pages:
 
 fields:
   seo: fields/seo
+
+  freieMitarbeiterHead:
+    label: Freie Mitarbeiter
+    type: headline
+    numbered: false
+
+  freieMitarbeiterTitle:
+    label: Freie Mitarbeiter Titel
+    type: text
+  freieMitarbeiter:
+    label: Liste Freier Mitarbeiter
+    type: textarea
+    buttons: false
+    counter: false

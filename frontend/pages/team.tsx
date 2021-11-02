@@ -20,12 +20,12 @@ const LeistungenPage: NextPage<PageProps & LeistungenPageProps> = (props) => {
   return (
     <article style={{ gridArea: props.gridArea }}>
       <Metadata
-        title='aserto | Team'
-        description='Wir bei aserto sind über 20 feste Mitarbeiter*innen und rund ein Dutzend freier Projektmitarbeiter*innen.'
+        title={props.seotitle}
+        description={props.seodescription}
         slug='/team'
       />
       <main>
-        <TeamHeader />
+        <TeamHeader title={props.title} />
         <UnserTeam />
         <DasSindWir members={props.teamMembers} />
         <FreieMitarbeiter
@@ -44,6 +44,8 @@ export const getStaticProps: GetStaticProps<LeistungenPageProps> = async () => {
       title: true,
       seotitle: 'page.seotitle.or(page.title)',
       seodescription: true,
+      freieMitarbeiterTitle: true,
+      freieMitarbeiter: true,
       teamMembers: {
         query: 'page.children',
         select: {

@@ -7,7 +7,10 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import HeaderBackground from 'components/header-background'
 import { imageLoader } from 'lib/image-loader'
 
-const TeamHeader: FunctionComponent = () => {
+type Props = {
+  title: string
+}
+const TeamHeader: FunctionComponent<Props> = (props) => {
   return (
     <header className='team-header'>
       <HeaderBackground
@@ -15,7 +18,7 @@ const TeamHeader: FunctionComponent = () => {
         opacity={0.5}
         gridArea='title / title / image-1 / image-1'
       />
-      <h1>Team</h1>
+      <h1>{props.title}</h1>
       <div className='sloagen-wrapper'>
         <Slogan emphasisColor={colors.lightBlue}>
           {{
