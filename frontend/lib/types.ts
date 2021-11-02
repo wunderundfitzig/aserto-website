@@ -12,3 +12,8 @@ export type ImageType = {
   width: number
   height: number
 }
+
+export type TeamMember = {
+  image: ImageType
+  contact: Contact
+}

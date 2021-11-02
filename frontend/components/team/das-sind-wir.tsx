@@ -1,16 +1,19 @@
 import { FunctionComponent } from 'react'
 import Link from 'next/link'
 import * as colors from 'lib/colors'
-import PersonCard from 'components/person-card'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { persons } from 'content/team'
+import { TeamMember } from 'lib/types'
+import PersonCard from 'components/person-card'
 
-const DasSindWir: FunctionComponent = () => {
+type Props = {
+  members: TeamMember[]
+}
+const DasSindWir: FunctionComponent<Props> = (props) => {
   return (
     <section className='das-sind-wir'>
       <h2>Das sind wir</h2>
       <div className='persons'>
-        {persons.map((person, idx) => (
+        {props.members.map((person, idx) => (
           <PersonCard key={idx} {...person} />
         ))}
         <Link href='/karriere#Stellenanzeigen'>
