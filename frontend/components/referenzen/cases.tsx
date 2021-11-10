@@ -43,7 +43,7 @@ const cases = [
     title:
       'Wie können wir noch zielgruppenadäquater und themenspezifischer kommunizieren?',
     category: 'Monitoring',
-    client: 'HUK Coburg',
+    client: 'HUK-Coburg',
     logo: {
       src: '/images/referenzen/huk-coburg-logo.svg',
       width: 117,

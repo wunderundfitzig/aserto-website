@@ -38,7 +38,7 @@ const logos = [
     height: 82,
   },
   {
-    client: 'HUK Coburg',
+    client: 'HUK-Coburg',
     src: '/images/referenzen/huk-coburg-logo.svg',
     width: 117,
     height: 30,

@@ -19,7 +19,7 @@ const quotes = [
   },
   {
     author:
-      'HUK Coburg, Dr. Kerstin Bartels, Leiterin Unternehmenskommunikation',
+      'HUK-Coburg, Dr. Kerstin Bartels, Leiterin Unternehmenskommunikation',
     quote: 'aserto unterscheidet täglich das Wichtige vom Unwichtigen.',
   },
   {
