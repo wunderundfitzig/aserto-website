@@ -35,6 +35,9 @@ jobs:
       - name: Run build task
         working-directory: frontend
         run: npm run build
+        env:
+          BACKEND_USER: ${{secrets.BACKEND_USER}}
+          BACKEND_PASSWORD: ${{secrets.BACKEND_PASSWORD}}
 
       - name: install rsync
         run: sudo apt-get install sshpass rsync
