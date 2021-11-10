@@ -7,6 +7,7 @@ import DasSindWir from 'components/team/das-sind-wir'
 import FreieMitarbeiter from 'components/team/freie-mitarbeiter'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
+import Instagram from 'components/team/instagram'
 
 type LeistungenPageProps = {
   teamMembers: TeamMember[]
@@ -26,6 +27,7 @@ const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
             title={props.pageData.freieMitarbeiterTitle}
             names={props.pageData.freieMitarbeiter}
           />
+          <Instagram images={[]} />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
