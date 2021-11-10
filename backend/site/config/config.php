@@ -16,9 +16,20 @@ return [
             }
         ],
         [
+            'pattern' => 'images/size/(:num)/assets/(:all)',
+            'action'  => function (int $size, string $path) {
+                $image = asset("/assets/" . $path);
+                if (!$image) return null;
+                $originalSize = $image->width();
+                $newSize = min($size, $originalSize);
+                $resized = $image->resize($newSize);
+                return go($resized->url());
+            }
+        ],
+        [
             'pattern' => 'images/size/(:num)/(:all)',
             'action'  => function (int $size, string $path) {
-                $image = image($path);
+                $image = image('/' . $path);
                 if (!$image) return null;
                 $originalSize = $image->width();
                 $newSize = min($size, $originalSize);
