@@ -34,7 +34,7 @@ const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
             title={props.pageData.freieMitarbeiterTitle}
             names={props.pageData.freieMitarbeiter}
           />
-          <Instagram posts={props.pageData.instagramPosts} />
+          {/* <Instagram posts={props.pageData.instagramPosts} /> */}
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
