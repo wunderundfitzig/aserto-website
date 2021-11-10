@@ -17,7 +17,7 @@ const UnserTeam: FunctionComponent = () => {
       <List inline color={colors.lightBlue}>
         <>Consulting</>
         <>Data-Science</>
-        <>Medienmonitoring- und Analyse</>
+        <>Medienmonitoring und -Analyse</>
       </List>
       <style jsx>{`
         h2 {
