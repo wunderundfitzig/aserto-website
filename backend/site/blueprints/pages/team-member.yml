@@ -1,0 +1,42 @@
+title: Team Member
+preset: page
+
+options:
+  preview: false
+  url: false
+
+status:
+  draft: Draft
+  listed: Published
+
+files: false
+pages: false
+
+fields:
+  position:
+    label: Job Title
+    type: text
+  phone:
+    label: Phone
+    type: tel
+  email:
+    label: E-Mail
+    type: email
+  linkedinUrl:
+    label: Linkedin URL
+    type: url
+    icon: linkedin
+  xingUrl:
+    label: Xing URL
+    type: url
+
+sidebar:
+  image:
+    type: files
+    headline: Image
+    max: 1
+    sortable: false
+    template: image
+    layout: cards
+    image:
+      ratio: 2/2.8

@@ -1,0 +1,16 @@
+title: Default
+preset: page
+
+options:
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  preview: false
+
+files: false
+
+pages: false
+
+fields:
+  seo: fields/seo

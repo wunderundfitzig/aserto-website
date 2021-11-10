@@ -1,0 +1,45 @@
+title: Job Add
+preset: page
+
+options:
+  preview: false
+
+status:
+  draft: Draft
+  listed: Published
+
+files: false
+pages: false
+
+fields:
+  seo: fields/seo
+  body:
+    label: Text
+    type: blocks
+    default:
+      - type: text
+      - type: heading
+        content:
+          level: h2
+          text: Du bringst mit
+      - type: list
+      - type: heading
+        content:
+          level: h2
+          text: Du findest bei uns
+      - type: list
+      - type: text
+        content:
+          text: Wir freuen uns auf Deine aussagekräftige Bewerbung
+    fieldsets:
+      - heading
+      - text
+      - list
+
+  contact:
+    label: Contact
+    type: pages
+    multiple: false
+    query: site.find('team')
+    subpages: false
+    empty: No contact selected yet

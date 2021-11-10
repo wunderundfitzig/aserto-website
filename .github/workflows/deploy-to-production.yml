@@ -26,19 +26,21 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: "16.x"
 
       - name: Install npm dependencies
+        working-directory: frontend
         run: npm ci
 
       - name: Run build task
+        working-directory: frontend
         run: npm run build
 
       - name: install rsync
         run: sudo apt-get install sshpass rsync
 
       - name: Upload with rsync
-        working-directory: out
+        working-directory: frontend/out
         run: sshpass -p $DEPLOY_PASSWORD rsync . $DEPLOY_USERNAME@$DEPLOY_HOST:/home/www/asertoWeb -avz --delete -e "ssh -l web71 -o StrictHostKeyChecking=no"
         env:
           DEPLOY_HOST: ${{secrets.DEPLOY_HOST}}
