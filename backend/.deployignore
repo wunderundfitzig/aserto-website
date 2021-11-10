@@ -7,6 +7,7 @@ composer.lock
 .editorconfig
 content/
 media/
+assets/instagram/
 site/accounts/
 site/cache/
 site/sessions/

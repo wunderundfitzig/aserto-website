@@ -38,7 +38,6 @@ return [
     'genxbe.instagram' => [
         'client_id' => '423160286005833',
         'client_secret' => $_ENV['INSTAGRAM_CLIENT_SECRET'],
-        'mediaFolder' => 'media/'
     ],
     'debug' => true,
 ];
