@@ -21,19 +21,26 @@ const Instagram: FunctionComponent<Props> = (props) => {
       <div className='posts'>
         {props.posts.map((post) => (
           <a key={post.id} href={post.url} target='_blank' rel='noreferrer'>
-            <Image loader={imageLoader} alt={post.caption} {...post.image} />
+            <Image
+              loader={imageLoader}
+              alt={post.caption}
+              sizes={`(min-width: ${breakpoint.s}px) 33vw, 100vw`}
+              {...post.image}
+            />
           </a>
         ))}
       </div>
-      <Button
-        tag='a'
-        href={props.instagramURL}
-        target='_blank'
-        rel='noreferrer'
-        color={lightBlue}
-      >
-        zu Instagram
-      </Button>
+      <div className='button'>
+        <Button
+          tag='a'
+          href={props.instagramURL}
+          target='_blank'
+          rel='noreferrer'
+          color={lightBlue}
+        >
+          zu Instagram
+        </Button>
+      </div>
       <style jsx>{`
         .instagram {
           display: grid;
@@ -58,7 +65,7 @@ const Instagram: FunctionComponent<Props> = (props) => {
           justify-self: self-end;
         }
 
-        .instagram :global(a) {
+        .button {
           justify-self: left;
         }
 
