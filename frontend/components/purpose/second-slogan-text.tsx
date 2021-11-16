@@ -2,16 +2,16 @@ import { FunctionComponent } from 'react'
 import { categoryColors } from 'lib/colors'
 import Slogan from 'components/slogan'
 
-const SloganText: FunctionComponent = () => {
+const SecondSloganText: FunctionComponent = () => {
   return (
     <section className='slogan'>
       <Slogan emphasisColor={categoryColors.purpose}>
         {{
           sloagen: (
             <>
-              aserto begleitet Unternehmen und Institutionen bei{' '}
-              <em>richtungsweisenden Handlungen</em> und eröffnet{' '}
-              <em>Möglichkeiten zur Veränderung.</em>
+              aserto bringt <em>Menschen und Daten</em> zusammen, damit Fakten
+              greifbar und Diskussionen zielführend werden. Denn evidenzbasierte
+              Entscheidungen <em>sind die besseren Entscheidungen.</em>
             </>
           ),
         }}
@@ -26,4 +26,4 @@ const SloganText: FunctionComponent = () => {
   )
 }
 
-export default SloganText
+export default SecondSloganText
