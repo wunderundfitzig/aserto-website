@@ -6,6 +6,7 @@ import Quotes from 'components/purpose/quotes'
 import LeftRightScroller from 'components/purpose/left-right-scroller'
 import Metadata from 'components/metadata'
 import SloganText from 'components/purpose/slogan-text'
+import SecondSloganText from 'components/purpose/second-slogan-text'
 import Footer from 'components/footer'
 
 type PurposePageProps = Record<string, never>
@@ -20,6 +21,7 @@ const PurposePage: NextPage<PageProps<PurposePageProps>> = (props) => {
           <MenschenUndDaten />
           <SloganText />
           <LeftRightScroller />
+          <SecondSloganText />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />

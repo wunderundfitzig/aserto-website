@@ -34,7 +34,10 @@ const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
             title={props.pageData.freieMitarbeiterTitle}
             names={props.pageData.freieMitarbeiter}
           />
-          {/* <Instagram posts={props.pageData.instagramPosts} /> */}
+          <Instagram
+            posts={props.pageData.instagramPosts}
+            instagramURL={props.siteInfo.instagramUrl}
+          />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -92,7 +95,7 @@ export const getStaticProps: GetStaticProps<
     ...result,
     pageData: {
       ...result.pageData,
-      instagramPosts: instagramPosts.map((post) => ({
+      instagramPosts: instagramPosts.slice(0, 3).map((post) => ({
         id: post.id,
         caption: post.caption,
         url: post.permalink,
