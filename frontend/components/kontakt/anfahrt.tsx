@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { imageLoader } from 'lib/image-loader'
 import { useWindowSize } from 'lib/use-window-size'
-import wideMapImage from 'public/images/kontakt/map.svg'
-import mobileMapImage from 'public/images/kontakt/mobile_map.svg'
+import wideMapImage from 'public/images/kontakt/map.png'
+import mobileMapImage from 'public/images/kontakt/mobile-map.png'
 import { breakpoint } from 'lib/breakpoints'
 
 const Anfahrt: FunctionComponent = () => {
