@@ -11,7 +11,7 @@ const SecondSloganText: FunctionComponent = () => {
             <>
               aserto bringt <em>Menschen und Daten</em> zusammen, damit Fakten
               greifbar und Diskussionen zielführend werden. Denn evidenzbasierte
-              Entscheidungen <em>sind die besseren Entscheidungen.</em>
+              Entscheidungen sind die <em>besseren Entscheidungen.</em>
             </>
           ),
         }}
