@@ -30,7 +30,7 @@ columns:
             type: textarea
             buttons: false
             icon: road-sign
-          mapsLink:
+          mapsUrl:
             label: Maps Link
             type: url
             icon: map

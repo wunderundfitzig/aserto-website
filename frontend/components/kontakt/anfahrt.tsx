@@ -7,7 +7,10 @@ import wideMapImage from 'public/images/kontakt/map.png'
 import mobileMapImage from 'public/images/kontakt/mobile-map.png'
 import { breakpoint } from 'lib/breakpoints'
 
-const Anfahrt: FunctionComponent = () => {
+type Props = {
+  mapsLink: string
+}
+const Anfahrt: FunctionComponent<Props> = (props) => {
   const { width } = useWindowSize()
   const isBelowBreakpoint = (width || 0) < breakpoint.s
 
@@ -16,7 +19,7 @@ const Anfahrt: FunctionComponent = () => {
   return (
     <section className='anfahrt'>
       <h2>Anfahrt</h2>
-      <Link href='https://goo.gl/maps/buz9MZ18j6GZBVbr7'>
+      <Link href={props.mapsLink}>
         <a target='_blank' rel='noreferrer'>
           <Image
             loader={imageLoader}

@@ -11,6 +11,7 @@ export const getBasicAuthHeader = (
 
 const siteInfoSelect = {
   address: true,
+  mapsUrl: true,
   phoneNumber: true,
   infoMail: true,
   jobMail: true,
@@ -33,6 +34,7 @@ export type MetaFields = {
 
 export type SiteInfo = {
   address: string
+  mapsUrl: string
   phoneNumber: string
   infoMail: string
   jobMail: string
