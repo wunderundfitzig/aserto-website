@@ -30,6 +30,10 @@ columns:
             type: textarea
             buttons: false
             icon: road-sign
+          mapsLink:
+            label: Maps Link
+            type: url
+            icon: map
           phoneNumber:
             label: Telefonnummer
             type: tel
