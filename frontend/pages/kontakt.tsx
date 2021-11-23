@@ -5,6 +5,7 @@ import Impressum from 'components/kontakt/impressum'
 import Ansprechpartner from 'components/kontakt/ansprechpartner'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
+import Anfahrt from 'components/kontakt/anfahrt'
 
 type KontaktPageProps = Record<string, never>
 const Kontakt: NextPage<PageProps<KontaktPageProps>> = (props) => {
@@ -14,6 +15,7 @@ const Kontakt: NextPage<PageProps<KontaktPageProps>> = (props) => {
         <Metadata pageMeta={props.pageData} slug='/kontakt' />
         <main>
           <KontaktHeader />
+          <Anfahrt />
           <Ansprechpartner />
           <Impressum />
         </main>
