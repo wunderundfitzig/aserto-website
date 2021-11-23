@@ -91,7 +91,6 @@ export const getStaticProps: GetStaticProps<
     permalink: string
     media_url: string
   }[] = await instagramPostsRes.json()
-
   const props = {
     ...result,
     pageData: {
