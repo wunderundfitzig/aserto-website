@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps<
   SiteQueryResult<PurposePageProps>
 > = async () => {
   const result = await queryPageData<PurposePageProps>({
-    query: 'page("datenschutz")',
+    query: 'page("purpose")',
   })
   return { props: result }
 }

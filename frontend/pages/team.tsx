@@ -51,9 +51,6 @@ export const getStaticProps: GetStaticProps<
   const result = await queryPageData<LeistungenPageProps>({
     query: "page('team')",
     select: {
-      title: true,
-      seotitle: 'page.seotitle.or(page.title)',
-      seodescription: true,
       freieMitarbeiterTitle: true,
       freieMitarbeiter: true,
       teamMembers: {

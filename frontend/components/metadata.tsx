@@ -15,7 +15,7 @@ const Metadata: FunctionComponent<MetadataProps> = (props) => {
 
   return (
     <Head>
-      <title>{props.pageMeta.seodescription}</title>
+      <title>{props.pageMeta.seotitle}</title>
       <meta
         key='description'
         name='description'

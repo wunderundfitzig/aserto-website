@@ -72,9 +72,6 @@ export const getStaticProps: GetStaticProps<
   const result = await queryPageData<KarrierePageProps>({
     query: "page('karriere')",
     select: {
-      title: true,
-      seotitle: 'page.seotitle.or(page.title)',
-      seodescription: true,
       jobs: {
         query: 'page.children',
         select: { title: true, slug: true },
