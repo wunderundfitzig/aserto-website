@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<
   SiteQueryResult<ReferenzenPageProps>
 > = async () => {
   const result = await queryPageData<ReferenzenPageProps>({
-    query: 'page("datenschutz")',
+    query: 'page("referenzen")',
   })
   return { props: result }
 }
