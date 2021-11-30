@@ -1,16 +1,25 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { ImageType } from 'lib/types'
+import { InstagramPost } from 'lib/types'
 import { lightBlue } from 'lib/colors'
 import { imageLoader } from 'lib/image-loader'
-import Button from 'components/button'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { queryInstagramPosts } from 'lib/instagram-query'
+import Button from 'components/button'
 
 type Props = {
-  posts: { id: string; url: string; caption: string; image: ImageType }[]
   instagramURL: string
 }
 const Instagram: FunctionComponent<Props> = (props) => {
+  const [posts, setPosts] = useState<InstagramPost[]>([])
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const posts = await queryInstagramPosts()
+      setPosts(posts)
+    }
+    fetchPosts()
+  }, [])
+
   return (
     <section className='instagram'>
       <h2>Wir auf Instagram</h2>
@@ -19,7 +28,7 @@ const Instagram: FunctionComponent<Props> = (props) => {
         Du noch mehr über unser Team und was uns aktuell noch so bewegt.
       </p>
       <div className='posts'>
-        {props.posts.map((post) => (
+        {posts.map((post) => (
           <a key={post.id} href={post.url} target='_blank' rel='noreferrer'>
             <Image
               loader={imageLoader}

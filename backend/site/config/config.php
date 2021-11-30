@@ -5,13 +5,15 @@
 return [
     'api' => [
         'basicAuth' => true,
-        'allowInsecure' => true,
     ],
     'routes' => [
         [
             'pattern' => 'instagram/feed',
             'action'  => function () {
                 $feed = instagramFeed();
+                kirby()->response()->header('Access-Control-Allow-Origin', '*');
+                kirby()->response()->header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS');
+                kirby()->response()->header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
                 return $feed->data();
             }
         ],

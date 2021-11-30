@@ -17,3 +17,10 @@ export type TeamMember = {
   image: ImageType
   contact: Contact
 }
+
+export type InstagramPost = {
+  id: string
+  url: string
+  caption: string
+  image: ImageType
+}

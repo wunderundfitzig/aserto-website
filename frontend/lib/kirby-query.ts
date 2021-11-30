@@ -1,6 +1,6 @@
 import { LocalPageProps } from 'pages/_app'
-import { privateConfig } from './config/private-config'
-import { publicConfig } from './config/public-config'
+import { privateConfig } from 'lib/config/private-config'
+import { publicConfig } from 'lib/config/public-config'
 
 export const getBasicAuthHeader = (
   user: string,
