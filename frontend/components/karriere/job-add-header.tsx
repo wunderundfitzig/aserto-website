@@ -28,14 +28,14 @@ const JobAddHeader: FunctionComponent<Props> = (props) => {
 
   return (
     <header>
-      <Link href='/karriere' scroll={false}>
+      <Link href='/karriere'>
         <a className='close-button'>
           <CloseIcon color={colors.categoryColors.karriere} />
         </a>
       </Link>
       <hr />
       <div className='slider-wrapper'>
-        <Link href={`/karriere/jobs/${prevJob.slug}`} scroll={false}>
+        <Link href={`/karriere/jobs/${prevJob.slug}`}>
           <a className='arrow-icon prev'>
             <ArrowIcon color={colors.categoryColors.karriere} />
           </a>
@@ -53,7 +53,7 @@ const JobAddHeader: FunctionComponent<Props> = (props) => {
           }}
         </Slider>
 
-        <Link href={`/karriere/jobs/${nextJob.slug}`} scroll={false}>
+        <Link href={`/karriere/jobs/${nextJob.slug}`}>
           <a className='arrow-icon next'>
             <ArrowIcon color={colors.categoryColors.karriere} rotate={180} />
           </a>
