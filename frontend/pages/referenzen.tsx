@@ -15,7 +15,6 @@ type ReferenzenPageProps = {
   clientQuotes: ClientQuote[]
 }
 const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
-  console.log(props.pageData.clientQuotes)
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
