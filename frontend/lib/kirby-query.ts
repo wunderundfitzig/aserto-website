@@ -5,9 +5,12 @@ import { publicConfig } from 'lib/config/public-config'
 export const getBasicAuthHeader = (
   user: string,
   password: string
-): Record<'Authorization', string> => ({
-  Authorization: `Basic ${btoa(`${user}:${password}`)}`,
-})
+): Record<'Authorization', string> => {
+  const credentials = Buffer.from(`${user}:${password}`).toString('base64')
+  return {
+    Authorization: `Basic ${credentials}`,
+  }
+}
 
 const siteInfoSelect = {
   address: true,
