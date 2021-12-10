@@ -40,3 +40,8 @@ export type Client = {
   logo: ImageType
   name: string
 }
+
+export type ClientQuote = {
+  author: string
+  quote: string
+}

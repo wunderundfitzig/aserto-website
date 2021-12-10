@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
-import { Case, Client } from 'lib/types'
+import { Case, Client, ClientQuote } from 'lib/types'
 import Cases from 'components/referenzen/cases'
 import ClientQuotes from 'components/referenzen/client-quotes'
 import LogoList from 'components/referenzen/logo-list'
@@ -12,8 +12,10 @@ import Footer from 'components/footer'
 type ReferenzenPageProps = {
   cases: Case[]
   clients: Client[]
+  clientQuotes: ClientQuote[]
 }
 const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
+  console.log(props.pageData.clientQuotes)
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
@@ -21,7 +23,7 @@ const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
         <main>
           <ReferenzenHeader />
           <LogoList clients={props.pageData.clients} />
-          <ClientQuotes />
+          <ClientQuotes quotes={props.pageData.clientQuotes} />
           <Cases cases={props.pageData.cases} />
         </main>
         <ReferenzenContact />
@@ -49,6 +51,13 @@ export const getStaticProps: GetStaticProps<
               height: true,
             },
           },
+        },
+      },
+      clientQuotes: {
+        query: 'page.clientQuotes.toStructure',
+        select: {
+          author: true,
+          quote: true,
         },
       },
       cases: {

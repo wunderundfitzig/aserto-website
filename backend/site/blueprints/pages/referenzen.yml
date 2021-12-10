@@ -39,3 +39,18 @@ fields:
       name:
         label: Name
         type: text
+  clientQuotes:
+    label: Zitate
+    type: structure
+    columns:
+      author:
+        width: 1
+    fields:
+      author:
+        label: Autor
+        type: text
+      quote:
+        label: Zitat
+        type: textarea
+        buttons: false
+        counter: false

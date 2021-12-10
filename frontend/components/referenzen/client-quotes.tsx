@@ -4,33 +4,12 @@ import Quote from 'components/referenzen/quote'
 import { ArrowIcon } from 'components/icons'
 import { categoryColors } from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import { ClientQuote } from 'lib/types'
 
-const quotes = [
-  {
-    author: 'DIE ZEIT, Nils von der Kall, CMO',
-    quote:
-      'aserto begleitet seit vielen Jahren unsere erfolgreiche Entwicklung mit evidenzbasiertem Input, aus dem sich klare, praktische Handlungsempfehlungen ableiten lassen.',
-  },
-  {
-    author:
-      'Diakonie Deutschland, Matthias Sobolweski, CvD/Referatsleiter Aktuelles',
-    quote:
-      'Dank des gemeinsam mit aserto entwickelten Tools können wir auf kurzfristige Entwicklungen medienadäquat reagieren.',
-  },
-  {
-    author:
-      'HUK-Coburg, Dr. Kerstin Bartels, Leiterin Unternehmenskommunikation',
-    quote: 'aserto unterscheidet täglich das Wichtige vom Unwichtigen.',
-  },
-  {
-    author:
-      'Nordkirche, Matthias Birgden, Kommunikationsdirektor Organisationskommunikation',
-    quote:
-      'aserto begleitet die Modernisierung kirchlicher Kommunikation – kompetent und evidenzbasiert.',
-  },
-]
-
-const ClientQuotes: FunctionComponent = () => {
+type Props = {
+  quotes: ClientQuote[]
+}
+const ClientQuotes: FunctionComponent<Props> = (props) => {
   const [slideIndex, setSlideIndex] = useState(0)
 
   return (
@@ -46,9 +25,9 @@ const ClientQuotes: FunctionComponent = () => {
       </button>
       <Slider index={slideIndex} onNavigation={setSlideIndex}>
         {(index: number) => {
-          const length = quotes.length
+          const length = props.quotes.length
           const wrappedIndex = (length + (index % length)) % length
-          const quote = quotes[wrappedIndex]
+          const quote = props.quotes[wrappedIndex]
 
           return (
             <Quote>
