@@ -20,6 +20,8 @@ type Job = {
 export type KarrierePageProps = {
   jobs: { slug: string; title: string }[]
   job?: Job
+  contactImage: ImageType
+  contact: Contact
 }
 const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
   return (
@@ -43,7 +45,10 @@ const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
           <Prinzipen />
           <JobList jobs={props.pageData.jobs} />
         </main>
-        <KarriereContact />
+        <KarriereContact
+          contact={props.pageData.contact}
+          image={props.pageData.contactImage}
+        />
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
       {props.pageData.job !== undefined && (
@@ -75,6 +80,18 @@ export const getStaticProps: GetStaticProps<
       jobs: {
         query: 'page.children',
         select: { title: true, slug: true },
+      },
+      contact: {
+        query: 'page.contact.toPage',
+        select: {
+          name: 'page.title',
+          mail: 'page.email',
+          phone: true,
+        },
+      },
+      contactImage: {
+        query: 'page.contact.toPage.image',
+        select: { src: 'file.id', width: true, height: true },
       },
     },
   })

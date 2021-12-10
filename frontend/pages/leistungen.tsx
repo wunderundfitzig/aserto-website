@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
+import { Contact, ImageType } from 'lib/types'
 import GrowingDot from 'components/leistungen/growing-dot'
 import WasUnsAusmacht from 'components/leistungen/was-uns-ausmacht'
 import LeistungenHeader from 'components/leistungen/leistungen-header'
@@ -8,7 +9,10 @@ import LeistungenContact from 'components/leistungen/leistungen-contact'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
 
-type LeistungenPageProps = Record<string, never>
+type LeistungenPageProps = {
+  contactImage: ImageType
+  contact: Contact
+}
 const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
   return (
     <>
@@ -20,7 +24,10 @@ const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
           <GrowingDot />
           <AufDenPunkt />
         </main>
-        <LeistungenContact />
+        <LeistungenContact
+          contact={props.pageData.contact}
+          image={props.pageData.contactImage}
+        />
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
     </>
@@ -32,6 +39,20 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   const result = await queryPageData<LeistungenPageProps>({
     query: 'page("leistungen")',
+    select: {
+      contact: {
+        query: 'page.contact.toPage',
+        select: {
+          name: 'page.title',
+          mail: 'page.email',
+          phone: true,
+        },
+      },
+      contactImage: {
+        query: 'page.contact.toPage.image',
+        select: { src: 'file.id', width: true, height: true },
+      },
+    },
   })
   return { props: result }
 }

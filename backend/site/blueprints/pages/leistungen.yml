@@ -1,4 +1,4 @@
-title: Karriere
+title: Referenzen
 preset: page
 
 options:
@@ -9,10 +9,7 @@ options:
   preview: false
 
 files: false
-
-pages:
-  headline: Jobs
-  templates: job-add
+pages: false
 
 fields:
   seo: fields/seo

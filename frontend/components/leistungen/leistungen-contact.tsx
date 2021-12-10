@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
+import { Contact, ImageType } from 'lib/types'
 import ContactBanner from 'components/contact-banner'
 import { formatAlignment } from 'components/curves'
 
@@ -41,20 +42,13 @@ const Background: FunctionComponent = () => {
   )
 }
 
-const LeistungenContact: FunctionComponent = () => {
-  const contactImage = {
-    width: 696,
-    height: 975,
-    src: '/images/team/portraits/_VND8816.jpg',
-  }
-  const contact = {
-    name: 'Marcel Drews',
-    phone: '0511-515678-0',
-    mail: 'drews@aserto.de',
-  }
-
+type Props = {
+  contact: Contact
+  image: ImageType
+}
+const LeistungenContact: FunctionComponent<Props> = (props) => {
   return (
-    <ContactBanner image={contactImage} contact={contact}>
+    <ContactBanner image={props.image} contact={props.contact}>
       {{
         title: <>Haben Sie Fragen zu unseren Leistungen?</>,
         background: <Background />,

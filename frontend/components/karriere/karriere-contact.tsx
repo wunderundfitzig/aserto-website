@@ -1,8 +1,9 @@
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
+import { Contact, ImageType } from 'lib/types'
 import ContactBanner from 'components/contact-banner'
 import { CutLine, formatAlignment } from 'components/curves'
-import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const Background: FunctionComponent = () => {
   return (
@@ -32,18 +33,11 @@ const Background: FunctionComponent = () => {
   )
 }
 
-const KarriereContact: FunctionComponent = () => {
-  const contactImage = {
-    src: '/images/team/portraits/anna.jpg',
-    width: 348,
-    height: 488,
-  }
-  const contact = {
-    name: 'Anna Begau',
-    phone: '0511-515678-32',
-    mail: 'begau@aserto.de',
-  }
-
+type Props = {
+  contact: Contact
+  image: ImageType
+}
+const KarriereContact: FunctionComponent<Props> = (props) => {
   return (
     <div className='karriere-contact'>
       <div className='line'>
@@ -55,8 +49,8 @@ const KarriereContact: FunctionComponent = () => {
       </div>
       <ContactBanner
         contactCardTitle='Kontakt'
-        image={contactImage}
-        contact={contact}
+        image={props.image}
+        contact={props.contact}
       >
         {{
           title: <>Wir haben gerade keine passende Stelle für Dich?</>,
