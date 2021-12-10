@@ -4,6 +4,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Setup private env to connect to the backend. Copy env file and insert backend user credentials
+
+```
+cp .env.local.example .env.local
+```
+
 First, run the development server:
 
 ```bash
