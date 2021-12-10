@@ -5,7 +5,7 @@
 return [
     'api' => [
         'basicAuth' => true,
-        'allowInsecure' => true
+        'allowInsecure' => $_ENV['ENVIRONMENT'] == 'deveopment'
     ],
     'routes' => [
         [
