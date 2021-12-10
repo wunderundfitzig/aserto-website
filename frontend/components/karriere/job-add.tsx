@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect, useRef } from 'react'
 import { transparentize } from 'polished'
 
 import * as colors from 'lib/colors'
@@ -25,10 +25,16 @@ type Props = {
 }
 
 const JobAdd: FunctionComponent<Props> = (props) => {
+  const scroller = useRef<HTMLElement>(null)
   const jobIndex = props.jobs.findIndex((job) => job.slug === props.job.slug)
 
+  useEffect(() => {
+    if (scroller.current === null) return
+    scroller.current.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [props.job.slug])
+
   return (
-    <article className='job-add'>
+    <article ref={scroller} className='job-add'>
       <MainGrid>
         <div className='modal'>
           <div className='aserto-logo' aria-hidden='true'>
