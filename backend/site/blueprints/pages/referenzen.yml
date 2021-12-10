@@ -18,3 +18,24 @@ pages:
 
 fields:
   seo: fields/seo
+  clients:
+    label: Kunden
+    type: structure
+    columns:
+      logo:
+        width: 1/5
+      name:
+        width: 4/5
+    fields:
+      logo:
+        label: Logo
+        type: files
+        headline: Image
+        max: 1
+        sortable: false
+        template: image
+        image:
+          back: white
+      name:
+        label: Name
+        type: text

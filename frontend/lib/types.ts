@@ -35,3 +35,8 @@ export type Case = {
   solution: string
   logo: ImageType
 }
+
+export type Client = {
+  logo: ImageType
+  name: string
+}

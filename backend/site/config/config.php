@@ -5,7 +5,7 @@
 return [
     'api' => [
         'basicAuth' => true,
-        'allowInsecure' => $_ENV['ENVIRONMENT'] == 'deveopment'
+        'allowInsecure' => $_ENV['ENVIRONMENT'] == 'development'
     ],
     'routes' => [
         [
@@ -53,5 +53,5 @@ return [
         'client_id' => '423160286005833',
         'client_secret' => $_ENV['INSTAGRAM_CLIENT_SECRET'],
     ],
-    'debug' => $_ENV['ENVIRONMENT'] == 'deveopment',
+    'debug' => $_ENV['ENVIRONMENT'] == 'development',
 ];

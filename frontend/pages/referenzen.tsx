@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
-import { Case } from 'lib/types'
+import { Case, Client } from 'lib/types'
 import Cases from 'components/referenzen/cases'
 import ClientQuotes from 'components/referenzen/client-quotes'
 import LogoList from 'components/referenzen/logo-list'
@@ -11,6 +11,7 @@ import Footer from 'components/footer'
 
 type ReferenzenPageProps = {
   cases: Case[]
+  clients: Client[]
 }
 const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
   return (
@@ -19,7 +20,7 @@ const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
         <Metadata pageMeta={props.pageData} slug='/referenzen' />
         <main>
           <ReferenzenHeader />
-          <LogoList />
+          <LogoList clients={props.pageData.clients} />
           <ClientQuotes />
           <Cases cases={props.pageData.cases} />
         </main>
@@ -36,6 +37,20 @@ export const getStaticProps: GetStaticProps<
   const result = await queryPageData<ReferenzenPageProps>({
     query: 'page("referenzen")',
     select: {
+      clients: {
+        query: 'page.clients.toStructure',
+        select: {
+          name: true,
+          logo: {
+            query: 'structureItem.logo.toFile',
+            select: {
+              src: 'file.id',
+              width: true,
+              height: true,
+            },
+          },
+        },
+      },
       cases: {
         query: 'page.children',
         select: {
