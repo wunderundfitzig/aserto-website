@@ -53,5 +53,5 @@ return [
         'client_id' => '423160286005833',
         'client_secret' => $_ENV['INSTAGRAM_CLIENT_SECRET'],
     ],
-    'debug' => true,
+    'debug' => $_ENV['ENVIRONMENT'] == 'deveopment',
 ];
