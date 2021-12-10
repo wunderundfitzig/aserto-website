@@ -1,0 +1,44 @@
+title: Case
+preset: page
+
+options:
+  preview: false
+
+status:
+  draft: Draft
+  listed: Published
+
+files: false
+pages: false
+
+fields:
+  client:
+    label: Client Name
+    type: text
+  clientShortName:
+    label: Name in Navigation
+    type: text
+  category:
+    label: Projekt Typ
+    type: text
+  task:
+    label: Die Herausforderung
+    type: textarea
+    buttons: false
+    counter: false
+  solution:
+    label: Die Lösung
+    type: textarea
+    buttons: false
+    counter: false
+
+sidebar:
+  image:
+    type: files
+    headline: Logo
+    max: 1
+    sortable: false
+    template: image
+    layout: cards
+    image:
+      back: white

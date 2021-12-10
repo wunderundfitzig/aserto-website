@@ -1,0 +1,20 @@
+title: Referenzen
+preset: page
+
+options:
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  preview: false
+
+files: false
+
+pages:
+  headline: Referenzen
+  templates: case
+  image:
+    back: white
+
+fields:
+  seo: fields/seo

@@ -24,3 +24,14 @@ export type InstagramPost = {
   caption: string
   image: ImageType
 }
+
+export type Case = {
+  id: string
+  title: string
+  client: string
+  clientShortName: string
+  category: string
+  task: string
+  solution: string
+  logo: ImageType
+}

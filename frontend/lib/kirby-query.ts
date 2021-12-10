@@ -68,6 +68,10 @@ export async function queryBackend(query: {
     },
     body: JSON.stringify(query),
   })
+  if (result.status >= 300) {
+    console.error(result)
+    throw new Error(result.statusText)
+  }
   const json = await result.json()
   return json.result
 }
