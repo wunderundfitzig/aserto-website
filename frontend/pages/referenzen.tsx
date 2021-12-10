@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
-import { Case, Client, ClientQuote } from 'lib/types'
+import { Case, Client, ClientQuote, Contact, ImageType } from 'lib/types'
 import Cases from 'components/referenzen/cases'
 import ClientQuotes from 'components/referenzen/client-quotes'
 import LogoList from 'components/referenzen/logo-list'
@@ -13,6 +13,8 @@ type ReferenzenPageProps = {
   cases: Case[]
   clients: Client[]
   clientQuotes: ClientQuote[]
+  contactImage: ImageType
+  contact: Contact
 }
 const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
   return (
@@ -25,7 +27,10 @@ const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
           <ClientQuotes quotes={props.pageData.clientQuotes} />
           <Cases cases={props.pageData.cases} />
         </main>
-        <ReferenzenContact />
+        <ReferenzenContact
+          contact={props.pageData.contact}
+          image={props.pageData.contactImage}
+        />
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
     </>
@@ -78,6 +83,18 @@ export const getStaticProps: GetStaticProps<
             },
           },
         },
+      },
+      contact: {
+        query: 'page.contact.toPage',
+        select: {
+          name: 'page.title',
+          mail: 'page.email',
+          phone: true,
+        },
+      },
+      contactImage: {
+        query: 'page.contact.toPage.image',
+        select: { src: 'file.id', width: true, height: true },
       },
     },
   })

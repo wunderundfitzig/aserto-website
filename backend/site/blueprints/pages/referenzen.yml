@@ -54,3 +54,10 @@ fields:
         type: textarea
         buttons: false
         counter: false
+  contact:
+    label: Kontakt
+    type: pages
+    multiple: false
+    query: site.find('team')
+    subpages: false
+    empty: Kontakt auswählen

@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import ContactBanner from 'components/contact-banner'
 import { formatAlignment } from 'components/curves'
+import { Contact, ImageType } from 'lib/types'
 
 const Background: FunctionComponent = () => {
   return (
@@ -32,20 +33,13 @@ const Background: FunctionComponent = () => {
   )
 }
 
-const ReferenzenContact: FunctionComponent = () => {
-  const contactImage = {
-    width: 696,
-    height: 975,
-    src: '/images/team/portraits/_VND4453.jpg',
-  }
-  const contact = {
-    name: 'Prof. Dr. Lars Harden',
-    phone: '0511-515678-0',
-    mail: 'harden@aserto.de',
-  }
-
+type Props = {
+  contact: Contact
+  image: ImageType
+}
+const ReferenzenContact: FunctionComponent<Props> = (props) => {
   return (
-    <ContactBanner image={contactImage} contact={contact}>
+    <ContactBanner image={props.image} contact={props.contact}>
       {{
         title: <>Haben Sie Fragen zu unseren Referenzen?</>,
         background: <Background />,
