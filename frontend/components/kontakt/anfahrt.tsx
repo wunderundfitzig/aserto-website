@@ -22,6 +22,7 @@ const Anfahrt: FunctionComponent<Props> = (props) => {
       <Link href={props.mapsLink}>
         <a target='_blank' rel='noreferrer'>
           <Image
+            priority
             loader={imageLoader}
             layout='responsive'
             src={mapImage}

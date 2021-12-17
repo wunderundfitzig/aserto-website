@@ -31,6 +31,7 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
       <h1>Wir begleiten bei richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
+          priority
           placeholder='blur'
           loader={imageLoader}
           className='image'
@@ -43,6 +44,7 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
       </div>
       <div className='image-wrapper clipped-image'>
         <Image
+          priority
           placeholder='blur'
           loader={imageLoader}
           className='image'

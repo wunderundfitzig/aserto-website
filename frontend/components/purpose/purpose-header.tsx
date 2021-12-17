@@ -13,6 +13,7 @@ const PurposeHeader: FunctionComponent = () => {
       <h1>Purpose</h1>
       <div className='header-image'>
         <Image
+          priority
           loader={imageLoader}
           src={purposeHeaderImage}
           alt=''
