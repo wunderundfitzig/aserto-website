@@ -32,7 +32,16 @@ fields:
         content:
           text: Wir freuen uns auf Deine aussagekräftige Bewerbung
     fieldsets:
-      - heading
+      heading:
+        extends: blocks/heading
+        fields:
+          level:
+            options:
+              - h2
+              - h3
+              - h4
+              - h5
+              - h6
       - text
       - list
 

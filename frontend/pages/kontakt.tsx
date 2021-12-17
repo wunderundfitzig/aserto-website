@@ -17,6 +17,7 @@ type KontaktPageProps = {
     contact: Contact
     image: ImageType
   }[]
+  imprint: string
 }
 const Kontakt: NextPage<PageProps<KontaktPageProps>> = (props) => {
   return (
@@ -27,7 +28,7 @@ const Kontakt: NextPage<PageProps<KontaktPageProps>> = (props) => {
           <KontaktHeader />
           <Anfahrt mapsLink={props.siteInfo.mapsUrl} />
           <Ansprechpartner {...props.pageData} />
-          <Impressum />
+          <Impressum html={props.pageData.imprint} />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -75,6 +76,7 @@ export const getStaticProps: GetStaticProps<
           },
         },
       },
+      imprint: 'page.imprint.toBlocks.toHtml',
     },
   })
   return { props: result }

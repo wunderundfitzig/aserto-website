@@ -31,3 +31,22 @@ fields:
     subpages: false
     empty: Kontakt auswählen
     required: true
+
+  imprint:
+    label: Impressum
+    type: blocks
+    fieldsets:
+      - heading
+      - text
+      - list
+      heading:
+        extends: blocks/heading
+        fields:
+          level:
+            default: h3
+            options:
+              - h3
+              - h4
+              - h5
+              - h6
+              - h7
