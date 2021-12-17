@@ -21,6 +21,7 @@ fields:
     query: site.find('team')
     subpages: false
     empty: Kontakt auswählen
+    required: true
 
   leadsContacts:
     label: Kontakte für eine mögliche Zusammenarbeit
@@ -29,3 +30,4 @@ fields:
     query: site.find('team')
     subpages: false
     empty: Kontakt auswählen
+    required: true

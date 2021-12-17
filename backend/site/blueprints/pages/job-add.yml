@@ -43,3 +43,4 @@ fields:
     query: site.find('team')
     subpages: false
     empty: No contact selected yet
+    required: true

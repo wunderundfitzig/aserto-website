@@ -61,3 +61,4 @@ fields:
     query: site.find('team')
     subpages: false
     empty: Kontakt auswählen
+    required: true
