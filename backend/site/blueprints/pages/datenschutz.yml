@@ -1,0 +1,34 @@
+title: Default
+preset: page
+
+options:
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  preview: false
+
+files: false
+pages: false
+
+fields:
+  seo: fields/seo
+
+  body:
+    label: Text
+    type: blocks
+    fieldsets:
+      - heading
+      - text
+      - list
+      heading:
+        extends: blocks/heading
+        fields:
+          level:
+            default: h3
+            options:
+              - h3
+              - h4
+              - h5
+              - h6
+              - h7

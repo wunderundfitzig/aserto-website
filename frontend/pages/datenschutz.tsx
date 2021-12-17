@@ -5,7 +5,9 @@ import DatenschutzText from 'components/datenschutz/datenschutz-text'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
 
-type DatenschutzPageProps = Record<string, never>
+type DatenschutzPageProps = {
+  privacyPolicy: string
+}
 const Datenschutz: NextPage<PageProps<DatenschutzPageProps>> = (props) => {
   return (
     <>
@@ -13,7 +15,7 @@ const Datenschutz: NextPage<PageProps<DatenschutzPageProps>> = (props) => {
         <Metadata pageMeta={props.pageData} slug='/datenschutz' />
         <main>
           <DatenschutzHeader />
-          <DatenschutzText />
+          <DatenschutzText html={props.pageData.privacyPolicy} />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -26,6 +28,7 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   const result = await queryPageData<DatenschutzPageProps>({
     query: 'page("datenschutz")',
+    select: { privacyPolicy: 'page.body.toBlocks.toHtml' },
   })
   return { props: result }
 }
