@@ -6,7 +6,7 @@ import AsertoLogo from 'components/aserto-logo'
 import Favicons from 'components/favicons'
 import MainGrid from 'components/main-grid'
 import Navigation from 'components/navigation'
-import GlobalStyles from 'components/global-styles'
+import GlobalStyles, { PreloadFont } from 'components/global-styles'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const FontTrackingScript = dynamic(
@@ -25,6 +25,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Favicons />
+      <PreloadFont />
       <FontTrackingScript />
       <MainGrid onFrontpage={isIndexPage}>
         <Link href='/'>
