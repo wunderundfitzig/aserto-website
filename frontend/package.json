@@ -9,7 +9,7 @@
     "build": "npm run images:resize && npm run build:code && npm run build:export",
     "start": "next start",
     "lint": "next lint",
-    "images:resize": "node scripts/images-resize.js",
+    "images:resize": "mkdir -p public/resized-images && node scripts/images-resize.js",
     "generate:favicons": "real-favicon generate favicon-description.json public/favicons/favicon-data.json public/favicons"
   },
   "husky": {
