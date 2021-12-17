@@ -32,8 +32,9 @@ jobs:
 
       - name: Create .env file
         working-directory: backend
-        run: echo "INSTAGRAM_CLIENT_SECRET=${INSTAGRAM_CLIENT_SECRET}" >> .env
-        run: echo "ENVIRONMENT=production" >> .env
+        run: |
+          echo "INSTAGRAM_CLIENT_SECRET=${INSTAGRAM_CLIENT_SECRET}" >> .env
+          echo "ENVIRONMENT=production" >> .env
         env:
           INSTAGRAM_CLIENT_SECRET: ${{secrets.INSTAGRAM_CLIENT_SECRET}}
 
