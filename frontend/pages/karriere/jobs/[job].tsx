@@ -18,6 +18,18 @@ export const getStaticProps: GetStaticProps<
         query: 'page.children',
         select: { title: true, slug: true },
       },
+      contact: {
+        query: 'page.contact.toPage',
+        select: {
+          name: 'page.title',
+          mail: 'page.email',
+          phone: true,
+        },
+      },
+      contactImage: {
+        query: 'page.contact.toPage.image',
+        select: { src: 'file.id', width: true, height: true },
+      },
       job: {
         query: `page.find('${jobslug}')`,
         select: {
