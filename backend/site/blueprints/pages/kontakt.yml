@@ -1,0 +1,31 @@
+title: Default
+preset: page
+
+options:
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  preview: false
+
+files: false
+
+pages: false
+
+fields:
+  seo: fields/seo
+  jobsContact:
+    label: Kontakt für initiative Bewerbungen
+    type: pages
+    multiple: false
+    query: site.find('team')
+    subpages: false
+    empty: Kontakt auswählen
+
+  leadsContacts:
+    label: Kontakte für eine mögliche Zusammenarbeit
+    type: pages
+    multiple: true
+    query: site.find('team')
+    subpages: false
+    empty: Kontakt auswählen

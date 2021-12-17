@@ -1,67 +1,52 @@
-import ContactCard from 'components/contact-card'
-import { minWidth } from 'lib/breakpoints'
 import { FunctionComponent } from 'react'
+import { minWidth } from 'lib/breakpoints'
+import { Contact, ImageType } from 'lib/types'
+import ContactCard from 'components/contact-card'
 
-const Ansprechpartner: FunctionComponent = () => {
+type Props = {
+  jobsContact: {
+    contact: Contact
+    image: ImageType
+  }
+  leadsContacts: {
+    contact: Contact
+    image: ImageType
+  }[]
+}
+const Ansprechpartner: FunctionComponent<Props> = (props) => {
   return (
     <section className='ansprechpartner'>
       <h2>Ansprechpartner</h2>
-      <ContactCard
-        image={{
-          src: '/images/team/portraits/anna.jpg',
-          width: 232,
-          height: 325,
-        }}
-        contact={{
-          name: 'Anna Begau',
-          phone: '0511-515678-0',
-          mail: 'begau@aserto.de',
-        }}
-      >
+      <ContactCard {...props.jobsContact}>
         {{ title: <h3>Kontakt für initiative Bewerbungen</h3> }}
       </ContactCard>
-      <p>&nbsp;</p>
-      <ContactCard
-        reverse
-        image={{
-          width: 696 / 3,
-          height: 975 / 3,
-          src: '/images/team/portraits/_VND4453.jpg',
-        }}
-        contact={{
-          name: 'Prof. Dr. Lars Harden',
-          phone: '0511-515678-0',
-          mail: 'harden@aserto.de',
-        }}
-      >
-        {{
-          title: (
-            <h3 className='lead-contact-title'>
-              Kontakte für eine mögliche Zusammenarbeit
-            </h3>
-          ),
-        }}
-      </ContactCard>
-      <p></p>
-      <ContactCard
-        reverse
-        image={{
-          width: 696 / 3,
-          height: 975 / 3,
-          src: '/images/team/portraits/_VND8816.jpg',
-        }}
-        contact={{
-          name: 'Marcel Drews',
-          phone: '0511-515678-0',
-          mail: 'drews@aserto.de',
-        }}
-      >
-        {{ title: <></> }}
-      </ContactCard>
+      <div className='leads-contacs-wrapper'>
+        {props.leadsContacts.map((leadsContact, idx) => (
+          <ContactCard key={idx} reverse {...leadsContact}>
+            {{
+              title:
+                idx === 0 ? (
+                  <h3 className='lead-contact-title'>
+                    Kontakte für eine mögliche Zusammenarbeit
+                  </h3>
+                ) : (
+                  <></>
+                ),
+            }}
+          </ContactCard>
+        ))}
+      </div>
+
       <style jsx>{`
         h2 {
           margin-top: 2em;
           text-align: right;
+        }
+        .leads-contacs-wrapper {
+          margin-top: 3rem;
+          display: grid;
+          grid-auto-flow: row;
+          grid-row-gap: 2rem;
         }
 
         .lead-contact-title {
