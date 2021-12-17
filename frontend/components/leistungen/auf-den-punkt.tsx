@@ -1,23 +1,18 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
-import List from 'components/list'
 import { categoryColors } from 'lib/colors'
-import { SkewedHalfCircle } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { imageLoader } from 'lib/image-loader'
+import { SkewedHalfCircle } from 'components/curves'
+import List from 'components/list'
+import image from 'public/images/leistungen/leistungen-image-2.jpg'
 
 const AufDenPunkt: FunctionComponent = () => {
   return (
     <section className='auf-den-punkt'>
       <h2>Auf den Punkt gebracht</h2>
       <div className='image'>
-        <Image
-          loader={imageLoader}
-          src='/images/leistungen/leistungen-image-2.jpg'
-          width={1200}
-          height={857}
-          alt=''
-        />
+        <Image loader={imageLoader} src={image} alt='' />
       </div>
 
       <div className='list'>

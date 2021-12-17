@@ -2,10 +2,10 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
+import { imageLoader } from 'lib/image-loader'
 import { LeftRightTurnCurve, PurposeCurve } from 'components/curves'
 
 import purposeHeaderImage from 'public/images/purpose/purpose-header.jpg'
-import { imageLoader } from 'lib/image-loader'
 
 const PurposeHeader: FunctionComponent = () => {
   return (

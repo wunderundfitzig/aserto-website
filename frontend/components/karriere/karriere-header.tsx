@@ -5,6 +5,7 @@ import Slogan from 'components/slogan'
 import { EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { imageLoader } from 'lib/image-loader'
+import headerImage from 'public/images/karriere/karriere-image.jpg'
 
 const KarriereHeader: FunctionComponent = () => {
   return (
@@ -25,7 +26,7 @@ const KarriereHeader: FunctionComponent = () => {
         <Image
           loader={imageLoader}
           priority
-          src='/images/karriere/karriere-image.jpg'
+          src={headerImage}
           layout='fill'
           objectFit='cover'
           objectPosition='center'

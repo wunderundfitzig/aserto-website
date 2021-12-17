@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import List from 'components/list'
 import { categoryColors } from 'lib/colors'
 import { imageLoader } from 'lib/image-loader'
+import List from 'components/list'
+import image from 'public/images/leistungen/leistungen-image-1.jpg'
 
 const WasUnsAusmacht: FunctionComponent = () => {
   return (
@@ -13,7 +14,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
         <Image
           loader={imageLoader}
           priority
-          src='/images/leistungen/leistungen-image-1.jpg'
+          src={image}
           layout='fill'
           objectFit='cover'
           objectPosition='center'

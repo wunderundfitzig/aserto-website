@@ -6,6 +6,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import * as colors from 'lib/colors'
 import { useWindowSize } from 'lib/use-window-size'
 import { imageLoader } from 'lib/image-loader'
+import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 
 import {
   CornerCurve,
@@ -16,7 +17,8 @@ import {
 import SocialLinks from 'components/social-links'
 import SecondaryNavigation from 'components/frontpage/secondary-navigation'
 import Metadata from 'components/metadata'
-import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
+
+import frontpageBanner from 'public/images/index/frontpage-banner.jpg'
 
 type IndexPageProps = Record<string, never>
 const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
@@ -29,9 +31,10 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
       <h1>Wir begleiten bei richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
+          placeholder='blur'
           loader={imageLoader}
           className='image'
-          src='/images/index/frontpage-banner.jpg'
+          src={frontpageBanner}
           layout='fill'
           objectFit='cover'
           objectPosition='center'
@@ -40,9 +43,10 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
       </div>
       <div className='image-wrapper clipped-image'>
         <Image
+          placeholder='blur'
           loader={imageLoader}
           className='image'
-          src='/images/index/frontpage-banner.jpg'
+          src={frontpageBanner}
           layout='fill'
           objectFit='cover'
           objectPosition='center'

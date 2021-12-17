@@ -3,9 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { imageLoader } from 'lib/image-loader'
 import { useWindowSize } from 'lib/use-window-size'
+import { breakpoint } from 'lib/breakpoints'
 import wideMapImage from 'public/images/kontakt/map.png'
 import mobileMapImage from 'public/images/kontakt/mobile-map.png'
-import { breakpoint } from 'lib/breakpoints'
 
 type Props = {
   mapsLink: string

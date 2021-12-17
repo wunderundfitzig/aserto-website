@@ -1,9 +1,10 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
-import { RoundCurve, EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { imageLoader } from 'lib/image-loader'
+import { RoundCurve, EndlessLine } from 'components/curves'
+import image from 'public/images/referenzen/referenzen-image.jpg'
 
 const ReferenzenHeader: FunctionComponent = () => {
   return (
@@ -20,7 +21,7 @@ const ReferenzenHeader: FunctionComponent = () => {
         <Image
           loader={imageLoader}
           priority
-          src='/images/referenzen/referenzen-image.jpg'
+          src={image}
           layout='fill'
           objectFit='cover'
           objectPosition='center'

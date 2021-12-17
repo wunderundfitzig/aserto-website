@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
+import { imageLoader } from 'lib/image-loader'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import Slogan from 'components/slogan'
 import { TriangleLine } from 'components/curves'
-import { breakpoint, minWidth } from 'lib/breakpoints'
 import HeaderBackground from 'components/header-background'
-import { imageLoader } from 'lib/image-loader'
+import image from 'public/images/team/team-image.jpg'
 
 type Props = {
   title: string
@@ -36,9 +37,7 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
           layout='responsive'
           loader={imageLoader}
           priority
-          src='/images/team/team-image.jpg'
-          width='1200'
-          height='857'
+          src={image}
           alt=''
         />
       </div>

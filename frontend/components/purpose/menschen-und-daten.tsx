@@ -1,11 +1,11 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { categoryColors } from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
+import { imageLoader } from 'lib/image-loader'
 import List from 'components/list'
 
 import officeImage from 'public/images/purpose/purpose.jpg'
-import { breakpoint, minWidth } from 'lib/breakpoints'
-import { imageLoader } from 'lib/image-loader'
 
 const MenschenUndDaten: FunctionComponent = () => {
   return (
