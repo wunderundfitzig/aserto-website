@@ -408,3 +408,24 @@ export const RoundZigZagCurve: FunctionComponent<CurveProps> = (props) => {
     </svg>
   )
 }
+
+export const TeamLine: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      aria-hidden
+      className={className(props)}
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='100 0 1500 2583.521'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <path
+        d='M537.553 9.999H28.93l1551 1217.707L76.73 2573.52h1852.543'
+        fill='none'
+        stroke={props.color}
+        strokeLinecap='round'
+        strokeMiterlimit={10}
+      />
+      <style jsx>{svgStyle}</style>
+    </svg>
+  )
+}

@@ -4,6 +4,7 @@ import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { TeamMember } from 'lib/types'
 import PersonCard from 'components/person-card'
+import { TeamLine } from 'components/curves'
 
 type Props = {
   members: TeamMember[]
@@ -24,6 +25,11 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
             </div>
           </a>
         </Link>
+        <TeamLine
+          className='team-line'
+          color={colors.backgroundBlue}
+          preserveAspectRatio={'none'}
+        />
       </div>
       <style jsx>{`
         h2 {
@@ -35,6 +41,7 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
           grid-template-columns: 1fr;
           justify-content: center;
           grid-gap: 2em;
+          position: relative;
         }
 
         .job-list-link {
@@ -75,12 +82,30 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
           hyphens: auto;
         }
 
+        .das-sind-wir :global(.team-line) {
+          grid-area: 1 / 1 / 6 / 2;
+          position: absolute;
+          width: calc(100% + 6rem);
+          height: calc(100% - 16rem);
+          top: 8rem;
+          right: 0;
+          z-index: -1;
+        }
+
         @media ${minWidth(breakpoint.xs)} {
           .persons {
             grid-template-columns: repeat(2, minmax(0, 170px));
             justify-content: right;
           }
-          .persons > :global(*:nth-child(5)) {
+          .persons > :global(*:nth-child(1)) {
+            grid-column: 2 / 2;
+          }
+
+          .persons > :global(*:nth-child(7)) {
+            grid-column: 1 / 1;
+          }
+
+          .persons > :global(*:nth-child(11)) {
             grid-column: 2 / 2;
           }
 
@@ -89,6 +114,11 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
             width: 100%;
             margin-left: 0;
           }
+
+          .das-sind-wir :global(.team-line) {
+            grid-area: 1 / 1 / 8 / 3;
+            width: calc(100% + 8rem);
+          }
         }
 
         @media ${minWidth(breakpoint.sm)} {
@@ -96,20 +126,24 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
             grid-template-columns: repeat(3, minmax(0, 200px));
           }
 
-          .persons > :global(*:nth-child(1)) {
-            grid-column: 2 / 2;
-          }
-
-          .persons > :global(*:nth-child(5)) {
+          .persons > :global(*:nth-child(n + 2)) {
             grid-column: unset;
           }
 
-          .persons > :global(*:nth-child(8)) {
+          .persons > :global(*:nth-child(11)) {
             grid-column: 1 / 1;
+          }
+
+          .persons > :global(*:nth-child(17)) {
+            grid-column: 2 / 2;
           }
 
           .job-list-link {
             grid-column: 3 / 3;
+          }
+
+          .das-sind-wir :global(.team-line) {
+            grid-area: 1 / 1 / 8 / 4;
           }
         }
 
@@ -118,15 +152,23 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
             grid-template-columns: repeat(4, minmax(0, 200px));
           }
 
-          .persons > :global(*:nth-child(7)) {
+          .persons > :global(*:nth-child(n + 2)) {
+            grid-column: unset;
+          }
+
+          .persons > :global(*:nth-child(11)) {
             grid-column: 1 / 1;
           }
 
-          .persons > :global(*:nth-child(8)) {
-            grid-column: unset;
+          .persons > :global(*:nth-child(15)) {
+            grid-column: 2 / 2;
           }
           .job-list-link {
             grid-column: 4 / 4;
+          }
+
+          .das-sind-wir :global(.team-line) {
+            grid-area: 1 / 1 / 6 / 5;
           }
         }
       `}</style>
