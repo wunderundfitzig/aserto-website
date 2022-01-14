@@ -27,7 +27,6 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
     }))
     .reduce((aggregat, next) => ({ ...aggregat, ...next }), {})
 
-  console.log(lastRowIndex)
   return (
     <section className='das-sind-wir'>
       <h2>Das sind wir</h2>
