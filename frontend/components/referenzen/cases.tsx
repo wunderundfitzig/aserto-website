@@ -48,6 +48,10 @@ const Cases: FunctionComponent<Props> = (props) => {
       </div>
 
       <style jsx>{`
+        section {
+          margin-bottom: 12rem;
+        }
+
         h2 {
           text-align: right;
         }

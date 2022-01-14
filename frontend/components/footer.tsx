@@ -20,7 +20,11 @@ const Footer: FunctionComponent<Props> = (props) => {
 
   return (
     <footer className='footer'>
-      <svg viewBox='0 0 100 100' className='background-rect'>
+      <svg
+        viewBox='0 0 100 100'
+        className='background-rect'
+        preserveAspectRatio='none'
+      >
         <rect
           x={-1000}
           y={0}

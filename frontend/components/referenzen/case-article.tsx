@@ -52,6 +52,10 @@ const CaseArticle: FunctionComponent<Props> = (props) => {
       </div>
 
       <style jsx>{`
+        .inner {
+          overflow: hidden;
+        }
+
         .case-article {
           padding: 2em 1.5em;
           max-width: 25em;
