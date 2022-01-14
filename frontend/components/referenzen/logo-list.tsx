@@ -96,7 +96,7 @@ const LogoList: FunctionComponent<Props> = (props) => {
 
         @media ${minWidth(breakpoint.xxl)} {
           .logo-list {
-            margin-top: 8rem;
+            margin-top: 16rem;
             margin-bottom: 16rem;
           }
 
