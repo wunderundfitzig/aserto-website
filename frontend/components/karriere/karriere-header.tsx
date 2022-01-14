@@ -34,10 +34,18 @@ const KarriereHeader: FunctionComponent = () => {
         />
       </div>
       <div className='line line-1'>
-        <EndlessLine color={colors.categoryColors.karriere} rotate={20} />
+        <EndlessLine
+          color={colors.categoryColors.karriere}
+          rotate={20}
+          animate
+        />
       </div>
       <div className='line line-2'>
-        <EndlessLine color={colors.categoryColors.karriere} rotate={-25} />
+        <EndlessLine
+          color={colors.categoryColors.karriere}
+          rotate={-25}
+          animate
+        />
       </div>
       <div className='line line-3'>
         <EndlessLine color={colors.categoryColors.karriere} rotate={5} />

@@ -216,9 +216,9 @@ export const RoundCurve: FunctionComponent<CurveProps> = (props) => {
   )
 }
 
-export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
-  props
-) => {
+export const EndlessLine: FunctionComponent<
+  CurveProps & { rotate: number; animate?: boolean }
+> = (props) => {
   return (
     <svg
       aria-hidden
@@ -227,6 +227,7 @@ export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
       <line
+        className={props.animate ? 'animate' : undefined}
         x1={-10000}
         y1={50}
         x2={20000}
@@ -240,15 +241,19 @@ export const EndlessLine: FunctionComponent<CurveProps & { rotate: number }> = (
       <style jsx>{`
         @keyframes dash {
           to {
-            stroke-dashoffset: 0;
+            stroke-dashoffset: -1000;
           }
         }
         path,
         line {
-          stroke-dasharray: 40000;
-          stroke-dashoffset: 40000;
-          animation: dash 20s linear forwards;
-          animation-delay: -9s;
+          animation: none;
+          stroke-dashoffset: unset;
+          stroke-dasharray: unset;
+        }
+        line.animate {
+          stroke-dasharray: 4000;
+          stroke-dashoffset: 2000;
+          animation: dash 1s linear forwards;
         }
       `}</style>
     </svg>
@@ -358,6 +363,26 @@ export const DownhillCurve: FunctionComponent<CurveProps> = (props) => {
         fill='none'
         stroke={props.color}
         strokeLinecap='round'
+      />
+      <style jsx>{svgStyle}</style>
+    </svg>
+  )
+}
+
+export const RoundZigZagCurve: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='750 470 1510 680'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+      className={props.className}
+    >
+      <path
+        d='m448.925 489.404 1804.458 737.226s-750.304 118.597-729 636.37c-.402 3.413 0 429.927 0 229.927'
+        fill='none'
+        stroke={props.color}
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
       <style jsx>{svgStyle}</style>
     </svg>

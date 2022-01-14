@@ -1,10 +1,10 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/dist/client/image'
 import * as colors from 'lib/colors'
-import { EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { imageLoader } from 'lib/image-loader'
 import { Client } from 'lib/types'
+import { RoundZigZagCurve } from 'components/curves'
 
 type Props = {
   clients: Client[]
@@ -20,19 +20,16 @@ const LogoList: FunctionComponent<Props> = (props) => {
           </li>
         ))}
       </ul>
-      <div className='line-1'>
-        <EndlessLine color={colors.categoryColors.referenzen} rotate={60} />
-      </div>
-      <div className='line-2'>
-        <EndlessLine color={colors.categoryColors.referenzen} rotate={-35} />
-      </div>
-      <div className='line-3'>
-        <EndlessLine color={colors.categoryColors.referenzen} rotate={40} />
+      <div className='curve'>
+        <RoundZigZagCurve
+          color={colors.categoryColors.referenzen}
+          preserveAspectRatio='none'
+        />
       </div>
       <style jsx>{`
         .logo-list {
           position: relative;
-          margin: 6em 0;
+          margin: 6rem 0;
         }
 
         ul {
@@ -47,25 +44,13 @@ const LogoList: FunctionComponent<Props> = (props) => {
           justify-items: center;
         }
 
-        .line-1 {
+        .curve {
           position: absolute;
-          top: 100%;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
-        }
-
-        .line-2 {
-          position: absolute;
-          top: 50%;
-          width: 100%;
-          height: 50%;
-          z-index: -1;
-        }
-
-        .line-3 {
-          position: absolute;
-          display: none;
+          top: -220px;
+          left: -139px;
+          width: 400px;
+          height: calc(100% + 220px);
+          pointer-events: none;
           z-index: -1;
         }
 
@@ -73,8 +58,12 @@ const LogoList: FunctionComponent<Props> = (props) => {
           ul {
             grid-template-columns: repeat(4, 1fr);
           }
-          .line-1 {
-            height: 200%;
+          .curve {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% + 3rem);
           }
         }
 
@@ -89,18 +78,6 @@ const LogoList: FunctionComponent<Props> = (props) => {
             grid-template-columns: repeat(5, 1fr);
             grid-gap: 2em 3em;
           }
-
-          .line-1,
-          .line-2 {
-            display: none;
-          }
-
-          .line-3 {
-            display: block;
-            top: 100%;
-            width: 40%;
-            height: 10px;
-          }
         }
 
         @media ${minWidth(breakpoint.ml)} {
@@ -111,29 +88,16 @@ const LogoList: FunctionComponent<Props> = (props) => {
           ul {
             grid-gap: 2em 4em;
           }
-
-          .line-3 {
-            top: 80%;
-          }
-        }
-
-        @media ${minWidth(breakpoint.ml)} {
-          .line-3 {
-            top: 100%;
-          }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
           .logo-list {
-            margin-top: 12rem;
+            margin-top: 8rem;
+            margin-bottom: 16rem;
           }
 
           ul {
             grid-gap: 2em 6em;
-          }
-
-          .line-3 {
-            top: 150%;
           }
         }
       `}</style>
