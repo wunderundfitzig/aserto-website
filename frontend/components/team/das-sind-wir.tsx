@@ -6,10 +6,28 @@ import { TeamMember } from 'lib/types'
 import PersonCard from 'components/person-card'
 import { PersonLine1, PersonLine2 } from 'components/curves'
 
+const calculateLastRowIndex = (
+  membersCount: number,
+  layout: { columns: number; empty: number }
+): number => Math.ceil((membersCount + layout.columns) / layout.empty) + 1
+
 type Props = {
   members: TeamMember[]
 }
 const DasSindWir: FunctionComponent<Props> = (props) => {
+  const layouts = {
+    xxs: { columns: 1, empty: 0 },
+    xs: { columns: 2, empty: 0 },
+    sm: { columns: 3, empty: 0 },
+    xxl: { columns: 4, empty: 0 },
+  }
+  const lastRowIndex = Object.entries(layouts)
+    .map(([breakpoint, layout]) => ({
+      [breakpoint]: calculateLastRowIndex(props.members.length, layout),
+    }))
+    .reduce((aggregat, next) => ({ ...aggregat, ...next }), {})
+
+  console.log(lastRowIndex)
   return (
     <section className='das-sind-wir'>
       <h2>Das sind wir</h2>
@@ -100,11 +118,11 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
 
         .persons :global(.person-line2) {
           position: absolute;
-          bottom: 6rem;
+          bottom: 6rem !important;
           right: 0;
           width: 100%;
           height: calc(100% - 6rem);
-          grid-row: span 3;
+          grid-row: ${lastRowIndex.xxs - 2} / span 3;
           grid-column: span 2;
           z-index: -1;
         }
@@ -138,7 +156,7 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
           }
 
           .persons :global(.person-line2) {
-            grid-row: span 3;
+            grid-row: ${lastRowIndex.xs - 2} / span 3;
             grid-column: span 2;
           }
         }
@@ -170,8 +188,8 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
           }
 
           .persons :global(.person-line2) {
-            grid-row: span 3;
-            grid-column: span 3;
+            grid-row: ${lastRowIndex.sm - 2} / span 3;
+            grid-column: 1 / span 3;
           }
         }
 
@@ -202,7 +220,7 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
           }
 
           .persons :global(.person-line2) {
-            grid-row: span 2;
+            grid-row: ${lastRowIndex.xxl - 1} / span 2;
             grid-column: 1 / span 3;
           }
         }
