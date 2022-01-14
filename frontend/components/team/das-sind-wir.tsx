@@ -9,7 +9,7 @@ import { PersonLine1, PersonLine2 } from 'components/curves'
 const calculateLastRowIndex = (
   membersCount: number,
   layout: { columns: number; empty: number }
-): number => Math.ceil((membersCount + layout.columns) / layout.empty) + 1
+): number => Math.ceil((membersCount + layout.empty) / layout.columns) + 1
 
 type Props = {
   members: TeamMember[]
@@ -17,9 +17,9 @@ type Props = {
 const DasSindWir: FunctionComponent<Props> = (props) => {
   const layouts = {
     xxs: { columns: 1, empty: 0 },
-    xs: { columns: 2, empty: 0 },
-    sm: { columns: 3, empty: 0 },
-    xxl: { columns: 4, empty: 0 },
+    xs: { columns: 2, empty: 3 },
+    sm: { columns: 3, empty: 3 },
+    xxl: { columns: 4, empty: 3 },
   }
   const lastRowIndex = Object.entries(layouts)
     .map(([breakpoint, layout]) => ({
