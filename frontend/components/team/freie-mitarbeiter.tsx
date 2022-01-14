@@ -13,7 +13,7 @@ const FreieMitarbeiter: FunctionComponent<Props> = (props) => {
       </div>
       <style jsx>{`
         section {
-          margin: 4em 0 10em;
+          margin: 10rem 0;
         }
 
         h2 {

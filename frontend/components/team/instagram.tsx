@@ -1,11 +1,12 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { InstagramPost } from 'lib/types'
-import { lightBlue } from 'lib/colors'
+import { lightBlue, backgroundBlue } from 'lib/colors'
 import { imageLoader } from 'lib/image-loader'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { queryInstagramPosts } from 'lib/instagram-query'
 import Button from 'components/button'
+import { TeamTriangleLine } from 'components/curves'
 
 type Props = {
   instagramURL: string
@@ -22,6 +23,11 @@ const Instagram: FunctionComponent<Props> = (props) => {
 
   return (
     <section className='instagram'>
+      <TeamTriangleLine
+        className='line'
+        color={backgroundBlue}
+        preserveAspectRatio='none'
+      />
       <h2>Wir auf Instagram</h2>
       <p>
         Übrigens: Auf unserem Instagram-Account aserto-richtungsweisend erfährst
@@ -57,6 +63,10 @@ const Instagram: FunctionComponent<Props> = (props) => {
           margin-bottom: 8rem;
         }
 
+        .instagram :global(.line) {
+          display: none;
+        }
+
         h2 {
           text-align: right;
         }
@@ -81,6 +91,24 @@ const Instagram: FunctionComponent<Props> = (props) => {
         @media ${minWidth(breakpoint.s)} {
           .posts {
             grid-template-columns: 1fr 1fr 1fr;
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .instagram :global(.line) {
+            display: block;
+            margin-bottom: -1.5rem;
+            height: 250px;
+            margin-top: -6rem;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .instagram :global(.line) {
+            width: calc(100% - 12rem);
+            height: 300px;
+            margin-left: 12rem;
+            margin-top: -4rem;
           }
         }
       `}</style>

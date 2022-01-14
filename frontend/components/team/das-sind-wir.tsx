@@ -88,7 +88,8 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
         }
 
         .persons :global(.person-line1) {
-          grid-area: 1 / 1 / 6 / 2;
+          grid-column: 1 / span 1;
+          grid-row: 1 / span 5;
           position: absolute;
           width: calc(100% + 6rem);
           height: calc(100% - 16rem);
@@ -131,7 +132,8 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
           }
 
           .persons :global(.person-line1) {
-            grid-area: 1 / 1 / 8 / 3;
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 7;
             width: calc(100% + 8rem);
           }
 
@@ -158,12 +160,13 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
             grid-column: 2 / 2;
           }
 
-          .job-list-link {
-            grid-column: 3 / 3;
+          .persons :global(.person-line1) {
+            grid-column: 1 / span 3;
+            grid-row: 1 / span 7;
           }
 
-          .persons :global(.person-line1) {
-            grid-area: 1 / 1 / 8 / 4;
+          .job-list-link {
+            grid-column: 1;
           }
 
           .persons :global(.person-line2) {
@@ -188,17 +191,19 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
           .persons > :global(*:nth-child(15)) {
             grid-column: 2 / 2;
           }
+
           .persons .job-list-link {
             grid-column: 1;
           }
 
           .persons :global(.person-line1) {
-            grid-area: 1 / 1 / 6 / 5;
+            grid-column: 1 / span 4;
+            grid-row: 1 / span 5;
           }
 
           .persons :global(.person-line2) {
-            grid-row: span 3;
-            grid-column: 1 / 4;
+            grid-row: span 2;
+            grid-column: 1 / span 3;
           }
         }
       `}</style>

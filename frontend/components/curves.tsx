@@ -444,6 +444,27 @@ export const PersonLine2: FunctionComponent<CurveProps> = (props) => {
         fill='none'
         stroke={props.color}
         strokeLinecap='round'
+        strokeMiterlimit={10}
+      />
+      <style jsx>{svgStyle}</style>
+    </svg>
+  )
+}
+
+export const TeamTriangleLine: FunctionComponent<CurveProps> = (props) => {
+  return (
+    <svg
+      aria-hidden
+      className={className(props)}
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 300 1100 500'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <path
+        d='M670.573 787.207 18.975 308.437v478.774L1592.778 40.964'
+        fill='none'
+        stroke={props.color}
+        strokeLinecap='round'
       />
       <style jsx>{svgStyle}</style>
     </svg>
