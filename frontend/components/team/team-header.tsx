@@ -42,7 +42,7 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
         />
       </div>
       <div className='key-visual'>
-        <TriangleLine color='white' preserveAspectRatio='none' />
+        <TriangleLine animate color='white' preserveAspectRatio='none' />
       </div>
       <style jsx>{`
         .team-header {

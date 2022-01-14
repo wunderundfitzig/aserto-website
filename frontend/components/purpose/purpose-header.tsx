@@ -29,6 +29,7 @@ const PurposeHeader: FunctionComponent = () => {
         </div>
         <div className='curve desctop-curve'>
           <PurposeCurve
+            animate
             color={categoryColors.purpose}
             preserveAspectRatio='none'
           />

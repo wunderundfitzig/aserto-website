@@ -22,6 +22,7 @@ const LeistungenHeader: FunctionComponent = () => {
       </Slogan>
       <div className='open-circle'>
         <OpenCircle
+          animate
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Mid', fit: 'slice' }}
           color={colors.green}
         />

@@ -12,6 +12,7 @@ type Alignment =
 
 type CurveProps = {
   color: string
+  animate?: boolean
   className?: string
   preserveAspectRatio?: Alignment
 }
@@ -21,6 +22,9 @@ export const formatAlignment = (alignment?: Alignment): string | undefined => {
   if (alignment === 'none') return 'none'
   return `x${alignment.alignX}Y${alignment.alignY} ${alignment.fit}`
 }
+
+const className = (props: CurveProps): string =>
+  [props.className, props.animate && 'animate'].filter((cl) => cl).join(' ')
 
 const svgStyle = css`
   @keyframes dash {
@@ -40,10 +44,14 @@ const svgStyle = css`
   path,
   line {
     vector-effect: non-scaling-stroke;
+  }
+
+  .animate path,
+  .animate line {
     stroke-dasharray: 5000;
     stroke-dashoffset: 5000;
     animation: dash 3s linear forwards;
-    animation-delay: 1s;
+    animation-delay: 0.5s;
   }
 
   @media ${minWidth(breakpoint.ml)} {
@@ -63,7 +71,7 @@ export const FrontpageCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
-      className='curve'
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 250 950 1100'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -85,6 +93,7 @@ export const MobileFrontpageCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='-10 80 370 500'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -105,6 +114,7 @@ export const SimpleCutRoundCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 230 385'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -123,6 +133,7 @@ export const CornerCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 222 674'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -142,6 +153,7 @@ export const OpenCircle: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 856 895'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -161,6 +173,7 @@ export const SkewedHalfCircle: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 896 1358'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -181,6 +194,7 @@ export const TriangleLine: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
+      className={className(props)}
       viewBox='0 0 1233 1145'
       xmlns='http://www.w3.org/2000/svg'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -201,6 +215,7 @@ export const RoundCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 2028.305 2224.411'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -222,12 +237,12 @@ export const EndlessLine: FunctionComponent<
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 100 100'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
     >
       <line
-        className={props.animate ? 'animate' : undefined}
         x1={-10000}
         y1={50}
         x2={20000}
@@ -241,19 +256,15 @@ export const EndlessLine: FunctionComponent<
       <style jsx>{`
         @keyframes dash {
           to {
-            stroke-dashoffset: -1000;
+            stroke-dashoffset: 0;
           }
         }
-        path,
-        line {
-          animation: none;
-          stroke-dashoffset: unset;
-          stroke-dasharray: unset;
-        }
-        line.animate {
-          stroke-dasharray: 4000;
-          stroke-dashoffset: 2000;
-          animation: dash 1s linear forwards;
+
+        .animate line {
+          stroke-dasharray: 40000;
+          stroke-dashoffset: 40000;
+          animation: dash 20s linear forwards;
+          animation-delay: -9s;
         }
       `}</style>
     </svg>
@@ -266,6 +277,7 @@ export const CutLine: FunctionComponent<CurveProps & { rotate: number }> = (
   return (
     <svg
       aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 100 100'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -288,6 +300,8 @@ export const CutLine: FunctionComponent<CurveProps & { rotate: number }> = (
 export const CheckmarkLine: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 125 100'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -306,6 +320,8 @@ export const CheckmarkLine: FunctionComponent<CurveProps> = (props) => {
 export const LeftRightTurnCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='90 -170 400 500'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -329,6 +345,8 @@ export const LeftRightTurnCurve: FunctionComponent<CurveProps> = (props) => {
 export const PurposeCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='1450 340 1440 1100'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
@@ -353,10 +371,11 @@ export const PurposeCurve: FunctionComponent<CurveProps> = (props) => {
 export const DownhillCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='500 450 1100 1750'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
-      className={props.className}
     >
       <path
         d='M20.667 378.483s550.746 141.872 551.527 142.376c125.741 33.761 137.462 74.2 137.374 259.926s3.8 178.102 6.999 277.491 60.04 153.148 146.292 153.224 343.324-9.422 421.319-12.73 163.906-7.998 173.072 109.448 81.68 856.77 81.68 856.77'
@@ -372,10 +391,11 @@ export const DownhillCurve: FunctionComponent<CurveProps> = (props) => {
 export const RoundZigZagCurve: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg
+      aria-hidden
+      className={className(props)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='750 470 1510 680'
       preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
-      className={props.className}
     >
       <path
         d='m448.925 489.404 1804.458 737.226s-750.304 118.597-729 636.37c-.402 3.413 0 429.927 0 229.927'

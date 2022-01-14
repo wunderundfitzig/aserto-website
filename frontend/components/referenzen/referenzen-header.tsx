@@ -30,6 +30,7 @@ const ReferenzenHeader: FunctionComponent = () => {
       </div>
       <div className='curve'>
         <RoundCurve
+          animate
           color={colors.categoryColors.referenzen}
           preserveAspectRatio={{ alignX: 'Max', alignY: 'Min', fit: 'slice' }}
         />

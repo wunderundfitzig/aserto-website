@@ -66,12 +66,14 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
       </div>
       <div className='main-curve'>
         <FrontpageCurve
+          animate
           preserveAspectRatio='none'
           color={colors.backgroundBlue}
         />
       </div>
       <div className='mobile-main-curve'>
         <MobileFrontpageCurve
+          animate
           preserveAspectRatio='none'
           color={colors.backgroundBlue}
         />
