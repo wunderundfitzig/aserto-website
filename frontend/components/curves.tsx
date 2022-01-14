@@ -297,6 +297,32 @@ export const CutLine: FunctionComponent<CurveProps & { rotate: number }> = (
   )
 }
 
+export const StraightLine: FunctionComponent<
+  CurveProps & { rotate: number }
+> = (props) => {
+  return (
+    <svg
+      aria-hidden
+      className={className(props)}
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 100 100'
+      preserveAspectRatio={formatAlignment(props.preserveAspectRatio)}
+    >
+      <line
+        x1={0}
+        y1={50}
+        x2={100}
+        y2={50}
+        fill='none'
+        transform={`rotate(${props.rotate}, 50, 50)`}
+        stroke={props.color}
+        strokeLinecap='round'
+      />
+      <style jsx>{svgStyle}</style>
+    </svg>
+  )
+}
+
 export const CheckmarkLine: FunctionComponent<CurveProps> = (props) => {
   return (
     <svg

@@ -63,7 +63,7 @@ const LogoList: FunctionComponent<Props> = (props) => {
             top: 0;
             left: 0;
             width: 100%;
-            height: calc(100% + 3rem);
+            height: calc(100% + 4rem);
           }
         }
 
@@ -83,10 +83,14 @@ const LogoList: FunctionComponent<Props> = (props) => {
         @media ${minWidth(breakpoint.ml)} {
           .logo-list {
             margin-top: 12rem;
+            margin-bottom: 12rem;
           }
 
           ul {
             grid-gap: 2em 4em;
+          }
+          .curve {
+            height: calc(100% + 6rem);
           }
         }
 
@@ -98,6 +102,10 @@ const LogoList: FunctionComponent<Props> = (props) => {
 
           ul {
             grid-gap: 2em 6em;
+          }
+
+          .curve {
+            height: calc(100% + 8rem);
           }
         }
       `}</style>

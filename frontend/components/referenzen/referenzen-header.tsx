@@ -217,8 +217,8 @@ const ReferenzenHeader: FunctionComponent = () => {
             padding-top: 60%;
           }
           .curve {
-            transform: translate(0, -10em);
-            height: 160vw;
+            width: 100%;
+            transform: translate(-10rem, -20rem);
           }
         }
       `}</style>

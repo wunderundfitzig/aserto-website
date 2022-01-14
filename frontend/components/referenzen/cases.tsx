@@ -5,6 +5,8 @@ import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'
 import { useIntersectionObserver } from 'lib/use-intersection-observer'
 import { useRouter } from 'next/router'
+import { StraightLine } from 'components/curves'
+import { categoryColors } from 'lib/colors'
 
 type Props = {
   cases: Case[]
@@ -46,10 +48,16 @@ const Cases: FunctionComponent<Props> = (props) => {
           ))}
         </div>
       </div>
+      <StraightLine
+        className='line'
+        color={categoryColors.referenzen}
+        rotate={90}
+        preserveAspectRatio='none'
+      />
 
       <style jsx>{`
         section {
-          margin-bottom: 12rem;
+          margin-bottom: 6rem;
         }
 
         h2 {
@@ -57,11 +65,13 @@ const Cases: FunctionComponent<Props> = (props) => {
         }
 
         .case-container {
+          position: relative;
           background-color: white;
           margin: 2em -2em 0;
           display: grid;
           grid-template-areas: 'nav content';
           grid-template-columns: minmax(70px, 18vw) 1fr;
+          background-color: white;
         }
 
         .content {
@@ -70,15 +80,35 @@ const Cases: FunctionComponent<Props> = (props) => {
           align-items: center;
         }
 
+        section :global(.line) {
+          height: 200px;
+          width: 130px;
+          z-index: -1;
+        }
+
+        @media ${minWidth(breakpoint.xs)} {
+          section :global(.line) {
+            width: 100%;
+          }
+        }
+
         @media ${minWidth(breakpoint.s)} {
           .case-container {
             grid-template-columns: minmax(150px, 23vw) 1fr;
+          }
+
+          section :global(.line) {
+            height: 40vw;
           }
         }
 
         @media ${minWidth(breakpoint.l)} {
           .case-container {
             grid-template-columns: 200px 1fr;
+          }
+
+          section :global(.line) {
+            height: 300px;
           }
         }
 
