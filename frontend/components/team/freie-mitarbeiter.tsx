@@ -1,3 +1,4 @@
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent } from 'react'
 
 type Props = {
@@ -17,12 +18,18 @@ const FreieMitarbeiter: FunctionComponent<Props> = (props) => {
         }
 
         h2 {
-          max-width: 30rem;
+          max-width: 45rem;
           hyphens: auto;
         }
 
         .text-block {
-          max-width: 30em;
+          max-width: 45em;
+        }
+
+        @media ${minWidth(breakpoint.s)} {
+          h2 {
+            hyphens: initial;
+          }
         }
       `}</style>
     </section>

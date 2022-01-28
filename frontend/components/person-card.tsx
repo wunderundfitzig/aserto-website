@@ -74,10 +74,10 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           font-weight: 200;
           margin: 0;
           text-align: center;
-          font-size: 0.9rem;
-          bottom: -1.7rem;
+          font-size: 1rem;
+          bottom: -2.2rem;
           text-align: left;
-          padding-right: 0.5em;
+          padding-right: 0.2em;
         }
 
         .overlay {
