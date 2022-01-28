@@ -43,7 +43,7 @@ const ReferenzenHeader: FunctionComponent = () => {
           position: relative;
           display: grid;
           align-items: start;
-          grid-template-rows: auto auto 8em auto;
+          grid-template-rows: auto auto 0 auto;
           grid-template-areas:
             'title'
             'text-block'
@@ -64,13 +64,14 @@ const ReferenzenHeader: FunctionComponent = () => {
           grid-area: text-block;
           max-width: 30em;
           background-color: white;
+          padding-bottom: 2rem;
         }
 
         .image {
           grid-area: image;
           position: relative;
           width: 100%;
-          padding-bottom: 60%;
+          padding-bottom: 120%;
         }
 
         .curve {
@@ -79,16 +80,40 @@ const ReferenzenHeader: FunctionComponent = () => {
           top: 0;
           left: 0;
           width: 60%;
-          transform: translate(0, -6em);
+          transform: translate(0, -1em);
           height: calc(100% + 18em);
           z-index: -1;
         }
 
         .line {
           position: absolute;
-          grid-area: space;
+          grid-area: image;
+          transform: translate(0, 2em);
           width: 100%;
           height: 100%;
+        }
+
+        @media ${minWidth(breakpoint.xs)} {
+          .referenzen-header {
+            grid-template-rows: auto auto 8em auto;
+          }
+
+          .image {
+            padding-bottom: 60%;
+          }
+
+          .text-block {
+            padding-bottom: 0;
+          }
+          .curve {
+            grid-area: title / title / space / space;
+            transform: translate(0, -6em);
+          }
+
+          .line {
+            grid-area: space;
+            transform: translate(0, 0);
+          }
         }
 
         @media ${minWidth(breakpoint.s)} {
