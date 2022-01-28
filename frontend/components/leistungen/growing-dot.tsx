@@ -57,6 +57,11 @@ const GrowingDot: FunctionComponent = () => {
     : Math.sqrt(Math.max(1, scrolledPixels) * 30)
   const bigCircleSize = isPastLastSlide ? fullScreenSize : 0
 
+  const halfHeight = height ? height / 2 : 0
+  const microTopOffset = 830
+  const macroTopOffset = 1370
+  const ergbenisseTopOffset = 2000
+
   return (
     <section ref={wrapperRef} className='growing-dot'>
       <svg className='dot'>
@@ -99,14 +104,23 @@ const GrowingDot: FunctionComponent = () => {
         </h2>
         <div
           className='outline-cirlce micro'
-          style={{ visibility: scrolledPixels > 310 ? 'visible' : 'hidden' }}
+          style={{
+            visibility:
+              scrolledPixels > microTopOffset - halfHeight
+                ? 'visible'
+                : 'hidden',
+          }}
         >
           <Circle />
         </div>
         <div
           className='section analyse'
           style={{
-            opacity: scrolledPixels > 300 && scrolledPixels < 800 ? 1 : 0,
+            opacity:
+              scrolledPixels > microTopOffset - halfHeight &&
+              scrolledPixels < microTopOffset - halfHeight + 400
+                ? 1
+                : 0,
           }}
         >
           <h3>Analyse:</h3>
@@ -118,14 +132,23 @@ const GrowingDot: FunctionComponent = () => {
         </div>
         <div
           className='outline-cirlce macro'
-          style={{ visibility: scrolledPixels > 888 ? 'visible' : 'hidden' }}
+          style={{
+            visibility:
+              scrolledPixels > macroTopOffset - halfHeight
+                ? 'visible'
+                : 'hidden',
+          }}
         >
           <Circle />
         </div>
         <div
           className='section verdichtung'
           style={{
-            opacity: scrolledPixels > 900 && scrolledPixels < 1400 ? 1 : 0,
+            opacity:
+              scrolledPixels > macroTopOffset - halfHeight &&
+              scrolledPixels < macroTopOffset - halfHeight + 400
+                ? 1
+                : 0,
           }}
         >
           <h3>Verdichtung und maßvolle Akzentuierung:</h3>
@@ -136,7 +159,9 @@ const GrowingDot: FunctionComponent = () => {
         </div>
         <div
           className='section ergebnisse'
-          style={{ opacity: scrolledPixels > 1600 ? 1 : 0 }}
+          style={{
+            opacity: scrolledPixels > ergbenisseTopOffset - halfHeight ? 1 : 0,
+          }}
         >
           <h3>Ganzheitliche Betrachtung:</h3>
           <p>
@@ -150,7 +175,7 @@ const GrowingDot: FunctionComponent = () => {
       <style jsx>{`
         .growing-dot {
           position: relative;
-          height: 2630px;
+          height: calc(2300px + 50vh);
           margin-top: -25vh;
           margin-bottom: 0;
           z-index: 110;
@@ -179,13 +204,21 @@ const GrowingDot: FunctionComponent = () => {
           top: 0;
           width: 100%;
           height: 100%;
-          display: flex;
-          flex-flow: column;
-          align-items: center;
+          display: grid;
+          grid-auto-flow: column;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1200px 500px 600px;
+          grid-template-areas:
+            'analyse'
+            'verdichtung'
+            'ergebnisse';
+          justify-content: center;
+          justify-items: center;
+          align-items: end;
         }
 
         .outline-cirlce {
-          position: relative;
+          position: absolute;
           display: flex;
           flex: 0 0 auto;
           max-width: 100%;
@@ -213,13 +246,10 @@ const GrowingDot: FunctionComponent = () => {
 
         .section {
           position: sticky;
-          display: flex;
-          flex-flow: column;
-          justify-content: center;
-          align-items: center;
           top: 50%;
-          height: 250px;
+          height: min-content;
           width: 100%;
+          max-width: 100%;
           transform: translateY(-50%);
           transition: opacity 0.3s;
           z-index: 2;
@@ -235,8 +265,9 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .first-text {
+          position: absolute;
           width: 100%;
-          margin: calc(50vh - 40px) 0 0;
+          top: calc(50vh - 20px);
           font-size: 1em;
           overflow-wrap: break-word;
           text-align: right;
@@ -244,8 +275,6 @@ const GrowingDot: FunctionComponent = () => {
           grid-template-columns: 1fr 1fr;
           justify-items: end;
           font-weight: 200;
-          height: 220px;
-          transform: translateY(-0.8em);
         }
 
         .first-text span {
@@ -258,11 +287,13 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .micro {
+          top: ${microTopOffset - 130}px;
           width: 260px;
           height: 260px;
         }
 
         .macro {
+          top: ${macroTopOffset - 195}px;
           width: 390px;
           height: 390px;
         }
@@ -271,10 +302,18 @@ const GrowingDot: FunctionComponent = () => {
           width: 300px;
         }
 
+        .analyse {
+          grid-area: analyse;
+        }
+
+        .verdichtung {
+          grid-area: verdichtung;
+        }
+
         .ergebnisse {
-          margin-top: 530px;
+          position: static;
+          grid-area: ergebnisse;
           max-width: 500px;
-          margin-bottom: calc(50vh - 250px);
         }
 
         @media ${minWidth(breakpoint.xs)} {
