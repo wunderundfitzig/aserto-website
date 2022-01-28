@@ -55,7 +55,10 @@ const VERDICHTUNG_OFFSET_AFTER = 150 + VISIBILE_AFTER
 const ERGEBNISE_OFFSET_BFORE = 250 - VISIBLE_BEFORE
 
 const CIRCLE_SCALE_FACTOR = 300
-const MAX_CIRCLE_SCALE_FACTOR = ERGEBNISE_OFFSET_BFORE * CIRCLE_SCALE_FACTOR
+
+const circleSizes = Array.from({ length: ERGEBNISE_OFFSET_BFORE }, (_, i) =>
+  Math.sqrt(i * CIRCLE_SCALE_FACTOR)
+)
 
 const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
@@ -68,8 +71,8 @@ const GrowingDot: FunctionComponent = () => {
   const isPastLastSlide = scrolledVh > ERGEBNISE_OFFSET_BFORE
 
   const circleSize = isPastLastSlide
-    ? Math.sqrt(MAX_CIRCLE_SCALE_FACTOR)
-    : Math.sqrt(scrolledVh * CIRCLE_SCALE_FACTOR)
+    ? circleSizes[ERGEBNISE_OFFSET_BFORE]
+    : circleSizes[scrolledVh]
   const bigCircleSize = isPastLastSlide ? fullScreenSize : 0
 
   return (
