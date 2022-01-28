@@ -64,7 +64,9 @@ const Instagram: FunctionComponent<Props> = (props) => {
         }
 
         .instagram :global(.line) {
-          display: none;
+          height: 150px;
+          margin-top: -6rem;
+          margin-bottom: 4rem;
         }
 
         h2 {
@@ -92,9 +94,15 @@ const Instagram: FunctionComponent<Props> = (props) => {
           .posts {
             grid-template-columns: 1fr 1fr 1fr;
           }
+
+          .instagram :global(.line) {
+            height: 200px;
+            margin-top: -6rem;
+            margin-bottom: 4rem;
+          }
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.m)} {
           .instagram :global(.line) {
             display: block;
             margin-bottom: -1.5rem;
