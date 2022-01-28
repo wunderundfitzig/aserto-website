@@ -43,24 +43,24 @@ export const Circle: FunctionComponent = () => {
   )
 }
 
-const LAST_SLIDE_OFFSET = 1500
+const LAST_SLIDE_OFFSET = 240
 
 const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
   const scrolledPixels = useScrolledPixels(wrapperRef)
   const { width, height } = useWindowSize()
+  const scrolledPercent = (scrolledPixels / (height ?? 1)) * 100
   const fullScreenSize = (width ?? 0) > (height ?? 0) ? width ?? 0 : height ?? 0
-  const isPastLastSlide = scrolledPixels > LAST_SLIDE_OFFSET
+  const isPastLastSlide = scrolledPercent > LAST_SLIDE_OFFSET
 
   const circleSize = isPastLastSlide
-    ? Math.sqrt(LAST_SLIDE_OFFSET * 30)
-    : Math.sqrt(Math.max(1, scrolledPixels) * 30)
+    ? Math.sqrt(LAST_SLIDE_OFFSET * 300)
+    : Math.sqrt(Math.max(1, scrolledPercent) * 300)
   const bigCircleSize = isPastLastSlide ? fullScreenSize : 0
 
-  const halfHeight = height ? height / 2 : 0
-  const microTopOffset = 830
-  const macroTopOffset = 1370
-  const ergbenisseTopOffset = 2000
+  const analyseTopOffset = 40
+  const verdictungTopOffset = 140
+  const ergbenisseTopOffset = 240
 
   return (
     <section ref={wrapperRef} className='growing-dot'>
@@ -106,9 +106,7 @@ const GrowingDot: FunctionComponent = () => {
           className='outline-cirlce micro'
           style={{
             visibility:
-              scrolledPixels > microTopOffset - halfHeight
-                ? 'visible'
-                : 'hidden',
+              scrolledPercent > analyseTopOffset ? 'visible' : 'hidden',
           }}
         >
           <Circle />
@@ -117,8 +115,8 @@ const GrowingDot: FunctionComponent = () => {
           className='section analyse'
           style={{
             opacity:
-              scrolledPixels > microTopOffset - halfHeight &&
-              scrolledPixels < microTopOffset - halfHeight + 400
+              scrolledPercent > analyseTopOffset &&
+              scrolledPercent < analyseTopOffset + 50
                 ? 1
                 : 0,
           }}
@@ -134,9 +132,7 @@ const GrowingDot: FunctionComponent = () => {
           className='outline-cirlce macro'
           style={{
             visibility:
-              scrolledPixels > macroTopOffset - halfHeight
-                ? 'visible'
-                : 'hidden',
+              scrolledPercent > verdictungTopOffset ? 'visible' : 'hidden',
           }}
         >
           <Circle />
@@ -145,8 +141,8 @@ const GrowingDot: FunctionComponent = () => {
           className='section verdichtung'
           style={{
             opacity:
-              scrolledPixels > macroTopOffset - halfHeight &&
-              scrolledPixels < macroTopOffset - halfHeight + 400
+              scrolledPercent > verdictungTopOffset &&
+              scrolledPercent < verdictungTopOffset + 50
                 ? 1
                 : 0,
           }}
@@ -160,7 +156,7 @@ const GrowingDot: FunctionComponent = () => {
         <div
           className='section ergebnisse'
           style={{
-            opacity: scrolledPixels > ergbenisseTopOffset - halfHeight ? 1 : 0,
+            opacity: scrolledPercent > ergbenisseTopOffset ? 1 : 0,
           }}
         >
           <h3>Ganzheitliche Betrachtung:</h3>
@@ -175,8 +171,10 @@ const GrowingDot: FunctionComponent = () => {
       <style jsx>{`
         .growing-dot {
           position: relative;
-          height: calc(2300px + 50vh);
-          margin-top: -10rem;
+          height: 350vh;
+           {
+            /* margin-top: -10rem; */
+          }
           margin-bottom: 0;
           z-index: 110;
         }
@@ -207,8 +205,9 @@ const GrowingDot: FunctionComponent = () => {
           display: grid;
           grid-auto-flow: column;
           grid-template-columns: 1fr;
-          grid-template-rows: 1200px 500px 600px;
+          grid-template-rows: 50vh 100vh 100vh 100vh;
           grid-template-areas:
+            'space'
             'analyse'
             'verdichtung'
             'ergebnisse';
@@ -219,6 +218,8 @@ const GrowingDot: FunctionComponent = () => {
 
         .outline-cirlce {
           position: absolute;
+          top: 50%;
+          transform: translateY(calc(-50% - 10vh));
           display: flex;
           flex: 0 0 auto;
           max-width: 100%;
@@ -246,11 +247,12 @@ const GrowingDot: FunctionComponent = () => {
 
         .section {
           position: sticky;
-          top: 50%;
-          height: min-content;
+          top: 0;
+          height: 100%;
           width: 100%;
           max-width: 100%;
-          transform: translateY(-50%);
+          display: grid;
+          align-content: center;
           transition: opacity 0.3s;
           z-index: 2;
           padding: 0 1em;
@@ -287,15 +289,15 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .micro {
-          top: ${microTopOffset - 130}px;
-          width: 260px;
-          height: 260px;
+          grid-area: analyse;
+          width: 279px;
+          height: 279px;
         }
 
         .macro {
-          top: ${macroTopOffset - 195}px;
-          width: 390px;
-          height: 390px;
+          grid-area: verdichtung;
+          width: 470px;
+          height: 470px;
         }
 
         .verdichtung {
