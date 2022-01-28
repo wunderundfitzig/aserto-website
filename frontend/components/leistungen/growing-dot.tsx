@@ -176,7 +176,7 @@ const GrowingDot: FunctionComponent = () => {
         .growing-dot {
           position: relative;
           height: calc(2300px + 50vh);
-          margin-top: -25vh;
+          margin-top: -10rem;
           margin-bottom: 0;
           z-index: 110;
         }

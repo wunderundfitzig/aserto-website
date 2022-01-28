@@ -51,7 +51,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
 
         h2 {
           grid-area: title;
-          margin-top: 2em;
+          margin-top: 4rem;
           margin-bottom: 1em;
         }
 
@@ -84,14 +84,17 @@ const WasUnsAusmacht: FunctionComponent = () => {
         @media ${minWidth(breakpoint.sm)} {
           .was-uns-ausmacht {
             grid-template-columns: 0.9fr 1.1fr;
-            grid-template-rows: auto auto auto;
+            grid-template-rows: auto auto;
             grid-template-areas:
-              '.          image'
               'title      image'
               'text-block image';
             grid-gap: 0 3em;
-            align-items: end;
-            margin-top: 3em;
+            align-items: start;
+            margin-top: 4em;
+          }
+
+          h2 {
+            margin-top: 6rem;
           }
 
           .image {
@@ -122,7 +125,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
               'text-block image';
             grid-gap: 0 6em;
             align-items: end;
-            margin-top: 3em;
+            margin-top: 6em;
           }
 
           .image {
