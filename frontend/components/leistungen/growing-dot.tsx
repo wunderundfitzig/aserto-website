@@ -43,24 +43,34 @@ export const Circle: FunctionComponent = () => {
   )
 }
 
-const LAST_SLIDE_OFFSET = 230
+const VISIBLE_BEFORE = 20
+const VISIBILE_AFTER = 80
+
+const ANALYSE_OFFSET_BEFORE = 50 - VISIBLE_BEFORE
+const ANALYSE_OFFSET_AFTER = 50 + VISIBILE_AFTER
+
+const VERDICHTUNG_OFFSET_BEFORE = 150 - VISIBLE_BEFORE
+const VERDICHTUNG_OFFSET_AFTER = 150 + VISIBILE_AFTER
+
+const ERGEBNISE_OFFSET_BFORE = 250 - VISIBLE_BEFORE
+
+const CIRCLE_SCALE_FACTOR = 300
+const MAX_CIRCLE_SCALE_FACTOR = ERGEBNISE_OFFSET_BFORE * CIRCLE_SCALE_FACTOR
 
 const GrowingDot: FunctionComponent = () => {
   const wrapperRef = useRef(null)
   const scrolledPixels = useScrolledPixels(wrapperRef)
-  const { width, height } = useWindowSize()
-  const scrolledVh = (scrolledPixels / (height ?? 1)) * 100
-  const fullScreenSize = (width ?? 0) > (height ?? 0) ? width ?? 0 : height ?? 0
-  const isPastLastSlide = scrolledVh > LAST_SLIDE_OFFSET
+  const { width: _width, height: _height } = useWindowSize()
+  const width = _width ?? 1
+  const height = _height ?? 1
+  const scrolledVh = Math.max(1, (scrolledPixels / height) * 100)
+  const fullScreenSize = width > height ? width : height
+  const isPastLastSlide = scrolledVh > ERGEBNISE_OFFSET_BFORE
 
   const circleSize = isPastLastSlide
-    ? Math.sqrt(LAST_SLIDE_OFFSET * 300)
-    : Math.sqrt(Math.max(1, scrolledVh) * 300)
+    ? Math.sqrt(MAX_CIRCLE_SCALE_FACTOR)
+    : Math.sqrt(scrolledVh * CIRCLE_SCALE_FACTOR)
   const bigCircleSize = isPastLastSlide ? fullScreenSize : 0
-
-  const analyseTopOffset = 30
-  const verdictungTopOffset = 130
-  const ergbenisseTopOffset = 230
 
   return (
     <section ref={wrapperRef} className='growing-dot'>
@@ -105,7 +115,8 @@ const GrowingDot: FunctionComponent = () => {
         <div
           className='outline-cirlce micro'
           style={{
-            visibility: scrolledVh > analyseTopOffset ? 'visible' : 'hidden',
+            visibility:
+              scrolledVh > ANALYSE_OFFSET_BEFORE ? 'visible' : 'hidden',
           }}
         >
           <Circle />
@@ -114,8 +125,8 @@ const GrowingDot: FunctionComponent = () => {
           className='section analyse'
           style={{
             opacity:
-              scrolledVh > analyseTopOffset &&
-              scrolledVh < analyseTopOffset + 80
+              scrolledVh > ANALYSE_OFFSET_BEFORE &&
+              scrolledVh < ANALYSE_OFFSET_AFTER
                 ? 1
                 : 0,
           }}
@@ -130,7 +141,8 @@ const GrowingDot: FunctionComponent = () => {
         <div
           className='outline-cirlce macro'
           style={{
-            visibility: scrolledVh > verdictungTopOffset ? 'visible' : 'hidden',
+            visibility:
+              scrolledVh > VERDICHTUNG_OFFSET_BEFORE ? 'visible' : 'hidden',
           }}
         >
           <Circle />
@@ -139,8 +151,8 @@ const GrowingDot: FunctionComponent = () => {
           className='section verdichtung'
           style={{
             opacity:
-              scrolledVh > verdictungTopOffset &&
-              scrolledVh < verdictungTopOffset + 80
+              scrolledVh > VERDICHTUNG_OFFSET_BEFORE &&
+              scrolledVh < VERDICHTUNG_OFFSET_AFTER
                 ? 1
                 : 0,
           }}
@@ -154,7 +166,7 @@ const GrowingDot: FunctionComponent = () => {
         <div
           className='section ergebnisse'
           style={{
-            opacity: scrolledVh > ergbenisseTopOffset ? 1 : 0,
+            opacity: scrolledVh > ERGEBNISE_OFFSET_BFORE ? 1 : 0,
           }}
         >
           <h3>Ganzheitliche Betrachtung:</h3>
