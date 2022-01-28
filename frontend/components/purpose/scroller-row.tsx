@@ -9,10 +9,12 @@ type Props = {
   isActive: boolean
   image?: string
   text: string
+  id: string
 }
 const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
   return (
     <div
+      id={props.id}
       className={`row ${props.isActive ? 'active' : ''} ${
         props.category === 'daten' ? 'daten' : 'meschen'
       }`}
@@ -84,12 +86,20 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
           padding: 2rem;
           padding-left: 0;
           z-index: 1;
-          background-color: white;
+          background-color: transparent;
         }
 
         .daten .text {
           padding: 2rem;
           background-color: ${colors.lightBeige};
+        }
+
+        #zuhoeren .text {
+          background-color: white;
+        }
+
+        #prognosen .text {
+          background-color: transparent;
         }
 
         @media ${minWidth(breakpoint.sm)} {

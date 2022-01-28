@@ -23,6 +23,7 @@ const PurposeHeader: FunctionComponent = () => {
         />
         <div className='curve mobile-curve'>
           <LeftRightTurnCurve
+            animate
             color={categoryColors.purpose}
             preserveAspectRatio='none'
           />

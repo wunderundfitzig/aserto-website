@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import { categoryColors } from 'lib/colors'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 import Slogan from 'components/slogan'
 
 const SecondSloganText: FunctionComponent = () => {
@@ -18,8 +19,12 @@ const SecondSloganText: FunctionComponent = () => {
       </Slogan>
       <style jsx>{`
         section {
-          margin: 10rem 0;
+          margin: 8rem 0 7rem;
           max-width: 55em;
+        }
+
+        @media ${minWidth(breakpoint.sm)} {
+          margin: 10rem 0;
         }
       `}</style>
     </section>

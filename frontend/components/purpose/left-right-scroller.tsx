@@ -7,33 +7,39 @@ import ScrollerSvg from './scroller-svg'
 
 const rows = [
   {
+    id: 'zuhoeren',
     category: 'menschen',
     image: '/images/purpose/purpose-1.jpg',
     text:
       'die zuhören und die richtigen Fragen stellen, damit ein möglichst umfassendes Gesamtbild entsteht.',
   },
   {
+    id: 'statistisch',
     category: 'daten',
     text:
       'die mithilfe statistischer Methoden als Signale im Datenrauschen sichtbar werden.',
   },
   {
+    id: 'signale',
     category: 'menschen',
     image: '/images/purpose/purpose-3.jpg',
     text: 'die Signale richtig deuten und in Beziehung setzen.',
   },
   {
+    id: 'prognosen',
     category: 'daten',
     text:
       'damit gesicherte Erkenntnisse und sachlich gestützte Prognosen entstehen.',
   },
   {
+    id: 'verdichten',
     category: 'menschen',
     image: '/images/purpose/purpose-2.jpg',
     text:
       'die Erkenntnisse prägnant verdichten und die in Lösungen und Handlungsperspektiven denken.',
   },
   {
+    id: 'veraenderung',
     category: 'daten',
     text: 'die Veränderungen sichtbar machen.',
   },
