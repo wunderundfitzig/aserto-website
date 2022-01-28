@@ -44,7 +44,7 @@ export const Circle: FunctionComponent = () => {
 }
 
 const VISIBLE_BEFORE = 20
-const VISIBILE_AFTER = 80
+const VISIBILE_AFTER = 70
 
 const ANALYSE_OFFSET_BEFORE = 50 - VISIBLE_BEFORE
 const ANALYSE_OFFSET_AFTER = 50 + VISIBILE_AFTER
@@ -65,7 +65,7 @@ const GrowingDot: FunctionComponent = () => {
   const height = _height ?? 1
   const scrolledVh = Math.max(1, (scrolledPixels / height) * 100)
   const fullScreenSize = width > height ? width : height
-  const isPastLastSlide = scrolledVh > ERGEBNISE_OFFSET_BFORE
+  const isPastLastSlide = scrolledVh > ERGEBNISE_OFFSET_BFORE - 10
 
   const circleSize = isPastLastSlide
     ? Math.sqrt(MAX_CIRCLE_SCALE_FACTOR)
@@ -182,9 +182,7 @@ const GrowingDot: FunctionComponent = () => {
         .growing-dot {
           position: relative;
           height: 380vh;
-           {
-            /* margin-top: -10rem; */
-          }
+          margin-top: calc(-50vh + 10rem);
           margin-bottom: 0;
           z-index: 110;
         }
@@ -370,6 +368,12 @@ const GrowingDot: FunctionComponent = () => {
           .first-text span:first-child {
             text-align: center;
             justify-self: end;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .growing-dot {
+            margin-top: calc(-50vh + 15rem);
           }
         }
       `}</style>
