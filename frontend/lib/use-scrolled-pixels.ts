@@ -9,7 +9,7 @@ export function useScrolledPixels(
     const scrollHandler = () => {
       if (ref.current === null) return
       const boundingClientRect = ref.current.getBoundingClientRect()
-      const _scrolledPixels = boundingClientRect.top * -1
+      const _scrolledPixels = Math.trunc(boundingClientRect.top) * -1
       setScrolledPixels(_scrolledPixels)
     }
 
