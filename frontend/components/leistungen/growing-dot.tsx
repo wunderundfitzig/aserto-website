@@ -44,7 +44,7 @@ export const Circle: FunctionComponent = () => {
 }
 
 const VISIBLE_BEFORE = 20
-const VISIBILE_AFTER = 70
+const VISIBILE_AFTER = 60
 
 const ANALYSE_OFFSET_BEFORE = 50 - VISIBLE_BEFORE
 const ANALYSE_OFFSET_AFTER = 50 + VISIBILE_AFTER
@@ -63,9 +63,9 @@ const GrowingDot: FunctionComponent = () => {
   const { width: _width, height: _height } = useWindowSize()
   const width = _width ?? 1
   const height = _height ?? 1
-  const scrolledVh = Math.max(1, Math.trunc(scrolledPixels / height) * 100)
+  const scrolledVh = Math.max(1, (scrolledPixels / height) * 100)
   const fullScreenSize = width > height ? width : height
-  const isPastLastSlide = scrolledVh > ERGEBNISE_OFFSET_BFORE - 10
+  const isPastLastSlide = scrolledVh > ERGEBNISE_OFFSET_BFORE
 
   const circleSize = isPastLastSlide
     ? Math.sqrt(MAX_CIRCLE_SCALE_FACTOR)
