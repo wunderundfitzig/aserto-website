@@ -143,17 +143,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
           }
         }
 
-        @media ${minWidth(breakpoint.m)} {
-          .nav {
-            position: static;
-          }
-        }
-
         @media ${minWidth(breakpoint.l)} {
           .nav {
             grid-area: ${props.gridArea};
             z-index: 100;
-            position: sticky;
             top: 0;
             background-color: white;
             width: calc(100% + 1.5rem);

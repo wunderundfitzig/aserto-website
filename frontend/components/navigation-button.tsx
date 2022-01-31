@@ -12,7 +12,7 @@ const NavigationButton: FunctionComponent<Props> = (props) => {
     <button className='navigation-button' onClick={props.onClick}>
       {props.navigationIsOpen ? <CloseIcon /> : <HamburgerIcon />}
       <svg className='background' viewBox='0 0 100 100'>
-        <rect x={-1000} y={-200} width={100000} height={380} fill='white' />
+        <rect x={-1000} y={-100} width={100000} height={280} fill='white' />
       </svg>
 
       <style jsx>{`
@@ -35,11 +35,6 @@ const NavigationButton: FunctionComponent<Props> = (props) => {
           z-index: -1;
           overflow: visible;
           pointer-events: none;
-        }
-        @media ${minWidth(breakpoint.m)} {
-          .background {
-            display: none;
-          }
         }
 
         @media ${minWidth(breakpoint.l)} {
