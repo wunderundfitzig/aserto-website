@@ -43,7 +43,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
       <style jsx>{`
         .logo-link {
           position: sticky;
-          top: 1.3rem;
+          top: 1.5rem;
           grid-area: logo;
           max-width: 100%;
           width: 90px;
