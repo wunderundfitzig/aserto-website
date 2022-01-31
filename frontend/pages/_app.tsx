@@ -49,9 +49,14 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
           z-index: 1100;
         }
 
-        @media ${minWidth(breakpoint.l)} {
+        @media ${minWidth(breakpoint.m)} {
           .logo-link {
             position: relative;
+          }
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .logo-link {
             z-index: 110;
             margin-top: 1em;
           }
