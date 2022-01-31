@@ -77,7 +77,7 @@ const JobAdd: FunctionComponent<Props> = (props) => {
           position: fixed;
           top: 0;
           left: 0;
-          z-index: 300;
+          z-index: 3000;
           width: 100%;
           height: 100%;
           overflow: auto;

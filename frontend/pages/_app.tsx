@@ -53,12 +53,12 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
         }
 
         .logo-link.on-frontpage {
-          position: relative;
+          position: static;
         }
 
         @media ${minWidth(breakpoint.l)} {
           .logo-link {
-            position: relative;
+            position: static;
             z-index: 110;
             margin-top: 1em;
           }
