@@ -62,13 +62,13 @@ const NavigationButton: FunctionComponent<Props> = (props) => {
           height: 1.5rem;
           z-index: -1;
           opacity: 0;
-          transition: opacity ease-out 1s;
+          transition: opacity ease-in 0.25s;
           overflow: visible;
           pointer-events: none;
         }
 
         .background.scrolled {
-          animation: move-fade ease-in-out 1s;
+          animation: move-fade ease-in 0.25s;
           opacity: 1;
         }
 
