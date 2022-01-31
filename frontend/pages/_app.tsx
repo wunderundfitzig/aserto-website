@@ -39,18 +39,20 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
       <GlobalStyles />
       <style jsx>{`
         .logo-link {
-          position: relative;
+          position: sticky;
+          top: 1.3rem;
           grid-area: logo;
-          z-index: 2;
           max-width: 100%;
           width: 90px;
           min-width: 80px;
           justify-self: flex-end;
-          z-index: 110;
+          z-index: 1100;
         }
 
         @media ${minWidth(breakpoint.l)} {
           .logo-link {
+            position: relative;
+            z-index: 110;
             margin-top: 1em;
           }
         }

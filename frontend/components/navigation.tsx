@@ -63,7 +63,9 @@ const Navigation: FunctionComponent<Props> = (props) => {
         }
         .nav {
           grid-area: ${props.gridArea};
-          z-index: 100;
+          z-index: 1000;
+          position: sticky;
+          top: 1.5rem;
         }
 
         .nav.on-frontpage {
@@ -144,8 +146,8 @@ const Navigation: FunctionComponent<Props> = (props) => {
         @media ${minWidth(breakpoint.l)} {
           .nav {
             grid-area: ${props.gridArea};
-            position: sticky;
-            top: 0rem;
+            z-index: 100;
+            top: 0;
             background-color: white;
             width: calc(100% + 1.5rem);
             padding: 3rem 1.1rem 1rem 0.5rem;
