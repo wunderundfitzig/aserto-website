@@ -29,7 +29,10 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
       <FontTrackingScript />
       <MainGrid onFrontpage={isIndexPage}>
         <Link href='/'>
-          <a className='logo-link' title='aserto startpage'>
+          <a
+            className={`logo-link ${isIndexPage ? 'on-frontpage' : undefined}`}
+            title='aserto startpage'
+          >
             <AsertoLogo />
           </a>
         </Link>
@@ -47,6 +50,10 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
           min-width: 80px;
           justify-self: flex-end;
           z-index: 1100;
+        }
+
+        .logo-link.on-frontpage {
+          position: relative;
         }
 
         @media ${minWidth(breakpoint.m)} {
