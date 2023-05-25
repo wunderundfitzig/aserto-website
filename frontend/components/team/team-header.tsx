@@ -6,7 +6,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import Slogan from 'components/slogan'
 import { TriangleLine } from 'components/curves'
 import HeaderBackground from 'components/header-background'
-import image from 'public/images/team/team-image8.jpg'
+import image from 'public/images/team/team-image1.jpg'
 
 type Props = {
   title: string
@@ -76,14 +76,14 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
         .key-visual {
           grid-area: title / title / slogan / slogan;
           position: absolute;
-          transform: translateX(6em) translateY(3em);
+          transform: translateX(0em) translateY(4em);
           width: calc(100% - 4em);
           height: 120%;
         }
 
         @media ${minWidth(breakpoint.xs)} {
           .key-visual {
-            height: 145%;
+            height: 155%;
           }
         }
 
