@@ -6,7 +6,7 @@ on:
       - dev2
     paths:
       - frontend/**
-      - .github/workflows/deploy-to-dev.yml
+      - .github/workflows/deploy-to-dev2.yml
 
 jobs:
   deploy:
