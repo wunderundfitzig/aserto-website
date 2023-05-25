@@ -6,7 +6,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import Slogan from 'components/slogan'
 import { TriangleLine } from 'components/curves'
 import HeaderBackground from 'components/header-background'
-import image from 'public/images/team/team-image.jpg'
+import image from 'public/images/team/team-image8.jpg'
 
 type Props = {
   title: string
