@@ -5,7 +5,7 @@ import Slogan from 'components/slogan'
 import { EndlessLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { imageLoader } from 'lib/image-loader'
-import headerImage from 'public/images/karriere/karriere-image3.jpg'
+import headerImage from 'public/images/karriere/karriere-image-1.jpg'
 
 const KarriereHeader: FunctionComponent = () => {
   return (
