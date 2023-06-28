@@ -76,14 +76,14 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
         .key-visual {
           grid-area: title / title / slogan / slogan;
           position: absolute;
-          transform: translateX(6em) translateY(3em);
-          width: calc(100% - 4em);
-          height: 120%;
+          transform: translateX(7em) translateY(4em);
+          width: calc(100% - 6em);
+          height: 100%;
         }
 
         @media ${minWidth(breakpoint.xs)} {
           .key-visual {
-            height: 145%;
+            height: 140%;
           }
         }
 
