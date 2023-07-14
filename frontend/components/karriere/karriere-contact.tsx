@@ -3,21 +3,27 @@ import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { Contact, ImageType } from 'lib/types'
 import ContactBanner from 'components/contact-banner'
-import { CutLine, formatAlignment } from 'components/curves'
+import { StraightLine, formatAlignment } from 'components/curves'
 
 const Background: FunctionComponent = () => {
   return (
     <svg
       className='background'
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='450 0 100 35'
+      viewBox='0 0 100 35'
       preserveAspectRatio={formatAlignment({
         alignY: 'Min',
         alignX: 'Mid',
         fit: 'slice',
       })}
     >
-      <path d='M0 178L500 0l500 178z' fill={colors.backgroundRed} />
+      <rect
+        x={-100}
+        y={12}
+        width={300}
+        height={35}
+        fill={colors.backgroundRed}
+      />
 
       <style jsx>{`
         .background {
@@ -40,12 +46,11 @@ type Props = {
 const KarriereContact: FunctionComponent<Props> = (props) => {
   return (
     <div className='karriere-contact'>
-      <div className='line'>
-        <CutLine
-          color={colors.categoryColors.karriere}
-          rotate={-20}
-          preserveAspectRatio='none'
-        />
+      <div className='line red-left'>
+        <StraightLine color={colors.categoryColors.karriere} rotate={60} />
+      </div>
+      <div className='line white-right'>
+        <StraightLine color='white' rotate={60} />
       </div>
       <ContactBanner
         contactCardTitle='Kontakt'
@@ -69,30 +74,23 @@ const KarriereContact: FunctionComponent<Props> = (props) => {
         }
 
         .line {
-          display: none;
+          position: absolute;
         }
 
-        @media ${minWidth(breakpoint.ml)} {
-          .line {
-            display: block;
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            left: 65%;
-            bottom: 40vw;
-          }
+        .red-left {
+          width: 220px;
+          height: 220px;
+          bottom: -100px;
+          left: -40px;
+          z-index: 120;
         }
 
-        @media ${minWidth(breakpoint.l)} {
-          .line {
-            bottom: 32vw;
-          }
-        }
-
-        @media ${minWidth(breakpoint.xxl)} {
-          .line {
-            bottom: 420px;
-          }
+        .white-right {
+          width: 320px;
+          height: 320px;
+          bottom: -100px;
+          right: -200px;
+          z-index: 120;
         }
       `}</style>
     </div>
