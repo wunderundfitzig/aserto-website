@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import AsertoLogo from 'components/aserto-logo'
 import Favicons from 'components/favicons'
@@ -8,11 +7,6 @@ import MainGrid from 'components/main-grid'
 import Navigation from 'components/navigation'
 import GlobalStyles, { PreloadFont } from 'components/global-styles'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-
-const FontTrackingScript = dynamic(
-  () => import('components/font-tracking-script'),
-  { ssr: false }
-)
 
 export type LocalPageProps = {
   gridArea: string
@@ -26,7 +20,6 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
     <>
       <Favicons />
       <PreloadFont />
-      <FontTrackingScript />
       <MainGrid onFrontpage={isIndexPage}>
         <Link href='/'>
           <a
