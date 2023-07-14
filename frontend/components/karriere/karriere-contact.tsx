@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
-import { breakpoint, minWidth } from 'lib/breakpoints'
 import { Contact, ImageType } from 'lib/types'
 import ContactBanner from 'components/contact-banner'
 import { StraightLine, formatAlignment } from 'components/curves'

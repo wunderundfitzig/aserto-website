@@ -5,7 +5,7 @@ import KarriereHeader from 'components/karriere/karriere-header'
 import KarriereContact from 'components/karriere/karriere-contact'
 import JobList from 'components/karriere/job-list'
 import JobAdd from 'components/karriere/job-add'
-import Prinzipen from 'components/karriere/prinzipen'
+import WasUnsWichtigIst from 'components/karriere/was-uns-wichtig-ist'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
 
@@ -42,7 +42,7 @@ const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
       >
         <main>
           <KarriereHeader />
-          <Prinzipen />
+          <WasUnsWichtigIst />
           <JobList jobs={props.pageData.jobs} />
         </main>
         <KarriereContact

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
 import Slogan from 'components/slogan'
-import { EndlessLine } from 'components/curves'
+import { StraightLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { imageLoader } from 'lib/image-loader'
 import headerImage from 'public/images/karriere/karriere-image-1.jpg'
@@ -33,22 +33,12 @@ const KarriereHeader: FunctionComponent = () => {
           alt=''
         />
       </div>
-      <div className='line line-1'>
-        <EndlessLine
+      <div className='line'>
+        <StraightLine
           color={colors.categoryColors.karriere}
-          rotate={20}
-          animate
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={65}
         />
-      </div>
-      <div className='line line-2'>
-        <EndlessLine
-          color={colors.categoryColors.karriere}
-          rotate={-25}
-          animate
-        />
-      </div>
-      <div className='line line-3'>
-        <EndlessLine color={colors.categoryColors.karriere} rotate={5} />
       </div>
       <style jsx>{`
         .karriere-header {
@@ -74,38 +64,23 @@ const KarriereHeader: FunctionComponent = () => {
         .image {
           grid-area: image;
           width: calc(100% + 2em);
-          padding-bottom: 160%;
+          padding-bottom: 150%;
           position: relative;
           margin-left: -2em;
         }
 
         .line {
+          position: absolute;
+          width: 1px;
           height: 100%;
-          grid-area: lines;
+          transform: translate(-130px, -230px);
           z-index: -1;
-          transform: translate(10%, -5%) rotate(7deg);
-        }
-
-        .line-1 {
-          z-index: 1;
-        }
-
-        @media ${minWidth(breakpoint.xs)} {
-          .line {
-            transform: translate(0, -5%) rotate(5deg);
-          }
-        }
-
-        @media ${minWidth(breakpoint.s)} {
-          .line {
-            transform: translate(0, 0) rotate(5deg);
-          }
         }
 
         @media ${minWidth(breakpoint.sm)} {
           .karriere-header {
             grid-template-columns: minmax(250px, 20%) 1fr;
-            grid-template-rows: auto auto 200px;
+            grid-template-rows: auto auto 220px;
             grid-gap: 0 2rem;
             grid-template-areas:
               'image title'
@@ -117,44 +92,21 @@ const KarriereHeader: FunctionComponent = () => {
             height: 100%;
             padding-bottom: 0;
           }
-
-          .line {
-            transform: translate(0, -20px);
-          }
-
-          .line-1 {
-            z-index: -1;
-          }
-
-          .line-3 {
-            z-index: 1;
-          }
-        }
-
-        @media ${minWidth(breakpoint.ml)} {
-          .line {
-            transform: translate(0, 10px);
-          }
         }
 
         @media ${minWidth(breakpoint.l)} {
           .karriere-header {
-            grid-template-columns: minmax(250px, 40%) 1fr;
+            grid-template-columns: minmax(250px, 35%) 1fr;
           }
           .image {
             margin-top: -5em;
             height: calc(100% + 5em);
-            width: calc(100% + 3em);
-            margin-left: -3em;
-          }
-          .line {
-            transform: translate(150px, 30px);
+            width: calc(100%);
           }
         }
 
         @media ${minWidth(breakpoint.xl)} {
           .karriere-header {
-            grid-template-columns: minmax(250px, 40%) 1fr;
             grid-gap: 0 4rem;
           }
         }
@@ -163,10 +115,6 @@ const KarriereHeader: FunctionComponent = () => {
           .image {
             width: 100%;
             margin-left: 0;
-          }
-
-          .line {
-            transform: translate(150px, 70px);
           }
         }
       `}</style>
