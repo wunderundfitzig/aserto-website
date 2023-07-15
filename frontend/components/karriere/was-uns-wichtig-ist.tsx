@@ -9,7 +9,7 @@ import Statement from 'components/statement'
 
 const WasUnsWichtigIst: FunctionComponent = () => {
   return (
-    <section className='prinzipen'>
+    <section className='was-uns-wichtig-ist'>
       <div className='text'>
         <Statement color={categoryColors.karriere}>
           {{
@@ -41,7 +41,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
         <StraightLine
           color={categoryColors.karriere}
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
-          rotate={65}
+          rotate={63.5}
         />
       </div>
       <div className='image'>
@@ -49,7 +49,8 @@ const WasUnsWichtigIst: FunctionComponent = () => {
       </div>
 
       <style jsx>{`
-        .prinzipen {
+        .was-uns-wichtig-ist {
+          position: relative;
           display: grid;
           grid-template-columns: 40% 45%;
           grid-gap: 0 4rem;
@@ -65,7 +66,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
 
         .image {
           grid-area: image;
-          margin-top: 50px;
+          margin-top: 80px;
           width: calc(100% + 10rem);
         }
 
@@ -73,8 +74,8 @@ const WasUnsWichtigIst: FunctionComponent = () => {
           pointer-events: none;
           position: absolute;
           width: 1px;
-          height: 120%;
-          transform: translate(160px, -50px);
+          height: calc(100% + 6rem);
+          transform: translate(220px, -30px);
           z-index: 1;
         }
       `}</style>

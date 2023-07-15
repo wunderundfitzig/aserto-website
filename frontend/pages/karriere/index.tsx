@@ -8,6 +8,7 @@ import JobAdd from 'components/karriere/job-add'
 import WasUnsWichtigIst from 'components/karriere/was-uns-wichtig-ist'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
+import Vorteile from 'components/karriere/vorteile'
 
 type Job = {
   slug: string
@@ -43,6 +44,7 @@ const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
         <main>
           <KarriereHeader />
           <WasUnsWichtigIst />
+          <Vorteile />
           <JobList jobs={props.pageData.jobs} />
         </main>
         <KarriereContact

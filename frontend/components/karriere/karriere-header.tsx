@@ -37,11 +37,12 @@ const KarriereHeader: FunctionComponent = () => {
         <StraightLine
           color={colors.categoryColors.karriere}
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
-          rotate={65}
+          rotate={63}
         />
       </div>
       <style jsx>{`
         .karriere-header {
+          position: relative;
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-areas:
@@ -71,11 +72,10 @@ const KarriereHeader: FunctionComponent = () => {
 
         .line {
           pointer-events: none;
-
           position: absolute;
           width: 1px;
-          height: 100%;
-          transform: translate(-130px, -230px);
+          height: calc(100% + 280px);
+          transform: translate(-100px, -200px);
           z-index: -1;
         }
 
