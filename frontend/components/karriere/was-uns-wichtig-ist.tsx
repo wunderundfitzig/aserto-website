@@ -5,29 +5,37 @@ import { imageLoader } from 'lib/image-loader'
 
 import image from 'public/images/karriere/karriere-image-2.jpg'
 import { StraightLine } from 'components/curves'
+import Statement from 'components/statement'
 
 const WasUnsWichtigIst: FunctionComponent = () => {
   return (
     <section className='prinzipen'>
       <div className='text'>
-        <h3>Was uns wichtig ist</h3>
-
-        <p>
-          Wir denken und handeln evidenzbasiert, weil daraus die besten
-          richtungsweisenden Entscheidungen entstehen.
-        </p>
-        <p>
-          Wir arbeiten auf Augenhöhe zusammen, haben ein offenes Ohr füreinander
-          und finden gemeinsam Lösungen.
-        </p>
-        <p>
-          Wir agieren nachhaltig, schonen ökologische Ressourcen, pflegen einen
-          fairen Umgang und denken stets langfristig.
-        </p>
-        <p>
-          Wir entwickeln uns ständig weiter unsere Kompetenzen, unsere
-          Persönlichkeit, unser Urteilsvermögen.
-        </p>
+        <Statement color={categoryColors.karriere}>
+          {{
+            title: <h3>Was uns wichtig ist</h3>,
+            content: (
+              <>
+                <p>
+                  Wir denken und handeln evidenzbasiert, weil daraus die besten
+                  richtungsweisenden Entscheidungen entstehen.
+                </p>
+                <p>
+                  Wir arbeiten auf Augenhöhe zusammen, haben ein offenes Ohr
+                  füreinander und finden gemeinsam Lösungen.
+                </p>
+                <p>
+                  Wir agieren nachhaltig, schonen ökologische Ressourcen,
+                  pflegen einen fairen Umgang und denken stets langfristig.
+                </p>
+                <p>
+                  Wir entwickeln uns ständig weiter unsere Kompetenzen, unsere
+                  Persönlichkeit, unser Urteilsvermögen.
+                </p>
+              </>
+            ),
+          }}
+        </Statement>
       </div>
       <div className='line'>
         <StraightLine
