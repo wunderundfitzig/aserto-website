@@ -67,7 +67,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
         .image {
           grid-area: image;
           margin-top: 80px;
-          width: calc(100% + 10rem);
+          width: calc(100% + 195px);
         }
 
         .line {
