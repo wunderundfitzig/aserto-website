@@ -110,8 +110,6 @@ const KarriereContact: FunctionComponent<Props> = (props) => {
           right: 120px;
           z-index: 120;
         }
-
-
       `}</style>
     </div>
   )

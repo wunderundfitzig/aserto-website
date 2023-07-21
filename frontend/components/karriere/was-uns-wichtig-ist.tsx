@@ -29,8 +29,8 @@ const WasUnsWichtigIst: FunctionComponent = () => {
                   pflegen einen fairen Umgang und denken stets langfristig.
                 </p>
                 <p>
-                  Wir entwickeln uns ständig weiter unsere Kompetenzen, unsere
-                  Persönlichkeit, unser Urteilsvermögen.
+                  Wir entwickeln uns ständig weiter – unsere Kompetenzen, unsere
+                  Persönlichkeiten, unser Urteilsvermögen.
                 </p>
               </>
             ),

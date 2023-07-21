@@ -48,7 +48,7 @@ const Vorteile: FunctionComponent = () => {
         </Statement>
       </div>
       <div className='text'>
-        <p>Gute Work Life Balance</p>
+        <p>Gute Work-Life-Integration</p>
         <p>Erfolgsbeteiligungen und weitere Zuschüsse</p>
         <p>Möbilitätslösungen für ÖPNV und Individualverkehr</p>
         <p>Angebote zur (mentalen) Gesundheitsförderung</p>
@@ -68,7 +68,7 @@ const Vorteile: FunctionComponent = () => {
       <div className='charta-text'>
         <p>
           Wir treten für ein wertschätzendes und vorurteilsfreies Arbeitsumfeld
-          ein, das Talente aufgrund ihrer Leistungen schätzt –unabhängig von
+          ein, das Talente aufgrund ihrer Leistungen schätzt – unabhängig von
           Alter, Geschlecht und geschlechtlicher Identität, ethnischer oder
           kultureller Herkunft, Religion und Weltanschauung, sexueller
           Orientierung und Identität oder Behinderung. Deshalb haben wir die
