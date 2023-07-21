@@ -1,40 +1,52 @@
 import { FunctionComponent } from 'react'
-import * as colors from 'lib/colors'
+import { categoryColors, backgroundRed } from 'lib/colors'
 import { Contact, ImageType } from 'lib/types'
 import ContactBanner from 'components/contact-banner'
 import { StraightLine, formatAlignment } from 'components/curves'
 
 const Background: FunctionComponent = () => {
   return (
-    <svg
-      className='background'
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 100 35'
-      preserveAspectRatio={formatAlignment({
-        alignY: 'Min',
-        alignX: 'Mid',
-        fit: 'slice',
-      })}
-    >
-      <rect
-        x={-100}
-        y={12}
-        width={300}
-        height={35}
-        fill={colors.backgroundRed}
-      />
+    <div>
+      <div className='line fake-red'>
+        <StraightLine
+          color={categoryColors.karriere}
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={64}
+        />
+      </div>
 
+      <svg
+        className='background'
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox='0 0 100 35'
+        preserveAspectRatio={formatAlignment({
+          alignY: 'Min',
+          alignX: 'Mid',
+          fit: 'slice',
+        })}
+      >
+        <rect x={-100} y={0} width={300} height={35} fill={backgroundRed} />
+      </svg>
       <style jsx>{`
         .background {
           width: 100%;
           height: 100%;
           overflow: visible;
+          z-index: -1;
+        }
+        .fake-red {
+          position: absolute;
+          width: 1px;
+          height: 320px;
+          bottom: -100px;
+          right: 237px;
+          z-index: 100;
         }
         svg {
           overflow: visible;
         }
       `}</style>
-    </svg>
+    </div>
   )
 }
 
@@ -46,10 +58,18 @@ const KarriereContact: FunctionComponent<Props> = (props) => {
   return (
     <div className='karriere-contact'>
       <div className='line red-left'>
-        <StraightLine color={colors.categoryColors.karriere} rotate={60} />
+        <StraightLine
+          color={categoryColors.karriere}
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={64}
+        />
       </div>
       <div className='line white-right'>
-        <StraightLine color='white' rotate={60} />
+        <StraightLine
+          color='white'
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={66}
+        />
       </div>
       <ContactBanner
         contactCardTitle='Kontakt'
@@ -74,10 +94,10 @@ const KarriereContact: FunctionComponent<Props> = (props) => {
 
         .line {
           position: absolute;
+          width: 1px;
         }
 
         .red-left {
-          width: 220px;
           height: 220px;
           bottom: -100px;
           left: -40px;
@@ -85,12 +105,13 @@ const KarriereContact: FunctionComponent<Props> = (props) => {
         }
 
         .white-right {
-          width: 320px;
           height: 320px;
           bottom: -100px;
-          right: -200px;
+          right: 120px;
           z-index: 120;
         }
+
+
       `}</style>
     </div>
   )

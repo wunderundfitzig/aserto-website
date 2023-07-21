@@ -41,7 +41,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
         <StraightLine
           color={categoryColors.karriere}
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
-          rotate={63.5}
+          rotate={64}
         />
       </div>
       <div className='image'>

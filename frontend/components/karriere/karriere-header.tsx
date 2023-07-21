@@ -37,7 +37,7 @@ const KarriereHeader: FunctionComponent = () => {
         <StraightLine
           color={colors.categoryColors.karriere}
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
-          rotate={63}
+          rotate={64}
         />
       </div>
       <style jsx>{`
