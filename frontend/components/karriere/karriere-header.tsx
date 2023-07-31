@@ -23,7 +23,15 @@ const KarriereHeader: FunctionComponent = () => {
         </Slogan>
       </div>
       <div className='image'>
-        <Image loader={imageLoader} priority src={headerImage} alt='' />
+        <Image
+          loader={imageLoader}
+          layout='fill'
+          objectFit='cover'
+          objectPosition='center'
+          priority
+          src={headerImage}
+          alt=''
+        />
       </div>
       <div className='line'>
         <StraightLine
@@ -36,11 +44,11 @@ const KarriereHeader: FunctionComponent = () => {
         .karriere-header {
           position: relative;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 80% 1fr;
           grid-template-areas:
-            'title title'
+            'title  title'
             'slogan slogan'
-            'image lines';
+            'image  .';
         }
 
         h1 {
@@ -50,33 +58,44 @@ const KarriereHeader: FunctionComponent = () => {
 
         .slogan {
           grid-area: slogan;
-          max-width: 30em;
+          max-width: 18em;
           margin-bottom: 4em;
         }
 
         .image {
-          grid-area: image;
-          width: calc(100% + 2em);
-          padding-bottom: 150%;
           position: relative;
-          margin-left: -2em;
+          padding-bottom: 120%;
+          grid-area: image;
+          width: 100%;
         }
 
         .line {
           pointer-events: none;
           position: absolute;
           width: 1px;
-          height: calc(100% + 280px);
-          left: -110px;
-          top: -200px;
+          height: 600px;
+          left: 90px;
+          top: -10px;
           z-index: -1;
         }
 
+        @media ${minWidth(breakpoint.s)} {
+          .line {
+            left: 40px;
+            top: 220px;
+          }
+        }
+
         @media ${minWidth(breakpoint.sm)} {
+          h1 {
+            padding-top: 1em;
+          }
+
           .karriere-header {
-            grid-template-columns: minmax(250px, 20%) 1fr;
+            grid-template-columns: 40% 1fr;
             grid-template-rows: auto auto 220px;
-            grid-gap: 0 4rem;
+            grid-gap: 0 3rem;
+            align-items: flex-start;
             grid-template-areas:
               'image title'
               'image slogan'
@@ -84,14 +103,30 @@ const KarriereHeader: FunctionComponent = () => {
           }
 
           .image {
-            height: 100%;
-            padding-bottom: 0;
+            padding-bottom: 150%;
+          }
+
+          .line {
+            pointer-events: none;
+            position: absolute;
+            width: 1px;
+            height: calc(100% + 280px);
+            left: -100px;
+            top: 170px;
+            z-index: -1;
           }
         }
 
         @media ${minWidth(breakpoint.l)} {
+          h1 {
+            padding-top: inherit;
+          }
           .karriere-header {
             grid-template-columns: minmax(35%, 300px) 1fr;
+            grid-gap: 0 4rem;
+          }
+          .slogan {
+            max-width: 30em;
           }
           .image {
             margin-top: -5em;
