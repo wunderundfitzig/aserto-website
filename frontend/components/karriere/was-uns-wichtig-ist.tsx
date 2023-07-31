@@ -134,7 +134,6 @@ const WasUnsWichtigIst: FunctionComponent = () => {
             grid-template-areas: 'text image';
             justify-content: space-between;
             margin-top: -220px;
-            padding-bottom: 95%;
           }
           .text {
             margin-top: 320px;
@@ -142,11 +141,13 @@ const WasUnsWichtigIst: FunctionComponent = () => {
           .image {
             margin-top: 80px;
             width: calc(100% + 100px + 6em);
+            padding-bottom: 95%;
           }
           .line {
             height: calc(100% + 6rem);
             left: 18%;
             top: 20px;
+            z-index: 1;
           }
         }
         @media ${minWidth(breakpoint.xl)} {

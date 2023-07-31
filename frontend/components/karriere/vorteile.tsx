@@ -10,6 +10,7 @@ import image2 from 'public/images/karriere/karriere-image-4.jpg'
 import image3 from 'public/images/karriere/karriere-image-5.jpg'
 
 import chartaLogo from 'public/images/karriere/charta-der-vielfalt-logo.svg'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const Vorteile: FunctionComponent = () => {
   return (
@@ -116,47 +117,31 @@ const Vorteile: FunctionComponent = () => {
       <style jsx>{`
         .vorteile {
           position: relative;
-          margin-top: 4rem;
+          margin-top: 2rem;
           display: grid;
-          grid-template-columns: 50% 40%;
+          grid-template-columns: 1fr;
+          grid-template-rows: min-content auto auto auto;
           grid-gap: 0 4rem;
-          grid-template-rows: min-content min-content min-content min-content 1fr;
           grid-template-areas:
-            'images      title'
-            'images      text'
-            'images      right-image'
-            'charta-logo right-image'
-            'charta-text right-image';
-        }
-
-        .background {
-          grid-area: 2 / 1 / 2 / 3;
-          width: 100%;
-          height: 100%;
-          overflow: visible;
+            'images'
+            'title'
+            'text'
+            'charta-logo'
+            'charta-text'
+            'right-image';
         }
 
         .images {
           grid-area: images;
+          margin-left: -2em;
+          margin-right: -2em;
         }
 
-        .image-1 {
-          margin-bottom: 4rem;
-          margin-left: -2rem;
-          transform: translateX(-3rem);
-        }
-
-        .image-2 {
-          position: relative;
-          margin-left: -2rem;
-          z-index: 2;
-        }
-
-        .image-right {
-          grid-area: right-image;
-          margin-top: 5rem;
-          width: calc(100% + 220px);
-          margin-left: 1rem;
+        .background {
+          grid-area: text;
+          width: 100%;
+          height: 100%;
+          overflow: visible;
         }
 
         .title {
@@ -184,6 +169,20 @@ const Vorteile: FunctionComponent = () => {
         .charta-logo {
           grid-area: charta-logo;
           margin: 4rem 0 2rem;
+        }
+
+        .image-1 {
+          width: 80%;
+        }
+
+        .image-2 {
+          width: 80%;
+          margin-left: 20%;
+          margin-top: 2em;
+        }
+
+        .image-right {
+          margin-top: 2em;
         }
 
         .line {
@@ -218,6 +217,51 @@ const Vorteile: FunctionComponent = () => {
           right: 0;
           height: 800px;
           transform: translate(-200px, 580px);
+        }
+
+        @media ${minWidth(breakpoint.l)} {
+          .vorteile {
+            margin-top: 4rem;
+            grid-template-columns: 50% 40%;
+            grid-gap: 0 4rem;
+            grid-template-rows: min-content min-content min-content min-content 1fr;
+            grid-template-areas:
+              'images      title'
+              'images      text'
+              'images      right-image'
+              'charta-logo right-image'
+              'charta-text right-image';
+          }
+
+          .background {
+            grid-area: 2 / 1 / 2 / 3;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+          }
+
+          .images {
+            display: block;
+          }
+
+          .image-1 {
+            margin-bottom: 4rem;
+            margin-left: -2rem;
+            transform: translateX(-3rem);
+          }
+
+          .image-2 {
+            position: relative;
+            margin-left: -2rem;
+            z-index: 2;
+          }
+
+          .image-right {
+            grid-area: right-image;
+            margin-top: 5rem;
+            width: calc(100% + 220px);
+            margin-left: 1rem;
+          }
         }
       `}</style>
     </section>
