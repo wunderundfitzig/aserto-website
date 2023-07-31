@@ -6,6 +6,7 @@ import { imageLoader } from 'lib/image-loader'
 import image from 'public/images/karriere/karriere-image-2.jpg'
 import { StraightLine } from 'components/curves'
 import Statement from 'components/statement'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const WasUnsWichtigIst: FunctionComponent = () => {
   return (
@@ -52,7 +53,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
         .was-uns-wichtig-ist {
           position: relative;
           display: grid;
-          grid-template-columns: 40% 45%;
+          grid-template-columns: 55% 1fr;
           grid-gap: 0 4rem;
           grid-template-areas: 'text image';
           justify-content: space-between;
@@ -62,6 +63,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
         .text {
           grid-area: text;
           margin-top: 320px;
+          max-width: 25em;
         }
 
         .image {
@@ -75,8 +77,42 @@ const WasUnsWichtigIst: FunctionComponent = () => {
           position: absolute;
           width: 1px;
           height: calc(100% + 6rem);
-          transform: translate(220px, -30px);
+          left: 16%;
+          top: 30px;
           z-index: 1;
+        }
+        @media ${minWidth(breakpoint.l)} {
+          .image {
+            width: calc(100% + 100px + 6em);
+          }
+          .line {
+            left: 18%;
+            top: 20px;
+          }
+        }
+        @media ${minWidth(breakpoint.xl)} {
+          .was-uns-wichtig-ist {
+            grid-template-columns: 50% 45%;
+          }
+          .image {
+            width: calc(100% + 195px);
+          }
+          .line {
+            left: 16%;
+            top: -30px;
+          }
+        }
+        @media ${minWidth(breakpoint.xxl)} {
+          .was-uns-wichtig-ist {
+            grid-template-columns: 40% 45%;
+          }
+          .image {
+            width: calc(100% + 195px);
+          }
+          .line {
+            left: 220px;
+            top: -30px;
+          }
         }
       `}</style>
     </section>
