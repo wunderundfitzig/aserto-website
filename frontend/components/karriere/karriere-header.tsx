@@ -23,15 +23,7 @@ const KarriereHeader: FunctionComponent = () => {
         </Slogan>
       </div>
       <div className='image'>
-        <Image
-          loader={imageLoader}
-          priority
-          src={headerImage}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          alt=''
-        />
+        <Image loader={imageLoader} priority src={headerImage} alt='' />
       </div>
       <div className='line'>
         <StraightLine
@@ -75,7 +67,8 @@ const KarriereHeader: FunctionComponent = () => {
           position: absolute;
           width: 1px;
           height: calc(100% + 280px);
-          transform: translate(-100px, -200px);
+          left: -110px;
+          top: -200px;
           z-index: -1;
         }
 
@@ -83,7 +76,7 @@ const KarriereHeader: FunctionComponent = () => {
           .karriere-header {
             grid-template-columns: minmax(250px, 20%) 1fr;
             grid-template-rows: auto auto 220px;
-            grid-gap: 0 2rem;
+            grid-gap: 0 4rem;
             grid-template-areas:
               'image title'
               'image slogan'
@@ -98,25 +91,36 @@ const KarriereHeader: FunctionComponent = () => {
 
         @media ${minWidth(breakpoint.l)} {
           .karriere-header {
-            grid-template-columns: minmax(250px, 35%) 1fr;
+            grid-template-columns: minmax(35%, 300px) 1fr;
           }
           .image {
             margin-top: -5em;
-            height: calc(100% + 5em);
-            width: calc(100%);
+            width: 100%;
+            margin-left: 0;
+          }
+          .line {
+            height: 780px;
+            top: -150px;
+            left: -300px;
           }
         }
 
         @media ${minWidth(breakpoint.xl)} {
-          .karriere-header {
-            grid-gap: 0 4rem;
+          .image {
+            width: 100%;
+          }
+          .line {
+            top: -200px;
+            left: -300px;
           }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
           .image {
             width: 100%;
-            margin-left: 0;
+          }
+          .line {
+            left: -110px;
           }
         }
       `}</style>
