@@ -46,46 +46,105 @@ const WasUnsWichtigIst: FunctionComponent = () => {
         />
       </div>
       <div className='image'>
-        <Image loader={imageLoader} src={image} alt='' />
+        <Image
+          layout='fill'
+          objectFit='cover'
+          objectPosition='center'
+          loader={imageLoader}
+          src={image}
+          alt=''
+        />
       </div>
 
       <style jsx>{`
         .was-uns-wichtig-ist {
           position: relative;
           display: grid;
-          grid-template-columns: 55% 1fr;
+          grid-template-columns: 1fr;
           grid-gap: 0 4rem;
-          grid-template-areas: 'text image';
-          justify-content: space-between;
-          margin-top: -220px;
+          grid-template-areas:
+            'image'
+            'text';
+          align-items: flex-start;
         }
 
         .text {
           grid-area: text;
-          margin-top: 320px;
-          max-width: 25em;
+          max-width: 20em;
         }
 
         .image {
+          position: relative;
           grid-area: image;
-          margin-top: 80px;
-          width: calc(100% + 195px);
+          width: calc(80% + 2em);
+          margin: -4em 0em 3em 20%;
+          padding-bottom: 60%;
         }
 
         .line {
           pointer-events: none;
           position: absolute;
           width: 1px;
-          height: calc(100% + 6rem);
-          left: 16%;
-          top: 30px;
-          z-index: 1;
+          height: 200%;
+          right: 500px;
+          top: -180px;
+          z-index: 0;
+        }
+        @media ${minWidth(breakpoint.xs)} {
+          .text {
+            margin-top: 1em;
+          }
+          .line {
+            right: 580px;
+          }
+        }
+        @media ${minWidth(breakpoint.s)} {
+          .text {
+            margin-top: 2em;
+          }
+          .line {
+            top: -200px;
+            right: 700px;
+          }
+        }
+        @media ${minWidth(breakpoint.sm)} {
+          .was-uns-wichtig-ist {
+            grid-template-columns: minmax(50%, 1fr) 1fr;
+            grid-gap: 0 3rem;
+            grid-template-areas: 'text image';
+            justify-content: space-between;
+            margin-top: 3em;
+          }
+          .image {
+            width: calc(100% + 2em);
+            margin: 0;
+            padding-bottom: 150%;
+            margin-top: 0;
+          }
+          .line {
+            height: 800px;
+            top: -120px;
+            left: 23%;
+          }
         }
         @media ${minWidth(breakpoint.l)} {
+          .was-uns-wichtig-ist {
+            grid-template-columns: 55% 1fr;
+            grid-gap: 0 4rem;
+            grid-template-areas: 'text image';
+            justify-content: space-between;
+            margin-top: -220px;
+            padding-bottom: 95%;
+          }
+          .text {
+            margin-top: 320px;
+          }
           .image {
+            margin-top: 80px;
             width: calc(100% + 100px + 6em);
           }
           .line {
+            height: calc(100% + 6rem);
             left: 18%;
             top: 20px;
           }
@@ -110,7 +169,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
             width: calc(100% + 195px);
           }
           .line {
-            left: 220px;
+            left: 180px;
             top: -30px;
           }
         }

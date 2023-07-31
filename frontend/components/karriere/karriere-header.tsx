@@ -93,13 +93,12 @@ const KarriereHeader: FunctionComponent = () => {
 
           .karriere-header {
             grid-template-columns: 40% 1fr;
-            grid-template-rows: auto auto 220px;
+            grid-template-rows: auto auto;
             grid-gap: 0 3rem;
             align-items: flex-start;
             grid-template-areas:
               'image title'
-              'image slogan'
-              'image lines';
+              'image slogan';
           }
 
           .image {
@@ -111,8 +110,8 @@ const KarriereHeader: FunctionComponent = () => {
             position: absolute;
             width: 1px;
             height: calc(100% + 280px);
-            left: -100px;
-            top: 170px;
+            left: -150px;
+            top: -170px;
             z-index: -1;
           }
         }
@@ -122,7 +121,12 @@ const KarriereHeader: FunctionComponent = () => {
             padding-top: inherit;
           }
           .karriere-header {
+            grid-template-rows: auto auto 220px;
             grid-template-columns: minmax(35%, 300px) 1fr;
+            grid-template-areas:
+              'image title'
+              'image slogan'
+              'image .';
             grid-gap: 0 4rem;
           }
           .slogan {
