@@ -197,7 +197,7 @@ const Vorteile: FunctionComponent = () => {
         }
         .red-line {
           height: 600px;
-          transform: translate(-100px, 0);
+          transform: translate(-91px, 20px);
         }
         .white-line {
           height: 600px;
@@ -210,12 +210,17 @@ const Vorteile: FunctionComponent = () => {
           display: none;
         }
         .right-line {
-          top: auto;
-          left: auto;
-          bottom: 0;
-          right: 0;
-          height: 800px;
-          transform: translate(-200px, 580px);
+          display: none;
+        }
+        @media ${minWidth(breakpoint.xs)} {
+          .red-line {
+            height: 1200px;
+            transform: translate(-201px, 80px);
+          }
+          .white-line {
+            height: 1200px;
+            transform: translate(-217px, 60px);
+          }
         }
         @media ${minWidth(breakpoint.sm)} {
           .vorteile {
@@ -323,8 +328,6 @@ const Vorteile: FunctionComponent = () => {
           .charta-text {
             margin-top: 0;
           }
-        }
-        @media ${minWidth(breakpoint.l)} {
           .red-line {
             height: 600px;
             transform: translate(689px, -200px);
@@ -342,6 +345,15 @@ const Vorteile: FunctionComponent = () => {
           .white-line2 {
             height: 1200px;
             transform: translate(-260px, 200px);
+          }
+          .right-line {
+            display: none;
+            top: auto;
+            left: auto;
+            bottom: 0;
+            right: 0;
+            height: 800px;
+            transform: translate(-200px, 580px);
           }
         }
 
