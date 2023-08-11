@@ -182,6 +182,7 @@ const Vorteile: FunctionComponent = () => {
         }
 
         .image-right {
+          grid-area: right-image;
           margin-top: 2em;
         }
 
@@ -218,6 +219,61 @@ const Vorteile: FunctionComponent = () => {
           height: 800px;
           transform: translate(-200px, 580px);
         }
+        @media ${minWidth(breakpoint.sm)} {
+          .vorteile {
+            margin-top: 0;
+            grid-template-columns: 1fr 300px;
+            grid-gap: 0 3rem;
+            grid-template-areas:
+              'images      title'
+              'images      text'
+              'right-image text'
+              'charta-logo charta-text';
+          }
+
+          .background {
+            grid-area: 2 / 1 / 4 / 3;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+          }
+
+          .title {
+            margin-top: 0;
+          }
+
+          .images {
+            margin: 0;
+            margin-left: -2em;
+          }
+
+          .image-1 {
+            width: 100%;
+            margin-bottom: 2em;
+            margin-top: 3em;
+          }
+
+          .image-2 {
+            width: 100%;
+            margin: 0%;
+          }
+
+          .image-right {
+            margin-left: -2em;
+          }
+
+          .charta-logo {
+          }
+
+          .charta-text {
+            margin-top: 3em;
+          }
+        }
+        @media ${minWidth(breakpoint.sm)} {
+          .vorteile {
+            margin-top: 4rem;
+          }
+        }
 
         @media ${minWidth(breakpoint.l)} {
           .vorteile {
@@ -240,6 +296,10 @@ const Vorteile: FunctionComponent = () => {
             overflow: visible;
           }
 
+          .title {
+            margin: 4rem 0 3rem;
+          }
+
           .images {
             display: block;
           }
@@ -257,10 +317,74 @@ const Vorteile: FunctionComponent = () => {
           }
 
           .image-right {
-            grid-area: right-image;
             margin-top: 5rem;
             width: calc(100% + 220px);
             margin-left: 1rem;
+          }
+
+          .charta-text {
+            margin-top: 0;
+          }
+        }
+        @media ${minWidth(breakpoint.l)} {
+          .red-line {
+            height: 600px;
+            transform: translate(689px, -200px);
+            z-index: 1;
+          }
+          .white-line {
+            height: 600px;
+            transform: translate(680px, -200px);
+          }
+          .red-line2 {
+            height: 800px;
+            transform: translate(22px, 550px);
+            z-index: 3;
+          }
+          .white-line2 {
+            height: 1200px;
+            transform: translate(-260px, 200px);
+          }
+        }
+
+        @media ${minWidth(breakpoint.xl)} {
+          .red-line {
+            height: 600px;
+            transform: translate(689px, -200px);
+            z-index: 1;
+          }
+          .white-line {
+            height: 600px;
+            transform: translate(680px, -200px);
+          }
+          .red-line2 {
+            height: 800px;
+            transform: translate(122px, 550px);
+            z-index: 3;
+          }
+          .white-line2 {
+            height: 1200px;
+            transform: translate(-160px, 200px);
+          }
+        }
+        @media ${minWidth(breakpoint.xxl)} {
+          .red-line {
+            height: 600px;
+            transform: translate(691px, -200px);
+            z-index: 1;
+          }
+          .white-line {
+            height: 600px;
+            transform: translate(680px, -200px);
+          }
+          .red-line2 {
+            height: 800px;
+            transform: translate(224px, 550px);
+            z-index: 3;
+          }
+          .white-line2 {
+            height: 1200px;
+            transform: translate(-60px, 200px);
           }
         }
       `}</style>
