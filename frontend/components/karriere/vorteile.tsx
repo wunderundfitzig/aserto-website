@@ -176,9 +176,11 @@ const Vorteile: FunctionComponent = () => {
         }
 
         .image-2 {
+          position: relative;
           width: 80%;
           margin-left: 20%;
           margin-top: 2em;
+          z-index: 1;
         }
 
         .image-right {
@@ -195,21 +197,17 @@ const Vorteile: FunctionComponent = () => {
         }
         .red-line {
           height: 600px;
-          transform: translate(691px, -200px);
-          z-index: 1;
+          transform: translate(-100px, 0);
         }
         .white-line {
           height: 600px;
-          transform: translate(680px, -200px);
+          transform: translate(-107px, 0);
         }
         .red-line2 {
-          height: 800px;
-          transform: translate(224px, 550px);
-          z-index: 3;
+          display: none;
         }
         .white-line2 {
-          height: 1200px;
-          transform: translate(-60px, 200px);
+          display: none;
         }
         .right-line {
           top: auto;
