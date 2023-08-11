@@ -169,6 +169,7 @@ const Vorteile: FunctionComponent = () => {
         .charta-logo {
           grid-area: charta-logo;
           margin: 4rem 0 2rem;
+          text-align: center;
         }
 
         .image-1 {
@@ -185,7 +186,6 @@ const Vorteile: FunctionComponent = () => {
 
         .image-right {
           grid-area: right-image;
-          margin-top: 2em;
         }
 
         .line {
@@ -197,11 +197,13 @@ const Vorteile: FunctionComponent = () => {
         }
         .red-line {
           height: 600px;
-          transform: translate(-91px, 20px);
+          top: 20px;
+          left: -91px;
         }
         .white-line {
           height: 600px;
-          transform: translate(-107px, 0);
+          top: 0;
+          left: -107px;
         }
         .red-line2 {
           display: none;
@@ -215,23 +217,26 @@ const Vorteile: FunctionComponent = () => {
         @media ${minWidth(breakpoint.xs)} {
           .red-line {
             height: 1200px;
-            transform: translate(-201px, 80px);
+            top: 80px;
+            left: -201px;
           }
           .white-line {
             height: 1200px;
-            transform: translate(-217px, 60px);
+            top: 60px;
+            left: -217px;
           }
         }
         @media ${minWidth(breakpoint.sm)} {
           .vorteile {
-            margin-top: 0;
-            grid-template-columns: 1fr 300px;
+            margin-top: 8rem;
+            grid-template-columns: 1fr 55%;
             grid-gap: 0 3rem;
             grid-template-areas:
-              'images      title'
+              '.           title'
               'images      text'
               'right-image text'
               'charta-logo charta-text';
+            grid-template-rows: auto minmax(0, auto) minmax(0, auto) 1fr;
           }
 
           .background {
@@ -246,6 +251,8 @@ const Vorteile: FunctionComponent = () => {
           }
 
           .images {
+            position: relative;
+            top: -4rem;
             margin: 0;
             margin-left: -2em;
           }
@@ -253,28 +260,65 @@ const Vorteile: FunctionComponent = () => {
           .image-1 {
             width: 100%;
             margin-bottom: 2em;
-            margin-top: 3em;
           }
 
           .image-2 {
             width: 100%;
-            margin: 0%;
+            margin: 0;
+            margin-bottom: 2em;
           }
 
           .image-right {
+            position: relative;
+            top: -4rem;
             margin-left: -2em;
+            margin-bottom: 2rem;
           }
 
           .charta-logo {
+            align-self: center;
           }
 
           .charta-text {
             margin-top: 3em;
+            padding-left: calc(1em + 5px);
+          }
+
+          .red-line {
+            height: 600px;
+            right: 260px;
+            left: auto;
+            top: -120px;
+          }
+
+          .white-line {
+            height: 600px;
+            right: 267px;
+            left: auto;
+            top: -120px;
           }
         }
-        @media ${minWidth(breakpoint.sm)} {
+        @media ${minWidth(breakpoint.m)} {
           .vorteile {
-            margin-top: 4rem;
+            margin-top: 8rem;
+            grid-template-columns: 1fr 55%;
+            grid-gap: 0 3rem;
+            grid-template-areas:
+              '.           title'
+              'images      text'
+              'right-image text'
+              'right-image .'
+              'charta-logo charta-text';
+            grid-template-rows: auto minmax(0, auto) minmax(0, auto) min-content 1fr;
+          }
+          .image-right {
+            margin-bottom: 0;
+          }
+          .charta-logo {
+            align-self: flex-start;
+          }
+          .charta-text {
+            margin: 0;
           }
         }
 
@@ -338,11 +382,13 @@ const Vorteile: FunctionComponent = () => {
             transform: translate(680px, -200px);
           }
           .red-line2 {
+            display: block;
             height: 800px;
             transform: translate(22px, 550px);
             z-index: 3;
           }
           .white-line2 {
+            display: block;
             height: 1200px;
             transform: translate(-260px, 200px);
           }
