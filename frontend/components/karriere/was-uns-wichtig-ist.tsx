@@ -127,6 +127,13 @@ const WasUnsWichtigIst: FunctionComponent = () => {
             left: 23%;
           }
         }
+        @media ${minWidth(breakpoint.ml)} {
+          .line {
+            height: 800px;
+            top: -120px;
+            left: 30%;
+          }
+        }
         @media ${minWidth(breakpoint.l)} {
           .was-uns-wichtig-ist {
             grid-template-columns: 55% 1fr;

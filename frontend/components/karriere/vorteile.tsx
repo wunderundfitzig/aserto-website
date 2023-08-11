@@ -348,22 +348,27 @@ const Vorteile: FunctionComponent = () => {
           }
 
           .images {
+            position: static;
             display: block;
+            margin: 0;
           }
 
           .image-1 {
+            margin: 0;
             margin-bottom: 4rem;
             margin-left: -2rem;
             transform: translateX(-3rem);
           }
 
           .image-2 {
+            margin: 0;
             position: relative;
             margin-left: -2rem;
             z-index: 2;
           }
 
           .image-right {
+            margin: 0;
             margin-top: 5rem;
             width: calc(100% + 220px);
             margin-left: 1rem;
