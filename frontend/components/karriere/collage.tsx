@@ -31,6 +31,7 @@ const Collage: FunctionComponent = () => {
           grid-template-rows: auto auto;
           grid-gap: 1rem;
           grid-template-areas: 'left' 'right';
+          margin-bottom: 2rem;
         }
 
         .left-image {
@@ -59,10 +60,11 @@ const Collage: FunctionComponent = () => {
             grid-gap: 2rem;
             grid-template-areas: 'left right';
             margin-top: 2rem;
+            margin-bottom: 4rem;
           }
           .line {
             top: -80px;
-            height: calc(100% + 200px);
+            height: calc(100% + 150px);
           }
           .left-image {
             width: 100%;
@@ -79,6 +81,7 @@ const Collage: FunctionComponent = () => {
             grid-gap: 4rem;
             grid-template-areas: 'left right';
             margin-top: 5rem;
+            margin-bottom: 0;
           }
           .right-image {
             margin-top: 10rem;

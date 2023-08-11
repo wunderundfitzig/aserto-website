@@ -3,10 +3,11 @@ import { categoryColors, backgroundRed } from 'lib/colors'
 import { Contact, ImageType } from 'lib/types'
 import ContactBanner from 'components/contact-banner'
 import { StraightLine, formatAlignment } from 'components/curves'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const Background: FunctionComponent = () => {
   return (
-    <div>
+    <div className='custom-background'>
       <div className='line fake-red'>
         <StraightLine
           color={categoryColors.karriere}
@@ -28,6 +29,12 @@ const Background: FunctionComponent = () => {
         <rect x={-100} y={0} width={300} height={35} fill={backgroundRed} />
       </svg>
       <style jsx>{`
+        .custom-background {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          top: 100px;
+        }
         .background {
           width: 100%;
           height: 100%;
@@ -35,15 +42,26 @@ const Background: FunctionComponent = () => {
           z-index: -1;
         }
         .fake-red {
-          position: absolute;
-          width: 1px;
-          height: 320px;
-          bottom: -100px;
-          right: 237px;
-          z-index: 100;
+          display: none;
         }
         svg {
           overflow: visible;
+        }
+        @media ${minWidth(breakpoint.sm)} {
+          .custom-background {
+            top: 0;
+          }
+        }
+        @media ${minWidth(breakpoint.xl)} {
+          .fake-red {
+            display: block;
+            position: absolute;
+            width: 1px;
+            height: 320px;
+            bottom: -100px;
+            right: 237px;
+            z-index: 100;
+          }
         }
       `}</style>
     </div>
@@ -98,17 +116,37 @@ const KarriereContact: FunctionComponent<Props> = (props) => {
         }
 
         .red-left {
-          height: 220px;
-          bottom: -100px;
-          left: -40px;
-          z-index: 120;
+          display: none;
         }
 
         .white-right {
-          height: 320px;
-          bottom: -100px;
-          right: 120px;
-          z-index: 120;
+          display: none;
+        }
+        @media ${minWidth(breakpoint.sm)} {
+          .red-left {
+            display: block;
+            height: 220px;
+            bottom: -150px;
+            left: -40px;
+            z-index: 120;
+          }
+        }
+
+        @media ${minWidth(breakpoint.xxl)} {
+          .red-left {
+            display: block;
+            height: 220px;
+            bottom: -100px;
+            left: -40px;
+            z-index: 120;
+          }
+          .white-right {
+            display: block;
+            height: 320px;
+            bottom: -100px;
+            right: 120px;
+            z-index: 120;
+          }
         }
       `}</style>
     </div>
