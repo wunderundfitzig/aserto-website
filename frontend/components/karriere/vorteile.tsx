@@ -10,6 +10,7 @@ import image2 from 'public/images/karriere/karriere-image-4.jpg'
 import image3 from 'public/images/karriere/karriere-image-5.jpg'
 
 import chartaLogo from 'public/images/karriere/charta-der-vielfalt-logo.svg'
+import niloHealthBadge from 'public/images/karriere/nilo-badge.png'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const Vorteile: FunctionComponent = () => {
@@ -49,7 +50,7 @@ const Vorteile: FunctionComponent = () => {
               <>
                 <p>Gute Work-Life-Integration</p>
                 <p>Erfolgsbeteiligungen und weitere Zuschüsse</p>
-                <p>Möbilitätslösungen für ÖPNV und Individualverkehr</p>
+                <p>Mobilitätslösungen für ÖPNV und Individualverkehr</p>
                 <p>Angebote zur (mentalen) Gesundheitsförderung</p>
                 <p>Sinnstiftende Arbeit</p>
                 <p>Flache Hierarchien und Augenhöhe</p>
@@ -61,21 +62,38 @@ const Vorteile: FunctionComponent = () => {
           }}
         </Statement>
       </div>
-      <div className='charta-logo'>
-        <Image
-          loader={imageLoader}
-          src={chartaLogo}
-          alt='charta der vielfalt | Für Diversity in der Arbeitswelt'
-        />
+      <div className='badges'>
+        <a
+          className='charta'
+          target='_blank'
+          rel='noreferrer'
+          href='https://www.charta-der-vielfalt.de/'
+        >
+          <Image
+            loader={imageLoader}
+            src={chartaLogo}
+            alt='charta der vielfalt | Für Diversity in der Arbeitswelt'
+          />
+        </a>
+        <a
+          className='nio'
+          target='_blank'
+          rel='noreferrer'
+          href='https://nilohealth.com/de/'
+        >
+          <Image
+            loader={imageLoader}
+            src={niloHealthBadge}
+            alt='We use nilo.health to empower employee mental health'
+          />
+        </a>
       </div>
-      <div className='charta-text'>
+      <div className='badges-text'>
         <p>
-          Wir treten für ein wertschätzendes und vorurteilsfreies Arbeitsumfeld
-          ein, das Talente aufgrund ihrer Leistungen schätzt – unabhängig von
-          Alter, Geschlecht und geschlechtlicher Identität, ethnischer oder
-          kultureller Herkunft, Religion und Weltanschauung, sexueller
-          Orientierung und Identität oder Behinderung. Deshalb haben wir die
-          Charta der Vielfalt unterzeichnet.
+          Wir treten für ein wertschätzendes und vorurteilsfreies Arbeitsumfeld
+          ein. Deshalb haben wir die Charta der Vielfalt unterzeichnet. Wir
+          bieten unseren Mitarbeiter*innen die Nutzung von nilo.health an – eine
+          Plattform mit wertvollen Angeboten für mentales Wohlbefinden.
         </p>
       </div>
       <div className='image-right'>
@@ -127,8 +145,8 @@ const Vorteile: FunctionComponent = () => {
           grid-template-areas:
             'images'
             'text'
-            'charta-logo'
-            'charta-text'
+            'badges'
+            'badges-text'
             'right-image';
         }
 
@@ -152,14 +170,31 @@ const Vorteile: FunctionComponent = () => {
           color: white;
         }
 
-        .charta-text {
-          grid-area: charta-text;
+        .badges-text {
+          grid-area: badges-text;
+          margin-bottom: 3em;
         }
 
-        .charta-logo {
-          grid-area: charta-logo;
+        .badges {
+          grid-area: badges;
           margin: 4rem 0 2rem;
-          text-align: center;
+          display: grid;
+          max-width: 400px;
+          justify-self: center;
+          align-self: center;
+          justify-items: flex-start;
+          align-items: center;
+          grid-template-areas: 'charta nio';
+          grid-template-columns: 3fr 1fr;
+          grid-gap: 3em;
+        }
+
+        .badges .charta {
+          grid-area: charta;
+        }
+
+        .badges .nio {
+          grid-area: nio;
         }
 
         .image-1 {
@@ -224,7 +259,7 @@ const Vorteile: FunctionComponent = () => {
             grid-template-areas:
               'images      text'
               'right-image text'
-              'charta-logo charta-text';
+              'badges badges-text';
             grid-template-rows: minmax(0, auto) minmax(0, auto) 1fr;
           }
 
@@ -260,11 +295,17 @@ const Vorteile: FunctionComponent = () => {
             margin-bottom: 2rem;
           }
 
-          .charta-logo {
-            align-self: center;
+          .badges {
+            margin: 0;
+            grid-template-columns: 1fr minmax(80px, 1.2fr) 1fr;
+            grid-gap: 2em;
+            justify-items: center;
+            grid-template-areas:
+              'charta charta charta'
+              '. nio .';
           }
 
-          .charta-text {
+          .badges-text {
             margin-top: 3em;
             padding-left: calc(1em + 5px);
           }
@@ -292,17 +333,15 @@ const Vorteile: FunctionComponent = () => {
               'images      text'
               'right-image text'
               'right-image .'
-              'charta-logo charta-text';
+              'badges badges-text';
             grid-template-rows: minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
           }
           .image-right {
             margin-bottom: 0;
           }
-          .charta-logo {
-            align-self: flex-start;
-          }
-          .charta-text {
+          .badges-text {
             margin: 0;
+            padding: 0;
           }
         }
 
@@ -316,8 +355,8 @@ const Vorteile: FunctionComponent = () => {
               'images      .'
               'images      text'
               'images      right-image'
-              'charta-logo right-image'
-              'charta-text right-image';
+              'badges right-image'
+              'badges-text right-image';
           }
 
           .background {
@@ -359,9 +398,14 @@ const Vorteile: FunctionComponent = () => {
             margin-left: 1rem;
           }
 
-          .charta-text {
-            margin-top: 0;
+          .badges {
+            margin: 4rem 0 2rem;
+            justify-self: flex-start;
+            justify-items: flex-start;
+            grid-template-areas: 'charta nio';
+            grid-template-columns: 3fr 1fr;
           }
+
           .red-line {
             height: 600px;
             top: 0;
