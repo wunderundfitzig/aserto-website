@@ -36,7 +36,7 @@ const Vorteile: FunctionComponent = () => {
           <Image loader={imageLoader} src={image2} alt='' />
         </div>
       </div>
-      <div className='title'>
+      <div className='text'>
         <Statement color={categoryColors.karriere}>
           {{
             title: (
@@ -45,19 +45,21 @@ const Vorteile: FunctionComponent = () => {
                 <br /> bei aserto bietet
               </h3>
             ),
+            content: (
+              <>
+                <p>Gute Work-Life-Integration</p>
+                <p>Erfolgsbeteiligungen und weitere Zuschüsse</p>
+                <p>Möbilitätslösungen für ÖPNV und Individualverkehr</p>
+                <p>Angebote zur (mentalen) Gesundheitsförderung</p>
+                <p>Sinnstiftende Arbeit</p>
+                <p>Flache Hierarchien und Augenhöhe</p>
+                <p>Schnelle Aufstiegsmöglichkeiten</p>
+                <p>Vielfältige Weiterbildungsangebote</p>
+                <p>Hohe Flexibilität durch Arbeitszeitkonten</p>
+              </>
+            ),
           }}
         </Statement>
-      </div>
-      <div className='text'>
-        <p>Gute Work-Life-Integration</p>
-        <p>Erfolgsbeteiligungen und weitere Zuschüsse</p>
-        <p>Möbilitätslösungen für ÖPNV und Individualverkehr</p>
-        <p>Angebote zur (mentalen) Gesundheitsförderung</p>
-        <p>Sinnstiftende Arbeit</p>
-        <p>Flache Hierarchien und Augenhöhe</p>
-        <p>Schnelle Aufstiegsmöglichkeiten</p>
-        <p>Vielfältige Weiterbildungsangebote</p>
-        <p>Hohe Flexibilität durch Arbeitszeitkonten</p>
       </div>
       <div className='charta-logo'>
         <Image
@@ -124,7 +126,6 @@ const Vorteile: FunctionComponent = () => {
           grid-gap: 0 4rem;
           grid-template-areas:
             'images'
-            'title'
             'text'
             'charta-logo'
             'charta-text'
@@ -135,6 +136,7 @@ const Vorteile: FunctionComponent = () => {
           grid-area: images;
           margin-left: -2em;
           margin-right: -2em;
+          margin-bottom: 4rem;
         }
 
         .background {
@@ -144,21 +146,9 @@ const Vorteile: FunctionComponent = () => {
           overflow: visible;
         }
 
-        .title {
-          grid-area: title;
-          color: ${categoryColors.karriere};
-          margin: 4rem 0 3rem;
-          line-height: 1.7;
-        }
-
-        .title h3 {
-          margin: 0;
-        }
-
         .text {
           grid-area: text;
-          padding: 2.5rem 0 3rem;
-          padding-left: calc(1em + 5px);
+          padding: 4rem 0 3rem;
           color: white;
         }
 
@@ -232,22 +222,17 @@ const Vorteile: FunctionComponent = () => {
             grid-template-columns: 1fr 55%;
             grid-gap: 0 3rem;
             grid-template-areas:
-              '.           title'
               'images      text'
               'right-image text'
               'charta-logo charta-text';
-            grid-template-rows: auto minmax(0, auto) minmax(0, auto) 1fr;
+            grid-template-rows: minmax(0, auto) minmax(0, auto) 1fr;
           }
 
           .background {
-            grid-area: 2 / 1 / 4 / 3;
+            grid-area: 1 / 1 / 3 / 3;
             width: 100%;
             height: 100%;
             overflow: visible;
-          }
-
-          .title {
-            margin-top: 0;
           }
 
           .images {
@@ -304,12 +289,11 @@ const Vorteile: FunctionComponent = () => {
             grid-template-columns: 1fr 55%;
             grid-gap: 0 3rem;
             grid-template-areas:
-              '.           title'
               'images      text'
               'right-image text'
               'right-image .'
               'charta-logo charta-text';
-            grid-template-rows: auto minmax(0, auto) minmax(0, auto) min-content 1fr;
+            grid-template-rows: minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
           }
           .image-right {
             margin-bottom: 0;
@@ -327,9 +311,9 @@ const Vorteile: FunctionComponent = () => {
             margin-top: 4rem;
             grid-template-columns: 50% 40%;
             grid-gap: 0 4rem;
-            grid-template-rows: min-content min-content min-content min-content 1fr;
+            grid-template-rows: 5em min-content min-content min-content 1fr;
             grid-template-areas:
-              'images      title'
+              'images      .'
               'images      text'
               'images      right-image'
               'charta-logo right-image'
@@ -343,14 +327,14 @@ const Vorteile: FunctionComponent = () => {
             overflow: visible;
           }
 
-          .title {
-            margin: 4rem 0 3rem;
-          }
-
           .images {
             position: static;
             display: block;
             margin: 0;
+          }
+
+          .text {
+            padding: 5em 0 4em;
           }
 
           .image-1 {
