@@ -38,7 +38,7 @@ const Vorteile: FunctionComponent = () => {
         </div>
       </div>
       <div className='text'>
-        <Statement color={categoryColors.karriere}>
+        <Statement color='white'>
           {{
             title: (
               <h3>
@@ -91,9 +91,11 @@ const Vorteile: FunctionComponent = () => {
       <div className='badges-text'>
         <p>
           Wir treten für ein wertschätzendes und vorurteilsfreies Arbeitsumfeld
-          ein. Deshalb haben wir die Charta der Vielfalt unterzeichnet. Wir
-          bieten unseren Mitarbeiter*innen die Nutzung von nilo.health an – eine
-          Plattform mit wertvollen Angeboten für mentales Wohlbefinden.
+          ein. Deshalb haben wir die Charta der Vielfalt unterzeichnet.
+        </p>
+        <p>
+          Unseren Mitarbeiter*innen bieten wir die Nutzung von nilo.health an –
+          eine Plattform mit wertvollen Angeboten für mentales Wohlbefinden.
         </p>
       </div>
       <div className='image-right'>
@@ -179,14 +181,13 @@ const Vorteile: FunctionComponent = () => {
           grid-area: badges;
           margin: 4rem 0 2rem;
           display: grid;
-          max-width: 400px;
-          justify-self: center;
-          align-self: center;
-          justify-items: flex-start;
+          width: 100%;
+          justify-items: center;
           align-items: center;
-          grid-template-areas: 'charta nio';
-          grid-template-columns: 3fr 1fr;
-          grid-gap: 3em;
+          grid-template-areas:
+            'charta'
+            'nio';
+          grid-gap: 2em;
         }
 
         .badges .charta {
@@ -195,6 +196,7 @@ const Vorteile: FunctionComponent = () => {
 
         .badges .nio {
           grid-area: nio;
+          max-width: 200px;
         }
 
         .image-1 {
@@ -251,6 +253,13 @@ const Vorteile: FunctionComponent = () => {
             left: -217px;
           }
         }
+        @media ${minWidth(breakpoint.s)} {
+          .badges {
+            align-items: space-between;
+            grid-template-areas: 'charta nio';
+            grid-gap: 2em;
+          }
+        }
         @media ${minWidth(breakpoint.sm)} {
           .vorteile {
             margin-top: 8rem;
@@ -297,12 +306,13 @@ const Vorteile: FunctionComponent = () => {
 
           .badges {
             margin: 0;
-            grid-template-columns: 1fr minmax(80px, 1.2fr) 1fr;
+            padding: 3em 0;
             grid-gap: 2em;
-            justify-items: center;
+            align-content: space-evenly;
+            justify-items: flex-end;
             grid-template-areas:
-              'charta charta charta'
-              '. nio .';
+              'charta'
+              'nio';
           }
 
           .badges-text {
@@ -338,6 +348,9 @@ const Vorteile: FunctionComponent = () => {
           }
           .image-right {
             margin-bottom: 0;
+          }
+          .badges {
+            padding: 0;
           }
           .badges-text {
             margin: 0;
@@ -394,16 +407,14 @@ const Vorteile: FunctionComponent = () => {
             position: static;
             margin: 0;
             margin-top: 5rem;
-            width: calc(100% + 220px);
+            width: calc(100% + 183px);
             margin-left: 1rem;
           }
 
           .badges {
             margin: 4rem 0 2rem;
-            justify-self: flex-start;
-            justify-items: flex-start;
-            grid-template-areas: 'charta nio';
-            grid-template-columns: 3fr 1fr;
+            grid-template-areas: 'charta' 'nio';
+            justify-items: center;
           }
 
           .red-line {
@@ -442,6 +453,9 @@ const Vorteile: FunctionComponent = () => {
         }
 
         @media ${minWidth(breakpoint.xl)} {
+          .image-right {
+            width: calc(100% + 196px);
+          }
           .red-line {
             height: 600px;
             transform: translate(689px, -200px);
@@ -462,6 +476,13 @@ const Vorteile: FunctionComponent = () => {
           }
         }
         @media ${minWidth(breakpoint.xxl)} {
+          .badges {
+            margin: 4rem 0 2rem;
+            grid-template-areas: 'charta nio';
+            justify-items: center;
+            justify-content: space-between;
+            max-width: 480px;
+          }
           .red-line {
             height: 600px;
             transform: translate(691px, -200px);

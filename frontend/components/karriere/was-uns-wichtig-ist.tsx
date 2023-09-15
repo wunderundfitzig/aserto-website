@@ -162,7 +162,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
             grid-template-columns: 50% 45%;
           }
           .image {
-            width: calc(100% + 195px);
+            width: calc(100% + 172px);
           }
           .line {
             left: 16%;

@@ -10,7 +10,9 @@ type Props = {
 const Statement: FunctionComponent<Props> = (props) => {
   return (
     <div className={`statement ${props.children.title ? 'with-title' : ''}`}>
-      {props.children.title && <div>{props.children.title}</div>}
+      {props.children.title && (
+        <div className='title'>{props.children.title}</div>
+      )}
       {props.children.content && (
         <div className='content'>{props.children.content}</div>
       )}
@@ -31,7 +33,11 @@ const Statement: FunctionComponent<Props> = (props) => {
           margin-right: 1em;
         }
         .statement.with-title::before {
-          top: -6px;
+          top: -4px;
+        }
+
+        .title {
+          line-height: 1.5;
         }
 
         .content {
