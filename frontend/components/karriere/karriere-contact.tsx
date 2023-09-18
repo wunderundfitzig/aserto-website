@@ -1,35 +1,70 @@
 import { FunctionComponent } from 'react'
-import * as colors from 'lib/colors'
-import { breakpoint, minWidth } from 'lib/breakpoints'
+import { categoryColors, backgroundRed } from 'lib/colors'
 import { Contact, ImageType } from 'lib/types'
 import ContactBanner from 'components/contact-banner'
-import { CutLine, formatAlignment } from 'components/curves'
+import { StraightLine, formatAlignment } from 'components/curves'
+import { breakpoint, minWidth } from 'lib/breakpoints'
 
 const Background: FunctionComponent = () => {
   return (
-    <svg
-      className='background'
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='450 0 100 35'
-      preserveAspectRatio={formatAlignment({
-        alignY: 'Min',
-        alignX: 'Mid',
-        fit: 'slice',
-      })}
-    >
-      <path d='M0 178L500 0l500 178z' fill={colors.backgroundRed} />
+    <div className='custom-background'>
+      <div className='line fake-red'>
+        <StraightLine
+          color={categoryColors.karriere}
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={64}
+        />
+      </div>
 
+      <svg
+        className='background'
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox='0 0 100 35'
+        preserveAspectRatio={formatAlignment({
+          alignY: 'Min',
+          alignX: 'Mid',
+          fit: 'slice',
+        })}
+      >
+        <rect x={-100} y={0} width={300} height={35} fill={backgroundRed} />
+      </svg>
       <style jsx>{`
+        .custom-background {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          top: 100px;
+        }
         .background {
           width: 100%;
           height: 100%;
           overflow: visible;
+          z-index: -1;
+        }
+        .fake-red {
+          display: none;
         }
         svg {
           overflow: visible;
         }
+        @media ${minWidth(breakpoint.sm)} {
+          .custom-background {
+            top: 0;
+          }
+        }
+        @media ${minWidth(breakpoint.xl)} {
+          .fake-red {
+            display: block;
+            position: absolute;
+            width: 1px;
+            height: 320px;
+            bottom: -100px;
+            right: 237px;
+            z-index: 100;
+          }
+        }
       `}</style>
-    </svg>
+    </div>
   )
 }
 
@@ -40,11 +75,18 @@ type Props = {
 const KarriereContact: FunctionComponent<Props> = (props) => {
   return (
     <div className='karriere-contact'>
-      <div className='line'>
-        <CutLine
-          color={colors.categoryColors.karriere}
-          rotate={-20}
-          preserveAspectRatio='none'
+      <div className='line red-left'>
+        <StraightLine
+          color={categoryColors.karriere}
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={64}
+        />
+      </div>
+      <div className='line white-right'>
+        <StraightLine
+          color='white'
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={66}
         />
       </div>
       <ContactBanner
@@ -69,29 +111,41 @@ const KarriereContact: FunctionComponent<Props> = (props) => {
         }
 
         .line {
+          position: absolute;
+          width: 1px;
+        }
+
+        .red-left {
           display: none;
         }
 
-        @media ${minWidth(breakpoint.ml)} {
-          .line {
-            display: block;
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            left: 65%;
-            bottom: 40vw;
-          }
+        .white-right {
+          display: none;
         }
-
-        @media ${minWidth(breakpoint.l)} {
-          .line {
-            bottom: 32vw;
+        @media ${minWidth(breakpoint.sm)} {
+          .red-left {
+            display: block;
+            height: 220px;
+            bottom: -150px;
+            left: -40px;
+            z-index: 120;
           }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
-          .line {
-            bottom: 420px;
+          .red-left {
+            display: block;
+            height: 220px;
+            bottom: -100px;
+            left: -40px;
+            z-index: 120;
+          }
+          .white-right {
+            display: block;
+            height: 320px;
+            bottom: -100px;
+            right: 120px;
+            z-index: 120;
           }
         }
       `}</style>

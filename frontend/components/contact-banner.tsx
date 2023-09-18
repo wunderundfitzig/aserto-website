@@ -16,7 +16,9 @@ type Props = {
 }
 const ContactBanner: FunctionComponent<Props> = (props) => {
   return (
-    <aside className='contact-banner'>
+    <aside
+      className={`contact-banner ${props.children.text ? 'with-text' : ''}`}
+    >
       <div className='title-wrapper'>
         <h2>{props.children.title}</h2>
         {props.children.text && <p>{props.children.text}</p>}
@@ -78,10 +80,13 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
         }
 
         .background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           grid-area: image / image / address / address;
           pointer-events: none;
-          height: 100%;
-          padding-top: 100px;
           z-index: -1;
         }
 
@@ -129,7 +134,11 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
 
         @media ${minWidth(breakpoint.xxl)} {
           .title-wrapper {
-            margin: 4em 0 -0.05em;
+            margin: 4em 0 2em;
+          }
+
+          .with-text .title-wrapper {
+            margin-bottom: 0;
           }
         }
       `}</style>
