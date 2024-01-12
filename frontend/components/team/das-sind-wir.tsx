@@ -8,7 +8,7 @@ import { PersonLine1, PersonLine2 } from 'components/curves'
 
 const calculateLastRowIndex = (
   membersCount: number,
-  layout: { columns: number; empty: number }
+  layout: { columns: number; empty: number },
 ): number => Math.ceil((membersCount + layout.empty) / layout.columns) + 1
 
 type Props = {
@@ -34,7 +34,7 @@ const DasSindWir: FunctionComponent<Props> = (props) => {
         {props.members.map((person, idx) => (
           <PersonCard key={idx} {...person} />
         ))}
-        <Link href='/karriere#Stellenanzeigen'>
+        <Link legacyBehavior href='/karriere#Stellenanzeigen'>
           <a className='job-list-link'>
             <div>
               <h3>Und Du?</h3>

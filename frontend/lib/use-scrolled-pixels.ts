@@ -1,7 +1,7 @@
 import { useState, useEffect, MutableRefObject } from 'react'
 
 export function useScrolledPixels(
-  ref: MutableRefObject<HTMLElement | null>
+  ref: MutableRefObject<HTMLElement | null>,
 ): number {
   const [scrolledPixels, setScrolledPixels] = useState(0)
 

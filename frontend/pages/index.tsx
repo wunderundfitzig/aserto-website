@@ -5,7 +5,6 @@ import { darken } from 'polished'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import * as colors from 'lib/colors'
 import { useWindowSize } from 'lib/use-window-size'
-import { imageLoader } from 'lib/image-loader'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 
 import {
@@ -32,26 +31,20 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
       <div className='image-wrapper'>
         <Image
           priority
+          fill
           placeholder='blur'
-          loader={imageLoader}
           className='image'
           src={frontpageBanner}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
           alt=''
         />
       </div>
       <div className='image-wrapper clipped-image'>
         <Image
           priority
+          fill
           placeholder='blur'
-          loader={imageLoader}
           className='image'
           src={frontpageBanner}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
           alt=''
         />
       </div>
@@ -110,6 +103,11 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
           grid-row: 3 / 4;
           width: 100%;
           height: 100%;
+        }
+
+        .image-wrapper :global(.image) {
+          object-fit: cover;
+          object-position: center;
         }
 
         .image-wrapper:after {

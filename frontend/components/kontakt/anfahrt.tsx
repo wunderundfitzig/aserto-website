@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { imageLoader } from 'lib/image-loader'
 import { useWindowSize } from 'lib/use-window-size'
 import { breakpoint } from 'lib/breakpoints'
 import wideMapImage from 'public/images/kontakt/map.png'
@@ -19,21 +18,18 @@ const Anfahrt: FunctionComponent<Props> = (props) => {
   return (
     <section className='anfahrt'>
       <h2>Anfahrt</h2>
-      <Link href={props.mapsLink}>
-        <a target='_blank' rel='noreferrer'>
-          <Image
-            priority
-            loader={imageLoader}
-            layout='responsive'
-            src={mapImage}
-            alt='Anfahrtkarte'
-          />
-        </a>
+      <Link href={props.mapsLink} target='_blank' rel='noreferrer'>
+        <Image priority src={mapImage} alt='Anfahrtkarte' />
       </Link>
       <style jsx>
         {`
           h2 {
             margin-top: 2em;
+          }
+
+          .anfahrt :global(img) {
+            width: 100%;
+            height: auto;
           }
         `}
       </style>

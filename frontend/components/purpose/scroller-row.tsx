@@ -1,7 +1,6 @@
 import { forwardRef } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
-import { imageLoader } from 'lib/image-loader'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
@@ -22,13 +21,7 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
     >
       {props.image && (
         <div className='image-wrapper'>
-          <Image
-            loader={imageLoader}
-            src={props.image}
-            layout='fill'
-            alt=''
-            objectFit='cover'
-          />
+          <Image fill src={props.image} alt='' />
         </div>
       )}
       <div className='text'>
@@ -78,6 +71,10 @@ const ScrollerRow = forwardRef<HTMLDivElement, Props>(function row(props, ref) {
           width: calc(100% + 2rem);
           padding-bottom: 120%;
           margin-left: -2rem;
+        }
+
+        .image-wrapper :global(img) {
+          object-fit: cover;
         }
 
         .text {

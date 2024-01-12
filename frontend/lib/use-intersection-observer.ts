@@ -6,7 +6,7 @@ function reducer(
   action: {
     refs: Array<HTMLElement | null>
     entry: IntersectionObserverEntry
-  }
+  },
 ) {
   return action.refs.map((ref, idx) => {
     return ref === action.entry.target
@@ -19,12 +19,12 @@ export function useIntersectionObserver(
   refs: Array<HTMLElement | null>,
   options: {
     topOffset: (height: number) => number
-  }
+  },
 ): number | null {
   const { height } = useWindowSize()
   const [intersecting, dispatch] = useReducer(
     reducer,
-    refs.map(() => false)
+    refs.map(() => false),
   )
   const activeSectionIndex = intersecting.lastIndexOf(true)
 
@@ -42,7 +42,7 @@ export function useIntersectionObserver(
         root: null,
         threshold: [0],
         rootMargin: `999999px 0px ${bottomOffset}px 0px`,
-      }
+      },
     )
 
     refs.forEach((ref) => {

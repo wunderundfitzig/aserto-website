@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build:code": "next build",
-    "build:export": "next export",
-    "build": "npm run images:resize && npm run build:code && npm run build:export",
+    "build": "next build && next-export-optimize-images",
     "start": "next start",
     "lint": "next lint",
     "images:resize": "mkdir -p public/resized-images && node scripts/images-resize.js",
@@ -23,32 +21,33 @@
   "dependencies": {
     "fefe": "^3.2.0",
     "lodash": "^4.17.21",
-    "next": "^11.1.2",
+    "next": "^14.0.4",
     "poisson-disk-sampling": "^2.2.2",
-    "polished": "^4.1.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "polished": "^4.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-markdown": "^6.0.2",
     "seedrandom": "^3.0.5",
-    "sharp": "^0.30.7",
-    "uninstall": "^0.0.0"
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
     "@types/d3-shape": "^3.0.2",
     "@types/lodash": "^4.14.168",
     "@types/poisson-disk-sampling": "^2.2.0",
-    "@types/react": "^17.0.3",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
     "@types/seedrandom": "^3.0.1",
     "@types/styled-jsx": "^2.2.8",
-    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
     "cli-real-favicon": "^0.0.8",
-    "eslint": "^7.23.0",
-    "eslint-config-next": "^11.0.1",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "prettier": "2.2.1",
-    "typescript": "^4.3.5"
+    "next-export-optimize-images": "^3.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
   }
 }

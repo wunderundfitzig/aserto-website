@@ -1,8 +1,9 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
 type Props = {
   onFrontpage?: boolean
+  children: ReactNode
 }
 const MainGrid: FunctionComponent<Props> = (props) => {
   return (
