@@ -15,15 +15,10 @@ const IconLink: FunctionComponent<IconLinkProps> = (props) => {
         title={props.title}
         target='_blank'
         rel='noreferrer'
+        style={{ display: 'block', width: '17px' }}
       >
         {props.children}
       </Link>
-      <style jsx>{`
-        a {
-          display: block;
-          width: 17px;
-        }
-      `}</style>
     </>
   )
 }
