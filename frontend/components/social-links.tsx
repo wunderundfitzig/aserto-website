@@ -1,18 +1,22 @@
 import Link from 'next/link'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { InstagramIcon, LinkedInIcon, XingIcon } from 'components/social-icons'
 
 type IconLinkProps = {
   url: string
   title: string
+  children: ReactNode
 }
 const IconLink: FunctionComponent<IconLinkProps> = (props) => {
   return (
     <>
-      <Link href={props.url}>
-        <a title={props.title} target='_blank' rel='noreferrer'>
-          {props.children}
-        </a>
+      <Link
+        href={props.url}
+        title={props.title}
+        target='_blank'
+        rel='noreferrer'
+      >
+        {props.children}
       </Link>
       <style jsx>{`
         a {

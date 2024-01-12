@@ -13,7 +13,7 @@ const pds = new PoissonDiskSampling(
     maxDistance: 2.2,
     tries: 10,
   },
-  rng
+  rng,
 )
 
 type Point = [number, number]
@@ -59,7 +59,7 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
     if (dotsOnCurve.length === 0) return
     pds.reset()
     const unprojectedDotsOnCurve = dotsOnCurve.map((dot) =>
-      unproject(dot, dottedLineVisualisationOffset)
+      unproject(dot, dottedLineVisualisationOffset),
     )
     unprojectedDotsOnCurve.forEach((dot) => {
       pds.addPoint(dot)
@@ -67,10 +67,10 @@ const DotsVisualisation: FunctionComponent<Props> = (props) => {
     pds.fill()
     const points = pds.getAllPoints() as Point[]
     const filteredPoints = points.filter(
-      (point) => !unprojectedDotsOnCurve.includes(point)
+      (point) => !unprojectedDotsOnCurve.includes(point),
     )
     const projectedPoints = filteredPoints.map((point) =>
-      project(point, dottedLineVisualisationOffset)
+      project(point, dottedLineVisualisationOffset),
     )
     setBackgroundDots(projectedPoints)
   }, [dotsOnCurve])

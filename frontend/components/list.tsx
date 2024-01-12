@@ -1,10 +1,11 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { Children, FunctionComponent } from 'react'
+import { Children, FunctionComponent, ReactNode } from 'react'
 import Statement from './statement'
 
 type Props = {
   inline?: boolean
   color: string
+  children: ReactNode
 }
 const List: FunctionComponent<Props> = (props) => {
   const children = Children.toArray(props.children)

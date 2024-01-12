@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
-import { imageLoader } from 'lib/image-loader'
 import List from 'components/list'
 import image from 'public/images/leistungen/leistungen-image-1.jpg'
 
@@ -11,15 +10,7 @@ const WasUnsAusmacht: FunctionComponent = () => {
     <section className='was-uns-ausmacht'>
       <h2>Was uns ausmacht</h2>
       <div className='image'>
-        <Image
-          loader={imageLoader}
-          priority
-          src={image}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          alt=''
-        />
+        <Image fill priority src={image} alt='' />
       </div>
       <div className='text-block'>
         <p>
@@ -60,6 +51,11 @@ const WasUnsAusmacht: FunctionComponent = () => {
           grid-area: image;
           width: 100%;
           height: 300px;
+        }
+
+        .image :global(img) {
+          object-fit: cover;
+          object-postion: center;
         }
 
         .text-block {

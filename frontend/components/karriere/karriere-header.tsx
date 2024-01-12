@@ -4,7 +4,6 @@ import * as colors from 'lib/colors'
 import Slogan from 'components/slogan'
 import { StraightLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { imageLoader } from 'lib/image-loader'
 import headerImage from 'public/images/karriere/karriere-image-1.jpg'
 
 const KarriereHeader: FunctionComponent = () => {
@@ -23,15 +22,7 @@ const KarriereHeader: FunctionComponent = () => {
         </Slogan>
       </div>
       <div className='image'>
-        <Image
-          loader={imageLoader}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          priority
-          src={headerImage}
-          alt=''
-        />
+        <Image priority fill src={headerImage} alt='' />
       </div>
       <div className='line'>
         <StraightLine
@@ -67,6 +58,11 @@ const KarriereHeader: FunctionComponent = () => {
           padding-bottom: 120%;
           grid-area: image;
           width: 100%;
+        }
+
+        .image :global(img) {
+          object-fit: cover;
+          object-position: center;
         }
 
         .line {

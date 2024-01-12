@@ -4,7 +4,7 @@ import Link from 'next/link'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { ImageType } from 'lib/types'
-import { imageLoader } from 'lib/image-loader'
+import { imageLoader, backendImage } from 'lib/image-loader'
 
 type Props = {
   cases: {
@@ -26,19 +26,17 @@ const CasesNav: FunctionComponent<Props> = (props) => {
               caseArticle.id === props.activeCaseId ? 'active' : undefined
             }
           >
-            <Link href={`#${caseArticle.id}`} replace>
-              <a>
-                <div className='client-logo'>
-                  <Image
-                    loader={imageLoader}
-                    {...caseArticle.logo}
-                    alt={`${caseArticle.client} Logo`}
-                  />
-                </div>
-                <span className='client-name'>
-                  {caseArticle.clientShortName ?? caseArticle.client}
-                </span>
-              </a>
+            <Link replace href={`#${caseArticle.id}`} className='client-link'>
+              <div className='client-logo'>
+                <Image
+                  loader={imageLoader}
+                  {...backendImage(caseArticle.logo)}
+                  alt={`${caseArticle.client} Logo`}
+                />
+              </div>
+              <span className='client-name'>
+                {caseArticle.clientShortName ?? caseArticle.client}
+              </span>
             </Link>
           </li>
         ))}
@@ -61,7 +59,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
           margin: 0;
         }
 
-        a {
+        ul :global(.client-link) {
           height: 60px;
           display: grid;
           align-items: center;
@@ -73,7 +71,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
           background-color: ${colors.categoryColors.referenzen};
         }
 
-        .active a {
+        .active :global(.client-link) {
           background-color: white;
         }
 
@@ -85,6 +83,11 @@ const CasesNav: FunctionComponent<Props> = (props) => {
           transition-duration: 0s;
         }
 
+        .client-logo :global(img) {
+          width: 100%;
+          height: auto;
+        }
+
         .active .client-logo {
           filter: none;
         }
@@ -94,7 +97,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
         }
 
         @media ${minWidth(breakpoint.s)} {
-          a {
+          ul :global(.client-link) {
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -109,7 +112,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
             font-size: 0.9em;
           }
 
-          .active a {
+          .active :global(.client-link) {
             color: ${colors.categoryColors.referenzen};
             font-weight: bold;
           }
@@ -144,7 +147,7 @@ const CasesNav: FunctionComponent<Props> = (props) => {
             padding-bottom: 6em;
           }
 
-          a {
+          ul :global(.client-link) {
             padding: 1em 2em 1em 3em;
           }
         }

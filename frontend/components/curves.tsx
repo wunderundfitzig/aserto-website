@@ -272,7 +272,7 @@ export const EndlessLine: FunctionComponent<
 }
 
 export const CutLine: FunctionComponent<CurveProps & { rotate: number }> = (
-  props
+  props,
 ) => {
   return (
     <svg

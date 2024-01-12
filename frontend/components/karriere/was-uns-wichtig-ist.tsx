@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { categoryColors } from 'lib/colors'
-import { imageLoader } from 'lib/image-loader'
 
 import image from 'public/images/karriere/karriere-image-2.jpg'
 import { StraightLine } from 'components/curves'
@@ -46,14 +45,7 @@ const WasUnsWichtigIst: FunctionComponent = () => {
         />
       </div>
       <div className='image'>
-        <Image
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          loader={imageLoader}
-          src={image}
-          alt=''
-        />
+        <Image fill src={image} alt='' />
       </div>
 
       <style jsx>{`
@@ -79,6 +71,11 @@ const WasUnsWichtigIst: FunctionComponent = () => {
           width: calc(80% + 2em);
           margin: -4em 0em 3em 20%;
           padding-bottom: 60%;
+        }
+
+        .image :global(img) {
+          object-fit: cover;
+          object-postion: center;
         }
 
         .line {

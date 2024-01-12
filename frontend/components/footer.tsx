@@ -52,12 +52,8 @@ const Footer: FunctionComponent<Props> = (props) => {
         <SocialLinks {...props.siteInfo} color='black' />
       </address>
       <nav title='footer navigation' className='footer-navigation'>
-        <Link href='/datenschutz'>
-          <a>Datenschutz</a>
-        </Link>
-        <Link href='/kontakt'>
-          <a>Kontakt / Impressum</a>
-        </Link>
+        <Link href='/datenschutz'>Datenschutz</Link>
+        <Link href='/kontakt'>Kontakt / Impressum</Link>
       </nav>
       <style jsx>{`
         .footer {

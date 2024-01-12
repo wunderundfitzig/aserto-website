@@ -4,7 +4,7 @@ import { publicConfig } from 'lib/config/public-config'
 
 export const getBasicAuthHeader = (
   user: string,
-  password: string
+  password: string,
 ): Record<'Authorization', string> => {
   const credentials = Buffer.from(`${user}:${password}`).toString('base64')
   return {
@@ -62,7 +62,7 @@ export async function queryBackend(query: {
     headers: {
       ...getBasicAuthHeader(
         privateConfig.backendUser,
-        privateConfig.backendPassword
+        privateConfig.backendPassword,
       ),
       'Content-Type': 'application/json',
     },

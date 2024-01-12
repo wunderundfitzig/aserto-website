@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { imageLoader } from 'lib/image-loader'
 import { RoundCurve, EndlessLine } from 'components/curves'
 import image from 'public/images/referenzen/referenzen-image.jpg'
 
@@ -18,15 +17,7 @@ const ReferenzenHeader: FunctionComponent = () => {
         </p>
       </div>
       <div className='image'>
-        <Image
-          loader={imageLoader}
-          priority
-          src={image}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          alt=''
-        />
+        <Image priority fill src={image} alt='' />
       </div>
       <div className='curve'>
         <RoundCurve
@@ -72,6 +63,11 @@ const ReferenzenHeader: FunctionComponent = () => {
           position: relative;
           width: 100%;
           padding-bottom: 120%;
+        }
+
+        .image :global(img) {
+          object-fit: cover;
+          object-position: center;
         }
 
         .curve {

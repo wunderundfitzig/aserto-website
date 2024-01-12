@@ -19,16 +19,14 @@ const Anfahrt: FunctionComponent<Props> = (props) => {
   return (
     <section className='anfahrt'>
       <h2>Anfahrt</h2>
-      <Link href={props.mapsLink}>
-        <a target='_blank' rel='noreferrer'>
-          <Image
-            priority
-            loader={imageLoader}
-            layout='responsive'
-            src={mapImage}
-            alt='Anfahrtkarte'
-          />
-        </a>
+      <Link href={props.mapsLink} target='_blank' rel='noreferrer'>
+        <Image
+          priority
+          loader={imageLoader}
+          layout='responsive'
+          src={mapImage}
+          alt='Anfahrtkarte'
+        />
       </Link>
       <style jsx>
         {`

@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
-import { imageLoader } from 'lib/image-loader'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import Slogan from 'components/slogan'
 import { TriangleLine } from 'components/curves'
@@ -33,13 +32,7 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
         </Slogan>
       </div>
       <div className='image'>
-        <Image
-          layout='responsive'
-          loader={imageLoader}
-          priority
-          src={image}
-          alt=''
-        />
+        <Image priority src={image} alt='' sizes='100vw' />
       </div>
       <div className='key-visual'>
         <TriangleLine animate color='white' preserveAspectRatio='none' />
@@ -71,6 +64,11 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
           grid-area: image-1 / image-1 / image-2 / image-2;
           width: 100%;
           margin-top: 2em;
+        }
+
+        .image :global(img) {
+          width: 100%;
+          height: auto;
         }
 
         .key-visual {
