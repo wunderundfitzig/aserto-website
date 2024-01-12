@@ -1,33 +1,26 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
-import { Contact, ImageType } from 'lib/types'
-import GrowingDot from 'components/leistungen/growing-dot'
-import WasUnsAusmacht from 'components/leistungen/was-uns-ausmacht'
-import LeistungenHeader from 'components/leistungen/leistungen-header'
-import AufDenPunkt from 'components/leistungen/auf-den-punkt'
-import LeistungenContact from 'components/leistungen/leistungen-contact'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
+import GefaehrdungsbeurteilungHeader from 'components/gefaehrdungsbeurteilung/gefaehrdungsbeurteilung-header'
+import WarumSieWichtigIst from 'components/gefaehrdungsbeurteilung/warum-sie-wichtig-ist'
+import GrowingDot from 'components/gefaehrdungsbeurteilung/growing-dot'
+import AufDenPunkt from 'components/gefaehrdungsbeurteilung/auf-den-punkt'
+import GefahrdungsbeurteilungContact from 'components/gefaehrdungsbeurteilung/gefaehrdungsbeurteilung-contact'
 
-type LeistungenPageProps = {
-  contactImage: ImageType
-  contact: Contact
-}
+type LeistungenPageProps = Record<string, never>
 const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
         <Metadata pageMeta={props.pageData} slug='/leistungen' />
         <main>
-          <LeistungenHeader />
-          <WasUnsAusmacht />
+          <GefaehrdungsbeurteilungHeader />
+          <WarumSieWichtigIst />
           <GrowingDot />
           <AufDenPunkt />
         </main>
-        <LeistungenContact
-          contact={props.pageData.contact}
-          image={props.pageData.contactImage}
-        />
+        <GefahrdungsbeurteilungContact />
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
     </>
@@ -39,20 +32,6 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   const result = await queryPageData<LeistungenPageProps>({
     query: 'page("leistungen")',
-    select: {
-      contact: {
-        query: 'page.contact.toPage',
-        select: {
-          name: 'page.title',
-          mail: 'page.email',
-          phone: true,
-        },
-      },
-      contactImage: {
-        query: 'page.contact.toPage.image',
-        select: { src: 'file.id', width: true, height: true },
-      },
-    },
   })
   return { props: result }
 }
