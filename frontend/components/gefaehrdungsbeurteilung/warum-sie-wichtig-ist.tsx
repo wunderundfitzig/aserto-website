@@ -26,8 +26,8 @@ const WarumSieWichtigIst: FunctionComponent = () => {
         </p>
         <List color={colors.lightBlue}>
           <>Erkennen</>
-          <>Strategie</>
-          <>Analyse</>
+          <>Verstehen</>
+          <>Handeln</>
         </List>
       </div>
 
