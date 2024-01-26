@@ -35,6 +35,7 @@ const Button: FunctionComponent<Props> = (props) => {
           font-family: 'Usherwood', serif;
           font-weight: bold;
           letter-spacing: 0.06em;
+          text-align: center;
           cursor: pointer;
         }
 

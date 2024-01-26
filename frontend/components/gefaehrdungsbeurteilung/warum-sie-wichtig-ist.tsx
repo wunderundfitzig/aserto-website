@@ -30,7 +30,9 @@ const WarumSieWichtigIst: FunctionComponent = () => {
           Ergebnisse ergeben sich Handlungsfelder für Vorstände,
           Geschäftsführung, HR und Personalverantwortliche.
         </p>
-        <List color={colors.lightBlue}>
+      </div>
+      <div className='bullets'>
+        <List inline color={colors.lightBlue}>
           <>Erkennen</>
           <>Verstehen</>
           <>Handeln</>
@@ -41,17 +43,18 @@ const WarumSieWichtigIst: FunctionComponent = () => {
         .was-uns-ausmacht {
           display: grid;
           grid-template-columns: 1fr;
-          grid-template-rows: auto auto auto;
+          grid-template-rows: auto auto auto auto auto;
           grid-template-areas:
             'contact'
             'image'
             'title'
-            'text-block';
+            'text-block'
+            'bullets';
         }
 
         .contact-link {
           grid-area: contact;
-          margin: 2em 0 3em;
+          margin: 2.5em 0 3.5em;
           display: grid;
           justify-content: center;
           font-size: 1.1em;
@@ -89,6 +92,10 @@ const WarumSieWichtigIst: FunctionComponent = () => {
           margin-bottom: 3rem;
         }
 
+        .bullets {
+          grid-area: bullets;
+        }
+
         @media ${minWidth(breakpoint.s)} {
           .contact-link {
             justify-content: flex-start;
@@ -102,11 +109,12 @@ const WarumSieWichtigIst: FunctionComponent = () => {
         @media ${minWidth(breakpoint.sm)} {
           .was-uns-ausmacht {
             grid-template-columns: 0.9fr 1.1fr;
-            grid-template-rows: auto auto;
+            grid-template-rows: auto auto auto auto;
             grid-template-areas:
               'contact    image'
               'title      image'
-              'text-block image';
+              'text-block image'
+              'bullets    bullets';
             grid-gap: 0 3em;
             align-items: start;
             margin-top: 5em;
@@ -142,14 +150,14 @@ const WarumSieWichtigIst: FunctionComponent = () => {
         @media ${minWidth(breakpoint.xxl)} {
           .was-uns-ausmacht {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto;
+            grid-template-rows: auto auto auto 1fr;
             grid-template-areas:
-              '.          image'
               'contact    image'
               'title      image'
-              'text-block image';
+              'text-block image'
+              'bullets    image';
             grid-gap: 0 6em;
-            align-items: end;
+            align-items: flex-start;
             margin-top: 6em;
           }
 
@@ -160,6 +168,10 @@ const WarumSieWichtigIst: FunctionComponent = () => {
 
           .image {
             height: 600px;
+          }
+
+          .text-block {
+            margin-bottom: 0;
           }
         }
       `}</style>
