@@ -64,7 +64,7 @@ export const CloseIcon: FunctionComponent<IconProps> = (props) => {
 }
 
 export const ArrowIcon: FunctionComponent<IconProps & { rotate?: number }> = (
-  props
+  props,
 ) => {
   const { color = 'black', rotate = 0 } = props
   return (

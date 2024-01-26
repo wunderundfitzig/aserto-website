@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
-import { imageLoader } from 'lib/image-loader'
 import { StraightLine } from 'components/curves'
 
 import image1 from 'public/images/karriere/karriere-image-6.jpg'
@@ -12,10 +11,10 @@ const Collage: FunctionComponent = () => {
   return (
     <section className='collage'>
       <div className='left-image'>
-        <Image loader={imageLoader} src={image1} alt='' />
+        <Image src={image1} alt='' />
       </div>
       <div className='right-image'>
-        <Image loader={imageLoader} src={image2} alt='' />
+        <Image src={image2} alt='' />
       </div>
       <div className='line'>
         <StraightLine
@@ -32,6 +31,11 @@ const Collage: FunctionComponent = () => {
           grid-gap: 1rem;
           grid-template-areas: 'left' 'right';
           margin-bottom: 2rem;
+        }
+
+        .collage :global(img) {
+          width: 100%;
+          height: auto;
         }
 
         .left-image {

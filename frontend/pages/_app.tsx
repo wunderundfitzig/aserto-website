@@ -21,7 +21,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
       <Favicons />
       <PreloadFont />
       <MainGrid onFrontpage={isIndexPage}>
-        <Link href='/'>
+        <Link legacyBehavior href='/'>
           <a
             className={`logo-link ${isIndexPage ? 'on-frontpage' : undefined}`}
             title='aserto startpage'

@@ -35,7 +35,13 @@ const Instagram: FunctionComponent<Props> = (props) => {
       </p>
       <div className='posts'>
         {posts.map((post) => (
-          <a key={post.id} href={post.url} target='_blank' rel='noreferrer'>
+          <a
+            key={post.id}
+            href={post.url}
+            target='_blank'
+            rel='noreferrer'
+            className='post'
+          >
             <Image
               loader={imageLoader}
               alt={post.caption}
@@ -78,6 +84,11 @@ const Instagram: FunctionComponent<Props> = (props) => {
           grid-gap: 2em;
           margin-bottom: 2em;
           margin-top: 2em;
+        }
+
+        .post :global(img) {
+          width: 100%;
+          height: auto;
         }
 
         p {

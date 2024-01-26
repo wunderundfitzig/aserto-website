@@ -1,30 +1,41 @@
 import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { categoryColors } from 'lib/colors'
+import * as colors from 'lib/colors'
 import List from 'components/list'
 import image from 'public/images/leistungen/leistungen-image-1.jpg'
+import Button from 'components/button'
 
-const WasUnsAusmacht: FunctionComponent = () => {
+const WarumSieWichtigIst: FunctionComponent = () => {
   return (
     <section className='was-uns-ausmacht'>
-      <h2>Was uns ausmacht</h2>
+      <div className='contact-link'>
+        <Button tag='a' href='#contact' color={colors.blue}>
+          Jetzt Kontakt aufnehmen
+        </Button>
+      </div>
+      <h2>Warum sie wichtig ist</h2>
       <div className='image'>
         <Image fill priority src={image} alt='' />
       </div>
       <div className='text-block'>
         <p>
-          aserto begleitet Unternehmen und Institutionen bei richtungsweisenden
-          Handlungen und eröffnet Möglichkeiten zur Veränderung:
+          Wer dauerhaft zufriedene Mitarbeitende haben will, muss sich um sie
+          kümmern – auf verschiedenen Ebenen. Dazu gehört auch ihre psychische
+          Gesundheit.
         </p>
         <p>
-          durch belastbare, verständliche Erkenntnisse und durch einen
-          wertschätzenden, verbindlichen Dialog mit den Beteiligten.
+          In einem ersten Schritt gilt es zu wissen, wie es um die Gesundheit
+          der Beschäftigten steht – am besten indem man sie fragt. Durch die
+          Ergebnisse ergeben sich Handlungsfelder für Vorstände,
+          Geschäftsführung, HR und Personalverantwortliche.
         </p>
-        <List color={categoryColors.leistungen}>
-          <>Analyse</>
-          <>Strategie</>
-          <>Steuerung</>
+      </div>
+      <div className='bullets'>
+        <List inline color={colors.lightBlue}>
+          <>Erkennen</>
+          <>Verstehen</>
+          <>Handeln</>
         </List>
       </div>
 
@@ -32,18 +43,28 @@ const WasUnsAusmacht: FunctionComponent = () => {
         .was-uns-ausmacht {
           display: grid;
           grid-template-columns: 1fr;
-          grid-template-rows: auto auto auto;
+          grid-template-rows: auto auto auto auto auto;
           grid-template-areas:
+            'contact'
             'image'
             'title'
-            'text-block';
-          margin-top: 4em;
+            'text-block'
+            'bullets';
+        }
+
+        .contact-link {
+          grid-area: contact;
+          margin: 2.5em 0 3.5em;
+          display: grid;
+          justify-content: center;
+          font-size: 1.1em;
         }
 
         h2 {
           grid-area: title;
           margin-top: 4rem;
           margin-bottom: 1em;
+          text-wrap: balance;
         }
 
         .image {
@@ -71,7 +92,15 @@ const WasUnsAusmacht: FunctionComponent = () => {
           margin-bottom: 3rem;
         }
 
+        .bullets {
+          grid-area: bullets;
+        }
+
         @media ${minWidth(breakpoint.s)} {
+          .contact-link {
+            justify-content: flex-start;
+            margin: 3em 0 4em;
+          }
           .image {
             height: 400px;
           }
@@ -80,17 +109,24 @@ const WasUnsAusmacht: FunctionComponent = () => {
         @media ${minWidth(breakpoint.sm)} {
           .was-uns-ausmacht {
             grid-template-columns: 0.9fr 1.1fr;
-            grid-template-rows: auto auto;
+            grid-template-rows: auto auto auto auto;
             grid-template-areas:
+              'contact    image'
               'title      image'
-              'text-block image';
+              'text-block image'
+              'bullets    bullets';
             grid-gap: 0 3em;
             align-items: start;
-            margin-top: 4em;
+            margin-top: 5em;
+          }
+
+          .contact-link {
+            margin-top: -1em;
+            margin-bottom: 4em;
           }
 
           h2 {
-            margin-top: 6rem;
+            margin-top: 0rem;
           }
 
           .image {
@@ -114,18 +150,28 @@ const WasUnsAusmacht: FunctionComponent = () => {
         @media ${minWidth(breakpoint.xxl)} {
           .was-uns-ausmacht {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto;
+            grid-template-rows: auto auto auto 1fr;
             grid-template-areas:
-              '.          image'
+              'contact    image'
               'title      image'
-              'text-block image';
+              'text-block image'
+              'bullets    image';
             grid-gap: 0 6em;
-            align-items: end;
+            align-items: flex-start;
             margin-top: 6em;
+          }
+
+          .contact-link {
+            margin-top: -2em;
+            margin-bottom: 4em;
           }
 
           .image {
             height: 600px;
+          }
+
+          .text-block {
+            margin-bottom: 0;
           }
         }
       `}</style>
@@ -133,4 +179,4 @@ const WasUnsAusmacht: FunctionComponent = () => {
   )
 }
 
-export default WasUnsAusmacht
+export default WarumSieWichtigIst

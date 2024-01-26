@@ -50,9 +50,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
               key={navItem.slug}
               className={`/${rootPath}` === navItem.slug ? 'active' : undefined}
             >
-              <Link href={navItem.slug}>
-                <a>{navItem.label}</a>
-              </Link>
+              <Link href={navItem.slug}>{navItem.label}</Link>
             </li>
           )
         })}

@@ -22,7 +22,7 @@ export const Circle: FunctionComponent = () => {
         cy='51'
         r='50'
         fill='none'
-        stroke={colors.green}
+        stroke={colors.lightBlue}
         strokeWidth={6}
       />
       <style jsx>
@@ -90,7 +90,7 @@ const GrowingDot: FunctionComponent = () => {
             }}
             cx='50%'
             cy='50%'
-            fill={colors.green}
+            fill={colors.beige}
             r={1}
           />
           <circle
@@ -101,19 +101,19 @@ const GrowingDot: FunctionComponent = () => {
               transform: `scale(${bigCircleSize + 30})`,
               transformOrigin: '50% 50%',
             }}
-            fill={colors.green}
+            fill={colors.beige}
             r={1}
           />
         </g>
       </svg>
       <div className='inner'>
         <h2 className='first-text'>
+          <span>Wie Sie die Gesundheit</span>
           <span>
-            Wie richtungs
+            Ihrer&nbsp;Mitarbeit
             <wbr />
-            weisende
+            enden stärken
           </span>
-          <span>Ergebnisse entstehen</span>
         </h2>
         <div
           className='outline-cirlce micro'
@@ -134,11 +134,13 @@ const GrowingDot: FunctionComponent = () => {
                 : 0,
           }}
         >
-          <h3>Analyse:</h3>
+          <h3>Erkennen:</h3>
           <p>
-            Im ersten Schritt sammeln und aggregieren wir alle verfügbaren
-            Informationen, um diese dann je nach Fragestellung in ein Konzept
-            oder in eine Datenanalyse zu überführen.
+            Mithilfe einer an Ihre Bedarfe angepassten Befragung nach
+            wissenschaftlichen Kriterien ermitteln wir den Ist-Stand der
+            psychischen Gesundheit in der Belegschaft. Dabei beleuchten wir
+            sowohl Anforderungen als auch Ressourcen, die die Gesundheit
+            beeinflussen können.
           </p>
         </div>
         <div
@@ -160,10 +162,12 @@ const GrowingDot: FunctionComponent = () => {
                 : 0,
           }}
         >
-          <h3>Verdichtung und maßvolle Akzentuierung:</h3>
+          <h3>Verstehen:</h3>
           <p>
-            In einer Vielzahl von Informationen und Daten finden wir die Signale
-            im Rauschen. Und wir erläutern, was diese zu bedeuten haben.
+            Gemeinsam mit Ihnen gehen wir den identifizierten Stärken und
+            Herausforderungen auf den Grund und leiten konkrete Handlungsfelder
+            ab. Dabei nehmen wir sowohl das Unternehmen als auch die
+            Führungskräfte und Mitarbeitenden in die Verantwortung.
           </p>
         </div>
         <div
@@ -172,11 +176,13 @@ const GrowingDot: FunctionComponent = () => {
             opacity: scrolledVh > ERGEBNISE_OFFSET_BFORE ? 1 : 0,
           }}
         >
-          <h3>Ganzheitliche Betrachtung:</h3>
+          <h3>Handeln:</h3>
           <p>
-            Reine Datenanalysen finden bei uns nicht statt. Wir setzen unsere
-            Analysen und Konzepte immer in den unternehmensrelevanten Kontext.
-            Denn nur, wenn wir die Hintergründe kennen, schaffen wir Relevanz.
+            Im Abgleich mit den bestehenden Angeboten in Ihrem Unternehmen und
+            den Handlungsfeldern entsteht eine konkrete Roadmap. Das kann von
+            individuellen Coachingangeboten bis zur Einführung von
+            unternehmensweiten Deep-Work-Phasen oder einer
+            no-mails-after-6pm-Policy gehen.
           </p>
         </div>
       </div>
@@ -251,7 +257,7 @@ const GrowingDot: FunctionComponent = () => {
         h3 {
           font-weight: 200;
           text-align: center;
-          color: ${colors.lightGreen};
+          color: ${colors.lightBeige};
           text-transform: uppercase;
           margin: 0;
         }
@@ -294,7 +300,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .first-text span {
-          max-width: 8em;
+          max-width: 7em;
         }
 
         .first-text span:first-child {
@@ -320,6 +326,7 @@ const GrowingDot: FunctionComponent = () => {
 
         .analyse {
           grid-area: analyse;
+          max-width: 250px;
         }
 
         .verdichtung {
@@ -345,13 +352,6 @@ const GrowingDot: FunctionComponent = () => {
           .first-text {
             font-size: 1.4em;
           }
-          .first-text span,
-          .first-text span:first-child {
-            text-align: center;
-          }
-          .analyse {
-            max-width: 200px;
-          }
 
           .ergebnisse {
             max-width: 500px;
@@ -365,15 +365,22 @@ const GrowingDot: FunctionComponent = () => {
           }
 
           .first-text span {
-            max-width: 100%;
-          }
-
-          .first-text span:first-child {
-            text-align: center;
-            justify-self: end;
+            max-width: 9em;
           }
         }
 
+        @media ${minWidth(breakpoint.xl)} {
+          .first-text {
+            grid-gap: 210px;
+            justify-items: center;
+          }
+          .first-text span {
+            max-width: 100%;
+          }
+          .first-text span:first-child {
+            justify-self: center;
+          }
+        }
         @media ${minWidth(breakpoint.xxl)} {
           .growing-dot {
             margin-top: calc(-50vh + 15rem);

@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { categoryColors } from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { imageLoader } from 'lib/image-loader'
 import List from 'components/list'
 
 import officeImage from 'public/images/purpose/purpose.jpg'
@@ -12,13 +11,7 @@ const MenschenUndDaten: FunctionComponent = () => {
     <section className='menschen-und-daten'>
       <h2>Es braucht Menschen und Daten:</h2>
       <div className='image'>
-        <Image
-          loader={imageLoader}
-          src={officeImage}
-          layout='fill'
-          objectFit='cover'
-          alt=''
-        />
+        <Image fill src={officeImage} alt='' />
       </div>
       <div className='text'>
         <p>
@@ -49,6 +42,10 @@ const MenschenUndDaten: FunctionComponent = () => {
           max-height: 0;
           padding-bottom: 80%;
           overflow: hidden;
+        }
+
+        .image :global(img) {
+          object-fit: cover;
         }
 
         h2 {

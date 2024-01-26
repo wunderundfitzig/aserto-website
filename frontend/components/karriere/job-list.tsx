@@ -14,11 +14,13 @@ const JobList: FunctionComponent<Props> = (props) => {
       <ul>
         {props.jobs.map((job) => (
           <li key={job.slug}>
-            <Link href={`/karriere/jobs/${job.slug}`} scroll={false}>
-              <a>
-                <span>{job.title}</span>
-                <MoreInfoIcon color={colors.categoryColors.karriere} />
-              </a>
+            <Link
+              href={`/karriere/jobs/${job.slug}`}
+              scroll={false}
+              className='job-link'
+            >
+              <span>{job.title}</span>
+              <MoreInfoIcon color={colors.categoryColors.karriere} />
             </Link>
           </li>
         ))}
@@ -35,7 +37,7 @@ const JobList: FunctionComponent<Props> = (props) => {
           margin: 0;
         }
 
-        a {
+        .job-list :global(a) {
           display: grid;
           grid-template-columns: 1fr 30px;
           align-items: center;
@@ -44,7 +46,7 @@ const JobList: FunctionComponent<Props> = (props) => {
           text-transform: uppercase;
         }
 
-        li:last-child a {
+        li:last-child :global(a) {
           border-bottom: 0;
         }
 

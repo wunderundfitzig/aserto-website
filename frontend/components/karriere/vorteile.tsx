@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
-import { imageLoader } from 'lib/image-loader'
 import { categoryColors } from 'lib/colors'
 import Statement from 'components/statement'
 import { StraightLine } from 'components/curves'
@@ -31,10 +30,10 @@ const Vorteile: FunctionComponent = () => {
       </svg>
       <div className='images'>
         <div className='image-1'>
-          <Image loader={imageLoader} src={image1} alt='' />
+          <Image src={image1} alt='' />
         </div>
         <div className='image-2'>
-          <Image loader={imageLoader} src={image2} alt='' />
+          <Image src={image2} alt='' />
         </div>
       </div>
       <div className='text'>
@@ -70,7 +69,6 @@ const Vorteile: FunctionComponent = () => {
           href='https://www.charta-der-vielfalt.de/'
         >
           <Image
-            loader={imageLoader}
             src={chartaLogo}
             alt='charta der vielfalt | Für Diversity in der Arbeitswelt'
           />
@@ -82,7 +80,6 @@ const Vorteile: FunctionComponent = () => {
           href='https://nilohealth.com/de/'
         >
           <Image
-            loader={imageLoader}
             src={niloHealthBadge}
             alt='We use nilo.health to empower employee mental health'
           />
@@ -99,7 +96,7 @@ const Vorteile: FunctionComponent = () => {
         </p>
       </div>
       <div className='image-right'>
-        <Image loader={imageLoader} src={image3} alt='' />
+        <Image src={image3} alt='' />
       </div>
       <div className='line white-line'>
         <StraightLine
@@ -159,6 +156,11 @@ const Vorteile: FunctionComponent = () => {
           margin-bottom: 4rem;
         }
 
+        .images :global(img) {
+          width: 100%;
+          height: auto;
+        }
+
         .background {
           grid-area: text;
           width: 100%;
@@ -190,6 +192,11 @@ const Vorteile: FunctionComponent = () => {
           grid-gap: 2em;
         }
 
+        .badges :global(img) {
+          max-width: 100%;
+          height: auto;
+        }
+
         .badges .charta {
           grid-area: charta;
         }
@@ -213,6 +220,11 @@ const Vorteile: FunctionComponent = () => {
 
         .image-right {
           grid-area: right-image;
+        }
+
+        .image-right :global(img) {
+          width: 100%;
+          height: auto;
         }
 
         .line {

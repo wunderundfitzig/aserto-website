@@ -1,10 +1,10 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
-import { categoryColors } from 'lib/colors'
+import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { SkewedHalfCircle } from 'components/curves'
 import List from 'components/list'
-import image from 'public/images/leistungen/leistungen-image-2.jpg'
+import image from 'public/images/gefaehrdungsbeurteilung/gruppe.jpg'
 
 const AufDenPunkt: FunctionComponent = () => {
   return (
@@ -15,18 +15,18 @@ const AufDenPunkt: FunctionComponent = () => {
       </div>
 
       <div className='list'>
-        <List color={categoryColors.leistungen}>
-          <>Relevanz und Überzeugungskraft durch 18 Jahre Erfahrung.</>
-          <>Hohe Systemkompetenz durch über 500 richtungsweisende Projekte.</>
+        <List color={colors.lightBlue}>
+          <>Mit Partnern der Personal- und Arbeitspsychologie.</>
+          <>Für große Entlastung der Verantwortlichen im Unternehmen.</>
           <>
-            Strategischer Partner für Entscheider*innen aus Wirtschaft,
-            Wissenschaft und Institutionen.
+            Mit nachweisbarem Effekt auf das Bewusstsein für psychische
+            Gesundheit.
           </>
         </List>
       </div>
       <div className='circle'>
         <SkewedHalfCircle
-          color={categoryColors.leistungen}
+          color={colors.beige}
           preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
         />
       </div>
@@ -104,7 +104,6 @@ const AufDenPunkt: FunctionComponent = () => {
           }
 
           h2 {
-            text-align: right;
             margin-bottom: 2em;
           }
 

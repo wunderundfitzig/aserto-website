@@ -1,9 +1,10 @@
 import { FunctionComponent } from 'react'
-import Image from 'next/dist/client/image'
+import Image from 'next/image'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { imageLoader } from 'lib/image-loader'
 import { Client } from 'lib/types'
+import { imageLoader, backendImage } from 'lib/image-loader'
+
 import { RoundZigZagCurve } from 'components/curves'
 
 type Props = {
@@ -15,8 +16,12 @@ const LogoList: FunctionComponent<Props> = (props) => {
       <h2>Unsere Kunden</h2>
       <ul>
         {props.clients.map((client, idx) => (
-          <li key={idx}>
-            <Image loader={imageLoader} {...client.logo} alt={client.name} />
+          <li key={idx} className='logo'>
+            <Image
+              loader={imageLoader}
+              {...backendImage(client.logo)}
+              alt={client.name}
+            />
           </li>
         ))}
       </ul>
@@ -42,6 +47,11 @@ const LogoList: FunctionComponent<Props> = (props) => {
           grid-gap: 2rem 2.5rem;
           align-items: center;
           justify-items: center;
+        }
+
+        .logo :global(img) {
+          width: 100%;
+          height: auto;
         }
 
         .curve {

@@ -7,10 +7,10 @@ import { transparentize } from 'polished'
 
 function makeOffsetCurve(
   curve: [number, number][],
-  offset: number
+  offset: number,
 ): [number, number][] {
   return curve.map((point, idx) =>
-    idx === 2 ? [point[0] + offset, point[1]] : point
+    idx === 2 ? [point[0] + offset, point[1]] : point,
   )
 }
 
