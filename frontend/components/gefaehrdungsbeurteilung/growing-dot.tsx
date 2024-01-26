@@ -109,7 +109,7 @@ const GrowingDot: FunctionComponent = () => {
       <div className='inner'>
         <h2 className='first-text'>
           <span>Wie Sie die Gesundheit</span>
-          <span>Ihrer Mitarbeiter stärken</span>
+          <span>Ihrer Mitarbeitenden stärken</span>
         </h2>
         <div
           className='outline-cirlce micro'
@@ -134,8 +134,9 @@ const GrowingDot: FunctionComponent = () => {
           <p>
             Mithilfe einer an Ihre Bedarfe angepassten Befragung nach
             wissenschaftlichen Kriterien ermitteln wir den Ist-Stand der
-            psychischen Gesundheit in der Belegschaft. Dabei betrachten wir
-            Stärken genauso wie Herausforderungen.
+            psychischen Gesundheit in der Belegschaft. Dabei beleuchten wir
+            sowohl Anforderungen als auch Ressourcen, die die Gesundheit
+            beeinflussen können.
           </p>
         </div>
         <div
@@ -159,10 +160,10 @@ const GrowingDot: FunctionComponent = () => {
         >
           <h3>Verstehen:</h3>
           <p>
-            Gemeinsam mit Ihnen gehen wir den Stärken und Herausforderungen auf
-            den Grund und leiten konkrete Handlungsfelder ab. Dabei nehmen wir
-            sowohl das Unternehmen als auch die Mitarbeitenden in die
-            Verantwortung.
+            Gemeinsam mit Ihnen gehen wir den identifizierten Stärken und
+            Herausforderungen auf den Grund und leiten konkrete Handlungsfelder
+            ab. Dabei nehmen wir sowohl das Unternehmen als auch die
+            Führungskräfte und Mitarbeitenden in die Verantwortung.
           </p>
         </div>
         <div
@@ -176,7 +177,7 @@ const GrowingDot: FunctionComponent = () => {
             Im Abgleich mit den bestehenden Angeboten in Ihrem Unternehmen und
             den Handlungsfeldern entsteht eine konkrete Roadmap. Das kann von
             individuellen Coachingangeboten bis zur Einführung von
-            unternehmensweiten Deep-Work-Phase oder einer
+            unternehmensweiten Deep-Work-Phasen oder einer
             no-mails-after-6pm-Policy gehen.
           </p>
         </div>

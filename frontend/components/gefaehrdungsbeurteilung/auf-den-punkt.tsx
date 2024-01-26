@@ -4,7 +4,7 @@ import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { SkewedHalfCircle } from 'components/curves'
 import List from 'components/list'
-import image from 'public/images/leistungen/leistungen-image-2.jpg'
+import image from 'public/images/gefaehrdungsbeurteilung/gruppe.jpg'
 
 const AufDenPunkt: FunctionComponent = () => {
   return (
@@ -17,9 +17,9 @@ const AufDenPunkt: FunctionComponent = () => {
       <div className='list'>
         <List color={colors.lightBlue}>
           <>Mit Partnern der Personal- und Arbeitspsychologie.</>
-          <>Für große Entlastung für Verantwortliche im Unternehmen.</>
+          <>Für große Entlastung der Verantwortlichen im Unternehmen.</>
           <>
-            Mit nachweisebarem Effekt auf das Bewusstsein für psychische
+            Mit nachweisbarem Effekt auf das Bewusstsein für psychische
             Gesundheit.
           </>
         </List>
@@ -104,7 +104,6 @@ const AufDenPunkt: FunctionComponent = () => {
           }
 
           h2 {
-            text-align: right;
             margin-bottom: 2em;
           }
 
