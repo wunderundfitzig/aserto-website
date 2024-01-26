@@ -280,7 +280,7 @@ const GrowingDot: FunctionComponent = () => {
         .first-text {
           position: absolute;
           width: 100%;
-          height: min-content;
+          height: auto;
           top: calc(50vh - 60px);
           transform: translateY(-50%);
           font-size: 1em;
