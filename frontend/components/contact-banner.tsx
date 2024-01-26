@@ -5,6 +5,7 @@ import { Contact, ImageType } from 'lib/types'
 import { imageLoader } from 'lib/image-loader'
 
 type Props = {
+  anchor?: string
   image: ImageType
   contact: Contact
   contactCardTitle?: string
@@ -20,7 +21,7 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
       className={`contact-banner ${props.children.text ? 'with-text' : ''}`}
     >
       <div className='title-wrapper'>
-        <h2>{props.children.title}</h2>
+        <h2 id={props.anchor}>{props.children.title}</h2>
         {props.children.text && <p>{props.children.text}</p>}
       </div>
       <div className='image'>

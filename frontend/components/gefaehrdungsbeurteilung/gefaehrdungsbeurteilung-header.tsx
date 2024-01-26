@@ -8,7 +8,9 @@ const GefaehrdungsbeurteilungHeader: FunctionComponent = () => {
   return (
     <header className='leistungen-header'>
       <h1>
-        Gefährdungsbeurteilung
+        Gefährdungs
+        <wbr />
+        beurteilung
         <br /> psychischer Belastung
       </h1>
       <Slogan emphasisColor={colors.lightBlue}>

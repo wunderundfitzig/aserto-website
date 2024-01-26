@@ -55,7 +55,7 @@ const GefahrdungsbeurteilungContact: FunctionComponent = () => {
   }
 
   return (
-    <ContactBanner image={image} contact={contact}>
+    <ContactBanner image={image} contact={contact} anchor='contact'>
       {{
         title: (
           <>

@@ -30,7 +30,7 @@ const Button: FunctionComponent<Props> = (props) => {
           color: white;
           border: 0;
           border-radius: 4px;
-          padding: 0.5em 1em;
+          padding: 0.6em 1.2em;
           box-shadow: none;
           font-family: 'Usherwood', serif;
           font-weight: bold;

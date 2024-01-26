@@ -109,7 +109,11 @@ const GrowingDot: FunctionComponent = () => {
       <div className='inner'>
         <h2 className='first-text'>
           <span>Wie Sie die Gesundheit</span>
-          <span>Ihrer Mitarbeitenden stärken</span>
+          <span>
+            Ihrer&nbsp;Mitarbeit
+            <wbr />
+            enden stärken
+          </span>
         </h2>
         <div
           className='outline-cirlce micro'
@@ -296,7 +300,7 @@ const GrowingDot: FunctionComponent = () => {
         }
 
         .first-text span {
-          max-width: 8em;
+          max-width: 7em;
         }
 
         .first-text span:first-child {
@@ -322,6 +326,7 @@ const GrowingDot: FunctionComponent = () => {
 
         .analyse {
           grid-area: analyse;
+          max-width: 250px;
         }
 
         .verdichtung {
@@ -347,13 +352,6 @@ const GrowingDot: FunctionComponent = () => {
           .first-text {
             font-size: 1.4em;
           }
-          .first-text span,
-          .first-text span:first-child {
-            text-align: center;
-          }
-          .analyse {
-            max-width: 200px;
-          }
 
           .ergebnisse {
             max-width: 500px;
@@ -367,15 +365,22 @@ const GrowingDot: FunctionComponent = () => {
           }
 
           .first-text span {
-            max-width: 100%;
-          }
-
-          .first-text span:first-child {
-            text-align: center;
-            justify-self: end;
+            max-width: 9em;
           }
         }
 
+        @media ${minWidth(breakpoint.xl)} {
+          .first-text {
+            grid-gap: 210px;
+            justify-items: center;
+          }
+          .first-text span {
+            max-width: 100%;
+          }
+          .first-text span:first-child {
+            justify-self: center;
+          }
+        }
         @media ${minWidth(breakpoint.xxl)} {
           .growing-dot {
             margin-top: calc(-50vh + 15rem);
