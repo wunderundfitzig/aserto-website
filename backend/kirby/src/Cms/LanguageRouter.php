@@ -15,7 +15,7 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class LanguageRouter
@@ -87,12 +87,11 @@ class LanguageRouter
                     $patterns = A::wrap($route['pattern']);
 
                     // prefix all patterns with the page slug
-                    $patterns = A::map(
-                        $patterns,
-                        fn ($pattern) => $page->uri($language) . '/' . $pattern
-                    );
+                    $patterns = array_map(function ($pattern) use ($page, $language) {
+                        return $page->uri($language) . '/' . $pattern;
+                    }, $patterns);
 
-                    // re-inject the pattern and the full page object
+                    // reinject the pattern and the full page object
                     $routes[$index]['pattern'] = $patterns;
                     $routes[$index]['page']    = $page;
                 } else {

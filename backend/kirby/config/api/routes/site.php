@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Site Routes
  */
@@ -48,7 +47,14 @@ return [
         }
     ],
     [
-        'pattern' => 'site/blueprints',
+        'pattern' => [
+            'site/blueprints',
+            /**
+             * @deprecated
+             * @todo remove in 3.6.0
+             */
+            'site/children/blueprints',
+        ],
         'method'  => 'GET',
         'action'  => function () {
             return $this->site()->blueprints($this->requestQuery('section'));

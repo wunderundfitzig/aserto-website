@@ -3,7 +3,7 @@
 namespace Kirby\Cms;
 
 use Exception;
-use Kirby\Filesystem\F;
+use Kirby\Toolkit\F;
 use Kirby\Toolkit\Tpl;
 
 /**
@@ -13,7 +13,7 @@ use Kirby\Toolkit\Tpl;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class Template
@@ -78,11 +78,7 @@ class Template
      */
     public function exists(): bool
     {
-        if ($file = $this->file()) {
-            return file_exists($file);
-        }
-
-        return false;
+        return file_exists($this->file());
     }
 
     /**

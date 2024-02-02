@@ -1,14 +1,15 @@
 {
   "name": "getkirby/cms",
-  "description": "The Kirby 3 core",
-  "license": "proprietary",
   "type": "kirby-cms",
-  "version": "3.7.0",
+  "description": "The Kirby 3 core",
   "keywords": [
     "kirby",
     "cms",
     "core"
   ],
+  "homepage": "https://getkirby.com",
+  "version": "3.5.7.1",
+  "license": "proprietary",
   "authors": [
     {
       "name": "Kirby Team",
@@ -16,47 +17,22 @@
       "homepage": "https://getkirby.com"
     }
   ],
-  "homepage": "https://getkirby.com",
-  "support": {
-    "email": "support@getkirby.com",
-    "issues": "https://github.com/getkirby/kirby/issues",
-    "forum": "https://forum.getkirby.com",
-    "source": "https://github.com/getkirby/kirby"
-  },
   "require": {
-    "php": ">=7.4.0 <8.2.0",
-    "ext-SimpleXML": "*",
+    "php": ">=7.3.0 <8.1.0",
     "ext-ctype": "*",
-    "ext-curl": "*",
-    "ext-dom": "*",
-    "ext-filter": "*",
-    "ext-hash": "*",
-    "ext-iconv": "*",
-    "ext-json": "*",
-    "ext-libxml": "*",
     "ext-mbstring": "*",
-    "ext-openssl": "*",
-    "claviska/simpleimage": "3.6.5",
-    "filp/whoops": "2.14.5",
-    "getkirby/composer-installer": "^1.2.1",
-    "laminas/laminas-escaper": "2.10.0",
+    "claviska/simpleimage": "3.6.3",
+    "filp/whoops": "2.12.1",
+    "getkirby/composer-installer": "^1.2.0",
+    "laminas/laminas-escaper": "2.7.0",
     "michelf/php-smartypants": "1.8.1",
-    "phpmailer/phpmailer": "6.6.3",
-    "symfony/polyfill-intl-idn": "1.26.0",
-    "symfony/polyfill-mbstring": "1.26.0"
+    "mustangostang/spyc": "0.6.3",
+    "phpmailer/phpmailer": "6.5.0",
+    "true/punycode": "2.1.1"
   },
-  "replace": {
-    "symfony/polyfill-php72": "*"
-  },
-  "suggest": {
-    "ext-PDO": "Support for using databases",
-    "ext-apcu": "Support for the Apcu cache driver",
-    "ext-exif": "Support for exif information from images",
-    "ext-fileinfo": "Improved mime type detection for files",
-    "ext-intl": "Improved i18n number formatting",
-    "ext-memcached": "Support for the Memcached cache driver",
-    "ext-zip": "Support for ZIP archive file functions",
-    "ext-zlib": "Sanitization and validation for svgz files"
+  "config": {
+    "optimize-autoloader": true,
+    "platform-check": false
   },
   "autoload": {
     "psr-4": {
@@ -68,21 +44,6 @@
     "files": [
       "config/setup.php",
       "config/helpers.php"
-    ]
-  },
-  "config": {
-    "allow-plugins": {
-      "getkirby/composer-installer": true
-    },
-    "optimize-autoloader": true,
-    "platform": {
-      "php": "7.4.0"
-    },
-    "platform-check": false
-  },
-  "extra": {
-    "unused": [
-      "symfony/polyfill-intl-idn"
     ]
   },
   "scripts": {
@@ -106,5 +67,11 @@
     "fix": "php-cs-fixer fix",
     "test": "phpunit --stderr --coverage-html=tests/coverage",
     "zip": "composer archive --format=zip --file=dist"
+  },
+  "support": {
+    "email": "support@getkirby.com",
+    "issues": "https://github.com/getkirby/kirby/issues",
+    "forum": "https://forum.getkirby.com",
+    "source": "https://github.com/getkirby/kirby"
   }
 }

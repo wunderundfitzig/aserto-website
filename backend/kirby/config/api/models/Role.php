@@ -7,10 +7,18 @@ use Kirby\Cms\Role;
  */
 return [
     'fields' => [
-        'description' => fn (Role $role) => $role->description(),
-        'name'        => fn (Role $role) => $role->name(),
-        'permissions' => fn (Role $role) => $role->permissions()->toArray(),
-        'title'       => fn (Role $role) => $role->title(),
+        'description' => function (Role $role) {
+            return $role->description();
+        },
+        'name' => function (Role $role) {
+            return $role->name();
+        },
+        'permissions' => function (Role $role) {
+            return $role->permissions()->toArray();
+        },
+        'title' => function (Role $role) {
+            return $role->title();
+        },
     ],
     'type'  => 'Kirby\Cms\Role',
     'views' => [

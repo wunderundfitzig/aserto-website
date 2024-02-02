@@ -12,7 +12,7 @@ use Kirby\Exception\InvalidArgumentException;
  * @package   Kirby Toolkit
  * @author    Lukas Bestle <lukas@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Locale
@@ -20,7 +20,7 @@ class Locale
     /**
      * List of all locale constants supported by PHP
      */
-    public const LOCALE_CONSTANTS = [
+    const LOCALE_CONSTANTS = [
         'LC_COLLATE', 'LC_CTYPE', 'LC_MONETARY',
         'LC_NUMERIC', 'LC_TIME', 'LC_MESSAGES'
     ];

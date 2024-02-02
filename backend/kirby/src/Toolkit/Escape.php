@@ -18,7 +18,7 @@ use Laminas\Escaper\Escaper;
  * @package   Kirby Toolkit
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Escape
@@ -81,7 +81,7 @@ class Escape
      */
     protected static function escaper()
     {
-        return static::$escaper ??= new Escaper('utf-8');
+        return static::$escaper = static::$escaper ?? new Escaper('utf-8');
     }
 
     /**

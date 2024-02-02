@@ -12,7 +12,7 @@ use Kirby\Toolkit\Properties;
  * @author    Bastian Allgeier <bastian@getkirby.com>,
  *            Nico Hoffmann <nico@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Body
@@ -20,12 +20,12 @@ class Body
     use Properties;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $html;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $text;
 
@@ -42,21 +42,21 @@ class Body
     /**
      * Returns the HTML content of the email body
      *
-     * @return string
+     * @return string|null
      */
     public function html()
     {
-        return $this->html ?? '';
+        return $this->html;
     }
 
     /**
      * Returns the plain text content of the email body
      *
-     * @return string
+     * @return string|null
      */
     public function text()
     {
-        return $this->text ?? '';
+        return $this->text;
     }
 
     /**

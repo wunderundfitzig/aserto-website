@@ -12,7 +12,7 @@ use Kirby\Toolkit\Properties;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class ContentTranslation
@@ -177,12 +177,7 @@ class ContentTranslation
      */
     protected function setContent(array $content = null)
     {
-        if ($content !== null) {
-            $this->content = array_change_key_case($content);
-        } else {
-            $this->content = null;
-        }
-
+        $this->content = $content;
         return $this;
     }
 
@@ -213,7 +208,7 @@ class ContentTranslation
      */
     public function slug(): ?string
     {
-        return $this->slug ??= ($this->content()['slug'] ?? null);
+        return $this->slug = $this->slug ?? ($this->content()['slug'] ?? null);
     }
 
     /**
@@ -225,8 +220,7 @@ class ContentTranslation
      */
     public function update(array $data = null, bool $overwrite = false)
     {
-        $data = array_change_key_case((array)$data);
-        $this->content = $overwrite === true ? $data : array_merge($this->content(), $data);
+        $this->content = $overwrite === true ? (array)$data : array_merge($this->content(), (array)$data);
         return $this;
     }
 

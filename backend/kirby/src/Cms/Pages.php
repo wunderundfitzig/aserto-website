@@ -17,7 +17,7 @@ use Kirby\Exception\InvalidArgumentException;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class Pages extends Collection
@@ -48,30 +48,27 @@ class Pages extends Collection
      * an entire second collection to the
      * current collection
      *
-     * @param \Kirby\Cms\Pages|\Kirby\Cms\Page|string $object
+     * @param mixed $object
      * @return $this
-     * @throws \Kirby\Exception\InvalidArgumentException When no `Page` or `Pages` object or an ID of an existing page is passed
+     * @throws \Kirby\Exception\InvalidArgumentException
      */
     public function add($object)
     {
-        $site = App::instance()->site();
-
-        // add a pages collection
+        // add a page collection
         if (is_a($object, self::class) === true) {
             $this->data = array_merge($this->data, $object->data);
 
         // add a page by id
-        } elseif (is_string($object) === true && $page = $site->find($object)) {
+        } elseif (is_string($object) === true && $page = page($object)) {
             $this->__set($page->id(), $page);
 
         // add a page object
         } elseif (is_a($object, 'Kirby\Cms\Page') === true) {
             $this->__set($object->id(), $object);
 
-        // give a useful error message on invalid input;
-        // silently ignore "empty" values for compatibility with existing setups
+        // give a useful error message on invalid input
         } elseif (in_array($object, [null, false, true], true) !== true) {
-            throw new InvalidArgumentException('You must pass a Pages or Page object or an ID of an existing page to the Pages collection');
+            throw new InvalidArgumentException('You must pass a Page object to the Pages collection');
         }
 
         return $this;
@@ -94,7 +91,7 @@ class Pages extends Collection
      */
     public function children()
     {
-        $children = new Pages([]);
+        $children = new Pages([], $this->parent);
 
         foreach ($this->data as $page) {
             foreach ($page->children() as $childKey => $child) {
@@ -132,7 +129,7 @@ class Pages extends Collection
      */
     public function drafts()
     {
-        $drafts = new Pages([]);
+        $drafts = new Pages([], $this->parent);
 
         foreach ($this->data as $page) {
             foreach ($page->drafts() as $draftKey => $draft) {
@@ -153,7 +150,7 @@ class Pages extends Collection
      */
     public static function factory(array $pages, Model $model = null, bool $draft = false)
     {
-        $model  ??= App::instance()->site();
+        $model    = $model ?? App::instance()->site();
         $children = new static([], $model);
         $kirby    = $model->kirby();
 
@@ -201,38 +198,53 @@ class Pages extends Collection
      * Finds a page in the collection by id.
      * This works recursively for children and
      * children of children, etc.
-     * @deprecated 3.7.0 Use `$pages->get()` or `$pages->find()` instead
-     * @todo 3.8.0 Remove method
-     * @codeCoverageIgnore
      *
      * @param string|null $id
      * @return mixed
      */
     public function findById(string $id = null)
     {
-        Helpers::deprecated('Cms\Pages::findById() has been deprecated and will be removed in Kirby 3.8.0. Use $pages->get() or $pages->find() instead.');
+        // remove trailing or leading slashes
+        $id = trim($id, '/');
 
-        return $this->findByKey($id);
+        // strip extensions from the id
+        if (strpos($id, '.') !== false) {
+            $info = pathinfo($id);
+
+            if ($info['dirname'] !== '.') {
+                $id = $info['dirname'] . '/' . $info['filename'];
+            } else {
+                $id = $info['filename'];
+            }
+        }
+
+        // try the obvious way
+        if ($page = $this->get($id)) {
+            return $page;
+        }
+
+        $multiLang = App::instance()->multilang();
+
+        if ($multiLang === true && $page = $this->findBy('slug', $id)) {
+            return $page;
+        }
+
+        $start = is_a($this->parent, 'Kirby\Cms\Page') === true ? $this->parent->id() : '';
+        $page  = $this->findByIdRecursive($id, $start, $multiLang);
+
+        return $page;
     }
 
     /**
      * Finds a child or child of a child recursively.
-     * @deprecated 3.7.0 Use `$pages->find()` instead
-     * @todo 3.8.0 Integrate code into `findByKey()` and remove this method
      *
      * @param string $id
      * @param string|null $startAt
      * @param bool $multiLang
      * @return mixed
      */
-    public function findByIdRecursive(string $id, string $startAt = null, bool $multiLang = false, bool $silenceWarning = false)
+    public function findByIdRecursive(string $id, string $startAt = null, bool $multiLang = false)
     {
-        // @codeCoverageIgnoreStart
-        if ($silenceWarning !== true) {
-            Helpers::deprecated('Cms\Pages::findByIdRecursive() has been deprecated and will be removed in Kirby 3.8.0. Use $pages->find() instead.');
-        }
-        // @codeCoverageIgnoreEnd
-
         $path       = explode('/', $id);
         $item       = null;
         $query      = $startAt;
@@ -242,14 +254,8 @@ class Pages extends Collection
             $query = ltrim($query . '/' . $key, '/');
             $item  = $collection->get($query) ?? null;
 
-            if ($item === null && $multiLang === true && !App::instance()->language()->isDefault()) {
-                if (count($path) > 1 || $collection->parent()) {
-                    // either the desired path is definitely not a slug, or collection is the children of another collection
-                    $item = $collection->findBy('slug', $key);
-                } else {
-                    // desired path _could_ be a slug or a "top level" uri
-                    $item = $collection->findBy('uri', $key);
-                }
+            if ($item === null && $multiLang === true) {
+                $item = $collection->findBy('slug', $key);
             }
 
             if ($item === null) {
@@ -261,70 +267,25 @@ class Pages extends Collection
     }
 
     /**
-     * Finds a page by its ID or URI
-     * @internal Use `$pages->find()` instead
+     * Uses the specialized find by id method
      *
      * @param string|null $key
-     * @return \Kirby\Cms\Page|null
+     * @return mixed
      */
-    public function findByKey(?string $key = null)
+    public function findByKey(string $key = null)
     {
-        if ($key === null) {
-            return null;
-        }
-
-        // remove trailing or leading slashes
-        $key = trim($key, '/');
-
-        // strip extensions from the id
-        if (strpos($key, '.') !== false) {
-            $info = pathinfo($key);
-
-            if ($info['dirname'] !== '.') {
-                $key = $info['dirname'] . '/' . $info['filename'];
-            } else {
-                $key = $info['filename'];
-            }
-        }
-
-        // try the obvious way
-        if ($page = $this->get($key)) {
-            return $page;
-        }
-
-        // try to find the page by its (translated) URI by stepping through the page tree
-        $start = is_a($this->parent, 'Kirby\Cms\Page') === true ? $this->parent->id() : '';
-        if ($page = $this->findByIdRecursive($key, $start, App::instance()->multilang(), true)) {
-            return $page;
-        }
-
-        // for secondary languages, try the full translated URI
-        // (for collections without parent that won't have a result above)
-        if (
-            App::instance()->multilang() === true &&
-            App::instance()->language()->isDefault() === false &&
-            $page = $this->findBy('uri', $key)
-        ) {
-            return $page;
-        }
-
-        return null;
+        return $this->findById($key);
     }
 
     /**
-     * Alias for `$pages->find()`
-     * @deprecated 3.7.0 Use `$pages->find()` instead
-     * @todo 3.8.0 Remove method
-     * @codeCoverageIgnore
+     * Alias for Pages::findById
      *
      * @param string $id
      * @return \Kirby\Cms\Page|null
      */
     public function findByUri(string $id)
     {
-        Helpers::deprecated('Cms\Pages::findByUri() has been deprecated and will be removed in Kirby 3.8.0. Use $pages->find() instead.');
-
-        return $this->findByKey($id);
+        return $this->findById($id);
     }
 
     /**
@@ -384,7 +345,7 @@ class Pages extends Collection
             return $index;
         }
 
-        $index = new Pages([]);
+        $index = new Pages([], $this->parent);
 
         foreach ($this->data as $pageKey => $page) {
             $index->data[$pageKey] = $page;

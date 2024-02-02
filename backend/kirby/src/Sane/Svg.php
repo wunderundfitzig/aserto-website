@@ -2,12 +2,11 @@
 
 namespace Kirby\Sane;
 
-use DOMAttr;
 use DOMDocumentType;
-use DOMElement;
+use DOMNode;
+use DOMNodeList;
 use DOMXPath;
 use Kirby\Exception\InvalidArgumentException;
-use Kirby\Toolkit\Dom;
 use Kirby\Toolkit\Str;
 
 /**
@@ -18,7 +17,7 @@ use Kirby\Toolkit\Str;
  * @author    Bastian Allgeier <bastian@getkirby.com>,
  *            Lukas Bestle <lukas@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Svg extends Xml
@@ -30,42 +29,23 @@ class Svg extends Xml
      * @copyright 2015 Mario Heiderich
      * @license https://www.apache.org/licenses/LICENSE-2.0
      */
-
-    /**
-     * Global list of allowed attribute prefixes
-     *
-     * @var array
-     */
-    public static $allowedAttrPrefixes = [
-        'aria-',
-        'data-',
-    ];
-
-    /**
-     * Global list of allowed attributes
-     *
-     * @var array
-     */
-    public static $allowedAttrs = [
-        // core attributes
-        'id',
-        'lang',
-        'tabindex',
-        'xml:id',
-        'xml:lang',
-        'xml:space',
-
-        // styling attributes
-        'class',
-        'style',
-
-        // conditional processing attributes
-        'systemLanguage',
-
-        // presentation attributes
+    public static $allowedAttributes = [
+        'accent-height',
+        'accumulate',
+        'additive',
         'alignment-baseline',
+        'ascent',
+        'attributeName',
+        'attributeType',
+        'azimuth',
+        'baseFrequency',
         'baseline-shift',
+        'begin',
+        'bias',
+        'by',
+        'class',
         'clip',
+        'clipPathUnits',
         'clip-path',
         'clip-rule',
         'color',
@@ -73,15 +53,24 @@ class Svg extends Xml
         'color-interpolation-filters',
         'color-profile',
         'color-rendering',
+        'cx',
+        'cy',
         'd',
+        'dx',
+        'dy',
+        'diffuseConstant',
         'direction',
         'display',
-        'dominant-baseline',
-        'enable-background',
+        'divisor',
+        'dur',
+        'edgeMode',
+        'elevation',
+        'end',
         'fill',
         'fill-opacity',
         'fill-rule',
         'filter',
+        'filterUnits',
         'flood-color',
         'flood-opacity',
         'font-family',
@@ -91,103 +80,18 @@ class Svg extends Xml
         'font-style',
         'font-variant',
         'font-weight',
-        'image-rendering',
-        'kerning',
-        'letter-spacing',
-        'lighting-color',
-        'marker-end',
-        'marker-mid',
-        'marker-start',
-        'mask',
-        'opacity',
-        'overflow',
-        'paint-order',
-        'shape-rendering',
-        'stop-color',
-        'stop-opacity',
-        'stroke',
-        'stroke-dasharray',
-        'stroke-dashoffset',
-        'stroke-linecap',
-        'stroke-linejoin',
-        'stroke-miterlimit',
-        'stroke-opacity',
-        'stroke-width',
-        'text-anchor',
-        'text-decoration',
-        'text-rendering',
-        'transform',
-        'visibility',
-        'word-spacing',
-        'writing-mode',
-
-        // animation attribute target attributes
-        'attributeName',
-        'attributeType',
-
-        // animation timing attributes
-        'begin',
-        'dur',
-        'end',
-        'max',
-        'min',
-        'repeatCount',
-        'repeatDur',
-        'restart',
-
-        // animation value attributes
-        'by',
-        'from',
-        'keySplines',
-        'keyTimes',
-        'to',
-        'values',
-
-        // animation addition attributes
-        'accumulate',
-        'additive',
-
-        // filter primitive attributes
-        'height',
-        'result',
-        'width',
-        'x',
-        'y',
-
-        // transfer function attributes
-        'amplitude',
-        'exponent',
-        'intercept',
-        'offset',
-        'slope',
-        'tableValues',
-        'type',
-
-        // other attributes specific to one or multiple elements
-        'azimuth',
-        'baseFrequency',
-        'bias',
-        'clipPathUnits',
-        'cx',
-        'cy',
-        'diffuseConstant',
-        'divisor',
-        'dx',
-        'dy',
-        'edgeMode',
-        'elevation',
-        'filterUnits',
-        'fr',
         'fx',
         'fy',
         'g1',
         'g2',
         'glyph-name',
         'glyphRef',
-        'gradientTransform',
         'gradientUnits',
+        'gradientTransform',
+        'height',
         'href',
-        'hreflang',
+        'id',
+        'image-rendering',
         'in',
         'in2',
         'k',
@@ -195,175 +99,204 @@ class Svg extends Xml
         'k2',
         'k3',
         'k4',
+        'kerning',
+        'keyPoints',
+        'keySplines',
+        'keyTimes',
+        'lang',
+        'lengthAdjust',
+        'letter-spacing',
         'kernelMatrix',
         'kernelUnitLength',
-        'keyPoints',
-        'lengthAdjust',
-        'limitingConeAngle',
+        'lighting-color',
+        'local',
+        'marker-end',
+        'marker-mid',
+        'marker-start',
         'markerHeight',
         'markerUnits',
         'markerWidth',
         'maskContentUnits',
         'maskUnits',
+        'max',
+        'mask',
         'media',
         'method',
         'mode',
+        'min',
+        'name',
         'numOctaves',
+        'offset',
         'operator',
+        'opacity',
         'order',
         'orient',
         'orientation',
+        'origin',
+        'overflow',
+        'paint-order',
         'path',
         'pathLength',
         'patternContentUnits',
         'patternTransform',
         'patternUnits',
         'points',
-        'pointsAtX',
-        'pointsAtY',
-        'pointsAtZ',
         'preserveAlpha',
         'preserveAspectRatio',
         'primitiveUnits',
         'r',
+        'rx',
+        'ry',
         'radius',
         'refX',
         'refY',
+        'repeatCount',
+        'repeatDur',
+        'restart',
+        'result',
         'rotate',
-        'rx',
-        'ry',
         'scale',
         'seed',
-        'side',
-        'spacing',
+        'shape-rendering',
         'specularConstant',
         'specularExponent',
         'spreadMethod',
         'startOffset',
         'stdDeviation',
         'stitchTiles',
+        'stop-color',
+        'stop-opacity',
+        'stroke-dasharray',
+        'stroke-dashoffset',
+        'stroke-linecap',
+        'stroke-linejoin',
+        'stroke-miterlimit',
+        'stroke-opacity',
+        'stroke',
+        'stroke-width',
+        'style',
         'surfaceScale',
+        'systemLanguage',
+        'tabindex',
         'targetX',
         'targetY',
+        'transform',
+        'text-anchor',
+        'text-decoration',
+        'text-rendering',
         'textLength',
+        'type',
         'u1',
         'u2',
         'unicode',
+        'values',
+        'viewBox',
+        'visibility',
         'version',
         'vert-adv-y',
         'vert-origin-x',
         'vert-origin-y',
-        'viewBox',
+        'width',
+        'word-spacing',
+        'wrap',
+        'writing-mode',
+        'xChannelSelector',
+        'yChannelSelector',
+        'x',
         'x1',
         'x2',
-        'xChannelSelector',
         'xlink:href',
-        'xlink:title',
+        'y',
         'y1',
         'y2',
-        'yChannelSelector',
         'z',
         'zoomAndPan',
     ];
 
-    /**
-     * Associative array of all allowed namespace URIs
-     *
-     * @var array
-     */
+    public static $allowedElements = [
+        'svg',
+        'a',
+        'altGlyph',
+        'altGlyphDef',
+        'altGlyphItem',
+        'animateColor',
+        'animateMotion',
+        'animateTransform',
+        'circle',
+        'clipPath',
+        'defs',
+        'desc',
+        'ellipse',
+        'filter',
+        'font',
+        'g',
+        'glyph',
+        'glyphRef',
+        'hkern',
+        'image',
+        'line',
+        'linearGradient',
+        'marker',
+        'mask',
+        'metadata',
+        'mpath',
+        'path',
+        'pattern',
+        'polygon',
+        'polyline',
+        'radialGradient',
+        'rect',
+        'stop',
+        'style',
+        'switch',
+        'symbol',
+        'text',
+        'textPath',
+        'title',
+        'tref',
+        'tspan',
+        'use',
+        'view',
+        'vkern',
+    ];
+
+    public static $allowedFilters = [
+        'feBlend',
+        'feColorMatrix',
+        'feComponentTransfer',
+        'feComposite',
+        'feConvolveMatrix',
+        'feDiffuseLighting',
+        'feDisplacementMap',
+        'feDistantLight',
+        'feFlood',
+        'feFuncA',
+        'feFuncB',
+        'feFuncG',
+        'feFuncR',
+        'feGaussianBlur',
+        'feMerge',
+        'feMergeNode',
+        'feMorphology',
+        'feOffset',
+        'fePointLight',
+        'feSpecularLighting',
+        'feSpotLight',
+        'feTile',
+        'feTurbulence',
+    ];
+
     public static $allowedNamespaces = [
-        ''      => 'http://www.w3.org/2000/svg',
-        'xlink' => 'http://www.w3.org/1999/xlink'
+        'xmlns'       => 'http://www.w3.org/2000/svg',
+        'xmlns:svg'   => 'http://www.w3.org/2000/svg',
+        'xmlns:xlink' => 'http://www.w3.org/1999/xlink'
     ];
 
     /**
-     * Associative array of all allowed tag names with the value
-     * of either an array with the list of all allowed attributes
-     * for this tag, `true` to allow any attribute from the
-     * `allowedAttrs` list or `false` to allow the tag without
-     * any attributes
-     *
-     * @var array
-     */
-    public static $allowedTags = [
-        'a' => true,
-        'altGlyph' => true,
-        'altGlyphDef' => true,
-        'altGlyphItem' => true,
-        'animateColor' => true,
-        'animateMotion' => true,
-        'animateTransform' => true,
-        'circle' => true,
-        'clipPath' => true,
-        'defs' => true,
-        'desc' => true,
-        'ellipse' => true,
-        'feBlend' => true,
-        'feColorMatrix' => true,
-        'feComponentTransfer' => true,
-        'feComposite' => true,
-        'feConvolveMatrix' => true,
-        'feDiffuseLighting' => true,
-        'feDisplacementMap' => true,
-        'feDistantLight' => true,
-        'feFlood' => true,
-        'feFuncA' => true,
-        'feFuncB' => true,
-        'feFuncG' => true,
-        'feFuncR' => true,
-        'feGaussianBlur' => true,
-        'feMerge' => true,
-        'feMergeNode' => true,
-        'feMorphology' => true,
-        'feOffset' => true,
-        'fePointLight' => true,
-        'feSpecularLighting' => true,
-        'feSpotLight' => true,
-        'feTile' => true,
-        'feTurbulence' => true,
-        'filter' => true,
-        'font' => true,
-        'g' => true,
-        'glyph' => true,
-        'glyphRef' => true,
-        'hkern' => true,
-        'image' => true,
-        'line' => true,
-        'linearGradient' => true,
-        'marker' => true,
-        'mask' => true,
-        'metadata' => true,
-        'mpath' => true,
-        'path' => true,
-        'pattern' => true,
-        'polygon' => true,
-        'polyline' => true,
-        'radialGradient' => true,
-        'rect' => true,
-        'stop' => true,
-        'style' => true,
-        'svg' => true,
-        'switch' => true,
-        'symbol' => true,
-        'text' => true,
-        'textPath' => true,
-        'title' => true,
-        'tref' => true,
-        'tspan' => true,
-        'use' => true,
-        'view' => true,
-        'vkern' => true,
-    ];
-
-    /**
-     * Array of explicitly disallowed tags
-     *
      * IMPORTANT: Use lower-case names here because
      * of the case-insensitive matching
-     *
-     * @var array
      */
-    public static $disallowedTags = [
+    public static $disallowedElements = [
         'animate',
         'color-profile',
         'cursor',
@@ -390,120 +323,164 @@ class Svg extends Xml
     ];
 
     /**
-     * Custom callback for additional attribute sanitization
-     * @internal
-     *
-     * @param \DOMAttr $attr
-     * @return array Array with exception objects for each modification
-     */
-    public static function sanitizeAttr(DOMAttr $attr): array
-    {
-        $element = $attr->ownerElement;
-        $name    = $attr->name;
-        $value   = $attr->value;
-        $errors = [];
-
-        // block nested <use> elements ("Billion Laughs" DoS attack)
-        if (
-            $element->localName === 'use' &&
-            Str::contains($name, 'href') !== false &&
-            Str::startsWith($value, '#') === true
-        ) {
-            // find the target (used element)
-            $id = str_replace('"', '', mb_substr($value, 1));
-            $target = (new DOMXPath($attr->ownerDocument))->query('//*[@id="' . $id . '"]')->item(0);
-
-            // the target must not contain any other <use> elements
-            if (
-                is_a($target, 'DOMElement') === true &&
-                $target->getElementsByTagName('use')->count() > 0
-            ) {
-                $errors[] = new InvalidArgumentException(
-                    'Nested "use" elements are not allowed' .
-                    ' (used in line ' . $element->getLineNo() . ')'
-                );
-                $element->removeAttributeNode($attr);
-            }
-        }
-
-        return $errors;
-    }
-
-    /**
-     * Custom callback for additional element sanitization
-     * @internal
-     *
-     * @param \DOMElement $element
-     * @return array Array with exception objects for each modification
-     */
-    public static function sanitizeElement(DOMElement $element): array
-    {
-        $errors = [];
-
-        // check for URLs inside <style> elements
-        if ($element->tagName === 'style') {
-            foreach (Dom::extractUrls($element->textContent) as $url) {
-                if (Dom::isAllowedUrl($url, static::options()) !== true) {
-                    $errors[] = new InvalidArgumentException(
-                        'The URL is not allowed in the "style" element' .
-                        ' (around line ' . $element->getLineNo() . ')'
-                    );
-                    Dom::remove($element);
-                }
-            }
-        }
-
-        return $errors;
-    }
-
-    /**
-     * Custom callback for additional doctype validation
-     * @internal
-     *
-     * @param \DOMDocumentType $doctype
-     * @return void
-     */
-    public static function validateDoctype(DOMDocumentType $doctype): void
-    {
-        if (mb_strtolower($doctype->name) !== 'svg') {
-            throw new InvalidArgumentException('Invalid doctype');
-        }
-    }
-
-    /**
-     * Returns the sanitization options for the handler
-     *
-     * @return array
-     */
-    protected static function options(): array
-    {
-        return array_merge(parent::options(), [
-            'allowedAttrPrefixes' => static::$allowedAttrPrefixes,
-            'allowedAttrs'        => static::$allowedAttrs,
-            'allowedNamespaces'   => static::$allowedNamespaces,
-            'allowedTags'         => static::$allowedTags,
-            'disallowedTags'      => static::$disallowedTags,
-        ]);
-    }
-
-    /**
-     * Parses the given string into a `Toolkit\Dom` object
+     * Validates file contents
      *
      * @param string $string
-     * @return \Kirby\Toolkit\Dom
+     * @return void
      *
-     * @throws \Kirby\Exception\InvalidArgumentException If the file couldn't be parsed
+     * @throws \Kirby\Exception\InvalidArgumentException If the file didn't pass validation
      */
-    protected static function parse(string $string)
+    public static function validate(string $string): void
     {
-        $svg = parent::parse($string);
+        $svg = static::parse($string);
 
-        // basic validation before we continue sanitizing/validating
-        $rootName = $svg->document()->documentElement->nodeName;
+        $rootName = $svg->documentElement->nodeName;
         if ($rootName !== 'svg') {
             throw new InvalidArgumentException('The file is not a SVG (got <' . $rootName . '>)');
         }
 
-        return $svg;
+        parent::validateDom($svg);
+    }
+
+    /**
+     * Validates the attributes of an element
+     *
+     * @param \DOMXPath $xPath
+     * @param \DOMNode $element
+     * @return void
+     *
+     * @throws \Kirby\Exception\InvalidArgumentException If any of the attributes is not valid
+     */
+    protected static function validateAttrs(DOMXPath $xPath, DOMNode $element): void
+    {
+        $elementName = $element->nodeName;
+
+        foreach ($element->attributes ?? [] as $attr) {
+            $attrName  = $attr->nodeName;
+            $attrValue = $attr->nodeValue;
+
+            // allow all aria and data attributes
+            $beginning = mb_substr($attrName, 0, 5);
+            if ($beginning === 'aria-' || $beginning === 'data-') {
+                continue;
+            }
+
+            if (in_array($attrName, static::$allowedAttributes) !== true) {
+                throw new InvalidArgumentException(
+                    'The "' . $attrName . '" attribute (line ' .
+                    $attr->getLineNo() . ') is not allowed in SVGs'
+                );
+            }
+
+            // block nested <use> elements ("Billion Laughs" DoS attack)
+            if (
+                $elementName === 'use' &&
+                Str::contains($attrName, 'href') !== false &&
+                Str::startsWith($attrValue, '#') === true
+            ) {
+                // find the target (used element)
+                $id = str_replace('"', '', mb_substr($attrValue, 1));
+                $target = $xPath->query('//*[@id="' . $id . '"]')->item(0);
+
+                // the target must not contain any other <use> elements
+                if (
+                    is_a($target, 'DOMElement') === true &&
+                    $target->getElementsByTagName('use')->count() > 0
+                ) {
+                    throw new InvalidArgumentException(
+                        'Nested "use" elements are not allowed in SVGs (used in line ' .
+                        $element->getLineNo() . ')'
+                    );
+                }
+            }
+        }
+
+        // validate `xmlns` attributes as well, which can only
+        // be properly extracted using SimpleXML
+        if (is_a($element, 'DOMElement') === true) {
+            $simpleXmlElement = simplexml_import_dom($element);
+            foreach ($simpleXmlElement->getDocNamespaces(false, false) as $namespace => $value) {
+                $namespace = 'xmlns' . ($namespace ? ':' . $namespace : '');
+
+                // check if the namespace is allowlisted
+                if (
+                    isset(static::$allowedNamespaces[$namespace]) !== true ||
+                    static::$allowedNamespaces[$namespace] !== $value
+                ) {
+                    throw new InvalidArgumentException(
+                        'The namespace "' . $namespace . '" (around line ' .
+                        $element->getLineNo() . ') is not allowed or has an invalid value'
+                    );
+                }
+            }
+        }
+
+        parent::validateAttrs($xPath, $element);
+    }
+
+    /**
+     * Validates the doctype if present
+     *
+     * @param \DOMDocumentType $doctype
+     * @return void
+     *
+     * @throws \Kirby\Exception\InvalidArgumentException If the doctype is not valid
+     */
+    protected static function validateDoctype(DOMDocumentType $doctype): void
+    {
+        if (mb_strtolower($doctype->name) !== 'svg') {
+            throw new InvalidArgumentException('Invalid doctype');
+        }
+
+        parent::validateDoctype($doctype);
+    }
+
+    /**
+     * Validates all given DOM elements and their attributes
+     *
+     * @param \DOMXPath $xPath
+     * @param \DOMNodeList $elements
+     * @return void
+     *
+     * @throws \Kirby\Exception\InvalidArgumentException If any of the elements is not valid
+     */
+    protected static function validateElements(DOMXPath $xPath, DOMNodeList $elements): void
+    {
+        $allowedElements = array_merge(static::$allowedElements, static::$allowedFilters);
+
+        foreach ($elements as $element) {
+            $elementName = $element->nodeName;
+            $elementNameLower = mb_strtolower($elementName);
+
+            // check for block-listed elements
+            if (in_array($elementNameLower, static::$disallowedElements) === true) {
+                throw new InvalidArgumentException(
+                    'The "' . $elementName . '" element (line ' .
+                    $element->getLineNo() . ') is not allowed in SVGs'
+                );
+            }
+
+            // check for allow-listed elements
+            if (in_array($elementName, $allowedElements) === false) {
+                throw new InvalidArgumentException(
+                    'The "' . $elementName . '" element (line ' .
+                    $element->getLineNo() . ') is not allowed in SVGs'
+                );
+            }
+
+            // check for URLs inside <style> elements
+            if ($elementName === 'style') {
+                foreach (static::extractUrls($element->textContent) as $url) {
+                    if (static::isAllowedUrl($url) !== true) {
+                        throw new InvalidArgumentException(
+                            'The URL is not allowed in the <style> element' .
+                            ' (around line ' . $element->getLineNo() . ')'
+                        );
+                    }
+                }
+            }
+        }
+
+        parent::validateElements($xPath, $elements);
     }
 }

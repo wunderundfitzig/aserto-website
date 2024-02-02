@@ -8,7 +8,7 @@ namespace Kirby\Cms;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class PageBlueprint extends Blueprint
@@ -25,7 +25,7 @@ class PageBlueprint extends Blueprint
 
         // normalize all available page options
         $this->props['options'] = $this->normalizeOptions(
-            $this->props['options'] ?? true,
+            $props['options'] ?? true,
             // defaults
             [
                 'changeSlug'     => null,
@@ -50,10 +50,10 @@ class PageBlueprint extends Blueprint
         );
 
         // normalize the ordering number
-        $this->props['num'] = $this->normalizeNum($this->props['num'] ?? 'default');
+        $this->props['num'] = $this->normalizeNum($props['num'] ?? 'default');
 
         // normalize the available status array
-        $this->props['status'] = $this->normalizeStatus($this->props['status'] ?? null);
+        $this->props['status'] = $this->normalizeStatus($props['status'] ?? null);
     }
 
     /**

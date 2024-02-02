@@ -2,9 +2,11 @@
 
 namespace Kirby\Http;
 
-use Kirby\Cms\App;
+use Kirby\Http\Request\Auth\BasicAuth;
+use Kirby\Http\Request\Auth\BearerAuth;
 use Kirby\Http\Request\Body;
 use Kirby\Http\Request\Files;
+use Kirby\Http\Request\Method;
 use Kirby\Http\Request\Query;
 use Kirby\Toolkit\A;
 use Kirby\Toolkit\Str;
@@ -17,21 +19,15 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Http
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Request
 {
-    public static $authTypes = [
-        'basic'   => 'Kirby\Http\Request\Auth\BasicAuth',
-        'bearer'  => 'Kirby\Http\Request\Auth\BearerAuth',
-        'session' => 'Kirby\Http\Request\Auth\SessionAuth',
-    ];
-
     /**
      * The auth object if available
      *
-     * @var \Kirby\Http\Request\Auth|false|null
+     * @var BearerAuth|BasicAuth|false|null
      */
     protected $auth;
 
@@ -114,19 +110,19 @@ class Request
         $this->method  = $this->detectRequestMethod($options['method'] ?? null);
 
         if (isset($options['body']) === true) {
-            $this->body = is_a($options['body'], Body::class) ? $options['body'] : new Body($options['body']);
+            $this->body = new Body($options['body']);
         }
 
         if (isset($options['files']) === true) {
-            $this->files = is_a($options['files'], Files::class) ? $options['files'] : new Files($options['files']);
+            $this->files = new Files($options['files']);
         }
 
         if (isset($options['query']) === true) {
-            $this->query = is_a($options['query'], Query::class) === true ? $options['query'] : new Query($options['query']);
+            $this->query = new Query($options['query']);
         }
 
         if (isset($options['url']) === true) {
-            $this->url = is_a($options['url'], Uri::class) === true ? $options['url'] : new Uri($options['url']);
+            $this->url = new Uri($options['url']);
         }
     }
 
@@ -149,7 +145,7 @@ class Request
     /**
      * Returns the Auth object if authentication is set
      *
-     * @return \Kirby\Http\Request\Auth|null
+     * @return \Kirby\Http\Request\Auth\BasicAuth|\Kirby\Http\Request\Auth\BearerAuth|null
      */
     public function auth()
     {
@@ -157,31 +153,16 @@ class Request
             return $this->auth;
         }
 
-        // lazily request the instance for non-CMS use cases
-        $kirby = App::instance(null, true);
-
-        // tell the CMS responder that the response relies on
-        // the `Authorization` header and its value (even if
-        // the header isn't set in the current request);
-        // this ensures that the response is only cached for
-        // unauthenticated visitors;
-        // https://github.com/getkirby/kirby/issues/4423#issuecomment-1166300526
-        if ($kirby) {
-            $kirby->response()->usesAuth(true);
-        }
-
         if ($auth = $this->options['auth'] ?? $this->header('authorization')) {
-            $type = Str::lower(Str::before($auth, ' '));
-            $data = Str::after($auth, ' ');
+            $type  = Str::before($auth, ' ');
+            $token = Str::after($auth, ' ');
+            $class = 'Kirby\\Http\\Request\\Auth\\' . ucfirst($type) . 'Auth';
 
-            $class = static::$authTypes[$type] ?? null;
-            if (!$class || class_exists($class) === false) {
+            if (class_exists($class) === false) {
                 return $this->auth = false;
             }
 
-            $object = new $class($data);
-
-            return $this->auth = $object;
+            return $this->auth = new $class($token);
         }
 
         return $this->auth = false;
@@ -194,7 +175,7 @@ class Request
      */
     public function body()
     {
-        return $this->body ??= new Body();
+        return $this->body = $this->body ?? new Body();
     }
 
     /**
@@ -204,7 +185,7 @@ class Request
      */
     public function cli(): bool
     {
-        return $this->options['cli'] ?? (new Environment())->cli();
+        return Server::cli();
     }
 
     /**
@@ -240,14 +221,14 @@ class Request
         $methods = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'];
 
         // the request method can be overwritten with a header
-        $methodOverride = strtoupper(Environment::getGlobally('HTTP_X_HTTP_METHOD_OVERRIDE', ''));
+        $methodOverride = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] ?? null);
 
         if ($method === null && in_array($methodOverride, $methods) === true) {
             $method = $methodOverride;
         }
 
         // final chain of options to detect the method
-        $method = $method ?? Environment::getGlobally('REQUEST_METHOD', 'GET');
+        $method = $method ?? $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
         // uppercase the shit out of it
         $method = strtoupper($method);
@@ -289,7 +270,7 @@ class Request
      */
     public function files()
     {
-        return $this->files ??= new Files();
+        return $this->files = $this->files ?? new Files();
     }
 
     /**
@@ -303,20 +284,6 @@ class Request
     public function get($key = null, $fallback = null)
     {
         return A::get($this->data(), $key, $fallback);
-    }
-
-    /**
-     * Returns whether the request contains
-     * the `Authorization` header
-     * @since 3.7.0
-     *
-     * @return bool
-     */
-    public function hasAuth(): bool
-    {
-        $header = $this->options['auth'] ?? $this->header('authorization');
-
-        return $header !== null;
     }
 
     /**
@@ -342,7 +309,7 @@ class Request
     {
         $headers = [];
 
-        foreach (Environment::getGlobally() as $key => $value) {
+        foreach ($_SERVER as $key => $value) {
             if (substr($key, 0, 5) !== 'HTTP_' && substr($key, 0, 14) !== 'REDIRECT_HTTP_') {
                 continue;
             }
@@ -413,7 +380,7 @@ class Request
      */
     public function query()
     {
-        return $this->query ??= new Query();
+        return $this->query = $this->query ?? new Query();
     }
 
     /**
@@ -441,6 +408,6 @@ class Request
             return $this->url()->clone($props);
         }
 
-        return $this->url ??= Uri::current();
+        return $this->url = $this->url ?? Uri::current();
     }
 }

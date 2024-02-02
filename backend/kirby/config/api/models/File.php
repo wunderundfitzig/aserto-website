@@ -1,48 +1,95 @@
 <?php
 
 use Kirby\Cms\File;
-use Kirby\Form\Form;
+use Kirby\Cms\Form;
 
 /**
  * File
  */
 return [
     'fields' => [
-        'blueprint'  => fn (File $file) => $file->blueprint(),
-        'content'    => fn (File $file) => Form::for($file)->values(),
-        'dimensions' => fn (File $file) => $file->dimensions()->toArray(),
-        'dragText'   => fn (File $file) => $file->panel()->dragText(),
-        'exists'     => fn (File $file) => $file->exists(),
-        'extension'  => fn (File $file) => $file->extension(),
-        'filename'   => fn (File $file) => $file->filename(),
-        'id'         => fn (File $file) => $file->id(),
-        'link'       => fn (File $file) => $file->panel()->url(true),
-        'mime'       => fn (File $file) => $file->mime(),
-        'modified'   => fn (File $file) => $file->modified('c'),
-        'name'       => fn (File $file) => $file->name(),
-        'next'       => fn (File $file) => $file->next(),
+        'blueprint' => function (File $file) {
+            return $file->blueprint();
+        },
+        'content' => function (File $file) {
+            return Form::for($file)->values();
+        },
+        'dimensions' => function (File $file) {
+            return $file->dimensions()->toArray();
+        },
+        'dragText' => function (File $file) {
+            return $file->dragText();
+        },
+        'exists' => function (File $file) {
+            return $file->exists();
+        },
+        'extension' => function (File $file) {
+            return $file->extension();
+        },
+        'filename' => function (File $file) {
+            return $file->filename();
+        },
+        'id' => function (File $file) {
+            return $file->id();
+        },
+        'link' => function (File $file) {
+            return $file->panelUrl(true);
+        },
+        'mime' => function (File $file) {
+            return $file->mime();
+        },
+        'modified' => function (File $file) {
+            return $file->modified('c');
+        },
+        'name' => function (File $file) {
+            return $file->name();
+        },
+        'next' => function (File $file) {
+            return $file->next();
+        },
         'nextWithTemplate' => function (File $file) {
-            $files = $file->templateSiblings()->sorted();
+            $files = $file->templateSiblings()->sort('sort', 'asc', 'filename', 'asc');
             $index = $files->indexOf($file);
 
             return $files->nth($index + 1);
         },
-        'niceSize'   => fn (File $file) => $file->niceSize(),
-        'options'    => fn (File $file) => $file->panel()->options(),
-        'panelImage' => fn (File $file) => $file->panel()->image(),
-        'panelUrl'   => fn (File $file) => $file->panel()->url(true),
-        'prev'       => fn (File $file) => $file->prev(),
+        'niceSize' => function (File $file) {
+            return $file->niceSize();
+        },
+        'options' => function (File $file) {
+            return $file->panelOptions();
+        },
+        'panelIcon' => function (File $file) {
+            return $file->panelIcon();
+        },
+        'panelImage' => function (File $file) {
+            return $file->panelImage();
+        },
+        'panelUrl' => function (File $file) {
+            return $file->panelUrl(true);
+        },
+        'prev' => function (File $file) {
+            return $file->prev();
+        },
         'prevWithTemplate' => function (File $file) {
-            $files = $file->templateSiblings()->sorted();
+            $files = $file->templateSiblings()->sort('sort', 'asc', 'filename', 'asc');
             $index = $files->indexOf($file);
 
             return $files->nth($index - 1);
         },
-        'parent'     => fn (File $file) => $file->parent(),
-        'parents'    => fn (File $file) => $file->parents()->flip(),
-        'size'       => fn (File $file) => $file->size(),
-        'template'   => fn (File $file) => $file->template(),
-        'thumbs'     => function ($file) {
+        'parent' => function (File $file) {
+            return $file->parent();
+        },
+        'parents' => function (File $file) {
+            return $file->parents()->flip();
+        },
+        'size' => function (File $file) {
+            return $file->size();
+        },
+        'template' => function (File $file) {
+            return $file->template();
+        },
+        'thumbs' => function ($file) {
             if ($file->isResizable() === false) {
                 return null;
             }
@@ -55,8 +102,12 @@ return [
                 'huge'   => $file->resize(1024)->url(),
             ];
         },
-        'type'       => fn (File $file) => $file->type(),
-        'url'        => fn (File $file) => $file->url(),
+        'type' => function (File $file) {
+            return $file->type();
+        },
+        'url' => function (File $file) {
+            return $file->url(true);
+        },
     ],
     'type'  => 'Kirby\Cms\File',
     'views' => [

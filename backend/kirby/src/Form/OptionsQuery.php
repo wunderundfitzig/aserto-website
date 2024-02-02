@@ -6,6 +6,7 @@ use Kirby\Cms\Field;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Exception\NotFoundException;
 use Kirby\Toolkit\Collection;
+use Kirby\Toolkit\Escape;
 use Kirby\Toolkit\Obj;
 use Kirby\Toolkit\Properties;
 use Kirby\Toolkit\Query;
@@ -20,7 +21,7 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Form
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class OptionsQuery
@@ -102,7 +103,26 @@ class OptionsQuery
             $value = $value[$object];
         }
 
-        return Str::safeTemplate($value, $data);
+        $result = Str::template($value, $data);
+
+        // escape the default queries for the `text` field
+        // TODO: remove after default escape implemented for query templates in 3.6
+        if ($field === 'text') {
+            $defaults = [
+                'arrayItem'     => '{{ arrayItem.value }}',
+                'block'         => '{{ block.type }}: {{ block.id }}',
+                'file'          => '{{ file.filename }}',
+                'page'          => '{{ page.title }}',
+                'structureItem' => '{{ structureItem.title }}',
+                'user'          => '{{ user.username }}',
+            ];
+
+            if (isset($defaults[$object]) && $value === $defaults[$object]) {
+                $result = Escape::html($result);
+            }
+        }
+
+        return $result;
     }
 
     /**

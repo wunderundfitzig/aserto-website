@@ -14,7 +14,7 @@ use Exception;
  * @package   Kirby Toolkit
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Collection extends Iterator implements Countable
@@ -287,7 +287,12 @@ class Collection extends Iterator implements Countable
         }
 
         // get the filter from the filters array
-        $filter = static::$filters[$operator];
+        $filter = static::$filters[$operator] ?? null;
+
+        // return an unfiltered list if the filter does not exist
+        if ($filter === null) {
+            return $this;
+        }
 
         if (is_array($filter) === true) {
             $collection = clone $this;
@@ -868,25 +873,6 @@ class Collection extends Iterator implements Countable
         }
 
         return $result;
-    }
-
-    /**
-     * Returns a new collection consisting of random elements,
-     * from the original collection, shuffled or ordered
-     *
-     * @param int $count
-     * @param bool $shuffle
-     * @return static
-     */
-    public function random(int $count = 1, bool $shuffle = false)
-    {
-        if ($shuffle) {
-            return $this->shuffle()->slice(0, $count);
-        }
-
-        $collection = clone $this;
-        $collection->data = A::random($collection->data, $count);
-        return $collection;
     }
 
     /**

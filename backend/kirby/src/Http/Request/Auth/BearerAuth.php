@@ -2,19 +2,36 @@
 
 namespace Kirby\Http\Request\Auth;
 
-use Kirby\Http\Request\Auth;
-
 /**
- * Bearer token authentication data
- *
- * @package   Kirby Http
- * @author    Bastian Allgeier <bastian@getkirby.com>
- * @link      https://getkirby.com
- * @copyright Bastian Allgeier
- * @license   https://opensource.org/licenses/MIT
+ * Bearer Auth
  */
-class BearerAuth extends Auth
+class BearerAuth
 {
+    /**
+     * @var string
+     */
+    protected $token;
+
+    /**
+     * Creates a new Bearer Auth object
+     *
+     * @param string $token
+     */
+    public function __construct(string $token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * Converts the object to a string
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return ucfirst($this->type()) . ' ' . $this->token();
+    }
+
     /**
      * Returns the authentication token
      *
@@ -22,7 +39,7 @@ class BearerAuth extends Auth
      */
     public function token(): string
     {
-        return $this->data;
+        return $this->token;
     }
 
     /**

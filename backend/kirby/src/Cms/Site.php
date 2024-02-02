@@ -4,8 +4,6 @@ namespace Kirby\Cms;
 
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Exception\LogicException;
-use Kirby\Filesystem\Dir;
-use Kirby\Panel\Site as Panel;
 use Kirby\Toolkit\A;
 
 /**
@@ -17,17 +15,17 @@ use Kirby\Toolkit\A;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class Site extends ModelWithContent
 {
+    const CLASS_ALIAS = 'site';
+
     use SiteActions;
     use HasChildren;
     use HasFiles;
     use HasMethods;
-
-    public const CLASS_ALIAS = 'site';
 
     /**
      * The SiteBlueprint object
@@ -115,7 +113,7 @@ class Site extends ModelWithContent
         }
 
         // return site content otherwise
-        return $this->content()->get($method);
+        return $this->content()->get($method, $arguments);
     }
 
     /**
@@ -414,13 +412,31 @@ class Site extends ModelWithContent
     }
 
     /**
-     * Returns the panel info object
+     * Returns the full path without leading slash
      *
-     * @return \Kirby\Panel\Site
+     * @internal
+     * @return string
      */
-    public function panel()
+    public function panelPath(): string
     {
-        return new Panel($this);
+        return 'site';
+    }
+
+    /**
+     * Returns the url to the editing view
+     * in the panel
+     *
+     * @internal
+     * @param bool $relative
+     * @return string
+     */
+    public function panelUrl(bool $relative = false): string
+    {
+        if ($relative === true) {
+            return '/' . $this->panelPath();
+        } else {
+            return $this->kirby()->url('panel') . '/' . $this->panelPath();
+        }
     }
 
     /**
@@ -463,7 +479,7 @@ class Site extends ModelWithContent
      */
     public function root(): string
     {
-        return $this->root ??= $this->kirby()->root('content');
+        return $this->root = $this->root ?? $this->kirby()->root('content');
     }
 
     /**
@@ -555,7 +571,7 @@ class Site extends ModelWithContent
      * @param string|null $url
      * @return $this
      */
-    protected function setUrl(?string $url = null)
+    protected function setUrl($url = null)
     {
         $this->url = $url;
         return $this;
@@ -572,10 +588,10 @@ class Site extends ModelWithContent
         return [
             'children'  => $this->children()->keys(),
             'content'   => $this->content()->toArray(),
-            'errorPage' => $this->errorPage() ? $this->errorPage()->id() : false,
+            'errorPage' => $this->errorPage() ? $this->errorPage()->id(): false,
             'files'     => $this->files()->keys(),
-            'homePage'  => $this->homePage() ? $this->homePage()->id() : false,
-            'page'      => $this->page() ? $this->page()->id() : false,
+            'homePage'  => $this->homePage() ? $this->homePage()->id(): false,
+            'page'      => $this->page() ? $this->page()->id(): false,
             'title'     => $this->title()->value(),
             'url'       => $this->url(),
         ];
@@ -587,7 +603,7 @@ class Site extends ModelWithContent
      * @param string|null $language
      * @return string
      */
-    public function url(?string $language = null): string
+    public function url($language = null): string
     {
         if ($language !== null || $this->kirby()->multilang() === true) {
             return $this->urlForLanguage($language);
@@ -658,42 +674,5 @@ class Site extends ModelWithContent
     public function wasModifiedAfter($time): bool
     {
         return Dir::wasModifiedAfter($this->root(), $time);
-    }
-
-
-    /**
-     * Deprecated!
-     */
-
-    /**
-     * Returns the full path without leading slash
-     *
-     * @todo Remove in 3.8.0
-     *
-     * @internal
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function panelPath(): string
-    {
-        Helpers::deprecated('Cms\Site::panelPath() has been deprecated and will be removed in Kirby 3.8.0. Use $site->panel()->path() instead.');
-        return $this->panel()->path();
-    }
-
-    /**
-     * Returns the url to the editing view
-     * in the panel
-     *
-     * @todo Remove in 3.8.0
-     *
-     * @internal
-     * @param bool $relative
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function panelUrl(bool $relative = false): string
-    {
-        Helpers::deprecated('Cms\Site::panelUrl() has been deprecated and will be removed in Kirby 3.8.0. Use $site->panel()->url() instead.');
-        return $this->panel()->url($relative);
     }
 }

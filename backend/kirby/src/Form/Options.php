@@ -14,7 +14,7 @@ use Kirby\Toolkit\I18n;
  * @package   Kirby Form
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Options
@@ -45,10 +45,10 @@ class Options
      */
     public static function api($api, $model = null): array
     {
-        $model ??= App::instance()->site();
-        $fetch   = null;
-        $text    = null;
-        $value   = null;
+        $model = $model ?? App::instance()->site();
+        $fetch = null;
+        $text  = null;
+        $value = null;
 
         if (is_array($api) === true) {
             $fetch = $api['fetch'] ?? null;
@@ -144,9 +144,6 @@ class Options
                 ];
             }
 
-            // fallback for the text
-            $option['text'] ??= $option['value'];
-
             // translate the option text
             if (is_array($option['text']) === true) {
                 $option['text'] = I18n::translate($option['text'], $option['text']);
@@ -168,7 +165,7 @@ class Options
      */
     public static function query($query, $model = null): array
     {
-        $model ??= App::instance()->site();
+        $model = $model ?? App::instance()->site();
 
         // default text setup
         $text = [

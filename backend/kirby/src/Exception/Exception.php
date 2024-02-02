@@ -2,7 +2,6 @@
 
 namespace Kirby\Exception;
 
-use Kirby\Http\Environment;
 use Kirby\Toolkit\I18n;
 use Kirby\Toolkit\Str;
 
@@ -14,7 +13,7 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Exception
  * @author    Nico Hoffmann <nico@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Exception extends \Exception
@@ -122,14 +121,10 @@ class Exception extends \Exception
             }
 
             // format message with passed data
-            $message = Str::template($message, $this->data, [
-                'fallback' => '-',
-                'start'    => '{',
-                'end'      => '}'
-            ]);
+            $message = Str::template($message, $this->data, '-', '{', '}');
 
             // handover to Exception parent class constructor
-            parent::__construct($message, 0, $args['previous'] ?? null);
+            parent::__construct($message, null, $args['previous'] ?? null);
         }
 
         // set the Exception code to the key
@@ -144,11 +139,10 @@ class Exception extends \Exception
      */
     final public function getFileRelative(): string
     {
-        $file    = $this->getFile();
-        $docRoot = Environment::getGlobally('DOCUMENT_ROOT');
+        $file = $this->getFile();
 
-        if (empty($docRoot) === false) {
-            $file = ltrim(Str::after($file, $docRoot), '/');
+        if (empty($_SERVER['DOCUMENT_ROOT']) === false) {
+            $file = ltrim(Str::after($file, $_SERVER['DOCUMENT_ROOT']), '/');
         }
 
         return $file;

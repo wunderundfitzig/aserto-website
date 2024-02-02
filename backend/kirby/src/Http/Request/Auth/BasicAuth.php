@@ -2,19 +2,12 @@
 
 namespace Kirby\Http\Request\Auth;
 
-use Kirby\Http\Request\Auth;
 use Kirby\Toolkit\Str;
 
 /**
- * HTTP basic authentication data
- *
- * @package   Kirby Http
- * @author    Bastian Allgeier <bastian@getkirby.com>
- * @link      https://getkirby.com
- * @copyright Bastian Allgeier
- * @license   https://opensource.org/licenses/MIT
+ * Basic Authentication
  */
-class BasicAuth extends Auth
+class BasicAuth extends BearerAuth
 {
     /**
      * @var string
@@ -34,11 +27,11 @@ class BasicAuth extends Auth
     /**
      * @param string $token
      */
-    public function __construct(string $data)
+    public function __construct(string $token)
     {
-        parent::__construct($data);
+        parent::__construct($token);
 
-        $this->credentials = base64_decode($data);
+        $this->credentials = base64_decode($token);
         $this->username    = Str::before($this->credentials, ':');
         $this->password    = Str::after($this->credentials, ':');
     }

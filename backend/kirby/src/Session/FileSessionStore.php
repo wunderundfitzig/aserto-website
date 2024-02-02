@@ -6,14 +6,14 @@ use FilesystemIterator;
 use Kirby\Exception\Exception;
 use Kirby\Exception\LogicException;
 use Kirby\Exception\NotFoundException;
-use Kirby\Filesystem\Dir;
+use Kirby\Toolkit\Dir;
 use Kirby\Toolkit\Str;
 
 /**
  * @package   Kirby Session
  * @author    Lukas Bestle <lukas@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class FileSessionStore extends SessionStore

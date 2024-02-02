@@ -12,7 +12,7 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Http
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Params extends Query
@@ -69,13 +69,10 @@ class Params extends Query
                 }
 
                 $paramParts = Str::split($p, $separator);
-                $paramKey   = $paramParts[0] ?? null;
+                $paramKey   = $paramParts[0];
                 $paramValue = $paramParts[1] ?? null;
 
-                if ($paramKey !== null) {
-                    $params[$paramKey] = $paramValue;
-                }
-
+                $params[$paramKey] = $paramValue;
                 unset($path[$index]);
             }
 

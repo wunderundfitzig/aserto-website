@@ -2,21 +2,22 @@
 
 namespace Beebmx\Tests;
 
-use Beebmx\KirbyEnv;
 use PHPUnit\Framework\TestCase;
+use Beebmx\KirbyEnv;
 
 class EnvTest extends TestCase
 {
-    protected string $resources;
+    protected $resources;
 
     public function setUp(): void
     {
-        $this->resources = __DIR__.'/resources';
+        $this->resources = __DIR__ . '/resources';
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function an_env_object_is_set_with_correct_path_file()
     {
         KirbyEnv::load($this->resources);
@@ -27,8 +28,9 @@ class EnvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function an_env_object_trow_exception_error_on_invalid_filePath()
     {
         $this->expectException(\Dotenv\Exception\InvalidPathException::class);
@@ -37,8 +39,9 @@ class EnvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function an_env_object_is_set_with_correct_path_file_with_overload()
     {
         KirbyEnv::overload($this->resources);
@@ -49,8 +52,9 @@ class EnvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function an_env_object_trow_exception_error_on_invalid_filePath_with_overload()
     {
         $this->expectException(\Dotenv\Exception\InvalidPathException::class);

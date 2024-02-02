@@ -8,17 +8,37 @@ use Kirby\Toolkit\Str;
  */
 return [
     'fields' => [
-        'ascii'           => fn () => Str::$ascii,
-        'authStatus'      => fn () => $this->kirby()->auth()->status()->toArray(),
-        'defaultLanguage' => fn () => $this->kirby()->panelLanguage(),
-        'isOk'            => fn (System $system) => $system->isOk(),
-        'isInstallable'   => fn (System $system) => $system->isInstallable(),
-        'isInstalled'     => fn (System $system) => $system->isInstalled(),
-        'isLocal'         => fn (System $system) => $system->isLocal(),
-        'multilang'       => fn () => $this->kirby()->option('languages', false) !== false,
-        'languages'       => fn () => $this->kirby()->languages(),
-        'license'         => fn (System $system) => $system->license(),
-        'locales'         => function () {
+        'ascii' => function () {
+            return Str::$ascii;
+        },
+        'authStatus' => function () {
+            return $this->kirby()->auth()->status()->toArray();
+        },
+        'defaultLanguage' => function () {
+            return $this->kirby()->panelLanguage();
+        },
+        'isOk' => function (System $system) {
+            return $system->isOk();
+        },
+        'isInstallable' => function (System $system) {
+            return $system->isInstallable();
+        },
+        'isInstalled' => function (System $system) {
+            return $system->isInstalled();
+        },
+        'isLocal' => function (System $system) {
+            return $system->isLocal();
+        },
+        'multilang' => function () {
+            return $this->kirby()->option('languages', false) !== false;
+        },
+        'languages' => function () {
+            return $this->kirby()->languages();
+        },
+        'license' => function (System $system) {
+            return $system->license();
+        },
+        'locales' => function () {
             $locales = [];
             $translations = $this->kirby()->translations();
             foreach ($translations as $translation) {
@@ -26,11 +46,25 @@ return [
             }
             return $locales;
         },
-        'loginMethods' => fn (System $system) => array_keys($system->loginMethods()),
-        'requirements' => fn (System $system) => $system->toArray(),
-        'site'         => fn (System $system) => $system->title(),
-        'slugs'        => fn () => Str::$language,
-        'title'        => fn () => $this->site()->title()->value(),
+        'loginMethods' => function (System $system) {
+            return array_keys($system->loginMethods());
+        },
+        'requirements' => function (System $system) {
+            return $system->toArray();
+        },
+        'site' => function () {
+            try {
+                return $this->site()->blueprint()->title();
+            } catch (Throwable $e) {
+                return $this->site()->title()->value();
+            }
+        },
+        'slugs' => function () {
+            return Str::$language;
+        },
+        'title' => function () {
+            return $this->site()->title()->value();
+        },
         'translation' => function () {
             if ($user = $this->user()) {
                 $translationCode = $user->language();
@@ -44,12 +78,16 @@ return [
                 return $this->kirby()->translation('en');
             }
         },
-        'kirbytext' => fn () => $this->kirby()->option('panel.kirbytext') ?? true,
-        'user' => fn () => $this->user(),
+        'kirbytext' => function () {
+            return $this->kirby()->option('panel.kirbytext') ?? true;
+        },
+        'user' => function () {
+            return $this->user();
+        },
         'version' => function () {
             $user = $this->user();
 
-            if ($user && $user->role()->permissions()->for('access', 'system') === true) {
+            if ($user && $user->role()->permissions()->for('access', 'settings') === true) {
                 return $this->kirby()->version();
             } else {
                 return null;

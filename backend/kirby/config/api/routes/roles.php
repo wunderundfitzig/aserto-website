@@ -8,15 +8,13 @@ return [
         'pattern' => 'roles',
         'method'  => 'GET',
         'action'  => function () {
-            $kirby = $this->kirby();
-
-            switch ($kirby->request()->get('canBe')) {
+            switch (get('canBe')) {
                 case 'changed':
-                    return $kirby->roles()->canBeChanged();
+                    return $this->kirby()->roles()->canBeChanged();
                 case 'created':
-                    return $kirby->roles()->canBeCreated();
+                    return $this->kirby()->roles()->canBeCreated();
                 default:
-                    return $kirby->roles();
+                    return $this->kirby()->roles();
             }
         }
     ],

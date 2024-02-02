@@ -1,6 +1,5 @@
 <?php
 
-use Kirby\Cms\App;
 use Kirby\Toolkit\Pagination;
 
 return [
@@ -15,7 +14,7 @@ return [
          * Sets the default page for the pagination. This will overwrite default pagination.
          */
         'page' => function (int $page = null) {
-            return App::instance()->request()->get('page', $page);
+            return get('page', $page);
         },
     ],
     'methods' => [
@@ -32,6 +31,6 @@ return [
                 'page'   => $pagination->page(),
                 'total'  => $pagination->total(),
             ];
-        }
+        },
     ]
 ];

@@ -11,7 +11,7 @@ use ReflectionMethod;
  * @package   Kirby Toolkit
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 trait Properties
@@ -115,7 +115,7 @@ trait Properties
         }
 
         // fetch the default value from the property
-        $value ??= $this->$name ?? null;
+        $value = $value ?? $this->$name ?? null;
 
         // store all original properties, to be able to clone them later
         $this->propertyData[$name] = $value;

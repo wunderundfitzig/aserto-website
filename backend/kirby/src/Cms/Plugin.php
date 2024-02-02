@@ -5,7 +5,6 @@ namespace Kirby\Cms;
 use Exception;
 use Kirby\Data\Data;
 use Kirby\Exception\InvalidArgumentException;
-use Kirby\Toolkit\V;
 
 /**
  * Represents a Plugin and handles parsing of
@@ -15,7 +14,7 @@ use Kirby\Toolkit\V;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class Plugin extends Model
@@ -46,36 +45,8 @@ class Plugin extends Model
         $this->setName($name);
         $this->extends = $extends;
         $this->root    = $extends['root'] ?? dirname(debug_backtrace()[0]['file']);
-        $this->info    = empty($extends['info']) === false && is_array($extends['info']) ? $extends['info'] : null;
 
-        unset($this->extends['root'], $this->extends['info']);
-    }
-
-    /**
-     * Returns the array with author information
-     * from the composer file
-     *
-     * @return array
-     */
-    public function authors(): array
-    {
-        return $this->info()['authors'] ?? [];
-    }
-
-    /**
-     * Returns a comma-separated list with all author names
-     *
-     * @return string
-     */
-    public function authorsNames(): string
-    {
-        $names = [];
-
-        foreach ($this->authors() as $author) {
-            $names[] = $author['name'] ?? null;
-        }
-
-        return implode(', ', array_filter($names));
+        unset($this->extends['root']);
     }
 
     /**
@@ -84,16 +55,6 @@ class Plugin extends Model
     public function extends(): array
     {
         return $this->extends;
-    }
-
-    /**
-     * Returns the unique id for the plugin
-     *
-     * @return string
-     */
-    public function id(): string
-    {
-        return $this->name();
     }
 
     /**
@@ -113,23 +74,6 @@ class Plugin extends Model
         }
 
         return $this->info = $info;
-    }
-
-    /**
-     * Returns the link to the plugin homepage
-     *
-     * @return string|null
-     */
-    public function link(): ?string
-    {
-        $info     = $this->info();
-        $homepage = $info['homepage'] ?? null;
-        $docs     = $info['support']['docs'] ?? null;
-        $source   = $info['support']['source'] ?? null;
-
-        $link = $homepage ?? $docs ?? $source;
-
-        return V::url($link) ? $link : null;
     }
 
     /**
@@ -209,14 +153,6 @@ class Plugin extends Model
      */
     public function toArray(): array
     {
-        return [
-            'authors'     => $this->authors(),
-            'description' => $this->description(),
-            'name'        => $this->name(),
-            'license'     => $this->license(),
-            'link'        => $this->link(),
-            'root'        => $this->root(),
-            'version'     => $this->version()
-        ];
+        return $this->propertiesToArray();
     }
 }

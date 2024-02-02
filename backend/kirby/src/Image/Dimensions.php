@@ -11,7 +11,7 @@ namespace Kirby\Image;
  * @package   Kirby Image
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Dimensions
@@ -285,12 +285,12 @@ class Dimensions
 
         if ($xml !== false) {
             $attr   = $xml->attributes();
-            $width  = (int)($attr->width);
-            $height = (int)($attr->height);
-            if (($width === 0 || $height === 0) && empty($attr->viewBox) === false) {
+            $width  = (float)($attr->width);
+            $height = (float)($attr->height);
+            if (($width === 0.0 || $height === 0.0) && empty($attr->viewBox) === false) {
                 $box    = explode(' ', $attr->viewBox);
-                $width  = (int)($box[2] ?? 0);
-                $height = (int)($box[3] ?? 0);
+                $width  = (float)($box[2] ?? 0);
+                $height = (float)($box[3] ?? 0);
             }
         }
 

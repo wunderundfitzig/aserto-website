@@ -2,7 +2,6 @@
 
 namespace Kirby\Toolkit;
 
-use Kirby\Filesystem\F;
 use Throwable;
 
 /**
@@ -11,7 +10,7 @@ use Throwable;
  * @package   Kirby Toolkit
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Tpl
@@ -19,14 +18,13 @@ class Tpl
     /**
      * Renders the template
      *
-     * @param string|null $file
+     * @param string $file
      * @param array $data
      * @return string
-     * @throws Throwable
      */
-    public static function load(?string $file = null, array $data = []): string
+    public static function load(string $file = null, array $data = []): string
     {
-        if ($file === null || is_file($file) === false) {
+        if (is_file($file) === false) {
             return '';
         }
 

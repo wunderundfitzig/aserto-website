@@ -2,8 +2,6 @@
 
 namespace Kirby\Cms;
 
-use Kirby\Toolkit\Str;
-
 /**
  * The Item class is the foundation
  * for every object in context with
@@ -17,14 +15,14 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class Item
 {
-    use HasSiblings;
+    const ITEMS_CLASS = '\Kirby\Cms\Items';
 
-    public const ITEMS_CLASS = '\Kirby\Cms\Items';
+    use HasSiblings;
 
     /**
      * @var string
@@ -55,9 +53,9 @@ class Item
     {
         $siblingsClass = static::ITEMS_CLASS;
 
-        $this->id       = $params['id']       ?? Str::uuid();
+        $this->id       = $params['id']       ?? uuid();
         $this->params   = $params;
-        $this->parent   = $params['parent']   ?? App::instance()->site();
+        $this->parent   = $params['parent']   ?? site();
         $this->siblings = $params['siblings'] ?? new $siblingsClass();
     }
 

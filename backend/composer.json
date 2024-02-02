@@ -18,10 +18,10 @@
         "source": "https://github.com/getkirby/starterkit"
     },
     "require": {
-        "php": ">=7.3.0",
-        "getkirby/cms": "^3.6",
+        "php": ">=7.3.0 <8.1.0",
+        "getkirby/cms": "^3.5",
         "pju/kirby-webhook-field": "^1.1",
-        "beebmx/kirby-env": "^4.2",
+        "beebmx/kirby-env": "^3.0",
         "getkirby/kql": "^1.0",
         "genxbe/kirby3-instagram": "^1.0"
     },
@@ -32,9 +32,6 @@
         ]
     },
     "config": {
-        "optimize-autoloader": true,
-        "allow-plugins": {
-            "getkirby/composer-installer": true
-        }
+        "optimize-autoloader": true
     }
 }

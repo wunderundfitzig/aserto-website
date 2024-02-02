@@ -5,9 +5,8 @@ namespace Kirby\Cms;
 use Exception;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Exception\NotFoundException;
-use Kirby\Filesystem\Dir;
-use Kirby\Filesystem\F;
-use Kirby\Panel\User as Panel;
+use Kirby\Toolkit\Escape;
+use Kirby\Toolkit\F;
 use Kirby\Toolkit\Str;
 
 /**
@@ -17,17 +16,17 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class User extends ModelWithContent
 {
+    const CLASS_ALIAS = 'user';
+
     use HasFiles;
     use HasMethods;
     use HasSiblings;
     use UserActions;
-
-    public const CLASS_ALIAS = 'user';
 
     /**
      * @var UserBlueprint
@@ -116,7 +115,7 @@ class User extends ModelWithContent
         }
 
         // return site content otherwise
-        return $this->content()->get($method);
+        return $this->content()->get($method, $arguments);
     }
 
     /**
@@ -126,8 +125,7 @@ class User extends ModelWithContent
      */
     public function __construct(array $props)
     {
-        // TODO: refactor later to avoid redundant prop setting
-        $this->setProperty('id', $props['id'] ?? $this->createId(), true);
+        $props['id'] = $props['id'] ?? $this->createId();
         $this->setProperties($props);
     }
 
@@ -228,7 +226,7 @@ class User extends ModelWithContent
 
     protected function credentials(): array
     {
-        return $this->credentials ??= $this->readCredentials();
+        return $this->credentials = $this->credentials ?? $this->readCredentials();
     }
 
     /**
@@ -238,7 +236,7 @@ class User extends ModelWithContent
      */
     public function email(): ?string
     {
-        return $this->email ??= $this->credentials()['email'] ?? null;
+        return $this->email = $this->email ?? $this->credentials()['email'] ?? null;
     }
 
     /**
@@ -403,7 +401,7 @@ class User extends ModelWithContent
      */
     public function language(): string
     {
-        return $this->language ??= $this->credentials()['language'] ?? $this->kirby()->panelLanguage();
+        return $this->language ?? $this->language = $this->credentials()['language'] ?? $this->kirby()->panelLanguage();
     }
 
     /**
@@ -530,9 +528,9 @@ class User extends ModelWithContent
         $modifiedContent = F::modified($this->contentFile($languageCode));
         $modifiedIndex   = F::modified($this->root() . '/index.php');
         $modifiedTotal   = max([$modifiedContent, $modifiedIndex]);
-        $handler       ??= $this->kirby()->option('date.handler', 'date');
+        $handler         = $handler ?? $this->kirby()->option('date.handler', 'date');
 
-        return Str::date($modifiedTotal, $format, $handler);
+        return $handler($format, $modifiedTotal);
     }
 
     /**
@@ -580,13 +578,92 @@ class User extends ModelWithContent
     }
 
     /**
-     * Returns the panel info object
+     * Panel icon definition
      *
-     * @return \Kirby\Panel\User
+     * @internal
+     * @param array $params
+     * @return array
      */
-    public function panel()
+    public function panelIcon(array $params = null): array
     {
-        return new Panel($this);
+        $params['type'] = 'user';
+
+        return parent::panelIcon($params);
+    }
+
+    /**
+     * Returns the image file object based on provided query
+     *
+     * @internal
+     * @param string|null $query
+     * @return \Kirby\Cms\File|\Kirby\Cms\Asset|null
+     */
+    protected function panelImageSource(string $query = null)
+    {
+        if ($query === null) {
+            return $this->avatar();
+        }
+
+        return parent::panelImageSource($query);
+    }
+
+    /**
+     * Returns the full path without leading slash
+     *
+     * @internal
+     * @return string
+     */
+    public function panelPath(): string
+    {
+        return 'users/' . $this->id();
+    }
+
+    /**
+     * Returns prepared data for the panel user picker
+     *
+     * @param array|null $params
+     * @return array
+     */
+    public function panelPickerData(array $params = null): array
+    {
+        $image = $this->panelImage($params['image'] ?? []);
+        $icon  = $this->panelIcon($image);
+
+        // escape the default text
+        // TODO: no longer needed in 3.6
+        $textQuery = $params['text'] ?? '{{ user.username }}';
+        $text = $this->toString($textQuery);
+        if ($textQuery === '{{ user.username }}') {
+            $text = Escape::html($text);
+        }
+
+        return [
+            'icon'     => $icon,
+            'id'       => $this->id(),
+            'image'    => $image,
+            'email'    => $this->email(),
+            'info'     => $this->toString($params['info'] ?? false),
+            'link'     => $this->panelUrl(true),
+            'text'     => $text,
+            'username' => $this->username(),
+        ];
+    }
+
+    /**
+     * Returns the url to the editing view
+     * in the panel
+     *
+     * @internal
+     * @param bool $relative
+     * @return string
+     */
+    public function panelUrl(bool $relative = false): string
+    {
+        if ($relative === true) {
+            return '/' . $this->panelPath();
+        } else {
+            return $this->kirby()->url('panel') . '/' . $this->panelPath();
+        }
     }
 
     /**
@@ -832,13 +909,13 @@ class User extends ModelWithContent
      * @param string $fallback Fallback for tokens in the template that cannot be replaced
      * @return string
      */
-    public function toString(string $template = null, array $data = [], string $fallback = '', string $handler = 'template'): string
+    public function toString(string $template = null, array $data = [], string $fallback = ''): string
     {
         if ($template === null) {
             $template = $this->email();
         }
 
-        return parent::toString($template, $data, $fallback, $handler);
+        return parent::toString($template, $data);
     }
 
     /**
@@ -874,61 +951,9 @@ class User extends ModelWithContent
         }
 
         if (password_verify($password, $this->password()) !== true) {
-            throw new InvalidArgumentException(['key' => 'user.password.wrong', 'httpCode' => 401]);
+            throw new InvalidArgumentException(['key' => 'user.password.wrong']);
         }
 
         return true;
-    }
-
-
-    /**
-     * Deprecated!
-     */
-
-    /**
-     * Returns the full path without leading slash
-     *
-     * @todo Remove in 3.8.0
-     *
-     * @internal
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function panelPath(): string
-    {
-        Helpers::deprecated('Cms\User::panelPath() has been deprecated and will be removed in Kirby 3.8.0. Use $user->panel()->path() instead.');
-        return $this->panel()->path();
-    }
-
-    /**
-     * Returns prepared data for the panel user picker
-     *
-     * @todo Remove in 3.8.0
-     *
-     * @param array|null $params
-     * @return array
-     * @codeCoverageIgnore
-     */
-    public function panelPickerData(array $params = null): array
-    {
-        Helpers::deprecated('Cms\User::panelPickerData() has been deprecated and will be removed in Kirby 3.8.0. Use $user->panel()->pickerData() instead.');
-        return $this->panel()->pickerData($params);
-    }
-
-    /**
-     * Returns the url to the editing view
-     * in the panel
-     *
-     * @todo Remove in 3.8.0
-     *
-     * @internal
-     * @param bool $relative
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function panelUrl(bool $relative = false): string
-    {
-        Helpers::deprecated('Cms\User::panelUrl() has been deprecated and will be removed in Kirby 3.8.0. Use $user->panel()->url() instead.');
-        return $this->panel()->url($relative);
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Kirby\Cms;
 
-use Kirby\Filesystem\F;
 use Kirby\Http\Response;
-use Kirby\Toolkit\I18n;
 use Whoops\Handler\CallbackHandler;
 use Whoops\Handler\Handler;
 use Whoops\Handler\PlainTextHandler;
@@ -17,7 +15,7 @@ use Whoops\Run as Whoops;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 trait AppErrors
@@ -47,7 +45,7 @@ trait AppErrors
      */
     protected function handleErrors(): void
     {
-        if ($this->environment()->cli() === true) {
+        if ($this->request()->cli() === true) {
             $this->handleCliErrors();
             return;
         }
@@ -130,7 +128,7 @@ trait AppErrors
                     'code'      => $code,
                     'message'   => $exception->getMessage(),
                     'details'   => $details,
-                    'file'      => F::relativepath($exception->getFile(), $this->environment()->get('DOCUMENT_ROOT', '')),
+                    'file'      => ltrim($exception->getFile(), $_SERVER['DOCUMENT_ROOT'] ?? null),
                     'line'      => $exception->getLine(),
                 ], $httpCode);
             } else {
@@ -138,7 +136,7 @@ trait AppErrors
                     'status'  => 'error',
                     'code'    => $code,
                     'details' => $details,
-                    'message' => I18n::translate('error.unexpected'),
+                    'message' => 'An unexpected error occurred! Enable debug mode for more info: https://getkirby.com/docs/reference/system/options/debug',
                 ], $httpCode);
             }
 
@@ -160,21 +158,7 @@ trait AppErrors
         $whoops = $this->whoops();
         $whoops->clearHandlers();
         $whoops->pushHandler($handler);
-        $whoops->pushHandler($this->getExceptionHookWhoopsHandler());
         $whoops->register(); // will only do something if not already registered
-    }
-
-    /**
-     * Initializes a callback handler for triggering the `system.exception` hook
-     *
-     * @return \Whoops\Handler\CallbackHandler
-     */
-    protected function getExceptionHookWhoopsHandler(): CallbackHandler
-    {
-        return new CallbackHandler(function ($exception, $inspector, $run) {
-            $this->trigger('system.exception', compact('exception'));
-            return Handler::DONE;
-        });
     }
 
     /**

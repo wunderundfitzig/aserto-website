@@ -10,7 +10,7 @@ use Closure;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 trait SiteActions
@@ -55,10 +55,7 @@ trait SiteActions
      */
     public function changeTitle(string $title, string $languageCode = null)
     {
-        $site     = $this;
-        $title     = trim($title);
-        $arguments = compact('site', 'title', 'languageCode');
-
+        $arguments = ['site' => $this, 'title' => $title, 'languageCode' => $languageCode];
         return $this->commit('changeTitle', $arguments, function ($site, $title, $languageCode) {
             return $site->save(['title' => $title], $languageCode);
         });

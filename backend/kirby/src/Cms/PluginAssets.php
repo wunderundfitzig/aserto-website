@@ -2,9 +2,9 @@
 
 namespace Kirby\Cms;
 
-use Kirby\Filesystem\Dir;
-use Kirby\Filesystem\F;
 use Kirby\Http\Response;
+use Kirby\Toolkit\Dir;
+use Kirby\Toolkit\F;
 
 /**
  * Plugin assets are automatically copied/linked
@@ -14,7 +14,7 @@ use Kirby\Http\Response;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class PluginAssets
@@ -66,11 +66,15 @@ class PluginAssets
                 static::clean($pluginName);
 
                 $target = $plugin->mediaRoot() . '/' . $filename;
+                $url    = $plugin->mediaUrl() . '/' . $filename;
 
-                // create a symlink if possible
-                F::link($source, $target, 'symlink');
+                // create the plugin directory first
+                Dir::make($plugin->mediaRoot(), true);
 
-                // return the file response
+                if (F::link($source, $target, 'symlink') === true) {
+                    return Response::redirect($url);
+                }
+
                 return Response::file($source);
             }
         }

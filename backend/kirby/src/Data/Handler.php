@@ -3,7 +3,7 @@
 namespace Kirby\Data;
 
 use Kirby\Exception\Exception;
-use Kirby\Filesystem\F;
+use Kirby\Toolkit\F;
 
 /**
  * Base handler abstract,
@@ -13,7 +13,7 @@ use Kirby\Filesystem\F;
  * @package   Kirby Data
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 abstract class Handler

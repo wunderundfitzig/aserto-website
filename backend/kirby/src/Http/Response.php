@@ -3,7 +3,7 @@
 namespace Kirby\Http;
 
 use Exception;
-use Kirby\Filesystem\F;
+use Kirby\Toolkit\F;
 use Throwable;
 
 /**
@@ -14,7 +14,7 @@ use Throwable;
  * @package   Kirby Http
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Response
@@ -160,14 +160,14 @@ class Response
             throw new Exception('The file could not be found');
         }
 
-        $filename ??= basename($file);
-        $modified   = filemtime($file);
-        $body       = file_get_contents($file);
-        $size       = strlen($body);
+        $filename = $filename ?? basename($file);
+        $modified = filemtime($file);
+        $body     = file_get_contents($file);
+        $size     = strlen($body);
 
         $props = array_replace_recursive([
             'body'    => $body,
-            'type'    => F::mime($file),
+            'type'    => 'application/force-download',
             'headers' => [
                 'Pragma'                    => 'public',
                 'Cache-Control'             => 'no-cache, no-store, must-revalidate',
@@ -198,23 +198,6 @@ class Response
         ], $props);
 
         return new static($props);
-    }
-
-
-    /**
-     * Redirects to the given Urls
-     * Urls can be relative or absolute.
-     * @since 3.7.0
-     *
-     * @param string $url
-     * @param int $code
-     * @return void
-     *
-     * @codeCoverageIgnore
-     */
-    public static function go(string $url = '/', int $code = 302)
-    {
-        die(static::redirect($url, $code));
     }
 
     /**
@@ -251,7 +234,7 @@ class Response
     public static function json($body = '', ?int $code = null, ?bool $pretty = null, array $headers = [])
     {
         if (is_array($body) === true) {
-            $body = json_encode($body, $pretty === true ? JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES : 0);
+            $body = json_encode($body, $pretty === true ? JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES : null);
         }
 
         return new static([

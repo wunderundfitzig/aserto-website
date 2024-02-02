@@ -2,8 +2,6 @@
 
 namespace Kirby\Cms;
 
-use Kirby\Form\Form;
-
 /**
  * The Content class handles all fields
  * for content from pages, the site and users
@@ -11,7 +9,7 @@ use Kirby\Form\Form;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class Content
@@ -60,14 +58,9 @@ class Content
      *
      * @param array|null $data
      * @param object|null $parent
-     * @param bool $normalize Set to `false` if the input field keys are already lowercase
      */
-    public function __construct(array $data = [], $parent = null, bool $normalize = true)
+    public function __construct(array $data = [], $parent = null)
     {
-        if ($normalize === true) {
-            $data = array_change_key_case($data, CASE_LOWER);
-        }
-
         $this->data   = $data;
         $this->parent = $parent;
     }
@@ -168,7 +161,9 @@ class Content
             return $this->fields[$key];
         }
 
-        $value = $this->data()[$key] ?? null;
+        // fetch the value no matter the case
+        $data  = $this->data();
+        $value = $data[$key] ?? array_change_key_case($data)[$key] ?? null;
 
         return $this->fields[$key] = new Field($this->parent, $key, $value);
     }
@@ -181,7 +176,10 @@ class Content
      */
     public function has(string $key): bool
     {
-        return isset($this->data[strtolower($key)]) === true;
+        $key  = strtolower($key);
+        $data = array_change_key_case($this->data);
+
+        return isset($data[$key]) === true;
     }
 
     /**
@@ -208,7 +206,7 @@ class Content
         $copy->fields = null;
 
         foreach ($keys as $key) {
-            unset($copy->data[strtolower($key)]);
+            unset($copy->data[$key]);
         }
 
         return $copy;
@@ -258,8 +256,7 @@ class Content
      */
     public function update(array $content = null, bool $overwrite = false)
     {
-        $content = array_change_key_case((array)$content, CASE_LOWER);
-        $this->data = $overwrite === true ? $content : array_merge($this->data, $content);
+        $this->data = $overwrite === true ? (array)$content : array_merge($this->data, (array)$content);
 
         // clear cache of Field objects
         $this->fields = [];

@@ -5,10 +5,9 @@ namespace Kirby\Api;
 use Closure;
 use Exception;
 use Kirby\Exception\NotFoundException;
-use Kirby\Filesystem\F;
 use Kirby\Http\Response;
 use Kirby\Http\Router;
-use Kirby\Toolkit\I18n;
+use Kirby\Toolkit\F;
 use Kirby\Toolkit\Pagination;
 use Kirby\Toolkit\Properties;
 use Kirby\Toolkit\Str;
@@ -23,7 +22,7 @@ use Throwable;
  * @package   Kirby Api
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://getkirby.com/license
  */
 class Api
@@ -163,7 +162,7 @@ class Api
      */
     public function call(string $path = null, string $method = 'GET', array $requestData = [])
     {
-        $path = rtrim($path ?? '', '/');
+        $path = rtrim($path, '/');
 
         $this->setRequestMethod($method);
         $this->setRequestData($requestData);
@@ -182,7 +181,7 @@ class Api
 
                 // get the locale from the translation
                 $translation = $user->kirby()->translation($language);
-                $locale = ($translation !== null) ? $translation->locale() : $language;
+                $locale = ($translation !== null)? $translation->locale() : $language;
 
                 // provide some variants as fallbacks to be
                 // compatible with as many systems as possible
@@ -680,12 +679,6 @@ class Api
      */
     public function responseForException(Throwable $e): array
     {
-        if (isset($this->kirby) === true) {
-            $docRoot = $this->kirby->environment()->get('DOCUMENT_ROOT');
-        } else {
-            $docRoot = $_SERVER['DOCUMENT_ROOT'] ?? null;
-        }
-
         // prepare the result array for all exception types
         $result = [
             'status'    => 'error',
@@ -693,7 +686,7 @@ class Api
             'code'      => empty($e->getCode()) === true ? 500 : $e->getCode(),
             'exception' => get_class($e),
             'key'       => null,
-            'file'      => F::relativepath($e->getFile(), $docRoot),
+            'file'      => F::relativepath($e->getFile(), $_SERVER['DOCUMENT_ROOT'] ?? null),
             'line'      => $e->getLine(),
             'details'   => [],
             'route'     => $this->route ? $this->route->pattern() : null
@@ -742,13 +735,13 @@ class Api
 
         // get error messages from translation
         $errorMessages = [
-            UPLOAD_ERR_INI_SIZE   => I18n::translate('upload.error.iniSize'),
-            UPLOAD_ERR_FORM_SIZE  => I18n::translate('upload.error.formSize'),
-            UPLOAD_ERR_PARTIAL    => I18n::translate('upload.error.partial'),
-            UPLOAD_ERR_NO_FILE    => I18n::translate('upload.error.noFile'),
-            UPLOAD_ERR_NO_TMP_DIR => I18n::translate('upload.error.tmpDir'),
-            UPLOAD_ERR_CANT_WRITE => I18n::translate('upload.error.cantWrite'),
-            UPLOAD_ERR_EXTENSION  => I18n::translate('upload.error.extension')
+            UPLOAD_ERR_INI_SIZE   => t('upload.error.iniSize'),
+            UPLOAD_ERR_FORM_SIZE  => t('upload.error.formSize'),
+            UPLOAD_ERR_PARTIAL    => t('upload.error.partial'),
+            UPLOAD_ERR_NO_FILE    => t('upload.error.noFile'),
+            UPLOAD_ERR_NO_TMP_DIR => t('upload.error.tmpDir'),
+            UPLOAD_ERR_CANT_WRITE => t('upload.error.cantWrite'),
+            UPLOAD_ERR_EXTENSION  => t('upload.error.extension')
         ];
 
         if (empty($files) === true) {
@@ -756,9 +749,9 @@ class Api
             $uploadMaxFileSize = Str::toBytes(ini_get('upload_max_filesize'));
 
             if ($postMaxSize < $uploadMaxFileSize) {
-                throw new Exception(I18n::translate('upload.error.iniPostSize'));
+                throw new Exception(t('upload.error.iniPostSize'));
             } else {
-                throw new Exception(I18n::translate('upload.error.noFiles'));
+                throw new Exception(t('upload.error.noFiles'));
             }
         }
 
@@ -771,7 +764,7 @@ class Api
 
             try {
                 if ($upload['error'] !== 0) {
-                    $errorMessage = $errorMessages[$upload['error']] ?? I18n::translate('upload.error.default');
+                    $errorMessage = $errorMessages[$upload['error']] ?? t('upload.error.default');
                     throw new Exception($errorMessage);
                 }
 
@@ -793,7 +786,7 @@ class Api
                 // move the file to a location including the extension,
                 // for better mime detection
                 if ($debug === false && move_uploaded_file($upload['tmp_name'], $source) === false) {
-                    throw new Exception(I18n::translate('upload.error.cantMove'));
+                    throw new Exception(t('upload.error.cantMove'));
                 }
 
                 $data = $callback($source, $filename);

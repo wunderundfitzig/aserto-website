@@ -3,6 +3,7 @@
 namespace Kirby\Http;
 
 use Kirby\Toolkit\Str;
+use TrueBV\Punycode;
 
 /**
  * Handles Internationalized Domain Names
@@ -10,31 +11,19 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Http
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Idn
 {
-    /**
-     * Convert domain name from IDNA ASCII to Unicode
-     *
-     * @param string $domain
-     * @return string|false
-     */
     public static function decode(string $domain)
     {
-        return idn_to_utf8($domain);
+        return (new Punycode())->decode($domain);
     }
 
-    /**
-     * Convert domain name to IDNA ASCII form
-     *
-     * @param string $domain
-     * @return string|false
-     */
     public static function encode(string $domain)
     {
-        return idn_to_ascii($domain);
+        return (new Punycode())->encode($domain);
     }
 
     /**
