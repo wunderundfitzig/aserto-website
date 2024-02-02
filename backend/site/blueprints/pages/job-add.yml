@@ -13,6 +13,10 @@ pages: false
 
 fields:
   seo: fields/seo
+  persinioLink:
+    label: Personio Link
+    type: url
+    required: false
   body:
     label: Text
     type: blocks
