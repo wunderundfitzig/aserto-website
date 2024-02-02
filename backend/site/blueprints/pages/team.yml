@@ -38,8 +38,8 @@ columns:
       pages:
         type: pages
         headline: Team Members
-        limit: 6
-        layout: cards
+        limit: 8
+        layout: cardlets
         size: tiny
         image:
           ratio: 2/2.8
