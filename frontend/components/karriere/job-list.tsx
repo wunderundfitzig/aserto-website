@@ -86,7 +86,7 @@ const JobList: FunctionComponent<Props> = (props) => {
           grid-flow: columns;
           grid-template-columns: 1fr 30px;
           align-items: center;
-          grid-gap: 0.5em;
+          grid-gap: 1em;
           padding-right: 1em;
         }
 
