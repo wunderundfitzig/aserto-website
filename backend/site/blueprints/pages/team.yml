@@ -1,5 +1,4 @@
 title: Karriere
-preset: page
 
 options:
   changeSlug: false
@@ -8,16 +7,6 @@ options:
   duplicate: false
   preview: false
 
-files: false
-
-pages:
-  headline: Team Members
-  templates: team-member
-  info: '{{ page.tags }}'
-  layout: cards
-  size: tiny
-  image:
-    ratio: 2/2.8
 
 
 columns:
@@ -42,3 +31,17 @@ columns:
             type: textarea
             buttons: false
             counter: false
+
+  sidebar:
+    width: 2/3
+    sections:
+      pages:
+        type: pages
+        pages:
+          headline: Team Members
+          templates: team-member
+          info: '{{ page.tags }}'
+          layout: cards
+          size: tiny
+          image:
+            ratio: 2/2.8
