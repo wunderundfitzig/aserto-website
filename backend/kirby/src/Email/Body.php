@@ -12,59 +12,74 @@ use Kirby\Toolkit\Properties;
  * @author    Bastian Allgeier <bastian@getkirby.com>,
  *            Nico Hoffmann <nico@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Body
 {
-	use Properties;
+    use Properties;
 
-	protected string|null $html = null;
-	protected string|null $text = null;
+    /**
+     * @var string|null
+     */
+    protected $html;
 
-	/**
-	 * Email body constructor
-	 */
-	public function __construct(array $props = [])
-	{
-		$this->setProperties($props);
-	}
+    /**
+     * @var string|null
+     */
+    protected $text;
 
-	/**
-	 * Returns the HTML content of the email body
-	 */
-	public function html(): string
-	{
-		return $this->html ?? '';
-	}
+    /**
+     * Email body constructor
+     *
+     * @param array $props
+     */
+    public function __construct(array $props = [])
+    {
+        $this->setProperties($props);
+    }
 
-	/**
-	 * Returns the plain text content of the email body
-	 */
-	public function text(): string
-	{
-		return $this->text ?? '';
-	}
+    /**
+     * Returns the HTML content of the email body
+     *
+     * @return string|null
+     */
+    public function html()
+    {
+        return $this->html;
+    }
 
-	/**
-	 * Sets the HTML content for the email body
-	 *
-	 * @return $this
-	 */
-	protected function setHtml(string|null $html = null): static
-	{
-		$this->html = $html;
-		return $this;
-	}
+    /**
+     * Returns the plain text content of the email body
+     *
+     * @return string|null
+     */
+    public function text()
+    {
+        return $this->text;
+    }
 
-	/**
-	 * Sets the plain text content for the email body
-	 *
-	 * @return $this
-	 */
-	protected function setText(string|null $text = null): static
-	{
-		$this->text = $text;
-		return $this;
-	}
+    /**
+     * Sets the HTML content for the email body
+     *
+     * @param string|null $html
+     * @return $this
+     */
+    protected function setHtml(string $html = null)
+    {
+        $this->html = $html;
+        return $this;
+    }
+
+    /**
+     * Sets the plain text content for the email body
+     *
+     * @param string|null $text
+     * @return $this
+     */
+    protected function setText(string $text = null)
+    {
+        $this->text = $text;
+        return $this;
+    }
 }

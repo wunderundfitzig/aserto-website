@@ -2,43 +2,49 @@
 
 namespace Beebmx\Tests;
 
-use Beebmx\KirbyEnv;
 use PHPUnit\Framework\TestCase;
+use Beebmx\KirbyEnv;
 
 class HelperLoadTest extends TestCase
 {
+    private $resources;
+
     public function setUp(): void
     {
-        KirbyEnv::load(__DIR__.'/resources');
+        KirbyEnv::load(__DIR__ . '/resources');
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function a_helper_env_is_available()
     {
         $this->assertEquals('BAR', env('FOO'));
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function an_not_defined_variable_returns_the_default_value()
     {
         $this->assertEquals('default', env('VAR', 'default'));
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function a_defined_variable_ignore_the_default_value()
     {
         $this->assertEquals('BAR', env('FOO', 'default'));
     }
 
     /**
-     * @test
-     */
+    *
+    * @test
+    */
     public function a_nested_variable_is_set()
     {
         $this->assertEquals('BAR', env('DUPLICATE_FOO', 'default'));

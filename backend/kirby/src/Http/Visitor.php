@@ -2,8 +2,8 @@
 
 namespace Kirby\Http;
 
-use Kirby\Filesystem\Mime;
 use Kirby\Toolkit\Collection;
+use Kirby\Toolkit\Mime;
 use Kirby\Toolkit\Obj;
 use Kirby\Toolkit\Str;
 
@@ -15,201 +15,238 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Http
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier
+ * @copyright Bastian Allgeier GmbH
  * @license   https://opensource.org/licenses/MIT
  */
 class Visitor
 {
-	protected string|null $ip = null;
-	protected string|null $userAgent = null;
-	protected string|null $acceptedLanguage = null;
-	protected string|null $acceptedMimeType = null;
+    /**
+     * IP address
+     * @var string|null
+     */
+    protected $ip;
 
-	/**
-	 * Creates a new visitor object.
-	 * Optional arguments can be passed to
-	 * modify the information about the visitor.
-	 *
-	 * By default everything is pulled from $_SERVER
-	 */
-	public function __construct(array $arguments = [])
-	{
-		$this->ip($arguments['ip'] ?? Environment::getGlobally('REMOTE_ADDR', ''));
-		$this->userAgent($arguments['userAgent'] ?? Environment::getGlobally('HTTP_USER_AGENT', ''));
-		$this->acceptedLanguage($arguments['acceptedLanguage'] ?? Environment::getGlobally('HTTP_ACCEPT_LANGUAGE', ''));
-		$this->acceptedMimeType($arguments['acceptedMimeType'] ?? Environment::getGlobally('HTTP_ACCEPT', ''));
-	}
+    /**
+     * user agent
+     * @var string|null
+     */
+    protected $userAgent;
 
-	/**
-	 * Sets the accepted language if
-	 * provided or returns the user's
-	 * accepted language otherwise
-	 *
-	 * @return $this|\Kirby\Toolkit\Obj|null
-	 */
-	public function acceptedLanguage(string|null $acceptedLanguage = null): static|Obj|null
-	{
-		if ($acceptedLanguage === null) {
-			return $this->acceptedLanguages()->first();
-		}
+    /**
+     * accepted language
+     * @var string|null
+     */
+    protected $acceptedLanguage;
 
-		$this->acceptedLanguage = $acceptedLanguage;
-		return $this;
-	}
+    /**
+     * accepted mime type
+     * @var string|null
+     */
+    protected $acceptedMimeType;
 
-	/**
-	 * Returns an array of all accepted languages
-	 * including their quality and locale
-	 */
-	public function acceptedLanguages(): Collection
-	{
-		$accepted  = Str::accepted($this->acceptedLanguage);
-		$languages = [];
+    /**
+     * Creates a new visitor object.
+     * Optional arguments can be passed to
+     * modify the information about the visitor.
+     *
+     * By default everything is pulled from $_SERVER
+     *
+     * @param array $arguments
+     */
+    public function __construct(array $arguments = [])
+    {
+        $this->ip($arguments['ip'] ?? $_SERVER['REMOTE_ADDR'] ?? '');
+        $this->userAgent($arguments['userAgent'] ?? $_SERVER['HTTP_USER_AGENT'] ?? '');
+        $this->acceptedLanguage($arguments['acceptedLanguage'] ?? $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '');
+        $this->acceptedMimeType($arguments['acceptedMimeType'] ?? $_SERVER['HTTP_ACCEPT'] ?? '');
+    }
 
-		foreach ($accepted as $language) {
-			$value  = $language['value'];
-			$parts  = Str::split($value, '-');
-			$code   = isset($parts[0]) ? Str::lower($parts[0]) : null;
-			$region = isset($parts[1]) ? Str::upper($parts[1]) : null;
-			$locale = $region ? $code . '_' . $region : $code;
+    /**
+     * Sets the accepted language if
+     * provided or returns the user's
+     * accepted language otherwise
+     *
+     * @param string|null $acceptedLanguage
+     * @return \Kirby\Toolkit\Obj|\Kirby\Http\Visitor|null
+     */
+    public function acceptedLanguage(string $acceptedLanguage = null)
+    {
+        if ($acceptedLanguage === null) {
+            return $this->acceptedLanguages()->first();
+        }
 
-			$languages[$locale] = new Obj([
-				'code'     => $code,
-				'locale'   => $locale,
-				'original' => $value,
-				'quality'  => $language['quality'],
-				'region'   => $region,
-			]);
-		}
+        $this->acceptedLanguage = $acceptedLanguage;
+        return $this;
+    }
 
-		return new Collection($languages);
-	}
+    /**
+     * Returns an array of all accepted languages
+     * including their quality and locale
+     *
+     * @return \Kirby\Toolkit\Collection
+     */
+    public function acceptedLanguages()
+    {
+        $accepted  = Str::accepted($this->acceptedLanguage);
+        $languages = [];
 
-	/**
-	 * Checks if the user accepts the given language
-	 */
-	public function acceptsLanguage(string $code): bool
-	{
-		$mode = Str::contains($code, '_') === true ? 'locale' : 'code';
+        foreach ($accepted as $language) {
+            $value  = $language['value'];
+            $parts  = Str::split($value, '-');
+            $code   = isset($parts[0]) ? Str::lower($parts[0]) : null;
+            $region = isset($parts[1]) ? Str::upper($parts[1]) : null;
+            $locale = $region ? $code . '_' . $region : $code;
 
-		foreach ($this->acceptedLanguages() as $language) {
-			if ($language->$mode() === $code) {
-				return true;
-			}
-		}
+            $languages[$locale] = new Obj([
+                'code'     => $code,
+                'locale'   => $locale,
+                'original' => $value,
+                'quality'  => $language['quality'],
+                'region'   => $region,
+            ]);
+        }
 
-		return false;
-	}
+        return new Collection($languages);
+    }
 
-	/**
-	 * Sets the accepted mime type if
-	 * provided or returns the user's
-	 * accepted mime type otherwise
-	 *
-	 * @return $this|\Kirby\Toolkit\Obj|null
-	 */
-	public function acceptedMimeType(string|null $acceptedMimeType = null): static|Obj|null
-	{
-		if ($acceptedMimeType === null) {
-			return $this->acceptedMimeTypes()->first();
-		}
+    /**
+     * Checks if the user accepts the given language
+     *
+     * @param string $code
+     * @return bool
+     */
+    public function acceptsLanguage(string $code): bool
+    {
+        $mode = Str::contains($code, '_') === true ? 'locale' : 'code';
 
-		$this->acceptedMimeType = $acceptedMimeType;
-		return $this;
-	}
+        foreach ($this->acceptedLanguages() as $language) {
+            if ($language->$mode() === $code) {
+                return true;
+            }
+        }
 
-	/**
-	 * Returns a collection of all accepted mime types
-	 */
-	public function acceptedMimeTypes(): Collection
-	{
-		$accepted = Str::accepted($this->acceptedMimeType);
-		$mimes    = [];
+        return false;
+    }
 
-		foreach ($accepted as $mime) {
-			$mimes[$mime['value']] = new Obj([
-				'type'     => $mime['value'],
-				'quality'  => $mime['quality'],
-			]);
-		}
+    /**
+     * Sets the accepted mime type if
+     * provided or returns the user's
+     * accepted mime type otherwise
+     *
+     * @param string|null $acceptedMimeType
+     * @return \Kirby\Toolkit\Obj|\Kirby\Http\Visitor
+     */
+    public function acceptedMimeType(string $acceptedMimeType = null)
+    {
+        if ($acceptedMimeType === null) {
+            return $this->acceptedMimeTypes()->first();
+        }
 
-		return new Collection($mimes);
-	}
+        $this->acceptedMimeType = $acceptedMimeType;
+        return $this;
+    }
 
-	/**
-	 * Checks if the user accepts the given mime type
-	 */
-	public function acceptsMimeType(string $mimeType): bool
-	{
-		return Mime::isAccepted($mimeType, $this->acceptedMimeType);
-	}
+    /**
+     * Returns a collection of all accepted mime types
+     *
+     * @return \Kirby\Toolkit\Collection
+     */
+    public function acceptedMimeTypes()
+    {
+        $accepted = Str::accepted($this->acceptedMimeType);
+        $mimes    = [];
 
-	/**
-	 * Returns the MIME type from the provided list that
-	 * is most accepted (= preferred) by the visitor
-	 * @since 3.3.0
-	 *
-	 * @param string ...$mimeTypes MIME types to query for
-	 * @return string|null Preferred MIME type
-	 */
-	public function preferredMimeType(string ...$mimeTypes): string|null
-	{
-		foreach ($this->acceptedMimeTypes() as $acceptedMime) {
-			// look for direct matches
-			if (in_array($acceptedMime->type(), $mimeTypes)) {
-				return $acceptedMime->type();
-			}
+        foreach ($accepted as $mime) {
+            $mimes[$mime['value']] = new Obj([
+                'type'     => $mime['value'],
+                'quality'  => $mime['quality'],
+            ]);
+        }
 
-			// test each option against wildcard `Accept` values
-			foreach ($mimeTypes as $expectedMime) {
-				if (Mime::matches($expectedMime, $acceptedMime->type()) === true) {
-					return $expectedMime;
-				}
-			}
-		}
+        return new Collection($mimes);
+    }
 
-		return null;
-	}
+    /**
+     * Checks if the user accepts the given mime type
+     *
+     * @param string $mimeType
+     * @return bool
+     */
+    public function acceptsMimeType(string $mimeType): bool
+    {
+        return Mime::isAccepted($mimeType, $this->acceptedMimeType);
+    }
 
-	/**
-	 * Returns true if the visitor prefers a JSON response over
-	 * an HTML response based on the `Accept` request header
-	 * @since 3.3.0
-	 */
-	public function prefersJson(): bool
-	{
-		return $this->preferredMimeType('application/json', 'text/html') === 'application/json';
-	}
+    /**
+     * Returns the MIME type from the provided list that
+     * is most accepted (= preferred) by the visitor
+     * @since 3.3.0
+     *
+     * @param string ...$mimeTypes MIME types to query for
+     * @return string|null Preferred MIME type
+     */
+    public function preferredMimeType(string ...$mimeTypes): ?string
+    {
+        foreach ($this->acceptedMimeTypes() as $acceptedMime) {
+            // look for direct matches
+            if (in_array($acceptedMime->type(), $mimeTypes)) {
+                return $acceptedMime->type();
+            }
 
-	/**
-	 * Sets the ip address if provided
-	 * or returns the ip of the current
-	 * visitor otherwise
-	 *
-	 * @return $this|string|null
-	 */
-	public function ip(string|null $ip = null): static|string|null
-	{
-		if ($ip === null) {
-			return $this->ip;
-		}
-		$this->ip = $ip;
-		return $this;
-	}
+            // test each option against wildcard `Accept` values
+            foreach ($mimeTypes as $expectedMime) {
+                if (Mime::matches($expectedMime, $acceptedMime->type()) === true) {
+                    return $expectedMime;
+                }
+            }
+        }
 
-	/**
-	 * Sets the user agent if provided
-	 * or returns the user agent string of
-	 * the current visitor otherwise
-	 *
-	 * @return $this|string|null
-	 */
-	public function userAgent(string|null $userAgent = null): static|string|null
-	{
-		if ($userAgent === null) {
-			return $this->userAgent;
-		}
-		$this->userAgent = $userAgent;
-		return $this;
-	}
+        return null;
+    }
+
+    /**
+     * Returns true if the visitor prefers a JSON response over
+     * an HTML response based on the `Accept` request header
+     * @since 3.3.0
+     *
+     * @return bool
+     */
+    public function prefersJson(): bool
+    {
+        return $this->preferredMimeType('application/json', 'text/html') === 'application/json';
+    }
+
+    /**
+     * Sets the ip address if provided
+     * or returns the ip of the current
+     * visitor otherwise
+     *
+     * @param string|null $ip
+     * @return string|Visitor|null
+     */
+    public function ip(string $ip = null)
+    {
+        if ($ip === null) {
+            return $this->ip;
+        }
+        $this->ip = $ip;
+        return $this;
+    }
+
+    /**
+     * Sets the user agent if provided
+     * or returns the user agent string of
+     * the current visitor otherwise
+     *
+     * @param string|null $userAgent
+     * @return string|Visitor|null
+     */
+    public function userAgent(string $userAgent = null)
+    {
+        if ($userAgent === null) {
+            return $this->userAgent;
+        }
+        $this->userAgent = $userAgent;
+        return $this;
+    }
 }
