@@ -24,32 +24,30 @@ const JobList: FunctionComponent<Props> = (props) => {
     <section id='Stellenanzeigen' className='job-list'>
       <h2>Unsere offenen Stellen</h2>
       <ul>
-        {props.jobs
-          .filter((job) => job.blueprint === 'pages/job-add')
-          .map((job) => (
-            <li key={job.slug}>
-              {job.blueprint === 'pages/job-add' ? (
-                <Link
-                  href={`/karriere/jobs/${job.slug}`}
-                  scroll={false}
-                  className='job-link'
-                >
-                  <span>{job.title}</span>
-                  <MoreInfoIcon color={colors.categoryColors.karriere} />
-                </Link>
-              ) : (
-                <Link
-                  href={job.externalURL}
-                  target='_blank'
-                  className='personio-link'
-                >
-                  <span>{job.title}</span>
-                  <span className='new-tab-info'>Öffnet in neuem Tab</span>
-                  <MoreInfoIcon color={colors.categoryColors.karriere} />
-                </Link>
-              )}
-            </li>
-          ))}
+        {props.jobs.map((job) => (
+          <li key={job.slug}>
+            {job.blueprint === 'pages/job-add' ? (
+              <Link
+                href={`/karriere/jobs/${job.slug}`}
+                scroll={false}
+                className='job-link'
+              >
+                <span>{job.title}</span>
+                <MoreInfoIcon color={colors.categoryColors.karriere} />
+              </Link>
+            ) : (
+              <Link
+                href={job.externalURL}
+                target='_blank'
+                className='personio-link'
+              >
+                <span>{job.title}</span>
+                <span className='new-tab-info'>Öffnet in neuem Tab</span>
+                <MoreInfoIcon color={colors.categoryColors.karriere} />
+              </Link>
+            )}
+          </li>
+        ))}
       </ul>
       <style jsx>{`
         .job-list {
