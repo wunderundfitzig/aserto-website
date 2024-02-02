@@ -65,10 +65,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
     query: "page('karriere').children",
     select: {
       slug: true,
+      blueprint: 'page.blueprint.name',
     },
-  })) as { data: { slug: string }[] }
+  })) as {
+    data: { slug: string; blueprint: 'pages/job-add' | 'pages/personio-link' }[]
+  }
   return {
-    paths: jobSlugs.data.map(({ slug }) => ({ params: { job: slug } })),
+    paths: jobSlugs.data
+      .filter((page) => page.blueprint == 'pages/job-add')
+      .map(({ slug }) => ({ params: { job: slug } })),
     fallback: false,
   }
 }
