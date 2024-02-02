@@ -12,7 +12,9 @@ files: false
 
 pages:
   headline: Jobs
-  templates: job-add
+  templates: 
+    - job-add
+    - personio-link
 
 fields:
   seo: fields/seo
