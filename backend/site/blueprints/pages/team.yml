@@ -10,39 +10,28 @@ options:
 
 files: false
 
-columns:
-  main:
-    width: 1/3
-    sections:
+pages:
+  width: 2/3
+  headline: Team Members
+  templates: team-member
+  layout: cards
+  size: tiny
+  image:
+    ratio: 2/2.8
 
-      content:
-        type: fields
-        fields:
-          seo: fields/seo
+fields:
+  seo: fields/seo
 
-          freieMitarbeiterHead:
-            label: Freie Mitarbeiter
-            type: headline
-            numbered: false
+  freieMitarbeiterHead:
+    label: Freie Mitarbeiter
+    type: headline
+    numbered: false
 
-          freieMitarbeiterTitle:
-            label: Freie Mitarbeiter Titel
-            type: text
-          freieMitarbeiter:
-            label: Liste Freier Mitarbeiter
-            type: textarea
-            buttons: false
-            counter: false
-
-  sidebar:
-    width: 2/3
-    sections:
-
-      pages:
-        type: pages
-        headline: Team Members
-        templates: team-member
-        layout: cards
-        size: tiny
-        image:
-          ratio: 2/2.8
+  freieMitarbeiterTitle:
+    label: Freie Mitarbeiter Titel
+    type: text
+  freieMitarbeiter:
+    label: Liste Freier Mitarbeiter
+    type: textarea
+    buttons: false
+    counter: false
