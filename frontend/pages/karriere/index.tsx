@@ -38,7 +38,6 @@ export type KarrierePageProps = {
   contact: Contact
 }
 const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
-  console.log(props.pageData.jobs)
   return (
     <>
       <Metadata
