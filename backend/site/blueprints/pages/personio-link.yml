@@ -13,7 +13,7 @@ files: false
 pages: false
 
 fields:
-  url:
+  externalURL:
     label: URL
     type: url
     required: false
