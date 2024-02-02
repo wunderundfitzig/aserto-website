@@ -6,10 +6,10 @@ use Kirby\Data\Json;
 use Kirby\Exception\Exception;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Exception\PermissionException;
+use Kirby\Filesystem\Dir;
+use Kirby\Filesystem\F;
 use Kirby\Http\Remote;
 use Kirby\Toolkit\A;
-use Kirby\Toolkit\Dir;
-use Kirby\Toolkit\F;
 use Kirby\Toolkit\Str;
 use Kirby\Toolkit\V;
 use Throwable;
@@ -25,7 +25,7 @@ use Throwable;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier GmbH
+ * @copyright Bastian Allgeier
  * @license   https://getkirby.com/license
  */
 class System
@@ -54,25 +54,6 @@ class System
     public function __debugInfo(): array
     {
         return $this->toArray();
-    }
-
-    /**
-     * Get an status array of all checks
-     *
-     * @return array
-     */
-    public function status(): array
-    {
-        return [
-            'accounts'  => $this->accounts(),
-            'content'   => $this->content(),
-            'curl'      => $this->curl(),
-            'sessions'  => $this->sessions(),
-            'mbstring'  => $this->mbstring(),
-            'media'     => $this->media(),
-            'php'       => $this->php(),
-            'server'    => $this->server(),
-        ];
     }
 
     /**
@@ -106,6 +87,93 @@ class System
     }
 
     /**
+     * Returns the URL to the file within a system folder
+     * if the file is located in the document
+     * root. Otherwise it will return null.
+     *
+     * @param string $folder 'git', 'content', 'site', 'kirby'
+     * @return string|null
+     */
+    public function exposedFileUrl(string $folder): ?string
+    {
+        if (!$url = $this->folderUrl($folder)) {
+            return null;
+        }
+
+        switch ($folder) {
+            case 'content':
+                return $url . '/' . basename($this->app->site()->contentFile());
+            case 'git':
+                return $url . '/config';
+            case 'kirby':
+                return $url . '/composer.json';
+            case 'site':
+                $root  = $this->app->root('site');
+                $files = glob($root . '/blueprints/*.yml');
+
+                if (empty($files) === true) {
+                    $files = glob($root . '/templates/*.*');
+                }
+
+                if (empty($files) === true) {
+                    $files = glob($root . '/snippets/*.*');
+                }
+
+                if (empty($files) === true || empty($files[0]) === true) {
+                    return $url;
+                }
+
+                $file = $files[0];
+                $file = basename(dirname($file)) . '/' . basename($file);
+
+                return $url . '/' . $file;
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Returns the URL to a system folder
+     * if the folder is located in the document
+     * root. Otherwise it will return null.
+     *
+     * @param string $folder 'git', 'content', 'site', 'kirby'
+     * @return string|null
+     */
+    public function folderUrl(string $folder): ?string
+    {
+        $index = $this->app->root('index');
+
+        if ($folder === 'git') {
+            $root = $index . '/.git';
+        } else {
+            $root = $this->app->root($folder);
+        }
+
+        if ($root === null || is_dir($root) === false || is_dir($index) === false) {
+            return null;
+        }
+
+        $root  = realpath($root);
+        $index = realpath($index);
+
+        // windows
+        $root  = str_replace('\\', '/', $root);
+        $index = str_replace('\\', '/', $index);
+
+        // the folder is not within the document root?
+        if (Str::startsWith($root, $index) === false) {
+            return null;
+        }
+
+        // get the path after the document root
+        $path = trim(Str::after($root, $index), '/');
+
+        // build the absolute URL to the folder
+        return Url::to($path);
+    }
+
+    /**
      * Returns the app's human-readable
      * index URL without scheme
      *
@@ -130,6 +198,13 @@ class System
             Dir::make($this->app->root('accounts'));
         } catch (Throwable $e) {
             throw new PermissionException('The accounts directory could not be created');
+        }
+
+        // init /site/sessions
+        try {
+            Dir::make($this->app->root('sessions'));
+        } catch (Throwable $e) {
+            throw new PermissionException('The sessions directory could not be created');
         }
 
         // init /content
@@ -177,44 +252,7 @@ class System
      */
     public function isLocal(): bool
     {
-        $server  = $this->app->server();
-        $visitor = $this->app->visitor();
-        $host    = $server->host();
-
-        if ($host === 'localhost') {
-            return true;
-        }
-
-        if (Str::endsWith($host, '.local') === true) {
-            return true;
-        }
-
-        if (Str::endsWith($host, '.test') === true) {
-            return true;
-        }
-
-        if (in_array($visitor->ip(), ['::1', '127.0.0.1']) === true) {
-            // ensure that there is no reverse proxy in between
-
-            if (
-                isset($_SERVER['HTTP_X_FORWARDED_FOR']) === true &&
-                in_array($_SERVER['HTTP_X_FORWARDED_FOR'], ['::1', '127.0.0.1']) === false
-            ) {
-                return false;
-            }
-
-            if (
-                isset($_SERVER['HTTP_CLIENT_IP']) === true &&
-                in_array($_SERVER['HTTP_CLIENT_IP'], ['::1', '127.0.0.1']) === false
-            ) {
-                return false;
-            }
-
-            // no reverse proxy or the real client also comes from localhost
-            return true;
-        }
-
-        return false;
+        return $this->app->environment()->isLocal();
     }
 
     /**
@@ -228,44 +266,6 @@ class System
     }
 
     /**
-     * Normalizes the app's index URL for
-     * licensing purposes
-     *
-     * @param string|null $url Input URL, by default the app's index URL
-     * @return string Normalized URL
-     */
-    protected function licenseUrl(string $url = null): string
-    {
-        if ($url === null) {
-            $url = $this->indexUrl();
-        }
-
-        // remove common "testing" subdomains as well as www.
-        // to ensure that installations of the same site have
-        // the same license URL; only for installations at /,
-        // subdirectory installations are difficult to normalize
-        if (Str::contains($url, '/') === false) {
-            if (Str::startsWith($url, 'www.')) {
-                return substr($url, 4);
-            }
-
-            if (Str::startsWith($url, 'dev.')) {
-                return substr($url, 4);
-            }
-
-            if (Str::startsWith($url, 'test.')) {
-                return substr($url, 5);
-            }
-
-            if (Str::startsWith($url, 'staging.')) {
-                return substr($url, 8);
-            }
-        }
-
-        return $url;
-    }
-
-    /**
      * Loads the license file and returns
      * the license information if available
      *
@@ -276,7 +276,7 @@ class System
     public function license()
     {
         try {
-            $license = Json::read($this->app->root('config') . '/.license');
+            $license = Json::read($this->app->root('license'));
         } catch (Throwable $e) {
             return false;
         }
@@ -319,11 +319,49 @@ class System
         // only return the actual license key if the
         // current user has appropriate permissions
         $user = $this->app->user();
-        if ($user && $user->role()->permissions()->for('access', 'settings') === true) {
+        if ($user && $user->isAdmin() === true) {
             return $license['license'];
         } else {
             return true;
         }
+    }
+
+    /**
+     * Normalizes the app's index URL for
+     * licensing purposes
+     *
+     * @param string|null $url Input URL, by default the app's index URL
+     * @return string Normalized URL
+     */
+    protected function licenseUrl(string $url = null): string
+    {
+        if ($url === null) {
+            $url = $this->indexUrl();
+        }
+
+        // remove common "testing" subdomains as well as www.
+        // to ensure that installations of the same site have
+        // the same license URL; only for installations at /,
+        // subdirectory installations are difficult to normalize
+        if (Str::contains($url, '/') === false) {
+            if (Str::startsWith($url, 'www.')) {
+                return substr($url, 4);
+            }
+
+            if (Str::startsWith($url, 'dev.')) {
+                return substr($url, 4);
+            }
+
+            if (Str::startsWith($url, 'test.')) {
+                return substr($url, 5);
+            }
+
+            if (Str::startsWith($url, 'staging.')) {
+                return substr($url, 8);
+            }
+        }
+
+        return $url;
     }
 
     /**
@@ -416,8 +454,19 @@ class System
     public function php(): bool
     {
         return
-            version_compare(PHP_VERSION, '7.3.0', '>=') === true &&
-            version_compare(PHP_VERSION, '8.1.0', '<')  === true;
+            version_compare(PHP_VERSION, '7.4.0', '>=') === true &&
+            version_compare(PHP_VERSION, '8.2.0', '<')  === true;
+    }
+
+    /**
+     * Returns a sorted collection of all
+     * installed plugins
+     *
+     * @return \Kirby\Cms\Collection
+     */
+    public function plugins()
+    {
+        return (new Collection(App::instance()->plugins()))->sortBy('name', 'asc');
     }
 
     /**
@@ -445,10 +494,11 @@ class System
             ]);
         }
 
-        $response = Remote::get('https://licenses.getkirby.com/register', [
+        // @codeCoverageIgnoreStart
+        $response = Remote::get('https://hub.getkirby.com/register', [
             'data' => [
                 'license' => $license,
-                'email'   => $email,
+                'email'   => Str::lower(trim($email)),
                 'domain'  => $this->indexUrl()
             ]
         ]);
@@ -464,7 +514,7 @@ class System
         $json['email'] = $email;
 
         // where to store the license file
-        $file = $this->app->root('config') . '/.license';
+        $file = $this->app->root('license');
 
         // save the license information
         Json::write($file, $json);
@@ -474,6 +524,7 @@ class System
                 'key' => 'license.verification'
             ]);
         }
+        // @codeCoverageIgnoreEnd
 
         return true;
     }
@@ -484,6 +535,16 @@ class System
      * @return bool
      */
     public function server(): bool
+    {
+        return $this->serverSoftware() !== null;
+    }
+
+    /**
+     * Returns the detected server software
+     *
+     * @return string|null
+     */
+    public function serverSoftware(): ?string
     {
         if ($servers = $this->app->option('servers')) {
             $servers = A::wrap($servers);
@@ -497,9 +558,11 @@ class System
             ];
         }
 
-        $software = $_SERVER['SERVER_SOFTWARE'] ?? null;
+        $software = $this->app->environment()->get('SERVER_SOFTWARE', '');
 
-        return preg_match('!(' . implode('|', $servers) . ')!i', $software) > 0;
+        preg_match('!(' . implode('|', $servers) . ')!i', $software, $matches);
+
+        return $matches[0] ?? null;
     }
 
     /**
@@ -513,8 +576,43 @@ class System
     }
 
     /**
-     * Return the status as array
+     * Get an status array of all checks
      *
+     * @return array
+     */
+    public function status(): array
+    {
+        return [
+            'accounts'  => $this->accounts(),
+            'content'   => $this->content(),
+            'curl'      => $this->curl(),
+            'sessions'  => $this->sessions(),
+            'mbstring'  => $this->mbstring(),
+            'media'     => $this->media(),
+            'php'       => $this->php(),
+            'server'    => $this->server(),
+        ];
+    }
+
+    /**
+     * Returns the site's title as defined in the
+     * content file or `site.yml` blueprint
+     * @since 3.6.0
+     *
+     * @return string
+     */
+    public function title(): string
+    {
+        $site = $this->app->site();
+
+        if ($site->title()->isNotEmpty()) {
+            return $site->title()->value();
+        }
+
+        return $site->blueprint()->title();
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array

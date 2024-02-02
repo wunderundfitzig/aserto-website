@@ -12,7 +12,7 @@ use Kirby\Toolkit\Str;
  * @package   Kirby Cms
  * @author    Bastian Allgeier <bastian@getkirby.com>
  * @link      https://getkirby.com
- * @copyright Bastian Allgeier GmbH
+ * @copyright Bastian Allgeier
  * @license   https://getkirby.com/license
  */
 trait AppTranslations
@@ -156,23 +156,10 @@ trait AppTranslations
     }
 
     /**
-     * Set locale settings
-     *
-     * @deprecated 3.5.0 Use `\Kirby\Toolkit\Locale::set()` instead
-     * @todo Remove in 3.6.0
-     *
-     * @param string|array $locale
-     */
-    public function setLocale($locale): void
-    {
-        Locale::set($locale);
-    }
-
-    /**
      * Load a specific translation by locale
      *
      * @param string|null $locale Locale name or `null` for the current locale
-     * @return \Kirby\Cms\Translation|null
+     * @return \Kirby\Cms\Translation
      */
     public function translation(?string $locale = null)
     {

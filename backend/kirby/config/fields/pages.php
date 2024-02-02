@@ -1,10 +1,16 @@
 <?php
 
+use Kirby\Cms\App;
 use Kirby\Data\Data;
 use Kirby\Toolkit\A;
 
 return [
-    'mixins' => ['min', 'pagepicker', 'picker'],
+    'mixins' => [
+        'layout',
+        'min',
+        'pagepicker',
+        'picker',
+    ],
     'props' => [
         /**
          * Unset inherited props
@@ -23,24 +29,10 @@ return [
         },
 
         /**
-         * Changes the layout of the selected files. Available layouts: `list`, `cards`
-         */
-        'layout' => function (string $layout = 'list') {
-            return $layout;
-        },
-
-        /**
          * Optional query to select a specific set of pages
          */
         'query' => function (string $query = null) {
             return $query;
-        },
-
-        /**
-         * Layout size for cards: `tiny`, `small`, `medium`, `large` or `huge`
-         */
-        'size' => function (string $size = 'auto') {
-            return $size;
         },
 
         /**
@@ -62,15 +54,16 @@ return [
     ],
     'methods' => [
         'pageResponse' => function ($page) {
-            return $page->panelPickerData([
-                'image' => $this->image,
-                'info'  => $this->info,
-                'text'  => $this->text,
+            return $page->panel()->pickerData([
+                'image'  => $this->image,
+                'info'   => $this->info,
+                'layout' => $this->layout,
+                'text'   => $this->text,
             ]);
         },
         'toPages' => function ($value = null) {
             $pages = [];
-            $kirby = kirby();
+            $kirby = App::instance();
 
             foreach (Data::decode($value, 'yaml') as $id) {
                 if (is_array($id) === true) {
@@ -95,6 +88,7 @@ return [
                     return $field->pagepicker([
                         'image'    => $field->image(),
                         'info'     => $field->info(),
+                        'layout'   => $field->layout(),
                         'limit'    => $field->limit(),
                         'page'     => $this->requestQuery('page'),
                         'parent'   => $this->requestQuery('parent'),

@@ -2,16 +2,18 @@
 
 namespace Kirby\Form\Field;
 
+use Kirby\Cms\App;
 use Kirby\Cms\Block;
 use Kirby\Cms\Blocks as BlocksCollection;
 use Kirby\Cms\Fieldsets;
-use Kirby\Cms\Form;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Exception\NotFoundException;
 use Kirby\Form\FieldClass;
+use Kirby\Form\Form;
 use Kirby\Form\Mixin\EmptyState;
 use Kirby\Form\Mixin\Max;
 use Kirby\Form\Mixin\Min;
+use Kirby\Toolkit\Str;
 use Throwable;
 
 class BlocksField extends FieldClass
@@ -28,7 +30,7 @@ class BlocksField extends FieldClass
 
     public function __construct(array $params = [])
     {
-        $this->setFieldsets($params['fieldsets'] ?? null, $params['model'] ?? site());
+        $this->setFieldsets($params['fieldsets'] ?? null, $params['model'] ?? App::instance()->site());
 
         parent::__construct($params);
 
@@ -49,7 +51,7 @@ class BlocksField extends FieldClass
                 $type = $block['type'];
 
                 // get and cache fields at the same time
-                $fields[$type] = $fields[$type] ?? $this->fields($block['type']);
+                $fields[$type] ??= $this->fields($block['type']);
 
                 // overwrite the block content with form values
                 $block['content'] = $this->form($fields[$type], $block['content'])->$to();
@@ -142,8 +144,17 @@ class BlocksField extends FieldClass
         return [
             [
                 'pattern' => 'uuid',
-                'action'  => function () {
-                    return ['uuid' => uuid()];
+                'action'  => fn () => ['uuid' => Str::uuid()]
+            ],
+            [
+                'pattern' => 'paste',
+                'method'  => 'POST',
+                'action'  => function () use ($field) {
+                    $request = App::instance()->request();
+
+                    $value  = BlocksCollection::parse($request->get('html'));
+                    $blocks = BlocksCollection::factory($value);
+                    return $field->blocksToValues($blocks->toArray());
                 }
             ],
             [

@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Page Routes
  */
@@ -34,14 +35,7 @@ return [
         }
     ],
     [
-        'pattern' => [
-            'pages/(:any)/blueprints',
-            /**
-             * @deprecated
-             * @todo remove in 3.6.0
-             */
-            'pages/(:any)/children/blueprints',
-        ],
+        'pattern' => 'pages/(:any)/blueprints',
         'method'  => 'GET',
         'action'  => function (string $id) {
             return $this->page($id)->blueprints($this->requestQuery('section'));

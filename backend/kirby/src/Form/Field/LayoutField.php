@@ -2,12 +2,13 @@
 
 namespace Kirby\Form\Field;
 
+use Kirby\Cms\App;
 use Kirby\Cms\Blueprint;
 use Kirby\Cms\Fieldset;
-use Kirby\Cms\Form;
 use Kirby\Cms\Layout;
 use Kirby\Cms\Layouts;
 use Kirby\Exception\InvalidArgumentException;
+use Kirby\Form\Form;
 use Kirby\Toolkit\Str;
 use Throwable;
 
@@ -18,7 +19,7 @@ class LayoutField extends BlocksField
 
     public function __construct(array $params)
     {
-        $this->setModel($params['model'] ?? site());
+        $this->setModel($params['model'] ?? App::instance()->site());
         $this->setLayouts($params['layouts'] ?? ['1/1']);
         $this->setSettings($params['settings'] ?? null);
 
@@ -78,19 +79,19 @@ class LayoutField extends BlocksField
             'pattern' => 'layout',
             'method'  => 'POST',
             'action'  => function () use ($field) {
+                $request = App::instance()->request();
+
                 $defaults = $field->attrsForm([])->data(true);
                 $attrs    = $field->attrsForm($defaults)->values();
-                $columns  = get('columns') ?? ['1/1'];
+                $columns  = $request->get('columns') ?? ['1/1'];
 
                 return Layout::factory([
                     'attrs'   => $attrs,
-                    'columns' => array_map(function ($width) {
-                        return [
-                            'blocks' => [],
-                            'id'     => uuid(),
-                            'width'  => $width,
-                        ];
-                    }, $columns)
+                    'columns' => array_map(fn ($width) => [
+                        'blocks' => [],
+                        'id'     => Str::uuid(),
+                        'width'  => $width,
+                    ], $columns)
                 ])->toArray();
             },
         ];
@@ -116,9 +117,10 @@ class LayoutField extends BlocksField
 
     protected function setLayouts(array $layouts = [])
     {
-        $this->layouts = array_map(function ($layout) {
-            return Str::split($layout);
-        }, $layouts);
+        $this->layouts = array_map(
+            fn ($layout) => Str::split($layout),
+            $layouts
+        );
     }
 
     protected function setSettings($settings = null)
