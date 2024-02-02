@@ -3,14 +3,16 @@ import { FunctionComponent, ReactChild } from 'react'
 type Props = {
   color: string
   children: {
-    title: ReactChild
+    title?: ReactChild
     content?: ReactChild
   }
 }
 const Statement: FunctionComponent<Props> = (props) => {
   return (
-    <div className='statement'>
-      <div>{props.children.title}</div>
+    <div className={`statement ${props.children.title ? 'with-title' : ''}`}>
+      {props.children.title && (
+        <div className='title'>{props.children.title}</div>
+      )}
       {props.children.content && (
         <div className='content'>{props.children.content}</div>
       )}
@@ -22,7 +24,6 @@ const Statement: FunctionComponent<Props> = (props) => {
         .statement::before {
           position: absolute;
           left: 0;
-          top: -6px;
           content: '';
           display: inline-block;
           width: 5px;
@@ -30,6 +31,13 @@ const Statement: FunctionComponent<Props> = (props) => {
           height: 30px;
           background-color: ${props.color};
           margin-right: 1em;
+        }
+        .statement.with-title::before {
+          top: -4px;
+        }
+
+        .title {
+          line-height: 1.5;
         }
 
         .content {

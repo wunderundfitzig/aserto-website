@@ -57,7 +57,7 @@ const ERGEBNISE_OFFSET_BFORE = 250 - VISIBLE_BEFORE
 const CIRCLE_SCALE_FACTOR = 300
 
 const circleSizes = Array.from({ length: ERGEBNISE_OFFSET_BFORE }, (_, i) =>
-  Math.sqrt(i * CIRCLE_SCALE_FACTOR)
+  Math.sqrt(i * CIRCLE_SCALE_FACTOR),
 )
 
 const GrowingDot: FunctionComponent = () => {
@@ -280,7 +280,7 @@ const GrowingDot: FunctionComponent = () => {
         .first-text {
           position: absolute;
           width: 100%;
-          height: min-content;
+          height: auto;
           top: calc(50vh - 60px);
           transform: translateY(-50%);
           font-size: 1em;

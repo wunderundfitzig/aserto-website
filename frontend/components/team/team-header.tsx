@@ -1,12 +1,11 @@
 import Image from 'next/image'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
-import { imageLoader } from 'lib/image-loader'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import Slogan from 'components/slogan'
 import { TriangleLine } from 'components/curves'
 import HeaderBackground from 'components/header-background'
-import image from 'public/images/team/team-image8.jpg'
+import image from 'public/images/team/team-image.jpg'
 
 type Props = {
   title: string
@@ -33,13 +32,7 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
         </Slogan>
       </div>
       <div className='image'>
-        <Image
-          layout='responsive'
-          loader={imageLoader}
-          priority
-          src={image}
-          alt=''
-        />
+        <Image priority src={image} alt='' sizes='100vw' />
       </div>
       <div className='key-visual'>
         <TriangleLine animate color='white' preserveAspectRatio='none' />
@@ -73,17 +66,28 @@ const TeamHeader: FunctionComponent<Props> = (props) => {
           margin-top: 2em;
         }
 
+        .image :global(img) {
+          width: 100%;
+          height: auto;
+        }
+
         .key-visual {
           grid-area: title / title / slogan / slogan;
           position: absolute;
+<<<<<<< HEAD
           transform: translateX(6em) translateY(3em);
           width: calc(100% - 4em);
           height: 120%;
+=======
+          transform: translateX(7em) translateY(4em);
+          width: calc(100% - 6em);
+          height: 100%;
+>>>>>>> dev
         }
 
         @media ${minWidth(breakpoint.xs)} {
           .key-visual {
-            height: 155%;
+            height: 140%;
           }
         }
 

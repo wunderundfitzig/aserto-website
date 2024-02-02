@@ -2,10 +2,9 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import * as colors from 'lib/colors'
 import Slogan from 'components/slogan'
-import { EndlessLine } from 'components/curves'
+import { StraightLine } from 'components/curves'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { imageLoader } from 'lib/image-loader'
-import headerImage from 'public/images/karriere/karriere-image2.jpg'
+import headerImage from 'public/images/karriere/karriere-image-1.jpg'
 
 const KarriereHeader: FunctionComponent = () => {
   return (
@@ -23,41 +22,24 @@ const KarriereHeader: FunctionComponent = () => {
         </Slogan>
       </div>
       <div className='image'>
-        <Image
-          loader={imageLoader}
-          priority
-          src={headerImage}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          alt=''
-        />
+        <Image priority fill src={headerImage} alt='' />
       </div>
-      <div className='line line-1'>
-        <EndlessLine
+      <div className='line'>
+        <StraightLine
           color={colors.categoryColors.karriere}
-          rotate={20}
-          animate
+          preserveAspectRatio={{ alignX: 'Min', alignY: 'Min', fit: 'slice' }}
+          rotate={64}
         />
-      </div>
-      <div className='line line-2'>
-        <EndlessLine
-          color={colors.categoryColors.karriere}
-          rotate={-25}
-          animate
-        />
-      </div>
-      <div className='line line-3'>
-        <EndlessLine color={colors.categoryColors.karriere} rotate={5} />
       </div>
       <style jsx>{`
         .karriere-header {
+          position: relative;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 80% 1fr;
           grid-template-areas:
-            'title title'
+            'title  title'
             'slogan slogan'
-            'image lines';
+            'image  .';
         }
 
         h1 {
@@ -67,106 +49,113 @@ const KarriereHeader: FunctionComponent = () => {
 
         .slogan {
           grid-area: slogan;
-          max-width: 30em;
+          max-width: 18em;
           margin-bottom: 4em;
         }
 
         .image {
-          grid-area: image;
-          width: calc(100% + 2em);
-          padding-bottom: 160%;
           position: relative;
-          margin-left: -2em;
+          padding-bottom: 120%;
+          grid-area: image;
+          width: 100%;
+        }
+
+        .image :global(img) {
+          object-fit: cover;
+          object-position: center;
         }
 
         .line {
-          height: 100%;
-          grid-area: lines;
+          pointer-events: none;
+          position: absolute;
+          width: 1px;
+          height: 600px;
+          left: 90px;
+          top: -10px;
           z-index: -1;
-          transform: translate(10%, -5%) rotate(7deg);
-        }
-
-        .line-1 {
-          z-index: 1;
-        }
-
-        @media ${minWidth(breakpoint.xs)} {
-          .line {
-            transform: translate(0, -5%) rotate(5deg);
-          }
         }
 
         @media ${minWidth(breakpoint.s)} {
           .line {
-            transform: translate(0, 0) rotate(5deg);
+            left: 40px;
+            top: 220px;
           }
         }
 
         @media ${minWidth(breakpoint.sm)} {
+          h1 {
+            padding-top: 1em;
+          }
+
           .karriere-header {
-            grid-template-columns: minmax(250px, 20%) 1fr;
-            grid-template-rows: auto auto 200px;
-            grid-gap: 0 2rem;
+            grid-template-columns: 40% 1fr;
+            grid-template-rows: auto auto;
+            grid-gap: 0 3rem;
+            align-items: flex-start;
             grid-template-areas:
               'image title'
-              'image slogan'
-              'image lines';
+              'image slogan';
           }
 
           .image {
-            height: 100%;
-            padding-bottom: 0;
+            padding-bottom: 150%;
           }
 
           .line {
-            transform: translate(0, -20px);
-          }
-
-          .line-1 {
+            pointer-events: none;
+            position: absolute;
+            width: 1px;
+            height: calc(100% + 280px);
+            left: -150px;
+            top: -170px;
             z-index: -1;
-          }
-
-          .line-3 {
-            z-index: 1;
-          }
-        }
-
-        @media ${minWidth(breakpoint.ml)} {
-          .line {
-            transform: translate(0, 10px);
           }
         }
 
         @media ${minWidth(breakpoint.l)} {
+          h1 {
+            padding-top: inherit;
+          }
           .karriere-header {
-            grid-template-columns: minmax(250px, 40%) 1fr;
+            grid-template-rows: auto auto 220px;
+            grid-template-columns: minmax(35%, 300px) 1fr;
+            grid-template-areas:
+              'image title'
+              'image slogan'
+              'image .';
+            grid-gap: 0 4rem;
+          }
+          .slogan {
+            max-width: 30em;
           }
           .image {
             margin-top: -5em;
-            height: calc(100% + 5em);
-            width: calc(100% + 3em);
-            margin-left: -3em;
+            width: 100%;
+            margin-left: 0;
           }
           .line {
-            transform: translate(150px, 30px);
+            height: 780px;
+            top: -150px;
+            left: -300px;
           }
         }
 
         @media ${minWidth(breakpoint.xl)} {
-          .karriere-header {
-            grid-template-columns: minmax(250px, 40%) 1fr;
-            grid-gap: 0 4rem;
+          .image {
+            width: 100%;
+          }
+          .line {
+            top: -200px;
+            left: -300px;
           }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
           .image {
             width: 100%;
-            margin-left: 0;
           }
-
           .line {
-            transform: translate(150px, 70px);
+            left: -110px;
           }
         }
       `}</style>

@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
-import { imageLoader } from 'lib/image-loader'
 import { LeftRightTurnCurve, PurposeCurve } from 'components/curves'
 
 import purposeHeaderImage from 'public/images/purpose/purpose-header.jpg'
@@ -12,15 +11,7 @@ const PurposeHeader: FunctionComponent = () => {
     <header className='purpose-header'>
       <h1>Purpose</h1>
       <div className='header-image'>
-        <Image
-          priority
-          loader={imageLoader}
-          src={purposeHeaderImage}
-          alt=''
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-        />
+        <Image priority fill src={purposeHeaderImage} alt='' />
         <div className='curve mobile-curve'>
           <LeftRightTurnCurve
             animate
@@ -81,6 +72,11 @@ const PurposeHeader: FunctionComponent = () => {
             rgba(255, 255, 255, 0.4) 0%,
             rgba(255, 255, 255, 0)
           );
+        }
+
+        .header-image :global(img) {
+          object-fit: cover;
+          object-position: center;
         }
 
         .curve {

@@ -1,0 +1,19 @@
+title: Personio Link
+preset: page
+icon: 🔗
+
+options:
+  preview: false
+
+status:
+  draft: Draft
+  listed: Published
+
+files: false
+pages: false
+
+fields:
+  externalURL:
+    label: URL
+    type: url
+    required: false
