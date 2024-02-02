@@ -11,9 +11,9 @@ options:
 files: false
 
 pages:
-  width: 2/3
   headline: Team Members
   templates: team-member
+  info: 'page.tags'
   layout: cards
   size: tiny
   image:

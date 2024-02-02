@@ -14,6 +14,9 @@ files: false
 pages: false
 
 fields:
+  tags:
+    label: Tags
+    type: tags
   position:
     label: Job Title
     type: text
