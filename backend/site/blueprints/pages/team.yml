@@ -13,7 +13,7 @@ files: false
 pages:
   headline: Team Members
   templates: team-member
-  info: 'page.tags'
+  info: '{{ page.tags }}'
   layout: cards
   size: tiny
   image:
