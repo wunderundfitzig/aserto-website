@@ -3,6 +3,7 @@ import Link from 'next/link'
 import * as colors from 'lib/colors'
 import { MoreInfoIcon } from 'components/icons'
 import { breakpoint, minWidth } from 'lib/breakpoints'
+import Button from 'components/button'
 
 type Props = {
   jobs: (
@@ -42,8 +43,10 @@ const JobList: FunctionComponent<Props> = (props) => {
                 className='personio-link'
               >
                 <span>{job.title}</span>
-                <span className='new-tab-info'>Öffnet in neuem Tab</span>
-                <MoreInfoIcon color={colors.categoryColors.karriere} />
+                <Button color={colors.categoryColors.karriere}>
+                  <span>in Personio ansehen</span>
+                  <MoreInfoIcon color='white' />
+                </Button>
               </Link>
             )}
           </li>
@@ -72,15 +75,19 @@ const JobList: FunctionComponent<Props> = (props) => {
         }
         .job-list :global(.job-link) {
           grid-template-columns: 1fr 30px;
+          padding-right: 1em;
         }
         .job-list :global(.personio-link) {
-          grid-template-columns: 1fr auto 30px;
+          grid-template-columns: 1fr auto;
         }
 
-        .new-tab-info {
-          color: ${colors.grey};
-          font-size: 0.8em;
-          margin-top: 0.1em;
+        .job-list :global(.button) {
+          display: grid;
+          grid-flow: columns;
+          grid-template-columns: 1fr 30px;
+          align-items: center;
+          grid-gap: 0.5em;
+          padding-right: 1em;
         }
 
         li:last-child :global(a) {
