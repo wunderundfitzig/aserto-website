@@ -5,7 +5,19 @@ import { MoreInfoIcon } from 'components/icons'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 type Props = {
-  jobs: { slug: string; title: string }[]
+  jobs: (
+    | {
+        slug: string
+        title: string
+        blueprint: 'pages/job-add'
+      }
+    | {
+        slug: string
+        title: string
+        externalURL: string
+        blueprint: 'pages/personio-link'
+      }
+  )[]
 }
 const JobList: FunctionComponent<Props> = (props) => {
   return (
@@ -14,14 +26,26 @@ const JobList: FunctionComponent<Props> = (props) => {
       <ul>
         {props.jobs.map((job) => (
           <li key={job.slug}>
-            <Link
-              href={`/karriere/jobs/${job.slug}`}
-              scroll={false}
-              className='job-link'
-            >
-              <span>{job.title}</span>
-              <MoreInfoIcon color={colors.categoryColors.karriere} />
-            </Link>
+            {job.blueprint === 'pages/job-add' ? (
+              <Link
+                href={`/karriere/jobs/${job.slug}`}
+                scroll={false}
+                className='job-link'
+              >
+                <span>{job.title}</span>
+                <MoreInfoIcon color={colors.categoryColors.karriere} />
+              </Link>
+            ) : (
+              <Link
+                href={job.externalURL}
+                target='_blank'
+                className='personio-link'
+              >
+                <span>{job.title}</span>
+                <span className='new-tab-info'>Öffnet in neuem Tab</span>
+                <MoreInfoIcon color={colors.categoryColors.karriere} />
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -41,9 +65,22 @@ const JobList: FunctionComponent<Props> = (props) => {
           display: grid;
           grid-template-columns: 1fr 30px;
           align-items: center;
+          grid-gap: 0 1.5em;
           padding: 1em 0;
           border-bottom: 2px solid ${colors.lightRed};
           text-transform: uppercase;
+        }
+        .job-list :global(.job-link) {
+          grid-template-columns: 1fr 30px;
+        }
+        .job-list :global(.personio-link) {
+          grid-template-columns: 1fr auto 30px;
+        }
+
+        .new-tab-info {
+          color: ${colors.grey};
+          font-size: 0.8em;
+          margin-top: 0.1em;
         }
 
         li:last-child :global(a) {

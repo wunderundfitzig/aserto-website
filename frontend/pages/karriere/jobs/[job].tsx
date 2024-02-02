@@ -16,7 +16,12 @@ export const getStaticProps: GetStaticProps<
       seodescription: `page.find('${jobslug}').seodescription`,
       jobs: {
         query: 'page.children',
-        select: { title: true, slug: true },
+        select: {
+          title: true,
+          slug: true,
+          externalURL: true,
+          blueprint: 'page.blueprint.name',
+        },
       },
       contact: {
         query: 'page.contact.toPage',

@@ -20,12 +20,25 @@ type Job = {
 }
 
 export type KarrierePageProps = {
-  jobs: { slug: string; title: string }[]
+  jobs: (
+    | {
+        slug: string
+        title: string
+        blueprint: 'pages/job-add'
+      }
+    | {
+        slug: string
+        title: string
+        externalURL: string
+        blueprint: 'pages/personio-link'
+      }
+  )[]
   job?: Job
   contactImage: ImageType
   contact: Contact
 }
 const KarrierePage: NextPage<PageProps<KarrierePageProps>> = (props) => {
+  console.log(props.pageData.jobs)
   return (
     <>
       <Metadata
@@ -83,7 +96,12 @@ export const getStaticProps: GetStaticProps<
     select: {
       jobs: {
         query: 'page.children',
-        select: { title: true, slug: true },
+        select: {
+          title: true,
+          slug: true,
+          externalURL: true,
+          blueprint: 'page.blueprint.name',
+        },
       },
       contact: {
         query: 'page.contact.toPage',
