@@ -7,7 +7,16 @@ This is built with [kirby]()
 to start a local development server you can run
 
 ```
+cd backend
+cp .env.example .env
+
 php -S localhost:8000 kirby/router.php
+```
+
+### Update kirby
+
+```
+composer update getkirby/cms -W
 ```
 
 ## Deploy and sync content
