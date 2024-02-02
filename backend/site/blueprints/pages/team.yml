@@ -37,11 +37,10 @@ columns:
     sections:
       pages:
         type: pages
-        pages:
-          headline: Team Members
-          templates: team-member
-          info: '{{ page.tags }}'
-          layout: cards
-          size: tiny
-          image:
-            ratio: 2/2.8
+        label: Team Members
+        layout: cards
+        size: tiny
+        image:
+          ratio: 2/2.8
+        info: '{{ page.tags }}'
+        templates: team-member
