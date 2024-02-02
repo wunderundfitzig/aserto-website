@@ -38,7 +38,7 @@ columns:
       pages:
         type: pages
         headline: Team Members
-        limit: 8
+        limit: 15
         layout: cardlets
         size: tiny
         image:
