@@ -1,5 +1,4 @@
 title: Karriere
-preset: page
 
 options:
   changeSlug: false
@@ -8,29 +7,41 @@ options:
   duplicate: false
   preview: false
 
-files: false
 
-pages:
-  headline: Team Members
-  templates: team-member
-  layout: cards
-  size: tiny
-  image:
-    ratio: 2/2.8
 
-fields:
-  seo: fields/seo
+columns:
+  main:
+    width: 1/2
+    sections:
+      content:
+        type: fields
+        fields:
+          seo: fields/seo
 
-  freieMitarbeiterHead:
-    label: Freie Mitarbeiter
-    type: headline
-    numbered: false
+          freieMitarbeiterHead:
+            label: Freie Mitarbeiter
+            type: headline
+            numbered: false
 
-  freieMitarbeiterTitle:
-    label: Freie Mitarbeiter Titel
-    type: text
-  freieMitarbeiter:
-    label: Liste Freier Mitarbeiter
-    type: textarea
-    buttons: false
-    counter: false
+          freieMitarbeiterTitle:
+            label: Freie Mitarbeiter Titel
+            type: text
+          freieMitarbeiter:
+            label: Liste Freier Mitarbeiter
+            type: textarea
+            buttons: false
+            counter: false
+
+  sidebar:
+    width: 1/2
+    sections:
+      pages:
+        type: pages
+        headline: Team Members
+        limit: 15
+        layout: cardlets
+        size: tiny
+        image:
+          ratio: 2/2.8
+        info: '{{ page.tags }}'
+        templates: team-member

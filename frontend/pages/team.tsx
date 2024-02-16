@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<
       freieMitarbeiterTitle: true,
       freieMitarbeiter: true,
       teamMembers: {
-        query: 'page.children',
+        query: 'page.children.listed',
         select: {
           image: {
             query: 'page.image',
