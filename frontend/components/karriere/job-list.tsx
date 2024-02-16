@@ -37,16 +37,9 @@ const JobList: FunctionComponent<Props> = (props) => {
                 <MoreInfoIcon color={colors.categoryColors.karriere} />
               </Link>
             ) : (
-              <Link
-                href={job.externalURL}
-                target='_blank'
-                className='personio-link'
-              >
+              <Link href={job.externalURL} target='_blank' className='job-link'>
                 <span>{job.title}</span>
-                <Button color={colors.categoryColors.karriere}>
-                  <span>in Personio ansehen</span>
-                  <MoreInfoIcon color='white' />
-                </Button>
+                <MoreInfoIcon color={colors.categoryColors.karriere} />
               </Link>
             )}
           </li>
@@ -76,9 +69,6 @@ const JobList: FunctionComponent<Props> = (props) => {
         .job-list :global(.job-link) {
           grid-template-columns: 1fr 30px;
           padding-right: 1em;
-        }
-        .job-list :global(.personio-link) {
-          grid-template-columns: 1fr auto;
         }
 
         .job-list :global(.button) {

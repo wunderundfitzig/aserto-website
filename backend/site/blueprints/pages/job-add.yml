@@ -50,6 +50,8 @@ fields:
     type: pages
     multiple: false
     query: site.find('team')
+    limit: 15
+    info: '{{ page.tags }}'
     subpages: false
     empty: No contact selected yet
     required: true
