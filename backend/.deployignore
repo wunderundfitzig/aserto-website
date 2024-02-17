@@ -2,8 +2,6 @@
 .DS_Store
 .deployignore
 README.md
-composer.json
-composer.lock
 .editorconfig
 content/
 media/
