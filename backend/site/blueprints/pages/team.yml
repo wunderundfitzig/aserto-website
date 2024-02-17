@@ -38,10 +38,9 @@ columns:
       pages:
         type: pages
         headline: Team Members
-        limit: 15
+        limit: 10
         layout: cardlets
-        size: tiny
         image:
-          ratio: 2/2.8
+          cover: true
         info: '{{ page.tags }}'
         templates: team-member
