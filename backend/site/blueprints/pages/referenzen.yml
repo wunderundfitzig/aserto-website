@@ -13,6 +13,7 @@ files: false
 pages:
   headline: Referenzen
   templates: case
+  layout: cardlets
   image:
     back: white
 

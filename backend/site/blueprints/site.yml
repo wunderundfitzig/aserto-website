@@ -14,8 +14,8 @@ columns:
         create: false
         sortable: false
         status: listed
-        image:
-          back: black
+        image: false
+        info: '{{ page.seoTitle }}'
 
       content:
         headline: Metadata
