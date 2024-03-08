@@ -16,8 +16,8 @@ const AufDenPunkt: FunctionComponent = () => {
 
       <div className='list'>
         <List color={categoryColors.leistungen}>
-          <>Relevanz und Überzeugungskraft durch 18 Jahre Erfahrung.</>
-          <>Hohe Systemkompetenz durch über 500 richtungsweisende Projekte.</>
+          <>Relevanz und Überzeugungskraft durch über 20 Jahre Erfahrung.</>
+          <>Hohe Systemkompetenz durch über 600 richtungsweisende Projekte.</>
           <>
             Strategischer Partner für Entscheider*innen aus Wirtschaft,
             Wissenschaft und Institutionen.
