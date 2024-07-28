@@ -23,6 +23,11 @@ const JobList: FunctionComponent<Props> = (props) => {
   return (
     <section id='Stellenanzeigen' className='job-list'>
       <h2>Unsere offenen Stellen</h2>
+      <p className='agg-text'>
+        Wir schätzen Vielfalt und schöpfen daraus Innovationskraft. Unseren
+        Recruiting- und Bewerbungsprozess haben wir deswegen im Einklang mit dem
+        Allgemeinen Gleichbehandlungsgesetz (AGG) gestaltet.
+      </p>
       <ul>
         {props.jobs.map((job) => (
           <li key={job.slug}>
@@ -45,6 +50,10 @@ const JobList: FunctionComponent<Props> = (props) => {
         ))}
       </ul>
       <style jsx>{`
+        .agg-text {
+          max-width: 80ch;
+        }
+
         .job-list {
           padding-top: 4rem;
           padding-bottom: 4rem;
