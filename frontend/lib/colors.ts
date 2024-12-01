@@ -39,5 +39,6 @@ export const footerBackgroundColors = {
   karriere: 'white',
   kontakt: tint(0.5, backgroundGrey),
   datenschutz: tint(0.5, backgroundGrey),
+  nachhaltigkeitsbericht: tint(0.5, backgroundGrey),
   gefaehrdungsbeurteilung: 'white',
 }
