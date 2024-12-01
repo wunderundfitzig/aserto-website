@@ -24,6 +24,7 @@ export default function NachhaltigkeitsberichtBody(props: Props) {
         .nachhaltigkeitsbericht-body :global(img) {
           margin-left: -2rem;
           width: calc(100% + 2rem);
+          max-width: 50em;
           height: auto;
         }
 
