@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 import DatenschutzHeader from 'components/datenschutz/datenschutz-header'
-import DatenschutzText from 'components/datenschutz/datenschutz-text'
+import BlocksHtml from 'components/blocks-html'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
 
@@ -15,7 +15,7 @@ const Datenschutz: NextPage<PageProps<DatenschutzPageProps>> = (props) => {
         <Metadata pageMeta={props.pageData} slug='/datenschutz' />
         <main>
           <DatenschutzHeader />
-          <DatenschutzText html={props.pageData.privacyPolicy} />
+          <BlocksHtml html={props.pageData.privacyPolicy} />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
