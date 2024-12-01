@@ -4,9 +4,10 @@ import NachhaltigkeitsberichtHeader from 'components/nachhaltigkeitsbericht/nach
 
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
+import BlocksHtml from 'components/blocks-html'
 
 type NachhaltigkeitsberichtPageProps = {
-  privacyPolicy: string
+  body: string
 }
 const Nachhaltigkeitsbericht: NextPage<
   PageProps<NachhaltigkeitsberichtPageProps>
@@ -17,6 +18,7 @@ const Nachhaltigkeitsbericht: NextPage<
         <Metadata pageMeta={props.pageData} slug='/nachhaltigkeitsbericht' />
         <main>
           <NachhaltigkeitsberichtHeader />
+          <BlocksHtml html={props.pageData.body} />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -28,8 +30,8 @@ export const getStaticProps: GetStaticProps<
   SiteQueryResult<NachhaltigkeitsberichtPageProps>
 > = async () => {
   const result = await queryPageData<NachhaltigkeitsberichtPageProps>({
-    query: 'page("datenschutz")',
-    select: { privacyPolicy: 'page.body.toBlocks.toHtml' },
+    query: 'page("nachhaltigkeitsbericht")',
+    select: { body: 'page.body.toBlocks.toHtml' },
   })
   return { props: result }
 }

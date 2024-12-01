@@ -4,9 +4,9 @@ import * as colors from 'lib/colors'
 type Props = {
   html: string
 }
-const DatenschutzText: FunctionComponent<Props> = (props) => {
+const BlocksHtml: FunctionComponent<Props> = (props) => {
   return (
-    <section className='datenschutz-text'>
+    <section className='blocks-html'>
       <div dangerouslySetInnerHTML={{ __html: props.html }} />
 
       <style jsx>{`
@@ -40,4 +40,4 @@ const DatenschutzText: FunctionComponent<Props> = (props) => {
   )
 }
 
-export default DatenschutzText
+export default BlocksHtml
