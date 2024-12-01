@@ -27,8 +27,8 @@ const ContactBanner: FunctionComponent<Props> = (props) => {
       <div className='image'>
         <Image
           loader={imageLoader}
+          style={{ width: '100%', height: 'auto' }}
           {...props.image}
-          layout='responsive'
           alt={`Portait von ${props.contact.name}`}
         />
       </div>
