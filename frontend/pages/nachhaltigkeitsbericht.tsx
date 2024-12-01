@@ -3,9 +3,9 @@ import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
-import BlocksHtml from 'components/blocks-html'
 import NachhaltigkeitsberichtHeader from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-header'
 import Berichte from 'components/nachhaltigkeitsbericht/berichte'
+import NachhaltigkeitsberichtBody from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-body'
 
 type NachhaltigkeitsberichtPageProps = {
   body: string
@@ -22,7 +22,7 @@ const Nachhaltigkeitsbericht: NextPage<
         <Metadata pageMeta={props.pageData} slug='/nachhaltigkeitsbericht' />
         <main>
           <NachhaltigkeitsberichtHeader />
-          <BlocksHtml html={props.pageData.body} />
+          <NachhaltigkeitsberichtBody html={props.pageData.body} />
           <Berichte
             title={props.pageData.berichteTitle}
             description={props.pageData.berichteDescription}
