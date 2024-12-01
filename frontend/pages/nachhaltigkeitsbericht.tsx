@@ -8,6 +8,7 @@ import BlocksHtml from 'components/blocks-html'
 
 type NachhaltigkeitsberichtPageProps = {
   body: string
+  berichteTitle: string
 }
 const Nachhaltigkeitsbericht: NextPage<
   PageProps<NachhaltigkeitsberichtPageProps>
@@ -19,6 +20,7 @@ const Nachhaltigkeitsbericht: NextPage<
         <main>
           <NachhaltigkeitsberichtHeader />
           <BlocksHtml html={props.pageData.body} />
+          <h2>{props.pageData.berichteTitle}</h2>
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -31,7 +33,7 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   const result = await queryPageData<NachhaltigkeitsberichtPageProps>({
     query: 'page("nachhaltigkeitsbericht")',
-    select: { body: 'page.body.toBlocks.toHtml' },
+    select: { body: 'page.body.toBlocks.toHtml', berichteTitle: true },
   })
   return { props: result }
 }
