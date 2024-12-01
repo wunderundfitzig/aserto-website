@@ -1,4 +1,4 @@
-title: Datenschutz
+title: Nachhaltigkeitsbericht
 preset: page
 
 options:
@@ -8,12 +8,12 @@ options:
   duplicate: false
   preview: false
 
-files: false
-pages: false
-
 fields:
   seo: fields/seo
-
+  bodyHeadline:
+    label: Body
+    type: headline
+    numbered: false
   body:
     label: Text
     type: blocks
@@ -32,3 +32,25 @@ fields:
               - h5
               - h6
               - h7
+  berichteHeadline:
+    label: Berichte
+    type: headline
+    numbered: false
+  berichteTitle:
+    label: Titel
+    type: text
+  berichteDescription:
+    label: Beschreibung
+    type: textarea
+    buttons: false
+
+files:
+  type: files
+  label: Berichte
+  limit: 10
+  layout: list
+  info: '{{ file.label }}'
+  image: false
+  template: pdf
+
+pages: false
