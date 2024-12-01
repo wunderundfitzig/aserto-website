@@ -1,14 +1,17 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
-import NachhaltigkeitsberichtHeader from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-header'
 
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
 import BlocksHtml from 'components/blocks-html'
+import NachhaltigkeitsberichtHeader from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-header'
+import Berichte from 'components/nachhaltigkeitsbericht/berichte'
 
 type NachhaltigkeitsberichtPageProps = {
   body: string
   berichteTitle: string
+  berichteDescription: string
+  berichte: { url: string; fileName: string; label?: string }[]
 }
 const Nachhaltigkeitsbericht: NextPage<
   PageProps<NachhaltigkeitsberichtPageProps>
@@ -20,7 +23,11 @@ const Nachhaltigkeitsbericht: NextPage<
         <main>
           <NachhaltigkeitsberichtHeader />
           <BlocksHtml html={props.pageData.body} />
-          <h2>{props.pageData.berichteTitle}</h2>
+          <Berichte
+            title={props.pageData.berichteTitle}
+            description={props.pageData.berichteDescription}
+            pdfs={props.pageData.berichte}
+          />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -33,7 +40,19 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   const result = await queryPageData<NachhaltigkeitsberichtPageProps>({
     query: 'page("nachhaltigkeitsbericht")',
-    select: { body: 'page.body.toBlocks.toHtml', berichteTitle: true },
+    select: {
+      body: 'page.body.toBlocks.toHtml',
+      berichteTitle: true,
+      berichteDescription: true,
+      berichte: {
+        query: 'page.files',
+        select: {
+          url: 'file.url',
+          fileName: 'file.name',
+          label: 'file.label',
+        },
+      },
+    },
   })
   return { props: result }
 }
