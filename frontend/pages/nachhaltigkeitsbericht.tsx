@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<
       berichteTitle: true,
       berichteDescription: true,
       berichte: {
-        query: 'page.files',
+        query: 'page.files.sortBy("sort")',
         select: {
           url: 'file.url',
           fileName: 'file.name',
