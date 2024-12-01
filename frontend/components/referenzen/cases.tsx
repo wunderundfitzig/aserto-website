@@ -38,7 +38,9 @@ const Cases: FunctionComponent<Props> = (props) => {
           {props.cases.map((caseArticle, idx) => (
             <div
               key={caseArticle.id}
-              ref={(ref) => (sectionRefs.current[idx] = ref)}
+              ref={(ref) => {
+                sectionRefs.current[idx] = ref
+              }}
             >
               <CaseArticle
                 case={caseArticle}

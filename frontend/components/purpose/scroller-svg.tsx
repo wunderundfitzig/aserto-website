@@ -42,7 +42,7 @@ type Props = {
 }
 const ScrollerSvg: FunctionComponent<Props> = (props) => {
   const { width } = useWindowSize()
-  const curveRef = useRef<SVGPathElement | null>(null)
+  const curveRef = useRef<SVGPathElement>(null)
 
   const useMobileCurve = (width ?? 0) < breakpoint.sm
   const curvePoints = useMobileCurve ? mobileCurvePoints : desctopCurvePoints

@@ -19,8 +19,8 @@ const PersonCard: FunctionComponent<Props> = (props) => {
       <div className='image'>
         <Image
           loader={imageLoader}
+          style={{ width: '100%', height: 'auto' }}
           {...props.image}
-          layout='responsive'
           alt={`portait of ${props.contact.name}`}
         />
       </div>

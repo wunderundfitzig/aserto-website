@@ -20,9 +20,9 @@ const ContactCard: FunctionComponent<Props> = (props) => {
     <div className='contact-card'>
       <div className='image'>
         <Image
-          layout='responsive'
           sizes={`(min-width: ${breakpoint.s}px) 174px, 50vw`}
           loader={imageLoader}
+          style={{ width: '100%', height: 'auto' }}
           {...props.image}
           alt={`Portait von ${props.contact.name}`}
         />
