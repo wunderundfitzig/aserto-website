@@ -1,0 +1,10 @@
+title: PDF
+
+accept: application/pdf
+extension: pdf
+type: document
+
+fields:
+  label:
+    label: Label
+    type: text
