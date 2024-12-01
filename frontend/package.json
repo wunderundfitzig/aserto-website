@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build && next-export-optimize-images",
     "start": "next start",
-    "lint": "next lint",
-    "images:resize": "mkdir -p public/resized-images && node scripts/images-resize.js",
-    "generate:favicons": "real-favicon generate favicon-description.json public/favicons/favicon-data.json public/favicons"
+    "lint": "next lint"
   },
   "husky": {
     "hooks": {
@@ -21,21 +19,21 @@
   "dependencies": {
     "fefe": "^3.2.0",
     "lodash": "^4.17.21",
-    "next": "^14.0.4",
+    "next": "^15.0.3",
     "poisson-disk-sampling": "^2.2.2",
     "polished": "^4.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-markdown": "^6.0.2",
     "seedrandom": "^3.0.5",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@types/d3-shape": "^3.0.2",
     "@types/lodash": "^4.14.168",
     "@types/poisson-disk-sampling": "^2.2.0",
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "@types/seedrandom": "^3.0.1",
     "@types/styled-jsx": "^2.2.8",
     "@typescript-eslint/eslint-plugin": "^6.18.1",

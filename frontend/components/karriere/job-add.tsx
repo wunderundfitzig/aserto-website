@@ -10,6 +10,7 @@ import Button from 'components/button'
 import CopyUrlButton from 'components/copy-url-button'
 import AsertoLogo from 'components/aserto-logo'
 import ContactCard from 'components/contact-card'
+import BlocksHtml from 'components/blocks-html'
 
 type Job = {
   slug: string
@@ -41,10 +42,12 @@ const JobAdd: FunctionComponent<Props> = (props) => {
             <AsertoLogo />
           </div>
           <JobAddHeader jobs={props.jobs} jobIndex={jobIndex} />
-          <main
-            className='content'
-            dangerouslySetInnerHTML={{ __html: props.job.content }}
-          />
+          <main className='content'>
+            <BlocksHtml
+              html={props.job.content}
+              color={colors.categoryColors.karriere}
+            />
+          </main>
           <aside>
             <ContactCard
               image={props.job.contactImage}
