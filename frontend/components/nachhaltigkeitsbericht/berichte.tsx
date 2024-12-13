@@ -15,7 +15,7 @@ export default function Berichte(props: Props) {
       <ul>
         {props.pdfs.map((pdf, idx) => (
           <li key={idx}>
-            <a href={pdf.url} download={pdf.fileName}>
+            <a href={pdf.url} target='_blank' download={`${pdf.fileName}.pdf`}>
               <span>{pdf.label || pdf.fileName}</span>
               <MoreInfoIcon color={colors.grey} />
             </a>
