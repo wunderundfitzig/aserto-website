@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import ContactBanner from 'components/contact-banner'

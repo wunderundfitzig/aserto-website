@@ -1,3 +1,5 @@
+'use client'
+
 import BlocksHtml from 'components/blocks-html'
 
 type Props = { html: string }

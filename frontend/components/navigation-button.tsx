@@ -1,3 +1,5 @@
+'use client'
+
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { useIntersectionObserver } from 'lib/use-intersection-observer'
 import { FunctionComponent, useRef } from 'react'

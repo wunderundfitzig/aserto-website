@@ -1,46 +1,23 @@
-import { GetStaticProps, NextPage } from 'next'
-import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
+import { queryPageData } from 'lib/kirby-query'
 import { Case, Client, ClientQuote, Contact, ImageType } from 'lib/types'
+
+import Footer from 'components/footer'
+import Metadata from 'components/metadata'
 import Cases from 'components/referenzen/cases'
 import ClientQuotes from 'components/referenzen/client-quotes'
 import LogoList from 'components/referenzen/logo-list'
-import ReferenzenHeader from 'components/referenzen/referenzen-header'
-import Metadata from 'components/metadata'
 import ReferenzenContact from 'components/referenzen/referenzen-contact'
-import Footer from 'components/footer'
+import ReferenzenHeader from 'components/referenzen/referenzen-header'
 
-type ReferenzenPageProps = {
+type PageData = {
   cases: Case[]
   clients: Client[]
   clientQuotes: ClientQuote[]
   contactImage: ImageType
   contact: Contact
 }
-const ReferenzenPage: NextPage<PageProps<ReferenzenPageProps>> = (props) => {
-  return (
-    <>
-      <article style={{ gridArea: props.gridArea }}>
-        <Metadata pageMeta={props.pageData} slug='/referenzen' />
-        <main>
-          <ReferenzenHeader />
-          <LogoList clients={props.pageData.clients} />
-          <ClientQuotes quotes={props.pageData.clientQuotes} />
-          <Cases cases={props.pageData.cases} />
-        </main>
-        <ReferenzenContact
-          contact={props.pageData.contact}
-          image={props.pageData.contactImage}
-        />
-      </article>
-      <Footer gridArea='footer' siteInfo={props.siteInfo} />
-    </>
-  )
-}
-
-export const getStaticProps: GetStaticProps<
-  SiteQueryResult<ReferenzenPageProps>
-> = async () => {
-  const result = await queryPageData<ReferenzenPageProps>({
+export default async function Referenzen() {
+  const result = await queryPageData<PageData>({
     query: 'page("referenzen")',
     select: {
       clients: {
@@ -98,7 +75,23 @@ export const getStaticProps: GetStaticProps<
       },
     },
   })
-  return { props: result }
-}
 
-export default ReferenzenPage
+  return (
+    <>
+      <article style={{ gridArea: 'main' }}>
+        <Metadata pageMeta={result.pageData} slug='/referenzen' />
+        <main>
+          <ReferenzenHeader />
+          <LogoList clients={result.pageData.clients} />
+          <ClientQuotes quotes={result.pageData.clientQuotes} />
+          <Cases cases={result.pageData.cases} />
+        </main>
+        <ReferenzenContact
+          contact={result.pageData.contact}
+          image={result.pageData.contactImage}
+        />
+      </article>
+      <Footer gridArea='footer' siteInfo={result.siteInfo} />
+    </>
+  )
+}

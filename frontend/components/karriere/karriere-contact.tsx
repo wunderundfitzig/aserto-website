@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import { categoryColors, backgroundRed } from 'lib/colors'
 import { Contact, ImageType } from 'lib/types'
