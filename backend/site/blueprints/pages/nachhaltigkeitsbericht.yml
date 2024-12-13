@@ -44,13 +44,22 @@ fields:
     type: textarea
     buttons: false
 
-files:
-  type: files
-  label: Berichte
-  limit: 10
-  layout: list
-  info: '{{ file.label }}'
-  image: false
-  template: pdf
+sidebar:
+  image:
+    type: files
+    headline: Image
+    max: 1
+    sortable: false
+    template: image
+    layout: cards
+
+  files:
+    type: files
+    label: Berichte
+    limit: 10
+    layout: list
+    info: '{{ file.label }}'
+    image: false
+    template: pdf
 
 pages: false

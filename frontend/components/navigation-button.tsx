@@ -12,7 +12,7 @@ const refs: (HTMLButtonElement | null)[] = []
 const SCROLLED_NAV_OFFSET = 25
 
 const NavigationButton: FunctionComponent<Props> = (props) => {
-  const sectionRef = useRef<HTMLButtonElement | null>(null)
+  const sectionRef = useRef<HTMLButtonElement>(null)
   refs[0] = sectionRef.current
   const sectionIndex = useIntersectionObserver(refs, {
     topOffset: () => SCROLLED_NAV_OFFSET,
