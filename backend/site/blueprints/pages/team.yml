@@ -32,6 +32,34 @@ columns:
             buttons: false
             counter: false
 
+          instagramHead:
+            label: Instagram
+            type: headline
+            numbered: false
+          instagramPosts:
+            label: Posts
+            type: structure
+            sortable: true
+            columns:
+              image:
+                width: 1/5
+              url:
+                type: url
+
+            fields:
+              image:
+                label: Image
+                type: files
+                max: 1
+                accepted:
+                  - image/jpeg
+                  - image/png
+                  - image/gif
+                  - image/webp
+              url:
+                label: URL
+                type: url
+
   sidebar:
     width: 1/2
     sections:
