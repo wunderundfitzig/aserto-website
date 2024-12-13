@@ -1,17 +1,24 @@
 import Image from 'next/image'
 
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import BlocksHtml from 'components/blocks-html'
-import image from 'public/images/nachhaltigkeitsbericht/nachhaltigkeitsbericht.jpg'
+import { ImageType } from 'lib/types'
 
-type Props = { html: string }
+import BlocksHtml from 'components/blocks-html'
+import { backendImage, imageLoader } from 'lib/image-loader'
+
+type Props = { image: ImageType; html: string }
 export default function NachhaltigkeitsberichtBody(props: Props) {
   return (
     <section className='nachhaltigkeitsbericht-body'>
       <div className='text'>
         <BlocksHtml html={props.html} />
       </div>
-      <Image src={image} alt='' sizes='100vw' />
+      <Image
+        loader={imageLoader}
+        src={backendImage(props.image)}
+        alt=''
+        sizes='100vw'
+      />
       <style jsx>{`
         .nachhaltigkeitsbericht-body {
           margin-top: 6rem;

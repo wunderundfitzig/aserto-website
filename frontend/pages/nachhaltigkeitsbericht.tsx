@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 
+import { ImageType } from 'lib/types'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
 import NachhaltigkeitsberichtHeader from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-header'
@@ -11,6 +12,7 @@ type NachhaltigkeitsberichtPageProps = {
   body: string
   berichteTitle: string
   berichteDescription: string
+  image: ImageType
   berichte: { url: string; fileName: string; label?: string }[]
 }
 const Nachhaltigkeitsbericht: NextPage<
@@ -22,7 +24,10 @@ const Nachhaltigkeitsbericht: NextPage<
         <Metadata pageMeta={props.pageData} slug='/nachhaltigkeitsbericht' />
         <main>
           <NachhaltigkeitsberichtHeader />
-          <NachhaltigkeitsberichtBody html={props.pageData.body} />
+          <NachhaltigkeitsberichtBody
+            image={props.pageData.image}
+            html={props.pageData.body}
+          />
           <Berichte
             title={props.pageData.berichteTitle}
             description={props.pageData.berichteDescription}
@@ -44,8 +49,15 @@ export const getStaticProps: GetStaticProps<
       body: 'page.body.toBlocks.toHtml',
       berichteTitle: true,
       berichteDescription: true,
+      image: {
+        select: {
+          src: 'file.id',
+          width: true,
+          height: true,
+        },
+      },
       berichte: {
-        query: 'page.files.sortBy("sort")',
+        query: 'page.files.filterBy("template", "pdf").sortBy("sort")',
         select: {
           url: 'file.url',
           fileName: 'file.name',
