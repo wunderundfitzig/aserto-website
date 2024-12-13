@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
-import { TeamMember } from 'lib/types'
+import { InstagramPost, TeamMember } from 'lib/types'
 import TeamHeader from 'components/team/team-header'
 import UnserTeam from 'components/team/unser-team'
 import DasSindWir from 'components/team/das-sind-wir'
@@ -13,6 +13,7 @@ type LeistungenPageProps = {
   teamMembers: TeamMember[]
   freieMitarbeiterTitle: string
   freieMitarbeiter: string
+  instagramPosts: InstagramPost[]
 }
 const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
   return (
@@ -27,7 +28,10 @@ const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
             title={props.pageData.freieMitarbeiterTitle}
             names={props.pageData.freieMitarbeiter}
           />
-          <Instagram instagramURL={props.siteInfo.instagramUrl} />
+          <Instagram
+            instagramURL={props.siteInfo.instagramUrl}
+            posts={props.pageData.instagramPosts}
+          />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -63,6 +67,20 @@ export const getStaticProps: GetStaticProps<
               role: 'page.position',
               linkedIn: 'page.linkedinurl',
               xing: 'page.xingurl',
+            },
+          },
+        },
+      },
+      instagramPosts: {
+        query: 'page.instagramPosts.toStructure',
+        select: {
+          url: true,
+          image: {
+            query: 'structureItem.image.toFile',
+            select: {
+              src: 'file.id',
+              width: true,
+              height: true,
             },
           },
         },
