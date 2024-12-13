@@ -72,3 +72,8 @@ columns:
           cover: true
         info: '{{ page.tags }}'
         templates: team-member
+
+      files:
+        type: files
+        headline: Files
+        sortable: false
