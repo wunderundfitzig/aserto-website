@@ -1,9 +1,11 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import NavigationButton from 'components/navigation-button'
 import { categoryColors } from 'lib/colors'
-import { useRouter } from 'next/router'
+
+import NavigationButton from 'components/navigation-button'
 
 const navItems = [
   { label: 'Purpose', slug: '/purpose' },
@@ -20,13 +22,13 @@ type Props = {
 const Navigation: FunctionComponent<Props> = (props) => {
   const { onFrontpage = false } = props
   const [isOpen, setIsOpen] = useState(false)
-  const router = useRouter()
-  const rootPath = router.pathname.split('/').slice(1)[0]
+  const pathname = usePathname()
+  const rootPath = pathname?.split('/').slice(1)[0] ?? ''
   const highlightColor = (categoryColors as Record<string, string>)[rootPath]
 
   useEffect(() => {
     setIsOpen(false)
-  }, [router.pathname])
+  }, [pathname])
 
   return (
     <nav className={`nav ${isOpen && 'open'} ${onFrontpage && 'on-frontpage'}`}>
