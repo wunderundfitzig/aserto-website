@@ -1,3 +1,5 @@
+'use client'
+
 import { OpenCircle } from 'components/curves'
 import Slogan from 'components/slogan'
 import { FunctionComponent } from 'react'

@@ -1,9 +1,8 @@
-import Head from 'next/head'
 import { FunctionComponent } from 'react'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 
 export const PreloadFont: FunctionComponent = () => (
-  <Head>
+  <>
     {/* preload Sinova front in weight 200 */}
     <link
       rel='preload'
@@ -12,10 +11,10 @@ export const PreloadFont: FunctionComponent = () => (
       type='font/woff2'
       crossOrigin='anonymous'
     />
-  </Head>
+  </>
 )
 const GlobalStyles: FunctionComponent = () => (
-  <style jsx global>{`
+  <style>{`
     @font-face {
       font-family: 'Sinova';
       font-weight: 200;

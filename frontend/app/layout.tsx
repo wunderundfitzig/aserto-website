@@ -24,10 +24,11 @@ export default function RootLayout(props: Props) {
       <head>
         <title>wunder & fitzig</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-      </head>
-      <body>
         <Favicons />
         <PreloadFont />
+        <GlobalStyles />
+      </head>
+      <body>
         <MainGrid onFrontpage={isIndexPage}>
           <Link legacyBehavior href='/'>
             <a
@@ -42,7 +43,6 @@ export default function RootLayout(props: Props) {
           <Navigation onFrontpage={isIndexPage} gridArea='navigation' />
           {props.children}
         </MainGrid>
-        <GlobalStyles />
         <style jsx>{`
           .logo-link {
             position: sticky;

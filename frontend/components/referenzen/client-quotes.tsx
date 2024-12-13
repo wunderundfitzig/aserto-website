@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, useState } from 'react'
 import Slider from 'components/slider'
 import Quote from 'components/referenzen/quote'

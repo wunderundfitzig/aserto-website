@@ -1,3 +1,5 @@
+'use client'
+
 import { categoryColors } from 'lib/colors'
 import { FunctionComponent } from 'react'
 import { DownhillCurve } from 'components/curves'

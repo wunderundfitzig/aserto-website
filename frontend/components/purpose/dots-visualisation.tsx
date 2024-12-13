@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, memo, useEffect, useState } from 'react'
 import PoissonDiskSampling from 'poisson-disk-sampling'
 import seedrandom from 'seedrandom'

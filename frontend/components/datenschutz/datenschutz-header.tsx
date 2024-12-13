@@ -1,3 +1,5 @@
+'use client'
+
 import HeaderBackground from 'components/header-background'
 import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'

@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, ReactChild } from 'react'
 
 type Props = {

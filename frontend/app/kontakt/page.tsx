@@ -1,14 +1,13 @@
-import { GetStaticProps, NextPage } from 'next'
-import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
-import { Contact, ImageType } from 'lib/types'
-import KontaktHeader from 'components/kontakt/kontakt-header'
-import Impressum from 'components/kontakt/impressum'
-import Ansprechpartner from 'components/kontakt/ansprechpartner'
-import Metadata from 'components/metadata'
 import Footer from 'components/footer'
 import Anfahrt from 'components/kontakt/anfahrt'
+import Ansprechpartner from 'components/kontakt/ansprechpartner'
+import Impressum from 'components/kontakt/impressum'
+import KontaktHeader from 'components/kontakt/kontakt-header'
+import Metadata from 'components/metadata'
+import { queryPageData } from 'lib/kirby-query'
+import { Contact, ImageType } from 'lib/types'
 
-type KontaktPageProps = {
+type PageData = {
   jobsContact: {
     contact: Contact
     image: ImageType
@@ -19,27 +18,9 @@ type KontaktPageProps = {
   }[]
   imprint: string
 }
-const Kontakt: NextPage<PageProps<KontaktPageProps>> = (props) => {
-  return (
-    <>
-      <article style={{ gridArea: props.gridArea }}>
-        <Metadata pageMeta={props.pageData} slug='/kontakt' />
-        <main>
-          <KontaktHeader />
-          <Anfahrt mapsLink={props.siteInfo.mapsUrl} />
-          <Ansprechpartner {...props.pageData} />
-          <Impressum html={props.pageData.imprint} />
-        </main>
-      </article>
-      <Footer gridArea='footer' siteInfo={props.siteInfo} />
-    </>
-  )
-}
 
-export const getStaticProps: GetStaticProps<
-  SiteQueryResult<KontaktPageProps>
-> = async () => {
-  const result = await queryPageData<KontaktPageProps>({
+export default async function Kontakt() {
+  const result = await queryPageData<PageData>({
     query: 'page("kontakt")',
     select: {
       jobsContact: {
@@ -79,7 +60,19 @@ export const getStaticProps: GetStaticProps<
       imprint: 'page.imprint.toBlocks.toHtml',
     },
   })
-  return { props: result }
-}
 
-export default Kontakt
+  return (
+    <>
+      <article style={{ gridArea: 'main' }}>
+        <Metadata pageMeta={result.pageData} slug='/kontakt' />
+        <main>
+          <KontaktHeader />
+          <Anfahrt mapsLink={result.siteInfo.mapsUrl} />
+          <Ansprechpartner {...result.pageData} />
+          <Impressum html={result.pageData.imprint} />
+        </main>
+      </article>
+      <Footer gridArea='footer' siteInfo={result.siteInfo} />
+    </>
+  )
+}

@@ -1,9 +1,10 @@
+'use client'
+
 import { FunctionComponent } from 'react'
-import Head from 'next/head'
 
 const Favicons: FunctionComponent = () => {
   return (
-    <Head>
+    <>
       <link
         rel='apple-touch-icon'
         sizes='180x180'
@@ -31,7 +32,7 @@ const Favicons: FunctionComponent = () => {
       <meta name='msapplication-TileColor' content='#5f99d2' />
       <meta name='msapplication-config' content='/favicons/browserconfig.xml' />
       <meta name='theme-color' content='#a8c9e8' />
-    </Head>
+    </>
   )
 }
 

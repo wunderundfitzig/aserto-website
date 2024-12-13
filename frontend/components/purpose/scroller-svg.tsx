@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, useRef } from 'react'
 import * as colors from 'lib/colors'
 import { curvedPath } from 'lib/curved-path'
