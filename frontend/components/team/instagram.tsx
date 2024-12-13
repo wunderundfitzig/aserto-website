@@ -1,26 +1,17 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { InstagramPost } from 'lib/types'
 import { lightBlue, backgroundBlue } from 'lib/colors'
-import { imageLoader } from 'lib/image-loader'
+import { imageLoader, backendImage } from 'lib/image-loader'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { queryInstagramPosts } from 'lib/instagram-query'
 import Button from 'components/button'
 import { TeamTriangleLine } from 'components/curves'
 
 type Props = {
   instagramURL: string
+  posts: InstagramPost[]
 }
 const Instagram: FunctionComponent<Props> = (props) => {
-  const [posts, setPosts] = useState<InstagramPost[]>([])
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const posts = await queryInstagramPosts()
-      setPosts(posts)
-    }
-    fetchPosts()
-  }, [])
-
   return (
     <section className='instagram'>
       <TeamTriangleLine
@@ -34,7 +25,7 @@ const Instagram: FunctionComponent<Props> = (props) => {
         Du noch mehr über unser Team und was uns aktuell noch so bewegt.
       </p>
       <div className='posts'>
-        {posts.map((post) => (
+        {props.posts.map((post) => (
           <a
             key={post.id}
             href={post.url}
@@ -44,9 +35,9 @@ const Instagram: FunctionComponent<Props> = (props) => {
           >
             <Image
               loader={imageLoader}
-              alt={post.caption}
+              alt={''}
               sizes={`(min-width: ${breakpoint.s}px) 33vw, 100vw`}
-              {...post.image}
+              {...backendImage(post.image)}
             />
           </a>
         ))}

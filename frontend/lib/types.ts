@@ -21,7 +21,6 @@ export type TeamMember = {
 export type InstagramPost = {
   id: string
   url: string
-  caption: string
   image: ImageType
 }
 
