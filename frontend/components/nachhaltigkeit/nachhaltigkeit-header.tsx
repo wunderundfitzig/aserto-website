@@ -1,3 +1,5 @@
+'use client'
+
 import HeaderBackground from 'components/header-background'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'

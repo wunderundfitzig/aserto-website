@@ -1,9 +1,12 @@
+'use client'
+
 import React, { FunctionComponent } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+
 import * as colors from 'lib/colors'
 import { ArrowIcon, CloseIcon } from 'components/icons'
 import Slider from 'components/slider'
-import { useRouter } from 'next/router'
 
 type Job = {
   slug: string

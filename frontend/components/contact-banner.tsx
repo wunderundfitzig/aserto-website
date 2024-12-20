@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, ReactElement } from 'react'
 import Image from 'next/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
