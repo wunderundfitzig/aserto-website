@@ -40,10 +40,9 @@ fields:
     label: Impressum
     type: blocks
     fieldsets:
-      - heading
       - text
       - list
-      heading:
+      - heading:
         extends: blocks/heading
         fields:
           level:
