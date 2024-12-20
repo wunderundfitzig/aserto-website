@@ -1,30 +1,33 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
 
-import { ImageType } from 'lib/types'
+import { Contact, ImageType } from 'lib/types'
 import Metadata from 'components/metadata'
 import Footer from 'components/footer'
-import NachhaltigkeitsberichtHeader from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-header'
-import Berichte from 'components/nachhaltigkeitsbericht/berichte'
-import NachhaltigkeitsberichtBody from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-body'
+import NachhaltigkeitHeader from 'components/nachhaltigkeit/nachhaltigkeit-header'
+import Berichte from 'components/nachhaltigkeit/berichte'
+import NachhaltigkeitBody from 'components/nachhaltigkeit/nachhaltigkeit-body'
+import Kontakte from 'components/nachhaltigkeit/kontakte'
 
-type NachhaltigkeitsberichtPageProps = {
+type NachhaltigkeitPageProps = {
+  title: string
   body: string
   berichteTitle: string
   berichteDescription: string
   image: ImageType
   berichte: { url: string; fileName: string; label?: string }[]
+  kontakte: { contact: Contact; image: ImageType }[]
 }
-const Nachhaltigkeitsbericht: NextPage<
-  PageProps<NachhaltigkeitsberichtPageProps>
-> = (props) => {
+const Nachhaltigkeit: NextPage<PageProps<NachhaltigkeitPageProps>> = (
+  props,
+) => {
   return (
     <>
       <article style={{ gridArea: props.gridArea }}>
-        <Metadata pageMeta={props.pageData} slug='/nachhaltigkeitsbericht' />
+        <Metadata pageMeta={props.pageData} slug='/nachhaltigkeit' />
         <main>
-          <NachhaltigkeitsberichtHeader />
-          <NachhaltigkeitsberichtBody
+          <NachhaltigkeitHeader title={props.pageData.title} />
+          <NachhaltigkeitBody
             image={props.pageData.image}
             html={props.pageData.body}
           />
@@ -33,6 +36,7 @@ const Nachhaltigkeitsbericht: NextPage<
             description={props.pageData.berichteDescription}
             pdfs={props.pageData.berichte}
           />
+          <Kontakte contacts={props.pageData.kontakte} />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={props.siteInfo} />
@@ -41,11 +45,12 @@ const Nachhaltigkeitsbericht: NextPage<
 }
 
 export const getStaticProps: GetStaticProps<
-  SiteQueryResult<NachhaltigkeitsberichtPageProps>
+  SiteQueryResult<NachhaltigkeitPageProps>
 > = async () => {
-  const result = await queryPageData<NachhaltigkeitsberichtPageProps>({
+  const result = await queryPageData<NachhaltigkeitPageProps>({
     query: 'page("nachhaltigkeitsbericht")',
     select: {
+      title: true,
       body: 'page.body.toBlocks.toHtml',
       berichteTitle: true,
       berichteDescription: true,
@@ -64,9 +69,26 @@ export const getStaticProps: GetStaticProps<
           label: 'file.label',
         },
       },
+      kontakte: {
+        query: 'page.kontakte.toPages',
+        select: {
+          contact: {
+            query: 'page',
+            select: {
+              name: 'page.title',
+              mail: 'page.email',
+              phone: true,
+            },
+          },
+          image: {
+            query: 'page.image',
+            select: { src: 'file.id', width: true, height: true },
+          },
+        },
+      },
     },
   })
   return { props: result }
 }
 
-export default Nachhaltigkeitsbericht
+export default Nachhaltigkeit

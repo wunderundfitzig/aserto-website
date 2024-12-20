@@ -1,22 +1,24 @@
 import HeaderBackground from 'components/header-background'
-import { FunctionComponent } from 'react'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { CheckmarkLine } from 'components/curves'
 
-const NachhaltigkeitsberichtHeader: FunctionComponent = () => {
+type Props = {
+  title: string
+}
+export default function NachhaltigkeitHeader(props: Props) {
   return (
-    <header className='nachhaltigkeitsbericht-header'>
+    <header className='nachhaltigkeit-header'>
       <HeaderBackground color={colors.backgroundGrey} opacity={0.5} />
       <div className='line'>
         <CheckmarkLine color={colors.grey} />
       </div>
       <div className='inner'>
-        <h1>Nachhaltigkeitsbericht</h1>
+        <h1>{props.title}</h1>
       </div>
 
       <style jsx>{`
-        .nachhaltigkeitsbericht-header {
+        .nachhaltigkeit-header {
           position: relative;
           display: grid;
           grid-template-areas: 'header';
@@ -46,5 +48,3 @@ const NachhaltigkeitsberichtHeader: FunctionComponent = () => {
     </header>
   )
 }
-
-export default NachhaltigkeitsberichtHeader
