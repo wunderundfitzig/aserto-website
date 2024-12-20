@@ -19,10 +19,6 @@ class ComposerStaticInitad2e7feb6d5124d25ba7b59f26a85a5a
     );
 
     public static $prefixLengthsPsr4 = array (
-        'X' => 
-        array (
-            'X\\' => 2,
-        ),
         'W' => 
         array (
             'Whoops\\' => 7,
@@ -70,10 +66,6 @@ class ComposerStaticInitad2e7feb6d5124d25ba7b59f26a85a5a
     );
 
     public static $prefixDirsPsr4 = array (
-        'X\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/site/plugins/kirby3-instagram/classes',
-        ),
         'Whoops\\' => 
         array (
             0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
@@ -124,9 +116,9 @@ class ComposerStaticInitad2e7feb6d5124d25ba7b59f26a85a5a
         ),
         'Kirby\\' => 
         array (
-            0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
-            1 => __DIR__ . '/../..' . '/site/plugins/kql/src',
-            2 => __DIR__ . '/../..' . '/kirby/src',
+            0 => __DIR__ . '/../..' . '/kirby/src',
+            1 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
+            2 => __DIR__ . '/../..' . '/site/plugins/kql/src',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
@@ -458,6 +450,7 @@ class ComposerStaticInitad2e7feb6d5124d25ba7b59f26a85a5a
         'Kirby\\Kql\\Interceptors\\Cms\\User' => __DIR__ . '/../..' . '/site/plugins/kql/src/Kql/Interceptors/Cms/User.php',
         'Kirby\\Kql\\Interceptors\\Cms\\Users' => __DIR__ . '/../..' . '/site/plugins/kql/src/Kql/Interceptors/Cms/Users.php',
         'Kirby\\Kql\\Interceptors\\Interceptor' => __DIR__ . '/../..' . '/site/plugins/kql/src/Kql/Interceptors/Interceptor.php',
+        'Kirby\\Kql\\Interceptors\\Panel\\Model' => __DIR__ . '/../..' . '/site/plugins/kql/src/Kql/Interceptors/Panel/Model.php',
         'Kirby\\Kql\\Interceptors\\Toolkit\\Obj' => __DIR__ . '/../..' . '/site/plugins/kql/src/Kql/Interceptors/Toolkit/Obj.php',
         'Kirby\\Kql\\Kql' => __DIR__ . '/../..' . '/site/plugins/kql/src/Kql/Kql.php',
         'Kirby\\Kql\\Query' => __DIR__ . '/../..' . '/site/plugins/kql/src/Kql/Query.php',
@@ -575,6 +568,7 @@ class ComposerStaticInitad2e7feb6d5124d25ba7b59f26a85a5a
         'PhpOption\\None' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/None.php',
         'PhpOption\\Option' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/Option.php',
         'PhpOption\\Some' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/Some.php',
+        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/src/AbstractLogger.php',
         'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/src/InvalidArgumentException.php',
         'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/src/LogLevel.php',
@@ -605,6 +599,7 @@ class ComposerStaticInitad2e7feb6d5124d25ba7b59f26a85a5a
         'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
+        'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
@@ -628,7 +623,6 @@ class ComposerStaticInitad2e7feb6d5124d25ba7b59f26a85a5a
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
-        'X\\Instagram' => __DIR__ . '/../..' . '/site/plugins/kirby3-instagram/classes/Instagram.php',
         'claviska\\SimpleImage' => __DIR__ . '/..' . '/claviska/simpleimage/src/claviska/SimpleImage.php',
     );
 

@@ -22,8 +22,7 @@
         "getkirby/cms": "^3.10.1.1",
         "pju/kirby-webhook-field": "^1.1",
         "beebmx/kirby-env": "^4.0",
-        "getkirby/kql": "^1.0",
-        "genxbe/kirby3-instagram": "^1.0"
+        "getkirby/kql": "^1.0"
     },
     "scripts": {
         "start": [

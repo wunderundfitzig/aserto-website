@@ -9,16 +9,6 @@ return [
     ],
     'routes' => [
         [
-            'pattern' => 'instagram/feed',
-            'action'  => function () {
-                $feed = instagramFeed();
-                kirby()->response()->header('Access-Control-Allow-Origin', '*');
-                kirby()->response()->header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS');
-                kirby()->response()->header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-                return $feed->data();
-            }
-        ],
-        [
             'pattern' => 'images/size/(:num)/assets/(:all)',
             'action'  => function (int $size, string $path) {
                 $image = asset("/assets/" . $path);
@@ -48,10 +38,6 @@ return [
                 return ['event_type' => 'cms_webhook'];
             }
         ],
-    ],
-    'genxbe.instagram' => [
-        'client_id' => '423160286005833',
-        'client_secret' => $_ENV['INSTAGRAM_CLIENT_SECRET'],
     ],
     'debug' => $_ENV['ENVIRONMENT'] == 'development',
 ];
