@@ -25,7 +25,7 @@ const Kontakte: FunctionComponent<Props> = (props) => {
           margin-top: 2em;
         }
         .contacs-wrapper {
-          margin-top: 3rem;
+          margin: 3rem 0;
           display: grid;
           grid-auto-flow: row;
           grid-row-gap: 2rem;
