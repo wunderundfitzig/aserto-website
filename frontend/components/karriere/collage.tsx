@@ -1,7 +1,7 @@
 'use client'
 
 import { FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import { StraightLine } from 'components/curves'
 
 import image1 from 'public/images/karriere/karriere-image-6.jpg'

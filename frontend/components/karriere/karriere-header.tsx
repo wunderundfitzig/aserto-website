@@ -1,7 +1,7 @@
 'use client'
 
 import { FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import * as colors from 'lib/colors'
 import Slogan from 'components/slogan'
 import { StraightLine } from 'components/curves'

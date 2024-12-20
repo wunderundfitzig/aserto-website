@@ -1,7 +1,7 @@
 'use client'
 
 import React, { FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
 import List from 'components/list'

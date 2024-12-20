@@ -1,7 +1,7 @@
 'use client'
 
 import { FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { SkewedHalfCircle } from 'components/curves'

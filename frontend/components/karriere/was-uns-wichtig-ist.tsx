@@ -1,7 +1,7 @@
 'use client'
 
 import { FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import { categoryColors } from 'lib/colors'
 
 import image from 'public/images/karriere/karriere-image-2.jpg'

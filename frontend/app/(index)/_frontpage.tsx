@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import { darken } from 'polished'
 
 import { breakpoint, minWidth } from 'lib/breakpoints'

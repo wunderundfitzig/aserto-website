@@ -1,7 +1,7 @@
 'use client'
 
 import { FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { categoryColors } from 'lib/colors'
 import { LeftRightTurnCurve, PurposeCurve } from 'components/curves'
