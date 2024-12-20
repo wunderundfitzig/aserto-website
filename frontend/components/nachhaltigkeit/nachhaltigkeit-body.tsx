@@ -9,9 +9,9 @@ import BlocksHtml from 'components/blocks-html'
 import { backendImage, imageLoader } from 'lib/image-loader'
 
 type Props = { image: ImageType; html: string }
-export default function NachhaltigkeitsberichtBody(props: Props) {
+export default function NachhaltigkeitBody(props: Props) {
   return (
-    <section className='nachhaltigkeitsbericht-body'>
+    <section className='nachhaltigkeit-body'>
       <div className='text'>
         <BlocksHtml html={props.html} />
       </div>
@@ -22,15 +22,15 @@ export default function NachhaltigkeitsberichtBody(props: Props) {
         sizes='100vw'
       />
       <style jsx>{`
-        .nachhaltigkeitsbericht-body {
+        .nachhaltigkeit-body {
           margin-top: 6rem;
         }
-        .nachhaltigkeitsbericht-body .text {
+        .nachhaltigkeit-body .text {
           margin-bottom: 4rem;
           max-width: 40em;
         }
 
-        .nachhaltigkeitsbericht-body :global(img) {
+        .nachhaltigkeit-body :global(img) {
           margin-left: -2rem;
           width: calc(100% + 2rem);
           max-width: 50em;
@@ -38,14 +38,14 @@ export default function NachhaltigkeitsberichtBody(props: Props) {
         }
 
         @media ${minWidth(breakpoint.l)} {
-          .nachhaltigkeitsbericht-body :global(img) {
+          .nachhaltigkeit-body :global(img) {
             margin-left: -3rem;
             width: calc(100% + 3rem);
           }
         }
 
         @media ${minWidth(breakpoint.xxl)} {
-          .nachhaltigkeitsbericht-body :global(img) {
+          .nachhaltigkeit-body :global(img) {
             margin-left: -5rem;
             width: calc(100% + 5rem);
           }

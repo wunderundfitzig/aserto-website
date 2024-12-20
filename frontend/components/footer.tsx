@@ -54,7 +54,7 @@ const Footer: FunctionComponent<Props> = (props) => {
         <SocialLinks {...props.siteInfo} color='black' />
       </address>
       <nav title='footer navigation' className='footer-navigation'>
-        <Link href='/nachhaltigkeitsbericht'>Nachhaltigkeitsbericht</Link>
+        <Link href='/nachhaltigkeit'>Nachhaltigkeit</Link>
         <Link href='/datenschutz'>Datenschutz</Link>
         <Link href='/kontakt'>Kontakt / Impressum</Link>
       </nav>

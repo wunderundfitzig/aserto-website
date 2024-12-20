@@ -8,13 +8,36 @@ import KarriereHeader from 'components/karriere/karriere-header'
 import Vorteile from 'components/karriere/vorteile'
 import WasUnsWichtigIst from 'components/karriere/was-uns-wichtig-ist'
 import Metadata from 'components/metadata'
-import { queryPageData } from 'lib/kirby-query'
+import { queryBackend, queryPageData } from 'lib/kirby-query'
+import { notFound } from 'next/navigation'
+
+type Params = { job: string }
+
+export const dynamicParams = false
+export async function generateStaticParams(): Promise<Params[]> {
+  const jobSlugs = await queryBackend<{
+    data: { slug: string; blueprint: 'pages/job-add' | 'pages/personio-link' }[]
+  }>({
+    query: "page('karriere').children",
+    select: {
+      slug: true,
+      blueprint: 'page.blueprint.name',
+    },
+  })
+
+  const pages = jobSlugs.data
+    .filter((page) => page.blueprint == 'pages/job-add')
+    .map(({ slug }) => ({ job: slug }))
+  return pages.length > 0 ? pages : [{ job: 'not-found' }]
+}
 
 type Props = {
-  params: { job: string }
+  params: Promise<Params>
 }
 export default async function Job(props: Props) {
-  const jobslug = props.params.job
+  const params = await props.params
+  const jobslug = params.job
+  if (jobslug === 'not-found') return notFound()
 
   const result = await queryPageData<KarrierePageData>({
     query: "page('karriere')",

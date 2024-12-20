@@ -1,23 +1,28 @@
 import { queryPageData } from 'lib/kirby-query'
-import { ImageType } from 'lib/types'
 
-import Footer from 'components/footer'
+import { Contact, ImageType } from 'lib/types'
 import Metadata from 'components/metadata'
-import Berichte from 'components/nachhaltigkeitsbericht/berichte'
-import NachhaltigkeitsberichtBody from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-body'
-import NachhaltigkeitsberichtHeader from 'components/nachhaltigkeitsbericht/nachhaltigkeitsbericht-header'
+import Footer from 'components/footer'
+import NachhaltigkeitHeader from 'components/nachhaltigkeit/nachhaltigkeit-header'
+import Berichte from 'components/nachhaltigkeit/berichte'
+import NachhaltigkeitBody from 'components/nachhaltigkeit/nachhaltigkeit-body'
+import Kontakte from 'components/nachhaltigkeit/kontakte'
 
 type PageData = {
+  title: string
   body: string
   berichteTitle: string
   berichteDescription: string
   image: ImageType
   berichte: { url: string; fileName: string; label?: string }[]
+  kontakte: { contact: Contact; image: ImageType }[]
 }
-export default async function Nachhaltigkeitsbericht() {
+
+export default async function Nachhaltigkeit() {
   const result = await queryPageData<PageData>({
     query: 'page("nachhaltigkeitsbericht")',
     select: {
+      title: true,
       body: 'page.body.toBlocks.toHtml',
       berichteTitle: true,
       berichteDescription: true,
@@ -36,16 +41,32 @@ export default async function Nachhaltigkeitsbericht() {
           label: 'file.label',
         },
       },
+      kontakte: {
+        query: 'page.kontakte.toPages',
+        select: {
+          contact: {
+            query: 'page',
+            select: {
+              name: 'page.title',
+              mail: 'page.email',
+              phone: true,
+            },
+          },
+          image: {
+            query: 'page.image',
+            select: { src: 'file.id', width: true, height: true },
+          },
+        },
+      },
     },
   })
-
   return (
     <>
       <article style={{ gridArea: 'main' }}>
-        <Metadata pageMeta={result.pageData} slug='/nachhaltigkeitsbericht' />
+        <Metadata pageMeta={result.pageData} slug='/nachhaltigkeit' />
         <main>
-          <NachhaltigkeitsberichtHeader />
-          <NachhaltigkeitsberichtBody
+          <NachhaltigkeitHeader title={result.pageData.title} />
+          <NachhaltigkeitBody
             image={result.pageData.image}
             html={result.pageData.body}
           />
@@ -54,6 +75,7 @@ export default async function Nachhaltigkeitsbericht() {
             description={result.pageData.berichteDescription}
             pdfs={result.pageData.berichte}
           />
+          <Kontakte contacts={result.pageData.kontakte} />
         </main>
       </article>
       <Footer gridArea='footer' siteInfo={result.siteInfo} />

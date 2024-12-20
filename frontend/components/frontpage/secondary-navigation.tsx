@@ -11,7 +11,7 @@ const SecondaryNavigation: FunctionComponent<Props> = (props) => {
     <nav title='footer navigation'>
       <ul>
         <li>
-          <Link href='/nachhaltigkeitsbericht'>Nachhaltigkeitsbericht</Link>
+          <Link href='/nachhaltigkeit'>Nachhaltigkeit</Link>
         </li>
         <li>
           <Link href='/datenschutz'>Datenschutz</Link>
