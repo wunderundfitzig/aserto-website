@@ -18,10 +18,9 @@ fields:
     label: Text
     type: blocks
     fieldsets:
-      - heading
       - text
       - list
-      heading:
+      - heading:
         extends: blocks/heading
         fields:
           level:
@@ -43,6 +42,20 @@ fields:
     label: Beschreibung
     type: textarea
     buttons: false
+  kontaktHeadline:
+    label: Kontakt
+    type: headline
+    numbered: false
+  kontakte:
+    label: Kontakte
+    type: pages
+    multiple: true
+    query: site.find('team')
+    limit: 15
+    info: '{{ page.tags }}'
+    subpages: false
+    empty: Kontakt auswählen
+    required: true
 
 sidebar:
   image:
