@@ -25,9 +25,9 @@ const Instagram: FunctionComponent<Props> = (props) => {
         Du noch mehr über unser Team und was uns aktuell noch so bewegt.
       </p>
       <div className='posts'>
-        {props.posts.map((post) => (
+        {props.posts.map((post, idx) => (
           <a
-            key={post.id}
+            key={idx}
             href={post.url}
             target='_blank'
             rel='noreferrer'
