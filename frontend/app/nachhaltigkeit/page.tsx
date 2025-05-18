@@ -1,5 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
-import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
+import { queryPageData } from 'lib/kirby-query'
 
 import { Contact, ImageType } from 'lib/types'
 import Metadata from 'components/metadata'
@@ -9,7 +8,7 @@ import Berichte from 'components/nachhaltigkeit/berichte'
 import NachhaltigkeitBody from 'components/nachhaltigkeit/nachhaltigkeit-body'
 import Kontakte from 'components/nachhaltigkeit/kontakte'
 
-type NachhaltigkeitPageProps = {
+type PageData = {
   title: string
   body: string
   berichteTitle: string
@@ -18,36 +17,9 @@ type NachhaltigkeitPageProps = {
   berichte: { url: string; fileName: string; label?: string }[]
   kontakte: { contact: Contact; image: ImageType }[]
 }
-const Nachhaltigkeit: NextPage<PageProps<NachhaltigkeitPageProps>> = (
-  props,
-) => {
-  return (
-    <>
-      <article style={{ gridArea: props.gridArea }}>
-        <Metadata pageMeta={props.pageData} slug='/nachhaltigkeit' />
-        <main>
-          <NachhaltigkeitHeader title={props.pageData.title} />
-          <NachhaltigkeitBody
-            image={props.pageData.image}
-            html={props.pageData.body}
-          />
-          <Berichte
-            title={props.pageData.berichteTitle}
-            description={props.pageData.berichteDescription}
-            pdfs={props.pageData.berichte}
-          />
-          <Kontakte contacts={props.pageData.kontakte} />
-        </main>
-      </article>
-      <Footer gridArea='footer' siteInfo={props.siteInfo} />
-    </>
-  )
-}
 
-export const getStaticProps: GetStaticProps<
-  SiteQueryResult<NachhaltigkeitPageProps>
-> = async () => {
-  const result = await queryPageData<NachhaltigkeitPageProps>({
+export default async function Nachhaltigkeit() {
+  const result = await queryPageData<PageData>({
     query: 'page("nachhaltigkeitsbericht")',
     select: {
       title: true,
@@ -88,7 +60,25 @@ export const getStaticProps: GetStaticProps<
       },
     },
   })
-  return { props: result }
+  return (
+    <>
+      <article style={{ gridArea: 'main' }}>
+        <Metadata pageMeta={result.pageData} slug='/nachhaltigkeit' />
+        <main>
+          <NachhaltigkeitHeader title={result.pageData.title} />
+          <NachhaltigkeitBody
+            image={result.pageData.image}
+            html={result.pageData.body}
+          />
+          <Berichte
+            title={result.pageData.berichteTitle}
+            description={result.pageData.berichteDescription}
+            pdfs={result.pageData.berichte}
+          />
+          <Kontakte contacts={result.pageData.kontakte} />
+        </main>
+      </article>
+      <Footer gridArea='footer' siteInfo={result.siteInfo} />
+    </>
+  )
 }
-
-export default Nachhaltigkeit

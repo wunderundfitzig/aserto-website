@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import Image from 'next-export-optimize-images/image'
 import { categoryColors } from 'lib/colors'

@@ -1,3 +1,5 @@
+'use client'
+
 import { forwardRef } from 'react'
 import Image from 'next-export-optimize-images/image'
 import * as colors from 'lib/colors'

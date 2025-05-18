@@ -1,3 +1,5 @@
+'use client'
+
 import React, { FunctionComponent } from 'react'
 import { categoryColors } from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'

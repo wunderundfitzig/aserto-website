@@ -1,3 +1,5 @@
+'use client'
+
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { FunctionComponent, ReactNode } from 'react'
 

@@ -1,32 +1,33 @@
-import { GetStaticProps, NextPage } from 'next'
+'use client'
+
 import Image from 'next-export-optimize-images/image'
 import { darken } from 'polished'
 
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import * as colors from 'lib/colors'
 import { useWindowSize } from 'lib/use-window-size'
-import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
+import { SiteInfo } from 'lib/kirby-query'
+import * as colors from 'lib/colors'
 
+import SecondaryNavigation from 'components/frontpage/secondary-navigation'
+import SocialLinks from 'components/social-links'
 import {
   CornerCurve,
   FrontpageCurve,
   MobileFrontpageCurve,
   SimpleCutRoundCurve,
 } from 'components/curves'
-import SocialLinks from 'components/social-links'
-import SecondaryNavigation from 'components/frontpage/secondary-navigation'
-import Metadata from 'components/metadata'
 
 import frontpageBanner from 'public/images/index/frontpage-banner.jpg'
 
-type IndexPageProps = Record<string, never>
-const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
+type Props = {
+  siteInfo: SiteInfo
+}
+export default function Frontpage(props: Props) {
   const { width } = useWindowSize()
   const whiteIcons = (width ?? 0) > breakpoint.xs && (width ?? 0) < breakpoint.l
 
   return (
     <>
-      <Metadata pageMeta={props.pageData} slug='/' />
       <h1>Wir begleiten bei richtungsweisenden Entscheidungen</h1>
       <div className='image-wrapper'>
         <Image
@@ -290,14 +291,3 @@ const Index: NextPage<PageProps<IndexPageProps>> = (props) => {
     </>
   )
 }
-
-export const getStaticProps: GetStaticProps<
-  SiteQueryResult<IndexPageProps>
-> = async () => {
-  const result = await queryPageData<IndexPageProps>({
-    query: 'page("index")',
-  })
-  return { props: result }
-}
-
-export default Index

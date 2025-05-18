@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef, useLayoutEffect, useEffect, FunctionComponent } from 'react'
 
 // hack to silence warnig that I can't use layout effect for server rendering

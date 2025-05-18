@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import { categoryColors } from 'lib/colors'
 import Slogan from 'components/slogan'
