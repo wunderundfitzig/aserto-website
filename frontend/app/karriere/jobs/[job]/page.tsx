@@ -15,9 +15,9 @@ type Params = { job: string }
 
 export const dynamicParams = false
 export async function generateStaticParams(): Promise<Params[]> {
-  const jobSlugs = await queryBackend<{
-    data: { slug: string; blueprint: 'pages/job-add' | 'pages/personio-link' }[]
-  }>({
+  const jobSlugs = await queryBackend<
+    { slug: string; blueprint: 'pages/job-add' | 'pages/personio-link' }[]
+  >({
     query: "page('karriere').children",
     select: {
       slug: true,
@@ -25,9 +25,10 @@ export async function generateStaticParams(): Promise<Params[]> {
     },
   })
 
-  const pages = jobSlugs.data
+  const pages = jobSlugs
     .filter((page) => page.blueprint == 'pages/job-add')
     .map(({ slug }) => ({ job: slug }))
+
   return pages.length > 0 ? pages : [{ job: 'not-found' }]
 }
 
@@ -37,6 +38,7 @@ type Props = {
 export default async function Job(props: Props) {
   const params = await props.params
   const jobslug = params.job
+
   if (jobslug === 'not-found') return notFound()
 
   const result = await queryPageData<KarrierePageData>({

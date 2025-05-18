@@ -54,7 +54,6 @@ columns:
             label: Instagram URL
             type: url
             icon: instagram
-          linkInstagram: linkInstagram
 
   # sidebar
   sidebar:
