@@ -12,7 +12,7 @@ export type LocalPageProps = {
   gridArea: string
 }
 
-function App({ Component, pageProps }: AppProps): JSX.Element {
+export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const isIndexPage = router.pathname === '/'
 
@@ -60,5 +60,3 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
     </>
   )
 }
-
-export default App

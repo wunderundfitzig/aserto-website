@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/image'
 import Link from 'next/link'
 import { useWindowSize } from 'lib/use-window-size'
 import { breakpoint } from 'lib/breakpoints'

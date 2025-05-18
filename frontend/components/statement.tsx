@@ -1,10 +1,10 @@
-import { FunctionComponent, ReactChild } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
 type Props = {
   color: string
   children: {
-    title?: ReactChild
-    content?: ReactChild
+    title?: ReactNode
+    content?: ReactNode
   }
 }
 const Statement: FunctionComponent<Props> = (props) => {

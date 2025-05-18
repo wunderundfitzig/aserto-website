@@ -1,12 +1,12 @@
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import { FunctionComponent, ReactChild } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
 type Props = {
   color: string
   align?: 'left' | 'right'
   children: {
-    roofline: ReactChild
-    title: ReactChild
+    roofline: ReactNode
+    title: ReactNode
   }
 }
 const Motto: FunctionComponent<Props> = (props) => {
