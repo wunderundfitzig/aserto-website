@@ -4,7 +4,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 import { ImageType } from 'lib/types'
 
 import BlocksHtml from 'components/blocks-html'
-import { backendImage, imageLoader } from 'lib/image-loader'
+import { imageLoader } from 'lib/image-loader'
 
 type Props = { image: ImageType; html: string }
 export default function NachhaltigkeitBody(props: Props) {
@@ -13,12 +13,7 @@ export default function NachhaltigkeitBody(props: Props) {
       <div className='text'>
         <BlocksHtml html={props.html} />
       </div>
-      <Image
-        loader={imageLoader}
-        src={backendImage(props.image)}
-        alt=''
-        sizes='100vw'
-      />
+      <Image loader={imageLoader} src={props.image} alt='' sizes='100vw' />
       <style jsx>{`
         .nachhaltigkeit-body {
           margin-top: 6rem;

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { InstagramPost } from 'lib/types'
 import { lightBlue, backgroundBlue } from 'lib/colors'
-import { imageLoader, backendImage } from 'lib/image-loader'
+import { imageLoader } from 'lib/image-loader'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import Button from 'components/button'
 import { TeamTriangleLine } from 'components/curves'
@@ -37,7 +37,7 @@ const Instagram: FunctionComponent<Props> = (props) => {
               loader={imageLoader}
               alt={''}
               sizes={`(min-width: ${breakpoint.s}px) 33vw, 100vw`}
-              {...backendImage(post.image)}
+              {...post.image}
             />
           </a>
         ))}

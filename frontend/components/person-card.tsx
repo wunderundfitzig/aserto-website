@@ -21,6 +21,7 @@ const PersonCard: FunctionComponent<Props> = (props) => {
           loader={imageLoader}
           style={{ width: '100%', height: 'auto' }}
           {...props.image}
+          sizes={`(min-width: ${breakpoint.ml}px) 200px, (min-width: ${breakpoint.xs}px) 170px, 50vw`}
           alt={`portait of ${props.contact.name}`}
         />
       </div>
