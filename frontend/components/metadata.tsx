@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import Head from 'next/head'
 import { MetaFields } from 'lib/kirby-query'
 
 interface MetadataProps {
@@ -14,7 +13,7 @@ const Metadata: FunctionComponent<MetadataProps> = (props) => {
   const imageUrl = props.imageUrl || 'https://www.aserto.de/aserto-logo.svg'
 
   return (
-    <Head>
+    <>
       <title>{props.pageMeta.seotitle}</title>
       <meta
         key='description'
@@ -31,7 +30,7 @@ const Metadata: FunctionComponent<MetadataProps> = (props) => {
       />
       <meta key='og:image' property='og:image' content={imageUrl} />
       <link key='canonical' rel='canonical' href={normalizedUrl} />
-    </Head>
+    </>
   )
 }
 

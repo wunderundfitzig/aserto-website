@@ -1,48 +1,22 @@
-import { GetStaticProps, NextPage } from 'next'
-import { PageProps, queryPageData, SiteQueryResult } from 'lib/kirby-query'
+import { queryPageData } from 'lib/kirby-query'
 import { InstagramPost, TeamMember } from 'lib/types'
-import TeamHeader from 'components/team/team-header'
-import UnserTeam from 'components/team/unser-team'
+
+import Footer from 'components/footer'
+import Metadata from 'components/metadata'
 import DasSindWir from 'components/team/das-sind-wir'
 import FreieMitarbeiter from 'components/team/freie-mitarbeiter'
-import Metadata from 'components/metadata'
-import Footer from 'components/footer'
 import Instagram from 'components/team/instagram'
+import TeamHeader from 'components/team/team-header'
+import UnserTeam from 'components/team/unser-team'
 
-type LeistungenPageProps = {
+type PageData = {
   teamMembers: TeamMember[]
   freieMitarbeiterTitle: string
   freieMitarbeiter: string
   instagramPosts: InstagramPost[]
 }
-const LeistungenPage: NextPage<PageProps<LeistungenPageProps>> = (props) => {
-  return (
-    <>
-      <article style={{ gridArea: props.gridArea }}>
-        <Metadata pageMeta={props.pageData} slug='/team' />
-        <main>
-          <TeamHeader title={props.pageData.title} />
-          <UnserTeam />
-          <DasSindWir members={props.pageData.teamMembers} />
-          <FreieMitarbeiter
-            title={props.pageData.freieMitarbeiterTitle}
-            names={props.pageData.freieMitarbeiter}
-          />
-          <Instagram
-            instagramURL={props.siteInfo.instagramUrl}
-            posts={props.pageData.instagramPosts}
-          />
-        </main>
-      </article>
-      <Footer gridArea='footer' siteInfo={props.siteInfo} />
-    </>
-  )
-}
-
-export const getStaticProps: GetStaticProps<
-  SiteQueryResult<LeistungenPageProps>
-> = async () => {
-  const result = await queryPageData<LeistungenPageProps>({
+export default async function Team() {
+  const result = await queryPageData<PageData>({
     query: "page('team')",
     select: {
       freieMitarbeiterTitle: true,
@@ -88,13 +62,25 @@ export const getStaticProps: GetStaticProps<
     },
   })
 
-  const props = {
-    ...result,
-    pageData: {
-      ...result.pageData,
-    },
-  }
-  return { props }
+  return (
+    <>
+      <article style={{ gridArea: 'main' }}>
+        <Metadata pageMeta={result.pageData} slug='/team' />
+        <main>
+          <TeamHeader title={result.pageData.title} />
+          <UnserTeam />
+          <DasSindWir members={result.pageData.teamMembers} />
+          <FreieMitarbeiter
+            title={result.pageData.freieMitarbeiterTitle}
+            names={result.pageData.freieMitarbeiter}
+          />
+          <Instagram
+            instagramURL={result.siteInfo.instagramUrl}
+            posts={result.pageData.instagramPosts}
+          />
+        </main>
+      </article>
+      <Footer gridArea='footer' siteInfo={result.siteInfo} />
+    </>
+  )
 }
-
-export default LeistungenPage

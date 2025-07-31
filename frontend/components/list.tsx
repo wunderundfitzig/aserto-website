@@ -1,3 +1,5 @@
+'use client'
+
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { Children, FunctionComponent, ReactNode } from 'react'
 import Statement from './statement'

@@ -1,12 +1,16 @@
+'use client'
+
 import React, { FunctionComponent, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { Case } from 'lib/types'
+import { useIntersectionObserver } from 'lib/use-intersection-observer'
+import { categoryColors } from 'lib/colors'
+
 import CasesNav from 'components/referenzen/cases-nav'
 import CaseArticle from 'components/referenzen/case-article'
-import { useIntersectionObserver } from 'lib/use-intersection-observer'
-import { useRouter } from 'next/router'
 import { StraightLine } from 'components/curves'
-import { categoryColors } from 'lib/colors'
 
 type Props = {
   cases: Case[]
@@ -22,7 +26,7 @@ const Cases: FunctionComponent<Props> = (props) => {
 
   useEffect(() => {
     if (sectionIndex === null) {
-      router.replace(`/referenzen`, undefined, { scroll: false })
+      router.replace(`/referenzen`, { scroll: false })
     } else {
       history.replaceState(null, 'null', `#${activeCaseId}`)
     }

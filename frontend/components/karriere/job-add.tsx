@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, useEffect, useRef } from 'react'
 import { transparentize } from 'polished'
 

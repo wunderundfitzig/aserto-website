@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import Link from 'next/link'
 import * as colors from 'lib/colors'

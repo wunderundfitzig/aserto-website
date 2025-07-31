@@ -1,3 +1,5 @@
+'use client'
+
 import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { MoreInfoIcon } from 'components/icons'

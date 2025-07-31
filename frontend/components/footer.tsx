@@ -1,19 +1,21 @@
+'use client'
+
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { FunctionComponent } from 'react'
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import { footerBackgroundColors } from 'lib/colors'
 import { SiteInfo } from 'lib/kirby-query'
 import AsertoLogo from './aserto-logo'
 import SocialLinks from './social-links'
+import { usePathname } from 'next/navigation'
 
 type Props = {
   gridArea: string
   siteInfo: SiteInfo
 }
 const Footer: FunctionComponent<Props> = (props) => {
-  const router = useRouter()
-  const rootPath = router.pathname.split('/').slice(1)[0]
+  const pathname = usePathname()
+  const rootPath = pathname.split('/').slice(1)[0]
   const backgroundColor = (footerBackgroundColors as Record<string, string>)[
     rootPath
   ]

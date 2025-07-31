@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, ReactNode } from 'react'
 
 type Props = {

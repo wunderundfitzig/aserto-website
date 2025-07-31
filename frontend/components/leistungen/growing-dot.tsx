@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, useRef } from 'react'
 import { useScrolledPixels } from 'lib/use-scrolled-pixels'
 import * as colors from 'lib/colors'

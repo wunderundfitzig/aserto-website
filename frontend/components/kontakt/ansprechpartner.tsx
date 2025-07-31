@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import { minWidth } from 'lib/breakpoints'
 import { Contact, ImageType } from 'lib/types'

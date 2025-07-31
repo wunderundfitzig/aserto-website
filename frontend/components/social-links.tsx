@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import React, { FunctionComponent, ReactNode } from 'react'
 import { InstagramIcon, LinkedInIcon, XingIcon } from 'components/social-icons'

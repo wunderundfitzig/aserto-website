@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent } from 'react'
 import { Contact, ImageType } from 'lib/types'
 import ContactCard from 'components/contact-card'

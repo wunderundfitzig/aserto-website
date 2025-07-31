@@ -1,4 +1,3 @@
-import { LocalPageProps } from 'pages/_app'
 import { privateConfig } from 'lib/config/private-config'
 import { publicConfig } from 'lib/config/public-config'
 
@@ -51,12 +50,12 @@ export type SiteQueryResult<PageQueryResult> = {
   pageData: MetaFields & PageQueryResult
 }
 
-export type PageProps<PageData> = LocalPageProps & SiteQueryResult<PageData>
+export type PageProps<PageData> = SiteQueryResult<PageData>
 
-export async function queryBackend(query: {
+export async function queryBackend<T>(query: {
   query: string
   select?: Record<string, unknown>
-}): Promise<unknown> {
+}): Promise<T> {
   const result = await fetch(`${publicConfig.backendURL}/api/query`, {
     method: 'POST',
     headers: {
@@ -90,9 +89,11 @@ export async function queryPageData<PageQueryResult>(pageQuery: {
       },
     },
   }
-  const result = await queryBackend(siteQuery)
-  const { pageData, ...siteInfo } = result as SiteInfo & {
+  type QueryResult = SiteInfo & {
     pageData: PageQueryResult & MetaFields
   }
+  const result = await queryBackend<QueryResult>(siteQuery)
+  const { pageData, ...siteInfo } = result
+
   return { pageData, siteInfo }
 }
