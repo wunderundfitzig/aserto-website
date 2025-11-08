@@ -14,11 +14,6 @@ const UnserTeam: FunctionComponent = () => {
         verschiedenen Perspektiven und Erfahrungen weiten unseren Blick und
         bereichern unsere Ergebnisse.
       </p>
-      <List inline color={colors.lightBlue}>
-        <>Consulting</>
-        <>Data-Science</>
-        <>Medienmonitoring und -Analyse</>
-      </List>
       <style jsx>{`
         h2 {
           margin-top: 2em;
