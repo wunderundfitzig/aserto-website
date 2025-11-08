@@ -1,7 +1,5 @@
 import { FunctionComponent } from 'react'
-import * as colors from 'lib/colors'
 import { breakpoint, minWidth } from 'lib/breakpoints'
-import List from 'components/list'
 
 const UnserTeam: FunctionComponent = () => {
   return (
