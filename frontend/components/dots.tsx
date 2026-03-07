@@ -4,7 +4,8 @@ import * as d3 from 'd3'
 import * as colors from 'lib/colors'
 import { FunctionComponent, useEffect, useRef, useState } from 'react'
 
-const DOT_COUNT = 50
+const DOTS_PER_PX = 1 / 14000
+const MAX_DOTS = 300
 const INITIAL_SPEED = 0.1
 
 const SIZES = [
@@ -24,18 +25,43 @@ const Dots: FunctionComponent = () => {
   const [height, setHeight] = useState(0)
   const [nodes, setNodes] = useState<DotNode[]>([])
 
+  // Effect 1: track container size (debounced so simulation only restarts once resizing settles)
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
-    let width = container.clientWidth
-    let height = container.clientHeight
-    setWidth(width)
-    setHeight(height)
+    let timeout: ReturnType<typeof setTimeout>
 
-    const dots: DotNode[] = Array.from({ length: DOT_COUNT }, (_, i) => {
+    const observer = new ResizeObserver(() => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        setWidth(container.clientWidth)
+        setHeight(container.clientHeight)
+      }, 200)
+    })
+
+    observer.observe(container)
+    setWidth(container.clientWidth)
+    setHeight(container.clientHeight)
+
+    return () => {
+      clearTimeout(timeout)
+      observer.disconnect()
+    }
+  }, [])
+
+  // Effect 2: restart simulation whenever size changes
+  useEffect(() => {
+    if (width === 0 || height === 0) return
+
+    const dotCount = Math.min(
+      Math.round(width * height * DOTS_PER_PX),
+      MAX_DOTS,
+    )
+
+    const dots: DotNode[] = Array.from({ length: dotCount }, (_, i) => {
       const angle = Math.random() * 2 * Math.PI
-      const size = SIZES[Math.floor((i * SIZES.length) / DOT_COUNT)]
+      const size = SIZES[Math.floor((i * SIZES.length) / dotCount)]
       const isRed = Math.random() < 0.4
       return {
         x: (Math.random() - 0.5) * width,
@@ -50,7 +76,6 @@ const Dots: FunctionComponent = () => {
     const simulation = d3
       .forceSimulation<DotNode>(dots)
       .force('charge', d3.forceManyBody().strength(-0.005).distanceMax(40))
-      .force('center', d3.forceCenter(0, 0).strength(0.05))
       .alphaDecay(0)
       .velocityDecay(0)
       .on('tick', () => {
@@ -73,19 +98,10 @@ const Dots: FunctionComponent = () => {
         setNodes([...dots])
       })
 
-    const observer = new ResizeObserver(() => {
-      width = container.clientWidth
-      height = container.clientHeight
-      setWidth(width)
-      setHeight(height)
-    })
-    observer.observe(container)
-
     return () => {
       simulation.stop()
-      observer.disconnect()
     }
-  }, [])
+  }, [width, height])
 
   return (
     <div ref={containerRef} className='block w-full h-full overflow-hidden'>
