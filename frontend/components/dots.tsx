@@ -7,6 +7,11 @@ import { FunctionComponent, useEffect, useRef, useState } from 'react'
 const DOTS_PER_PX = 1 / 14000
 const MAX_DOTS = 300
 const INITIAL_SPEED = 0.1
+const MAX_SPEED = 0.1
+const REPULSION_STRENGTH = -0.09
+const MAX_POSITION_STRENGTH = 0.01
+const LINK_STRENGTH = 0.001
+const LINK_DISTANCE = 30
 
 const SIZES = [
   { radius: 6, red: colors.backgroundRed, green: colors.backgroundGreen },
@@ -17,15 +22,61 @@ const SIZES = [
 type DotNode = d3.SimulationNodeDatum & {
   radius: number
   color: string
+  isRed: boolean
+  sizeIndex: number
 }
 
-const Dots: FunctionComponent = () => {
+type DotLink = d3.SimulationLinkDatum<DotNode>
+
+export type DotMode = 'move' | 'attract' | 'center'
+
+function applyMode(simulation: d3.Simulation<DotNode, DotLink>, mode: DotMode) {
+  const linkForce = simulation.force<d3.ForceLink<DotNode, DotLink>>('link')
+
+  if (mode === 'move') {
+    simulation.velocityDecay(0)
+    simulation.force(
+      'charge',
+      d3.forceManyBody<DotNode>().strength(REPULSION_STRENGTH).distanceMax(100),
+    )
+    linkForce?.strength(0)
+    simulation.force('x', d3.forceX(0).strength(0))
+    simulation.force('y', d3.forceY(0).strength(0))
+  } else if (mode === 'attract') {
+    // simulation.velocityDecay(0.05)
+    simulation.force(
+      'charge',
+      d3.forceManyBody<DotNode>().strength(REPULSION_STRENGTH).distanceMax(300),
+    )
+    linkForce?.strength(LINK_STRENGTH)
+    simulation.force('x', d3.forceX(0).strength(0))
+    simulation.force('y', d3.forceY(0).strength(0))
+  } else if (mode === 'center') {
+    simulation.velocityDecay(0.1)
+    simulation.force('charge', null)
+    linkForce?.strength(LINK_STRENGTH)
+    simulation.force('x', d3.forceX(0).strength(MAX_POSITION_STRENGTH))
+    simulation.force('y', d3.forceY(0).strength(MAX_POSITION_STRENGTH))
+  }
+}
+
+type Props = {
+  mode?: DotMode
+}
+
+const Dots: FunctionComponent<Props> = ({ mode = 'move' }) => {
   const containerRef = useRef<HTMLDivElement>(null)
+  const simulationRef = useRef<d3.Simulation<DotNode, DotLink> | null>(null)
+  const modeRef = useRef(mode)
+  modeRef.current = mode
+
+  const linksRef = useRef<DotLink[]>([])
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
   const [nodes, setNodes] = useState<DotNode[]>([])
+  const [links, setLinks] = useState<DotLink[]>([])
 
-  // Effect 1: track container size (debounced so simulation only restarts once resizing settles)
+  // Effect 1: track container size (debounced)
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -70,38 +121,72 @@ const Dots: FunctionComponent = () => {
         vy: Math.sin(angle) * INITIAL_SPEED,
         radius: size.radius,
         color: isRed ? size.red : size.green,
+        isRed,
+        sizeIndex: Math.floor((i * SIZES.length) / dotCount),
       }
     })
 
+    const greenDots = dots.filter((d) => !d.isRed)
+    const dotLinks: DotLink[] = greenDots.slice(0, -1).map((source, i) => ({
+      source,
+      target: greenDots[i + 1],
+    }))
+    linksRef.current = dotLinks
+
     const simulation = d3
-      .forceSimulation<DotNode>(dots)
-      .force('charge', d3.forceManyBody().strength(-0.005).distanceMax(40))
+      .forceSimulation<DotNode, DotLink>(dots)
+      .force(
+        'charge',
+        d3
+          .forceManyBody<DotNode>()
+          .strength(REPULSION_STRENGTH)
+          .distanceMax(100),
+      )
+      .force(
+        'link',
+        d3
+          .forceLink<DotNode, DotLink>(dotLinks)
+          .strength(0)
+          .distance(LINK_DISTANCE),
+      )
       .alphaDecay(0)
-      .velocityDecay(0)
       .on('tick', () => {
         for (const dot of dots) {
+          const speed = Math.sqrt((dot.vx ?? 0) ** 2 + (dot.vy ?? 0) ** 2)
+          if (speed > MAX_SPEED) {
+            dot.vx = ((dot.vx ?? 0) / speed) * MAX_SPEED
+            dot.vy = ((dot.vy ?? 0) / speed) * MAX_SPEED
+          }
           if ((dot.x ?? 0) < -width / 2) {
-            dot.x = -width / 2
             dot.vx = Math.abs(dot.vx ?? 0)
           } else if ((dot.x ?? 0) > width / 2) {
-            dot.x = width / 2
             dot.vx = -Math.abs(dot.vx ?? 0)
           }
           if ((dot.y ?? 0) < -height / 2) {
-            dot.y = -height / 2
             dot.vy = Math.abs(dot.vy ?? 0)
           } else if ((dot.y ?? 0) > height / 2) {
-            dot.y = height / 2
             dot.vy = -Math.abs(dot.vy ?? 0)
           }
         }
         setNodes([...dots])
+        setLinks([...linksRef.current])
       })
+
+    applyMode(simulation, modeRef.current)
+    simulationRef.current = simulation
 
     return () => {
       simulation.stop()
+      simulationRef.current = null
     }
   }, [width, height])
+
+  // Effect 3: update forces when mode changes
+  useEffect(() => {
+    const simulation = simulationRef.current
+    if (!simulation) return
+    applyMode(simulation, mode)
+  }, [mode])
 
   return (
     <div ref={containerRef} className='block w-full h-full overflow-hidden'>
@@ -111,15 +196,21 @@ const Dots: FunctionComponent = () => {
         height={height}
         viewBox={`${-width / 2} ${-height / 2} ${width} ${height}`}
       >
-        {nodes.map((dot, i) => (
-          <circle
-            key={i}
-            cx={dot.x}
-            cy={dot.y}
-            r={dot.radius}
-            fill={dot.color}
-          />
-        ))}
+        {nodes
+          .filter((dot) => {
+            if (mode === 'attract') return !dot.isRed
+            if (mode === 'center') return !dot.isRed && dot.sizeIndex < 2
+            return true
+          })
+          .map((dot, i) => (
+            <circle
+              key={i}
+              cx={dot.x}
+              cy={dot.y}
+              r={dot.radius}
+              fill={dot.color}
+            />
+          ))}
       </svg>
     </div>
   )
