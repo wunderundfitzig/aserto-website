@@ -3,7 +3,6 @@ import { CSSProperties, ReactNode } from 'react'
 type Props = {
   emphasisColor: string
   rightAligned?: boolean
-  backgroundHighlight?: boolean
   small?: boolean
   children: {
     roofline?: ReactNode
@@ -14,14 +13,7 @@ export default function Slogan(props: Props) {
   return (
     <div
       style={{ '--emphasis-color': props.emphasisColor } as CSSProperties}
-      className={
-        [
-          props.rightAligned ? 'text-right' : undefined,
-          props.backgroundHighlight ? 'bg-white/80' : undefined,
-        ]
-          .filter(Boolean)
-          .join(' ') || undefined
-      }
+      className={props.rightAligned ? 'text-right' : undefined}
     >
       {props.children.roofline && (
         <p className='text-[1em] uppercase mt-0 mb-[0.2em] l:text-[0.8em]'>

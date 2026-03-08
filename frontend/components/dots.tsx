@@ -2,7 +2,7 @@
 
 import * as d3 from 'd3'
 import * as colors from 'lib/colors'
-import { useEffect, useRef, useState } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 
 const DOTS_PER_PX = 1 / 14000
 const MAX_DOTS = 300
@@ -11,8 +11,8 @@ const MAX_SPEED = 0.1
 const WALL_BOUNCE = 30
 const REPULSION_STRENGTH = -0.09
 const POSITION_STRENGTH = 0.01
-const LINK_STRENGTH = 0.0005
-const LINK_DISTANCE = 50
+const LINK_STRENGTH = 0.001
+const LINK_DISTANCE = 30
 
 const SIZES = [
   { radius: 6, red: colors.backgroundRed, green: colors.backgroundGreen },
@@ -41,9 +41,10 @@ export type DotMode = 'move' | 'filter' | 'attract' | 'center'
 
 type Props = {
   mode?: DotMode
+  exclusionRefs?: RefObject<Element | null>[]
 }
 
-export default function Dots({ mode = 'move' }: Props) {
+export default function Dots({ mode = 'move', exclusionRefs = [] }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const simulationRef = useRef<d3.Simulation<DotNode, DotLink> | null>(null)
@@ -54,6 +55,10 @@ export default function Dots({ mode = 'move' }: Props) {
 
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
+  const widthRef = useRef(0)
+  const heightRef = useRef(0)
+  widthRef.current = width
+  heightRef.current = height
 
   // Effect 1: track container size (debounced)
   useEffect(() => {
@@ -85,12 +90,20 @@ export default function Dots({ mode = 'move' }: Props) {
     const container = containerRef.current
     if (!container || !svgRef.current) return
 
+    const initialWidth = container.clientWidth
+    const initialHeight = container.clientHeight
+    widthRef.current = initialWidth
+    heightRef.current = initialHeight
+
     const svg = d3.select(svgRef.current)
     const { simulation, dots, circles } = setup(
       svg,
-      container.clientWidth,
-      container.clientHeight,
+      initialWidth,
+      initialHeight,
       modeRef.current,
+      exclusionRefs,
+      widthRef,
+      heightRef,
     )
 
     simulationRef.current = simulation
@@ -146,11 +159,124 @@ function isVisible(dot: DotNode, mode: DotMode): boolean {
   }
 }
 
+// Custom D3 force modelled after forceCollide: directly corrects dot positions
+// each tick so dots never rest inside an exclusion rect.
+// Calls getBoundingClientRect() on every tick so rects stay accurate during scroll.
+// How far outside the rect surface the soft repulsion field extends (px)
+const EXCLUDE_REPULSION_ZONE = 40
+// Peak velocity impulse applied at the rect surface
+const EXCLUDE_REPULSION_STRENGTH = 2
+// Fraction of normal velocity retained after a hard bounce (0 = dead-stop, 1 = elastic)
+const EXCLUDE_BOUNCE_DAMPING = 1
+
+function forceExcludeRects(
+  exclusionRefs: RefObject<Element | null>[],
+  widthRef: RefObject<number>,
+  heightRef: RefObject<number>,
+) {
+  let nodes: DotNode[] = []
+
+  function force() {
+    const w = widthRef.current
+    const h = heightRef.current
+
+    for (const dot of nodes) {
+      const cx = dot.x ?? 0
+      const cy = dot.y ?? 0
+
+      for (const elRef of exclusionRefs) {
+        const rect = elRef.current?.getBoundingClientRect()
+        if (!rect) continue
+        // Convert viewport rect to SVG coordinate space (origin at centre)
+        const rLeft = rect.left - w / 2
+        const rRight = rect.right - w / 2
+        const rTop = rect.top - h / 2
+        const rBottom = rect.bottom - h / 2
+
+        // Nearest point on the rect to the dot centre
+        const nearestX = Math.max(rLeft, Math.min(cx, rRight))
+        const nearestY = Math.max(rTop, Math.min(cy, rBottom))
+        const dx = cx - nearestX
+        const dy = cy - nearestY
+        const distSq = dx * dx + dy * dy
+        const r = dot.radius
+
+        // Soft field extends EXCLUDE_REPULSION_ZONE px beyond the dot radius
+        const fieldEdge = r + EXCLUDE_REPULSION_ZONE
+        if (distSq >= fieldEdge * fieldEdge) continue
+
+        const dist = Math.sqrt(distSq)
+
+        // Compute outward normal from rect surface toward dot
+        let nx: number
+        let ny: number
+
+        if (dist > 0) {
+          nx = dx / dist
+          ny = dy / dist
+        } else {
+          // Dot centre is inside rect — eject toward nearest edge
+          const dLeft = cx - rLeft
+          const dRight = rRight - cx
+          const dTop = cy - rTop
+          const dBottom = rBottom - cy
+          const minEdge = Math.min(dLeft, dRight, dTop, dBottom)
+          if (minEdge === dLeft) {
+            nx = -1
+            ny = 0
+          } else if (minEdge === dRight) {
+            nx = 1
+            ny = 0
+          } else if (minEdge === dTop) {
+            nx = 0
+            ny = -1
+          } else {
+            nx = 0
+            ny = 1
+          }
+        }
+
+        if (dist < r) {
+          // Hard overlap: correct position so the dot clears the surface …
+          const overlap = r - dist
+          dot.x = (dot.x ?? 0) + nx * overlap
+          dot.y = (dot.y ?? 0) + ny * overlap
+
+          // … then bounce: reflect the inward velocity component
+          const vx = dot.vx ?? 0
+          const vy = dot.vy ?? 0
+          const vDotN = vx * nx + vy * ny
+          if (vDotN < 0) {
+            // Moving into the surface — reflect with damping
+            dot.vx = vx - (1 + EXCLUDE_BOUNCE_DAMPING) * vDotN * nx
+            dot.vy = vy - (1 + EXCLUDE_BOUNCE_DAMPING) * vDotN * ny
+          }
+        } else {
+          // Soft repulsion zone: quadratic impulse that peaks at the surface
+          const t = 1 - (dist - r) / EXCLUDE_REPULSION_ZONE // 1 at surface, 0 at field edge
+          const strength = EXCLUDE_REPULSION_STRENGTH * t * t
+          dot.vx = (dot.vx ?? 0) + nx * strength
+          dot.vy = (dot.vy ?? 0) + ny * strength
+        }
+      }
+    }
+  }
+
+  force.initialize = (n: DotNode[]) => {
+    nodes = n
+  }
+
+  return force
+}
+
 function setup(
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
   width: number,
   height: number,
   mode: DotMode,
+  exclusionRefs: RefObject<Element | null>[],
+  widthRef: RefObject<number>,
+  heightRef: RefObject<number>,
 ): {
   simulation: d3.Simulation<DotNode, DotLink>
   dots: DotNode[]
@@ -175,7 +301,7 @@ function setup(
       isRed,
       sizeIndex,
       appearDelay: Math.random() * 100,
-      disappearDelay: Math.random() * 2000,
+      disappearDelay: Math.random() * 1000,
     }
   })
 
@@ -208,6 +334,10 @@ function setup(
         .strength(0)
         .distance(LINK_DISTANCE),
     )
+    .force(
+      'excludeRects',
+      forceExcludeRects(exclusionRefs, widthRef, heightRef),
+    )
     .alphaDecay(0)
 
   applyMode(simulation, mode, circles)
@@ -229,16 +359,22 @@ function setBordersAndLimitSpeed(
 
   simulation.on('tick', () => {
     for (const dot of dots) {
-      const x = dot.x ?? 0
-      const y = dot.y ?? 0
-      const vx = dot.vx ?? 0
-      const vy = dot.vy ?? 0
+      let vx = dot.vx ?? 0
+      let vy = dot.vy ?? 0
+
+      // Cap speed
       if (Math.abs(vx) + Math.abs(vy) > MAX_SPEED) {
         const speed = Math.sqrt(vx * vx + vy * vy)
         dot.vx = (vx / speed) * MAX_SPEED
         dot.vy = (vy / speed) * MAX_SPEED
+        vx = dot.vx
+        vy = dot.vy
       }
 
+      const x = dot.x ?? 0
+      const y = dot.y ?? 0
+
+      // Wall bounce
       if (x < left) {
         dot.x = left
         dot.vx = Math.abs(vx) * WALL_BOUNCE
@@ -296,7 +432,7 @@ function applyMode(
           .strength(REPULSION_STRENGTH)
           .distanceMax(300),
       )
-      linkForce?.strength(LINK_STRENGTH)
+      linkForce?.strength(LINK_STRENGTH).distance(LINK_DISTANCE)
       simulation.force('x', d3.forceX(0).strength(0))
       simulation.force('y', d3.forceY(0).strength(0))
       break
