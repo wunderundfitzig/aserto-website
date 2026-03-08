@@ -12,7 +12,6 @@ const MAX_SPEED = 0.1
 const WALL_BOUNCE = 30
 const REPULSION_STRENGTH = -0.09
 const POSITION_STRENGTH = 0.01
-const LINK_STRENGTH = 0.01
 const LINK_DISTANCE = 30
 const RADIAL_RADIUS_FACTOR = 0.3
 const RADIAL_STRENGTH = 0.01
@@ -110,27 +109,8 @@ function setup(
     .attr('fill', (d) => d.color)
     .style('opacity', (d) => (isVisible(d, mode) ? 1 : 0))
 
-  const greenDots = dots.filter((d) => !d.isRed)
-  const hubDots = greenDots.filter((d) => d.sizeIndex === 1)
-  const spokeDots = greenDots.filter((d) => d.sizeIndex !== 1)
-
-  const dotLinks: DotLink[] =
-    hubDots.length > 0
-      ? spokeDots.map((spoke, i) => ({
-          source: spoke,
-          target: hubDots[i % hubDots.length],
-        }))
-      : []
-
   const simulation = d3
     .forceSimulation<DotNode, DotLink>(dots)
-    .force(
-      'link',
-      d3
-        .forceLink<DotNode, DotLink>(dotLinks)
-        .strength(0)
-        .distance(LINK_DISTANCE),
-    )
     .force(
       'excludeRects',
       forceExcludeRects(exclusionRefs, widthRef, heightRef),
@@ -199,8 +179,6 @@ function applyMode(
   widthRef: RefObject<number>,
   heightRef: RefObject<number>,
 ) {
-  const linkForce = simulation.force<d3.ForceLink<DotNode, DotLink>>('link')
-
   circles
     .transition()
     .duration(800)
@@ -209,6 +187,18 @@ function applyMode(
 
   switch (mode) {
     case 'move':
+      simulation.velocityDecay(0)
+      simulation.force(
+        'charge',
+        d3
+          .forceManyBody<DotNode>()
+          .strength(REPULSION_STRENGTH)
+          .distanceMax(100),
+      )
+      simulation.force('x', null)
+      simulation.force('y', null)
+      simulation.force('radial', null)
+      break
     case 'filter':
       simulation.velocityDecay(0)
       simulation.force(
@@ -218,13 +208,19 @@ function applyMode(
           .strength(REPULSION_STRENGTH)
           .distanceMax(100),
       )
-      linkForce?.strength(0)
-      simulation.force('x', d3.forceX(0).strength(0))
-      simulation.force('y', d3.forceY(0).strength(0))
-      simulation.force('radial', null)
+      simulation.force('x', null)
+      simulation.force('y', null)
+      simulation.force(
+        'radial',
+        d3
+          .forceRadial<DotNode>(
+            Math.min(widthRef.current, heightRef.current) * 0.5,
+          )
+          .strength((d) => (d.isRed ? 0 : 0.003)),
+      )
       break
     case 'attract':
-      simulation.velocityDecay(0.1)
+      simulation.velocityDecay(0.2)
       simulation.force(
         'charge',
         d3
@@ -232,17 +228,14 @@ function applyMode(
           .strength(REPULSION_STRENGTH * 3)
           .distanceMax(300),
       )
-      linkForce?.strength(LINK_STRENGTH).distance(LINK_DISTANCE)
-      simulation.force('x', d3.forceX(0).strength(0))
-      simulation.force('y', d3.forceY(0).strength(0))
+      simulation.force('x', null)
+      simulation.force('y', null)
       simulation.force(
         'radial',
         d3
           .forceRadial<DotNode>(
             Math.min(widthRef.current, heightRef.current) *
               RADIAL_RADIUS_FACTOR,
-            0,
-            0,
           )
           .strength((d) => (d.isRed ? 0 : RADIAL_STRENGTH)),
       )
@@ -250,7 +243,6 @@ function applyMode(
     case 'center':
       simulation.velocityDecay(0.4)
       simulation.force('charge', null)
-      linkForce?.strength(0)
       simulation.force('x', d3.forceX(0).strength(POSITION_STRENGTH))
       simulation.force('y', d3.forceY(0).strength(POSITION_STRENGTH))
       simulation.force('radial', null)
