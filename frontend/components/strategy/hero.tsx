@@ -30,21 +30,26 @@ const StrategyHero: FunctionComponent = () => {
         className='h-screen flex flex-col justify-start'
       >
         <header>
-          <h1 style={{ color: colors.categoryColors.leistungen }}>
+          <h1
+            className='bg-white/50'
+            style={{ color: colors.categoryColors.leistungen }}
+          >
             Media Concepts & Strategy
           </h1>
-          <Slogan emphasisColor={colors.green}>
-            {{
-              sloagen: (
-                <>
-                  Wie entseht <em>Orientierung</em>
-                  <br /> in einer <em>Medienwelt</em>
-                  <br />
-                  im <em>permanenten Wandel.</em>
-                </>
-              ),
-            }}
-          </Slogan>
+          <div className='inline-block bg-white/50'>
+            <Slogan emphasisColor={colors.green}>
+              {{
+                sloagen: (
+                  <>
+                    Wie entseht <em>Orientierung</em>
+                    <br /> in einer <em>Medienwelt</em>
+                    <br />
+                    im <em>permanenten Wandel.</em>
+                  </>
+                ),
+              }}
+            </Slogan>
+          </div>
         </header>
       </section>
 
