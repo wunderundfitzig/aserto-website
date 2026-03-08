@@ -186,7 +186,7 @@ function forceExcludeRects(
       const cx = dot.x ?? 0
       const cy = dot.y ?? 0
 
-      if (dot.sizeIndex < 2) continue
+      if (dot.sizeIndex < 1) continue
 
       for (const elRef of exclusionRefs) {
         const rect = elRef.current?.getBoundingClientRect()
