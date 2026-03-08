@@ -168,6 +168,8 @@ const EXCLUDE_REPULSION_ZONE = 40
 const EXCLUDE_REPULSION_STRENGTH = 2
 // Fraction of normal velocity retained after a hard bounce (0 = dead-stop, 1 = elastic)
 const EXCLUDE_BOUNCE_DAMPING = 1
+const BUFFER_Y = 0
+const BUFFER_X = 0
 
 function forceExcludeRects(
   exclusionRefs: RefObject<Element | null>[],
@@ -184,14 +186,17 @@ function forceExcludeRects(
       const cx = dot.x ?? 0
       const cy = dot.y ?? 0
 
+      if (dot.sizeIndex < 2) continue
+
       for (const elRef of exclusionRefs) {
         const rect = elRef.current?.getBoundingClientRect()
         if (!rect) continue
+
         // Convert viewport rect to SVG coordinate space (origin at centre)
-        const rLeft = rect.left - w / 2
-        const rRight = rect.right - w / 2
-        const rTop = rect.top - h / 2
-        const rBottom = rect.bottom - h / 2
+        const rLeft = rect.left + BUFFER_X - w / 2
+        const rRight = rect.right - BUFFER_X - w / 2
+        const rTop = rect.top + BUFFER_Y - h / 2
+        const rBottom = rect.bottom - BUFFER_Y - h / 2
 
         // Nearest point on the rect to the dot centre
         const nearestX = Math.max(rLeft, Math.min(cx, rRight))

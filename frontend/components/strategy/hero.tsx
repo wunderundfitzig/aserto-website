@@ -10,13 +10,21 @@ const MODES: DotMode[] = ['move', 'move', 'filter', 'attract', 'center']
 
 const StrategyHero: FunctionComponent = () => {
   const sectionRefs = useRef<Array<HTMLElement | null>>([])
-  const sloganRef0 = useRef<HTMLElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
+  const sloganRef0 = useRef<HTMLDivElement>(null)
   const sloganRef1 = useRef<HTMLDivElement>(null)
   const sloganRef2 = useRef<HTMLDivElement>(null)
   const sloganRef3 = useRef<HTMLDivElement>(null)
   const sloganRef4 = useRef<HTMLDivElement>(null)
   const sloganRefs = useMemo(
-    () => [sloganRef0, sloganRef1, sloganRef2, sloganRef3, sloganRef4],
+    () => [
+      titleRef,
+      sloganRef0,
+      sloganRef1,
+      sloganRef2,
+      sloganRef3,
+      sloganRef4,
+    ],
     [],
   )
   const [hasScrolled, setHasScrolled] = useState(false)
@@ -51,22 +59,27 @@ const StrategyHero: FunctionComponent = () => {
           }}
           className='flex flex-col justify-start items-start min-h-[calc(100lvh-50rem)] l:min-h-[calc(100lvh-40rem)]'
         >
-          <header ref={sloganRef0}>
-            <h1 style={{ color: colors.categoryColors.leistungen }}>
+          <header>
+            <h1
+              ref={titleRef}
+              style={{ color: colors.categoryColors.leistungen }}
+            >
               Media Concepts & Strategy
             </h1>
-            <Slogan emphasisColor={colors.green}>
-              {{
-                sloagen: (
-                  <>
-                    Wie entseht <em>Orientierung</em>
-                    <br /> in einer <em>Medienwelt</em>
-                    <br />
-                    im <em>permanenten Wandel?</em>
-                  </>
-                ),
-              }}
-            </Slogan>
+            <div ref={sloganRef0}>
+              <Slogan emphasisColor={colors.green}>
+                {{
+                  sloagen: (
+                    <>
+                      Wie entseht <em>Orientierung</em>
+                      <br /> in einer <em>Medienwelt</em>
+                      <br />
+                      im <em>permanenten Wandel?</em>
+                    </>
+                  ),
+                }}
+              </Slogan>
+            </div>
           </header>
         </div>
 
