@@ -10,7 +10,7 @@ import { breakpoint, minWidth } from 'lib/breakpoints'
 
 import AsertoLogo from 'components/aserto-logo'
 import Favicons from 'components/favicons'
-import GlobalStyles, { PreloadFont } from 'components/global-styles'
+
 import MainGrid from 'components/main-grid'
 import Navigation from 'components/navigation'
 
@@ -27,8 +27,13 @@ export default function RootLayout(props: Props) {
         <title>wunder & fitzig</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Favicons />
-        <PreloadFont />
-        <GlobalStyles />
+        <link
+          rel='preload'
+          href='/fonts/312FA8_0_0.woff2'
+          as='font'
+          type='font/woff2'
+          crossOrigin='anonymous'
+        />
       </head>
       <body>
         <MainGrid onFrontpage={isIndexPage}>

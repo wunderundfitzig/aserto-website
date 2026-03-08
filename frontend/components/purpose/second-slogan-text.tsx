@@ -1,9 +1,10 @@
 'use client'
 
 import { FunctionComponent } from 'react'
-import { categoryColors } from 'lib/colors'
+
 import { breakpoint, minWidth } from 'lib/breakpoints'
 import Slogan from 'components/slogan'
+import { categoryColors } from 'lib/colors'
 
 const SecondSloganText: FunctionComponent = () => {
   return (

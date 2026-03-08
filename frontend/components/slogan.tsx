@@ -1,64 +1,42 @@
-'use client'
-
-import { breakpoint, minWidth } from 'lib/breakpoints'
-import { FunctionComponent, ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
 type Props = {
   emphasisColor: string
+  rightAligned?: boolean
+  backgroundHighlight?: boolean
+  small?: boolean
   children: {
     roofline?: ReactNode
     sloagen: ReactNode
   }
 }
-const Slogan: FunctionComponent<Props> = (props) => {
+export default function Slogan(props: Props) {
   return (
-    <div>
+    <div
+      style={{ '--emphasis-color': props.emphasisColor } as CSSProperties}
+      className={
+        [
+          props.rightAligned ? 'text-right' : undefined,
+          props.backgroundHighlight ? 'bg-white/80' : undefined,
+        ]
+          .filter(Boolean)
+          .join(' ') || undefined
+      }
+    >
       {props.children.roofline && (
-        <p className='roofline'>{props.children.roofline}</p>
+        <p className='text-[1em] uppercase mt-0 mb-[0.2em] l:text-[0.8em]'>
+          {props.children.roofline}
+        </p>
       )}
-      <p className='slogan'>{props.children.sloagen}</p>
-      <style jsx>{`
-        .roofline {
-          font-size: 1em;
-          text-transform: uppercase;
-          margin: 0 0 0.2em;
-        }
-        .slogan {
-          font-family: 'Usherwood';
-          font-size: 1.6em;
-          line-height: 1.4em;
-          font-weight: bold;
-          margin: 0;
-        }
-
-        .slogan :global(em) {
-          color: ${props.emphasisColor};
-          font-style: normal;
-        }
-
-        @media ${minWidth(breakpoint.s)} {
-          .slogan {
-            font-size: 1.8em;
-          }
-        }
-
-        @media ${minWidth(breakpoint.ml)} {
-          .slogan {
-            font-size: 2.2em;
-          }
-        }
-
-        @media ${minWidth(breakpoint.l)} {
-          .roofline {
-            font-size: 0.8em;
-          }
-          .slogan {
-            font-size: 2.5em;
-          }
-        }
-      `}</style>
+      <p
+        className={`font-['Usherwood'] leading-[1.4em] font-bold m-0 [&_em]:text-(--emphasis-color) [&_em]:not-italic ${
+          props.small
+            ? 'text-[1.2em] s:text-[1.4em] ml:text-[1.7em] l:text-[2em]'
+            : 'text-[1.6em] s:text-[1.8em] ml:text-[2.2em] l:text-[2.5em]'
+        }`}
+      >
+        {props.children.sloagen}
+      </p>
     </div>
   )
 }
-
-export default Slogan

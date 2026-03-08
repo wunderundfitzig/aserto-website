@@ -8,10 +8,11 @@ const DOTS_PER_PX = 1 / 14000
 const MAX_DOTS = 300
 const INITIAL_SPEED = 0.1
 const MAX_SPEED = 0.1
+const WALL_BOUNCE = 30
 const REPULSION_STRENGTH = -0.09
-const MAX_POSITION_STRENGTH = 0.01
+const POSITION_STRENGTH = 0.01
 const LINK_STRENGTH = 0.0005
-const LINK_DISTANCE = 30
+const LINK_DISTANCE = 50
 
 const SIZES = [
   { radius: 6, red: colors.backgroundRed, green: colors.backgroundGreen },
@@ -36,7 +37,7 @@ type DotCircles = d3.Selection<
   unknown
 >
 
-export type DotMode = 'move' | 'attract' | 'center'
+export type DotMode = 'move' | 'filter' | 'attract' | 'center'
 
 type Props = {
   mode?: DotMode
@@ -134,9 +135,15 @@ export default function Dots({ mode = 'move' }: Props) {
 }
 
 function isVisible(dot: DotNode, mode: DotMode): boolean {
-  if (mode === 'move') return true
-  if (mode === 'attract') return !dot.isRed
-  return !dot.isRed && dot.sizeIndex < 2
+  switch (mode) {
+    case 'move':
+      return true
+    case 'filter':
+    case 'attract':
+      return !dot.isRed
+    case 'center':
+      return !dot.isRed && dot.sizeIndex < 2
+  }
 }
 
 function setup(
@@ -181,10 +188,16 @@ function setup(
     .style('opacity', (d) => (isVisible(d, mode) ? 1 : 0))
 
   const greenDots = dots.filter((d) => !d.isRed)
-  const dotLinks: DotLink[] = greenDots.slice(0, -1).map((source, i) => ({
-    source,
-    target: greenDots[i + 1],
-  }))
+  const hubDots = greenDots.filter((d) => d.sizeIndex === 1)
+  const spokeDots = greenDots.filter((d) => d.sizeIndex !== 1)
+
+  const dotLinks: DotLink[] =
+    hubDots.length > 0
+      ? spokeDots.map((spoke, i) => ({
+          source: spoke,
+          target: hubDots[i % hubDots.length],
+        }))
+      : []
 
   const simulation = d3
     .forceSimulation<DotNode, DotLink>(dots)
@@ -209,10 +222,10 @@ function setBordersAndLimitSpeed(
   width: number,
   height: number,
 ) {
-  const left = -width / 2
-  const right = width / 2
-  const top = -height / 2
-  const bottom = height / 2
+  const left = -width / 2 - 30
+  const right = width / 2 + 30
+  const top = -height / 2 - 30
+  const bottom = height / 2 + 30
 
   simulation.on('tick', () => {
     for (const dot of dots) {
@@ -228,17 +241,17 @@ function setBordersAndLimitSpeed(
 
       if (x < left) {
         dot.x = left
-        dot.vx = Math.abs(vx)
+        dot.vx = Math.abs(vx) * WALL_BOUNCE
       } else if (x > right) {
         dot.x = right
-        dot.vx = -Math.abs(vx)
+        dot.vx = -Math.abs(vx) * WALL_BOUNCE
       }
       if (y < top) {
         dot.y = top
-        dot.vy = Math.abs(vy)
+        dot.vy = Math.abs(vy) * WALL_BOUNCE
       } else if (y > bottom) {
         dot.y = bottom
-        dot.vy = -Math.abs(vy)
+        dot.vy = -Math.abs(vy) * WALL_BOUNCE
       }
     }
 
@@ -259,29 +272,39 @@ function applyMode(
     .delay((d) => (isVisible(d, mode) ? d.appearDelay : d.disappearDelay))
     .style('opacity', (d) => (isVisible(d, mode) ? 1 : 0))
 
-  if (mode === 'move') {
-    simulation.velocityDecay(0)
-    simulation.force(
-      'charge',
-      d3.forceManyBody<DotNode>().strength(REPULSION_STRENGTH).distanceMax(100),
-    )
-    linkForce?.strength(0)
-    simulation.force('x', d3.forceX(0).strength(0))
-    simulation.force('y', d3.forceY(0).strength(0))
-  } else if (mode === 'attract') {
-    simulation.velocityDecay(0.05)
-    simulation.force(
-      'charge',
-      d3.forceManyBody<DotNode>().strength(REPULSION_STRENGTH).distanceMax(300),
-    )
-    linkForce?.strength(LINK_STRENGTH)
-    simulation.force('x', d3.forceX(0).strength(0))
-    simulation.force('y', d3.forceY(0).strength(0))
-  } else if (mode === 'center') {
-    simulation.velocityDecay(0.1)
-    simulation.force('charge', null)
-    linkForce?.strength(LINK_STRENGTH)
-    simulation.force('x', d3.forceX(0).strength(MAX_POSITION_STRENGTH))
-    simulation.force('y', d3.forceY(0).strength(MAX_POSITION_STRENGTH))
+  switch (mode) {
+    case 'move':
+    case 'filter':
+      simulation.velocityDecay(0)
+      simulation.force(
+        'charge',
+        d3
+          .forceManyBody<DotNode>()
+          .strength(REPULSION_STRENGTH)
+          .distanceMax(100),
+      )
+      linkForce?.strength(0)
+      simulation.force('x', d3.forceX(0).strength(0))
+      simulation.force('y', d3.forceY(0).strength(0))
+      break
+    case 'attract':
+      simulation.velocityDecay(0.1)
+      simulation.force(
+        'charge',
+        d3
+          .forceManyBody<DotNode>()
+          .strength(REPULSION_STRENGTH)
+          .distanceMax(300),
+      )
+      linkForce?.strength(LINK_STRENGTH)
+      simulation.force('x', d3.forceX(0).strength(0))
+      simulation.force('y', d3.forceY(0).strength(0))
+      break
+    case 'center':
+      simulation.velocityDecay(0.4)
+      simulation.force('charge', null)
+      linkForce?.strength(0)
+      simulation.force('x', d3.forceX(0).strength(POSITION_STRENGTH))
+      simulation.force('y', d3.forceY(0).strength(POSITION_STRENGTH))
   }
 }
