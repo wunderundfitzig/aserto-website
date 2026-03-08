@@ -15,16 +15,8 @@ const StrategyHero: FunctionComponent = () => {
   const sloganRef1 = useRef<HTMLDivElement>(null)
   const sloganRef2 = useRef<HTMLDivElement>(null)
   const sloganRef3 = useRef<HTMLDivElement>(null)
-  const sloganRef4 = useRef<HTMLDivElement>(null)
   const sloganRefs = useMemo(
-    () => [
-      titleRef,
-      sloganRef0,
-      sloganRef1,
-      sloganRef2,
-      sloganRef3,
-      sloganRef4,
-    ],
+    () => [titleRef, sloganRef0, sloganRef1, sloganRef2, sloganRef3],
     [],
   )
   const [hasScrolled, setHasScrolled] = useState(false)
@@ -36,7 +28,7 @@ const StrategyHero: FunctionComponent = () => {
   }, [])
 
   const activeIndex = useIntersectionObserver(sectionRefs.current, {
-    topOffset: (height) => height * 0.6,
+    topOffset: (height) => height * 0.5,
   })
 
   const mode = MODES[activeIndex ?? 0]
@@ -62,11 +54,12 @@ const StrategyHero: FunctionComponent = () => {
           <header>
             <h1
               ref={titleRef}
+              className='max-sm:bg-white/80'
               style={{ color: colors.categoryColors.leistungen }}
             >
               Media Concepts & Strategy
             </h1>
-            <div ref={sloganRef0}>
+            <div ref={sloganRef0} className='max-sm:bg-white/80'>
               <Slogan emphasisColor={colors.green}>
                 {{
                   sloagen: (
@@ -91,7 +84,9 @@ const StrategyHero: FunctionComponent = () => {
         >
           <div
             ref={sloganRef1}
-            className={`slogan-hint ${hasScrolled ? 'scrolled' : ''}`}
+            className={`slogan-hint ${
+              hasScrolled ? 'scrolled' : ''
+            } max-sm:bg-white/80`}
             onClick={handleSloganClick}
           >
             <Slogan small rightAligned emphasisColor={colors.green}>
@@ -135,7 +130,7 @@ const StrategyHero: FunctionComponent = () => {
           }}
           className='h-[50vh] flex flex-col justify-center items-end'
         >
-          <div ref={sloganRef2}>
+          <div ref={sloganRef2} className='max-sm:bg-white/80'>
             <Slogan small rightAligned emphasisColor={colors.green}>
               {{
                 sloagen: (
@@ -155,7 +150,7 @@ const StrategyHero: FunctionComponent = () => {
           }}
           className='h-[50vh] flex flex-col justify-center items-end'
         >
-          <div ref={sloganRef3}>
+          <div ref={sloganRef3} className='max-sm:bg-white/80'>
             <Slogan small rightAligned emphasisColor={colors.green}>
               {{
                 sloagen: (
@@ -175,7 +170,7 @@ const StrategyHero: FunctionComponent = () => {
           }}
           className='h-screen flex flex-col justify-center items-start'
         >
-          <div ref={sloganRef4}>
+          <div>
             <Slogan small emphasisColor={colors.green}>
               {{
                 sloagen: (
