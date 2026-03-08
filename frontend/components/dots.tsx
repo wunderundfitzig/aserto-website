@@ -11,8 +11,10 @@ const MAX_SPEED = 0.1
 const WALL_BOUNCE = 30
 const REPULSION_STRENGTH = -0.09
 const POSITION_STRENGTH = 0.01
-const LINK_STRENGTH = 0.001
+const LINK_STRENGTH = 0.03
 const LINK_DISTANCE = 30
+const RADIAL_RADIUS_FACTOR = 0.3
+const RADIAL_STRENGTH = 0.01
 
 const SIZES = [
   { radius: 6, red: colors.backgroundRed, green: colors.backgroundGreen },
@@ -131,7 +133,7 @@ export default function Dots({ mode = 'move', exclusionRefs = [] }: Props) {
     const circles = circlesRef.current
     if (!simulation || !circles) return
 
-    applyMode(simulation, mode, circles)
+    applyMode(simulation, mode, circles, widthRef, heightRef)
   }, [mode])
 
   return (
@@ -345,7 +347,7 @@ function setup(
     )
     .alphaDecay(0)
 
-  applyMode(simulation, mode, circles)
+  applyMode(simulation, mode, circles, widthRef, heightRef)
 
   return { simulation, dots, circles }
 }
@@ -404,6 +406,8 @@ function applyMode(
   simulation: d3.Simulation<DotNode, DotLink>,
   mode: DotMode,
   circles: DotCircles,
+  widthRef: RefObject<number>,
+  heightRef: RefObject<number>,
 ) {
   const linkForce = simulation.force<d3.ForceLink<DotNode, DotLink>>('link')
 
@@ -427,6 +431,7 @@ function applyMode(
       linkForce?.strength(0)
       simulation.force('x', d3.forceX(0).strength(0))
       simulation.force('y', d3.forceY(0).strength(0))
+      simulation.force('radial', null)
       break
     case 'attract':
       simulation.velocityDecay(0.1)
@@ -434,12 +439,23 @@ function applyMode(
         'charge',
         d3
           .forceManyBody<DotNode>()
-          .strength(REPULSION_STRENGTH)
+          .strength(REPULSION_STRENGTH * 3)
           .distanceMax(300),
       )
       linkForce?.strength(LINK_STRENGTH).distance(LINK_DISTANCE)
       simulation.force('x', d3.forceX(0).strength(0))
       simulation.force('y', d3.forceY(0).strength(0))
+      simulation.force(
+        'radial',
+        d3
+          .forceRadial<DotNode>(
+            Math.min(widthRef.current, heightRef.current) *
+              RADIAL_RADIUS_FACTOR,
+            0,
+            0,
+          )
+          .strength((d) => (d.isRed ? 0 : RADIAL_STRENGTH)),
+      )
       break
     case 'center':
       simulation.velocityDecay(0.4)
@@ -447,5 +463,6 @@ function applyMode(
       linkForce?.strength(0)
       simulation.force('x', d3.forceX(0).strength(POSITION_STRENGTH))
       simulation.force('y', d3.forceY(0).strength(POSITION_STRENGTH))
+      simulation.force('radial', null)
   }
 }
