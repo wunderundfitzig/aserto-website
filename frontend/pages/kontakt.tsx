@@ -26,7 +26,7 @@ const Kontakt: NextPage<PageProps<KontaktPageProps>> = (props) => {
         <Metadata pageMeta={props.pageData} slug='/kontakt' />
         <main>
           <KontaktHeader />
-          <Anfahrt mapsLink={props.siteInfo.mapsUrl} />
+          <Anfahrt />
           <Ansprechpartner {...props.pageData} />
           <Impressum html={props.pageData.imprint} />
         </main>
